@@ -1,0 +1,94 @@
+import { describe, it, expect, vi } from 'vitest'
+
+vi.mock('../components/decorations/DecorationPhoto.vue', () => ({
+  default: { name: 'DecorationPhoto' }
+}))
+vi.mock('../components/decorations/DecorationDiagonal.vue', () => ({
+  default: { name: 'DecorationDiagonal' }
+}))
+vi.mock('../components/decorations/DecorationWedges.vue', () => ({
+  default: { name: 'DecorationWedges' }
+}))
+vi.mock('../components/decorations/DecorationSolid.vue', () => ({
+  default: { name: 'DecorationSolid' },
+  logoTreatment: 'white'
+}))
+vi.mock('../components/decorations/DecorationMultiShape.vue', () => ({
+  default: { name: 'DecorationMultiShape' },
+  logoTreatment: 'white'
+}))
+vi.mock('../components/decorations/DecorationGradient.vue', () => ({
+  default: { name: 'DecorationGradient' }
+}))
+
+import { resolveCoverVariant, getDecoration, useDarkLogo } from './cover-variants'
+
+describe('resolveCoverVariant', () => {
+  it('returns letter unchanged when given a single letter a-l', () => {
+    expect(resolveCoverVariant('a')).toBe('a')
+    expect(resolveCoverVariant('g')).toBe('g')
+    expect(resolveCoverVariant('l')).toBe('l')
+  })
+
+  it('lowercases input', () => {
+    expect(resolveCoverVariant('A')).toBe('a')
+    expect(resolveCoverVariant('G')).toBe('g')
+  })
+
+  it('maps known descriptive aliases to letters', () => {
+    expect(resolveCoverVariant('photo')).toBe('a')
+    expect(resolveCoverVariant('diagonal')).toBe('b')
+    expect(resolveCoverVariant('wedges')).toBe('g')
+    expect(resolveCoverVariant('solid-blue')).toBe('f')
+    expect(resolveCoverVariant('gradient-fade')).toBe('l')
+  })
+
+  it('falls back to "a" for unknown input', () => {
+    expect(resolveCoverVariant('foo')).toBe('a')
+    expect(resolveCoverVariant('zz')).toBe('a')
+  })
+
+  it('falls back to "a" when undefined', () => {
+    expect(resolveCoverVariant(undefined)).toBe('a')
+  })
+})
+
+describe('getDecoration', () => {
+  it('returns the right component per letter', () => {
+    expect((getDecoration('a') as any).name).toBe('DecorationPhoto')
+    expect((getDecoration('b') as any).name).toBe('DecorationDiagonal')
+    expect((getDecoration('g') as any).name).toBe('DecorationWedges')
+    expect((getDecoration('f') as any).name).toBe('DecorationSolid')
+    expect((getDecoration('l') as any).name).toBe('DecorationGradient')
+    expect((getDecoration('c') as any).name).toBe('DecorationMultiShape')
+  })
+
+  it('falls back to DecorationPhoto for unknown letters', () => {
+    expect((getDecoration('z') as any).name).toBe('DecorationPhoto')
+  })
+})
+
+describe('useDarkLogo', () => {
+  it('returns true for variants with dark backgrounds', () => {
+    expect(useDarkLogo('b')).toBe(true)
+    expect(useDarkLogo('f')).toBe(true)
+    expect(useDarkLogo('g')).toBe(true)
+    expect(useDarkLogo('l')).toBe(true)
+  })
+
+  it('returns false for variant a when image is supplied', () => {
+    expect(useDarkLogo('a', '/some-image.jpg')).toBe(false)
+  })
+
+  it('returns true for variant a when no image (fallback wedge is dark)', () => {
+    expect(useDarkLogo('a')).toBe(true)
+    expect(useDarkLogo('a', undefined)).toBe(true)
+    expect(useDarkLogo('a', '')).toBe(true)
+  })
+
+  it('honors per-decoration logoTreatment for multi-shape variants c/d/e', () => {
+    expect(useDarkLogo('c')).toBe(true)
+    expect(useDarkLogo('d')).toBe(true)
+    expect(useDarkLogo('e')).toBe(true)
+  })
+})
