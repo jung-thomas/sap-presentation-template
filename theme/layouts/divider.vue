@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import DividerWedge from '../components/decorations/DividerWedge.vue'
+  import { computed } from 'vue'
+  import DividerWedge from '../components/decorations/DividerWedge.vue'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-const fm = computed(() => props.frontmatter ?? {})
-const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
+  const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
 </script>
 
 <template>
   <div :class="['divider', `divider--${variant}`]">
     <DividerWedge :variant="variant" />
     <div class="divider-content">
-      <h1 v-if="fm.title">{{ fm.title }}</h1>
+      <h1 v-if="fm.title">
+        {{ fm.title }}
+      </h1>
       <slot />
     </div>
   </div>
@@ -36,10 +38,12 @@ const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
   }
   .divider h1 {
     font-size: var(--typography-divider-title-size, 4rem);
-    line-height: var(--typography-divider-title-line-height, 1.0);
+    line-height: var(--typography-divider-title-line-height, 1);
     margin: 0;
     color: #ffffff;
     max-width: 80%;
   }
-  .divider::after { content: none !important; }
+  .divider::after {
+    content: none !important;
+  }
 </style>

@@ -1,27 +1,25 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
-import Speaker from '../components/Speaker.vue'
-import { getEvent } from '../setup/data'
+  import { computed } from 'vue'
+  import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
+  import Speaker from '../components/Speaker.vue'
+  import { getEvent } from '../setup/data'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-const fm = computed(() => props.frontmatter ?? {})
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
 
-const variantLetter = computed(() =>
-  resolveCoverVariant(fm.value.variant as string | undefined)
-)
-const Decoration = computed(() => getDecoration(variantLetter.value))
-const isDarkBg = computed(() =>
-  useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
-)
-const logoSrc = computed(() =>
-  isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
-)
-const presenter = computed(() => fm.value.presenter as string | undefined)
-const image = computed(() => fm.value.image as string | undefined)
+  const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
+  const Decoration = computed(() => getDecoration(variantLetter.value))
+  const isDarkBg = computed(() =>
+    useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
+  )
+  const logoSrc = computed(() =>
+    isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
+  )
+  const presenter = computed(() => fm.value.presenter as string | undefined)
+  const image = computed(() => fm.value.image as string | undefined)
 
-const eventData = getEvent()
-const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
+  const eventData = getEvent()
+  const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 </script>
 
 <template>
@@ -29,8 +27,12 @@ const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
     <component :is="Decoration" :variant="variantLetter" :image="image" />
     <img class="cover-logo" :src="logoSrc" alt="SAP" />
     <div class="cover-content">
-      <h1 v-if="fm.title">{{ fm.title }}</h1>
-      <p v-if="fm.subtitle" class="subtitle">{{ fm.subtitle }}</p>
+      <h1 v-if="fm.title">
+        {{ fm.title }}
+      </h1>
+      <p v-if="fm.subtitle" class="subtitle">
+        {{ fm.subtitle }}
+      </p>
       <slot />
       <footer class="cover-footer">
         <Speaker :presenter="presenter" />
@@ -93,5 +95,7 @@ const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
     letter-spacing: 0.06em;
   }
   /* Suppress the global slide-styles ::after accent — covers don't use it */
-  .cover::after { content: none !important; }
+  .cover::after {
+    content: none !important;
+  }
 </style>
