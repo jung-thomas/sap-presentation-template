@@ -1,12 +1,13 @@
 <script setup lang="ts">
-  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  import AgendaList from '../components/Agenda.vue'
+
+  defineProps<{ frontmatter?: Record<string, unknown> }>()
 </script>
 
 <template>
-  <div :class="['layout', 'agenda-layout', `agenda-layout--${fm.variant ?? 'a'}`]">
-    <h1>{{ fm.title ?? 'Agenda' }}</h1>
-    <Agenda :items="(fm.items as string[] | undefined)" :current="(fm.current as number | undefined)" />
+  <div class="layout agenda-layout">
+    <h1>{{ $frontmatter?.title ?? 'Agenda' }}</h1>
+    <AgendaList :items="$frontmatter?.items" :current="$frontmatter?.current" />
     <slot />
   </div>
 </template>
