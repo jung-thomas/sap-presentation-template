@@ -8,15 +8,11 @@
 
 <template>
   <ui5-card :class="['bio', { compact }]">
-    <template #header>
-      <ui5-card-header :title-text="p.name" :subtitle-text="p.title">
-        <template #avatar>
-          <ui5-avatar :initials="p.initials" size="L" shape="Circle">
-            <img v-if="p.photo" :src="p.photo" :alt="p.name" />
-          </ui5-avatar>
-        </template>
-      </ui5-card-header>
-    </template>
+    <ui5-card-header slot="header" :title-text="p.name" :subtitle-text="p.title">
+      <ui5-avatar slot="avatar" :initials="p.initials" size="L" shape="Circle">
+        <img v-if="p.photo" :src="p.photo" :alt="p.name" />
+      </ui5-avatar>
+    </ui5-card-header>
     <div v-if="!compact && p.bio" class="bio-body">
       {{ p.bio }}
     </div>
