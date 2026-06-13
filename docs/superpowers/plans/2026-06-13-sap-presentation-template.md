@@ -23,6 +23,8 @@
 - When a step says "Run X / Expected Y," pause if Y doesn't appear and investigate.
 - Reference the spec for *why* — this document is the *what* and *how*.
 
+> **⚠️ File ordering note for human readers:** Phases 1–5 appear in **reverse order** in this file (Phase 6 → Phase 5 → ... → Phase 1), then Phases 7–18 follow normally. Always navigate by **phase number**, not file position. The "Phase index" below jumps to the right place. Tool-driven execution (e.g., subagent-driven-development) follows the numbered phases, so this doesn't affect automated runs — only humans reading top-to-bottom.
+
 ---
 
 ## Phase index
@@ -569,6 +571,8 @@ git commit -m "chore: smoke-test core components in slides.md"
 
 
 
+## Phase 5: Data files (presenters, teams, programs, event, snippets)
+
 Author the YAML and Markdown files that components will resolve. These are template-shipped defaults; fork-authors edit them.
 
 ### Task 5.1: presenters/_example.yaml (the contributor template)
@@ -855,6 +859,8 @@ git commit -m "feat: starter snippets (codejam, community-thanks, legal-disclaim
 ---
 
 
+
+## Phase 4: Data layer
 
 Wire `@rollup/plugin-yaml` into Slidev's Vite config so `.yaml` files import as JS objects, then write `theme/setup/data.ts` — a small set of resolvers that components call (`resolvePresenter(slug)`, `resolveTeam(slug)`, etc.). End state: a Vue component can `import { resolvePresenter } from 'slidev-theme-sap/setup/data'` and get a typed `Presenter` object.
 
@@ -1228,6 +1234,8 @@ git commit -m "feat: social-link URL builder"
 
 
 
+## Phase 3: Theme foundation
+
 Wire `@sap-theming/theming-base-content` (Horizon CSS + 72 fonts), our extracted brand tokens, and the `horizon-mapping.css` aliasing layer into a Slidev theme entry point. End state: `npm run dev` shows the placeholder slides.md rendered with SAP colors and the 72 font.
 
 ### Task 3.1: Theme entry CSS
@@ -1571,6 +1579,8 @@ If `dist/` snuck into git (it shouldn't — `.gitignore` excludes it), remove an
 ---
 
 
+
+## Phase 2: Brand extraction script
 
 Build `npm run extract-brand` — a Node script that unzips `SAP_Corp.potx`, parses theme XML, and emits CSS tokens, a layout manifest, and raw media. Test-first using Vitest.
 
@@ -2477,6 +2487,8 @@ git commit -m "chore: refresh extraction metadata"
 ---
 
 
+
+## Phase 1: Project scaffolding
 
 Set up Node 22, TypeScript, npm workspaces (root + `theme/`), ESLint, Prettier, and a minimal Slidev project. End state: `npm run dev` opens an empty Slidev deck.
 
