@@ -70,20 +70,20 @@ Use components to add structured, on-brand elements inside any layout.
 The cover layout has 12 visual variants. Reference by letter (POTX-faithful)
 or descriptive alias (self-documenting):
 
-| Letter | Alias                | Visual treatment                                        | Logo                                                   |
-| ------ | -------------------- | ------------------------------------------------------- | ------------------------------------------------------ |
-| `a`    | `photo`              | Photo on right half, white background                   | Primary (always — left half is white)                  |
-| `b`    | `diagonal`           | Solid blue with diagonal cut to white triangle          | White                                                  |
-| `c`    | `photo-portrait`     | Multi-shape composition, blue palette                   | White                                                  |
-| `d`    | `multi-shape`        | Multi-shape composition, teal/green palette             | Primary (POTX uses LogoBlack-Dynamic for this variant) |
-| `e`    | `multi-shape-purple` | Multi-shape composition, purple/pink palette            | White                                                  |
-| `f`    | `solid-blue`         | Solid SAP brand blue                                    | White                                                  |
-| `g`    | `wedges`             | Nested layered diagonal wedges                          | White                                                  |
-| `h`    | `solid-teal`         | Solid SAP brand teal                                    | White                                                  |
-| `i`    | `solid-purple`       | Solid SAP brand purple                                  | White                                                  |
-| `j`    | `diagonal-tinted`    | Diagonal silhouette on tinted blue                      | White                                                  |
-| `k`    | `solid-blue-darker`  | Solid darker brand blue                                 | White                                                  |
-| `l`    | `gradient-fade`      | Vertical gradient blue → black                          | White                                                  |
+| Letter | Alias                | Visual treatment                               | Logo                                                   |
+| ------ | -------------------- | ---------------------------------------------- | ------------------------------------------------------ |
+| `a`    | `photo`              | Photo on right half, white background          | Primary (always — left half is white)                  |
+| `b`    | `diagonal`           | Solid blue with diagonal cut to white triangle | White                                                  |
+| `c`    | `photo-portrait`     | Multi-shape composition, blue palette          | White                                                  |
+| `d`    | `multi-shape`        | Multi-shape composition, teal/green palette    | Primary (POTX uses LogoBlack-Dynamic for this variant) |
+| `e`    | `multi-shape-purple` | Multi-shape composition, purple/pink palette   | White                                                  |
+| `f`    | `solid-blue`         | Solid SAP brand blue                           | White                                                  |
+| `g`    | `wedges`             | Nested layered diagonal wedges                 | White                                                  |
+| `h`    | `solid-teal`         | Solid SAP brand teal                           | White                                                  |
+| `i`    | `solid-purple`       | Solid SAP brand purple                         | White                                                  |
+| `j`    | `diagonal-tinted`    | Diagonal silhouette on tinted blue             | White                                                  |
+| `k`    | `solid-blue-darker`  | Solid darker brand blue                        | White                                                  |
+| `l`    | `gradient-fade`      | Vertical gradient blue → black                 | White                                                  |
 
 Both forms are equivalent:
 
