@@ -45,7 +45,7 @@
   }
   .thank-you h1 {
     font-size: var(--typography-thankyou-title-size, 6rem);
-    line-height: var(--typography-thankyou-title-line-height, 1.0);
+    line-height: var(--typography-thankyou-title-line-height, 1);
     margin: 0;
     color: #ffffff;
   }

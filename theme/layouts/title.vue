@@ -31,7 +31,7 @@
   }
   .title h1 {
     font-size: var(--typography-cover-title-size, 4.5rem);
-    line-height: var(--typography-cover-title-line-height, 1.0);
+    line-height: var(--typography-cover-title-line-height, 1);
     color: var(--sap-brand-blue-darker);
     margin-bottom: 1rem;
   }

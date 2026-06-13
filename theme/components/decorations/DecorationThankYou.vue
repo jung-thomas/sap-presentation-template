@@ -1,9 +1,12 @@
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
-  <div :class="['decoration-thankyou', `decoration-thankyou--${variant ?? 'a'}`]" aria-hidden="true" />
+  <div
+    :class="['decoration-thankyou', `decoration-thankyou--${variant ?? 'a'}`]"
+    aria-hidden="true"
+  />
 </template>
 
 <style scoped>
