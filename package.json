@@ -21,7 +21,8 @@
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots",
     "lint": "eslint . && prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "gallery": "slidev pages/all-layouts.md --port 3031"
   },
   "dependencies": {
     "@sap-theming/theming-base-content": "^11.20.0",
