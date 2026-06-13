@@ -1,11 +1,15 @@
 <script setup lang="ts">
-  defineProps<{ src?: string; title?: string; alt?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
-  <div class="layout full-bleed-image" :style="src ? { backgroundImage: `url(${src})` } : {}">
-    <div v-if="title" class="overlay">
-      <h1>{{ title }}</h1>
+  <div
+    class="layout full-bleed-image"
+    :style="fm.src ? { backgroundImage: `url(${fm.src})` } : {}"
+  >
+    <div v-if="fm.title" class="overlay">
+      <h1>{{ fm.title }}</h1>
       <slot />
     </div>
   </div>

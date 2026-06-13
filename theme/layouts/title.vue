@@ -1,15 +1,16 @@
 <script setup lang="ts">
-  defineProps<{ title?: string; subtitle?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout title">
     <div class="title-inner">
-      <h1 v-if="title">
-        {{ title }}
+      <h1 v-if="fm.title">
+        {{ fm.title }}
       </h1>
-      <p v-if="subtitle" class="subtitle">
-        {{ subtitle }}
+      <p v-if="fm.subtitle" class="subtitle">
+        {{ fm.subtitle }}
       </p>
       <slot />
     </div>

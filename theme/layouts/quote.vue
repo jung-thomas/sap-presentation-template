@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  defineProps<{ author?: string; source?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
@@ -7,9 +8,9 @@
     <blockquote>
       <slot />
     </blockquote>
-    <footer v-if="author">
-      <span class="author">— {{ author }}</span>
-      <span v-if="source" class="source">, {{ source }}</span>
+    <footer v-if="fm.author">
+      <span class="author">— {{ fm.author }}</span>
+      <span v-if="fm.source" class="source">, {{ fm.source }}</span>
     </footer>
   </div>
 </template>

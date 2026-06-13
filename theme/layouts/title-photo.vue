@@ -1,15 +1,19 @@
 <script setup lang="ts">
-  defineProps<{ title?: string; photo?: string; alt?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout title-photo">
-    <div class="photo-half" :style="photo ? { backgroundImage: `url(${photo})` } : {}">
+    <div
+      class="photo-half"
+      :style="fm.photo ? { backgroundImage: `url(${fm.photo})` } : {}"
+    >
       <slot name="photo" />
     </div>
     <div class="text-half">
-      <h1 v-if="title">
-        {{ title }}
+      <h1 v-if="fm.title">
+        {{ fm.title }}
       </h1>
       <slot />
     </div>

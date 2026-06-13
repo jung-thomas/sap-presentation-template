@@ -1,10 +1,11 @@
 <script setup lang="ts">
-  defineProps<{ src: string; alt?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout image-slide">
-    <img :src="src" :alt="alt ?? ''" />
+    <img :src="(fm.src as string)" :alt="(fm.alt as string) ?? ''" />
   </div>
 </template>
 

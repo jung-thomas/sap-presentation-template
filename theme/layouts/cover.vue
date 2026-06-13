@@ -1,30 +1,27 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
   import { getEvent } from '../setup/data'
 
-  const props = defineProps<{
-    title?: string
-    subtitle?: string
-    variant?: string // a..l
-    presenter?: string
-    event?: string // overrides event.yaml#name
-  }>()
-  const variant = props.variant ?? 'a'
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
+
+  const variant = computed(() => (fm.value.variant as string) ?? 'a')
   const eventData = getEvent()
-  const eventName = props.event ?? eventData.name
+  const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 </script>
 
 <template>
   <div :class="['cover', `cover--${variant}`]">
     <div class="cover-content">
-      <h1 v-if="title">
-        {{ title }}
+      <h1 v-if="fm.title">
+        {{ fm.title }}
       </h1>
-      <p v-if="subtitle" class="subtitle">
-        {{ subtitle }}
+      <p v-if="fm.subtitle" class="subtitle">
+        {{ fm.subtitle }}
       </p>
       <slot />
       <footer class="cover-footer">
-        <Speaker v-if="presenter" :presenter="presenter" />
+        <Speaker v-if="fm.presenter" :presenter="(fm.presenter as string)" />
         <Speaker v-else />
         <span class="event">{{ eventName }}</span>
       </footer>

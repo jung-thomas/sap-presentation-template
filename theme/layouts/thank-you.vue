@@ -1,13 +1,14 @@
 <script setup lang="ts">
   import { getEvent } from '../setup/data'
-  const props = defineProps<{ presenter?: string; variant?: 'a' | 'b' }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
   const event = getEvent()
 </script>
 
 <template>
-  <div :class="['layout', 'thank-you', `thank-you--${props.variant ?? 'a'}`]">
+  <div :class="['layout', 'thank-you', `thank-you--${fm.variant ?? 'a'}`]">
     <h1>Thank you.</h1>
-    <Speaker :presenter="presenter" />
+    <Speaker :presenter="(fm.presenter as string | undefined)" />
     <p v-if="event.hashtag" class="hashtag">
       {{ event.hashtag }}
     </p>

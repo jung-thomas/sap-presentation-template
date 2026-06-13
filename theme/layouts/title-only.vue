@@ -1,11 +1,12 @@
 <script setup lang="ts">
-  defineProps<{ title?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout title-only">
-    <h1 v-if="title">
-      {{ title }}
+    <h1 v-if="fm.title">
+      {{ fm.title }}
     </h1>
     <slot />
   </div>

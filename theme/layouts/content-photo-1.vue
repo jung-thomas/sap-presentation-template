@@ -1,14 +1,15 @@
 <script setup lang="ts">
-  defineProps<{ title?: string; photo?: string; alt?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout content-photo-1">
     <div class="header">
-      <img v-if="photo" :src="photo" :alt="alt ?? ''" class="avatar" />
+      <img v-if="fm.photo" :src="(fm.photo as string)" :alt="(fm.alt as string) ?? ''" class="avatar" />
       <div v-else class="avatar avatar--placeholder" />
-      <h1 v-if="title">
-        {{ title }}
+      <h1 v-if="fm.title">
+        {{ fm.title }}
       </h1>
     </div>
     <div class="body">

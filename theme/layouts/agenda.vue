@@ -1,16 +1,12 @@
 <script setup lang="ts">
-  defineProps<{
-    title?: string
-    variant?: 'a' | 'b'
-    items?: string[]
-    current?: number
-  }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
-  <div :class="['layout', 'agenda-layout', `agenda-layout--${variant ?? 'a'}`]">
-    <h1>{{ title ?? 'Agenda' }}</h1>
-    <Agenda :items="items" :current="current" />
+  <div :class="['layout', 'agenda-layout', `agenda-layout--${fm.variant ?? 'a'}`]">
+    <h1>{{ fm.title ?? 'Agenda' }}</h1>
+    <Agenda :items="(fm.items as string[] | undefined)" :current="(fm.current as number | undefined)" />
     <slot />
   </div>
 </template>

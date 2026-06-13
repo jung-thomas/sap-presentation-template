@@ -1,12 +1,13 @@
 <script setup lang="ts">
-  defineProps<{ title?: string; variant?: 'a' | 'b' | 'c' | 'd' }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
-  <div :class="['layout', 'divider', `divider--${variant ?? 'a'}`]">
+  <div :class="['layout', 'divider', `divider--${fm.variant ?? 'a'}`]">
     <div class="divider-content">
-      <h1 v-if="title">
-        {{ title }}
+      <h1 v-if="fm.title">
+        {{ fm.title }}
       </h1>
       <slot />
     </div>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
-  defineProps<{ presenter?: string }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = props.frontmatter ?? {}
 </script>
 
 <template>
   <div class="layout q-and-a">
     <h1>Questions?</h1>
     <p class="prompt">Ask now, or find me later.</p>
-    <Bio :presenter="presenter" compact />
+    <Bio :presenter="(fm.presenter as string | undefined)" compact />
     <slot />
   </div>
 </template>
