@@ -282,7 +282,7 @@ The POTX embeds proprietary `.fntdata` (PowerPoint binary format, not web-usable
 
 ## 7. Reusable content & data files
 
-All YAML files at the repo root are loaded via Vite's YAML support and exposed to components via `theme/setup/data.ts`.
+All YAML files at the repo root are loaded at build time via the `@rollup/plugin-yaml` Vite plugin (configured in `theme/setup/main.ts`), which produces typed JS objects importable as ES modules. Component-facing helpers (e.g., `resolvePresenter(slug)`, default-presenter fallback) live in `theme/setup/data.ts`.
 
 ### 7.1 `presenters/<slug>.yaml`
 
@@ -379,7 +379,7 @@ Renders a full-bleed image with no template chrome (no footer, no page number, n
 `scripts/import-pptx.mjs <file.pptx>`:
 
 1. Shells out to LibreOffice (`soffice --convert-to pdf`) to render the PPTX as PDF.
-2. Converts each PDF page to high-res PNG (using `pdftoppm` if available, else falls back).
+2. Converts each PDF page to high-res PNG. Primary: `pdftoppm` if available on PATH (Poppler — typically present alongside LibreOffice on Mac/Linux). Fallback: the `pdf-to-img` npm package (pure JS, ~10 MB, only loaded if `pdftoppm` is missing). If both are unavailable, the script exits with a clear error and a pointer to the manual fallback.
 3. Writes PNGs to `public/imported/<deckname>/slide-NN.png`.
 4. Generates a `slides.json` manifest in the same directory.
 5. Optionally generates a `snippets/<deckname>-frame.md` Markdown stub that places the first and last slides as `image-slide` layouts (for the "wrap your deck in foreign branding" pattern).
@@ -419,14 +419,14 @@ PNG/JPG and screenshots are zero-tooling: drop into `public/imported/<event>/`, 
 
 1. Click "Use this template" → create a new repo.
 2. **Settings → Pages → Source: GitHub Actions** *(one-time UI step; GitHub limitation, can't be automated for the user).*
-3. Edit `presenters/thomas-jung.yaml` (rename to your own slug) or add `presenters/your-name.yaml`.
+3. **Replace the demo presenter:** the template ships with `presenters/thomas-jung.yaml` so the template repo's own GitHub Pages renders a working demo. On fork, either (a) replace its contents with your own data and rename the file, or (b) delete it and copy `presenters/_example.yaml` → `presenters/<your-slug>.yaml`. Then update `event.yaml#defaultPresenter` to your slug.
 4. Edit `event.yaml` — set `defaultPresenter` and event metadata.
 5. Edit `slides.md` — write your talk.
 6. `git push` → live in ~60 seconds at `username.github.io/repo-name/`.
 
 ## 10. Visual regression testing
 
-`tests/visual.spec.ts` uses Playwright to snapshot the kitchen-sink gallery (`/all-layouts` route) on every PR. Snapshots are committed to `tests/__screenshots__/` (PNG, no LFS by default — total size kept under ~50 MB).
+`tests/visual.spec.ts` uses Playwright to snapshot the kitchen-sink gallery (`/all-layouts` route) on every PR. Snapshots are committed to `tests/__screenshots__/` (PNG, no LFS by default). Approximate budget: ~30 MB at 45 layouts × 1920×1080; LFS upgrade documented if the suite grows.
 
 **Test pre-flight:**
 
