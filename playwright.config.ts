@@ -12,6 +12,7 @@ export default defineConfig({
     deviceScaleFactor: 1
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  snapshotPathTemplate: '{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
   webServer: {
     command: 'npm run gallery',
     url: 'http://localhost:3031',
