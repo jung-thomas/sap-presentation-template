@@ -1,0 +1,14 @@
+# Copy this file to presenters/<your-slug>.yaml and fill in your details.
+# The slug must match the filename (without .yaml). Lowercase + hyphens only.
+slug: example-name
+name: Example Person
+title: Job Title, SAP
+photo: /presenters/example-name.jpg # place under /public/presenters/
+initials: EP
+bio: |
+  One- or two-sentence bio. Plain text, used in <Bio> cards.
+socials:
+  - { platform: linkedin, handle: example-name }
+  - { platform: github, handle: examplename }
+  - { platform: x, handle: examplename }
+email: example.person@sap.com
