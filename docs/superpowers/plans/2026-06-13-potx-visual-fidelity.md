@@ -21,7 +21,7 @@
 - TDD applies wherever logic is testable (parsers, emitters, alias resolvers). Vue decoration components don't need unit tests; Playwright visual regression covers them.
 - File paths are exact and absolute-from-repo-root.
 - The plan ships 3 stages (A → B → C). Stage A has architectural prerequisites for Stage B; don't reorder.
-- Reference the spec for *why*; this is the *what* and *how*.
+- Reference the spec for _why_; this is the _what_ and _how_.
 
 ---
 
@@ -65,6 +65,7 @@
 ### Task 1: Extend parse-layouts.mjs to capture `<p:pic>` and `<a:lstStyle>`
 
 The existing parser only captures `<p:sp>` placeholder shapes. We need:
+
 - `<p:pic>` elements (the SAP logo and other fixed-position images), captured per layout
 - `<a:lstStyle>` text style overrides on placeholders (font sizes, line spacing) for typography tokens
 
@@ -380,9 +381,7 @@ import { emitTypographyTokensCss } from './emit-typography-tokens.mjs'
 const SAMPLE_LAYOUTS = [
   {
     name: 'Cover A',
-    placeholders: [
-      { type: 'title', textStyles: { fontSize: 36, lineSpacing: 90 } }
-    ],
+    placeholders: [{ type: 'title', textStyles: { fontSize: 36, lineSpacing: 90 } }],
     pics: []
   },
   {
@@ -483,7 +482,9 @@ export function emitTypographyTokensCss(layouts) {
         lines.push(`  --typography-${prefix}-${type}-size: ${ptToRem(ts.fontSize)};`)
       }
       if (ts.lineSpacing != null) {
-        lines.push(`  --typography-${prefix}-${type}-line-height: ${lineSpacingToMultiplier(ts.lineSpacing)};`)
+        lines.push(
+          `  --typography-${prefix}-${type}-line-height: ${lineSpacingToMultiplier(ts.lineSpacing)};`
+        )
       }
     }
   }
@@ -573,7 +574,7 @@ Add the new token imports between the brand-tokens import and horizon-mapping im
 @import './slide-styles.css';
 ```
 
-(The new tokens come *after* brand-tokens because they reference brand colors via CSS variables.)
+(The new tokens come _after_ brand-tokens because they reference brand colors via CSS variables.)
 
 - [ ] **Step 4: Verify build still succeeds**
 
@@ -619,7 +620,7 @@ mkdir -p theme/components/decorations
 
 ```vue
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
@@ -633,15 +634,23 @@ defineProps<{ variant?: string }>()
     pointer-events: none;
     z-index: 0;
   }
-  .decoration-solid--f { background: var(--sap-brand-blue-darker); }
-  .decoration-solid--h { background: var(--sap-brand-teal-dark); }
-  .decoration-solid--i { background: var(--sap-brand-purple); }
-  .decoration-solid--k { background: var(--sap-brand-blue-darker); }
+  .decoration-solid--f {
+    background: var(--sap-brand-blue-darker);
+  }
+  .decoration-solid--h {
+    background: var(--sap-brand-teal-dark);
+  }
+  .decoration-solid--i {
+    background: var(--sap-brand-purple);
+  }
+  .decoration-solid--k {
+    background: var(--sap-brand-blue-darker);
+  }
 </style>
 
 <script lang="ts">
-// Logo treatment hint consumed by setup/cover-variants.ts useDarkLogo()
-export const logoTreatment = 'white' as const
+  // Logo treatment hint consumed by setup/cover-variants.ts useDarkLogo()
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -792,8 +801,12 @@ Expected: FAIL "Cannot find module './cover-variants'".
 import DecorationPhoto from '../components/decorations/DecorationPhoto.vue'
 import DecorationDiagonal from '../components/decorations/DecorationDiagonal.vue'
 import DecorationWedges from '../components/decorations/DecorationWedges.vue'
-import DecorationSolid, { logoTreatment as solidLogoTreatment } from '../components/decorations/DecorationSolid.vue'
-import DecorationMultiShape, { logoTreatment as multiLogoTreatment } from '../components/decorations/DecorationMultiShape.vue'
+import DecorationSolid, {
+  logoTreatment as solidLogoTreatment
+} from '../components/decorations/DecorationSolid.vue'
+import DecorationMultiShape, {
+  logoTreatment as multiLogoTreatment
+} from '../components/decorations/DecorationMultiShape.vue'
 import DecorationGradient from '../components/decorations/DecorationGradient.vue'
 
 const DECORATION_BY_LETTER = {
@@ -895,18 +908,28 @@ Creating placeholder skeletons for all 5 missing decoration components so cover-
 
 ```vue
 <script setup lang="ts">
-defineProps<{ image?: string; alt?: string }>()
+  defineProps<{ image?: string; alt?: string }>()
 </script>
 
 <template>
   <div class="decoration-photo" aria-hidden="true">
     <img v-if="image" :src="image" :alt="alt ?? ''" class="decoration-photo__img" />
     <div v-else class="decoration-photo__fallback">
-      <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMid slice" class="decoration-photo__wedges">
+      <svg
+        viewBox="0 0 600 720"
+        preserveAspectRatio="xMidYMid slice"
+        class="decoration-photo__wedges"
+      >
         <polygon points="0,0 600,0 600,504 504,720 0,720" fill="var(--sap-brand-blue-darker)" />
         <polygon points="48,58 600,58 600,468 460,662 48,662" fill="var(--sap-brand-blue)" />
-        <polygon points="120,144 600,144 600,432 432,576 120,576" fill="var(--sap-brand-blue-light, #89D1FF)" />
-        <polygon points="210,252 600,252 600,396 388,468 210,468" fill="var(--sap-brand-blue-pale, #D1EFFF)" />
+        <polygon
+          points="120,144 600,144 600,432 432,576 120,576"
+          fill="var(--sap-brand-blue-light, #89D1FF)"
+        />
+        <polygon
+          points="210,252 600,252 600,396 388,468 210,468"
+          fill="var(--sap-brand-blue-pale, #D1EFFF)"
+        />
       </svg>
     </div>
   </div>
@@ -944,13 +967,19 @@ defineProps<{ image?: string; alt?: string }>()
 
 ```vue
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
-  <div :class="['decoration-diagonal', `decoration-diagonal--${variant ?? 'b'}`]" aria-hidden="true">
+  <div
+    :class="['decoration-diagonal', `decoration-diagonal--${variant ?? 'b'}`]"
+    aria-hidden="true"
+  >
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
-      <polygon points="0,0 1280,0 1280,504 896,720 0,720" :fill="`var(--decoration-diagonal-fill, var(--sap-brand-blue))`" />
+      <polygon
+        points="0,0 1280,0 1280,504 896,720 0,720"
+        :fill="`var(--decoration-diagonal-fill, var(--sap-brand-blue))`"
+      />
     </svg>
   </div>
 </template>
@@ -967,12 +996,16 @@ defineProps<{ variant?: string }>()
     height: 100%;
     display: block;
   }
-  .decoration-diagonal--b { background: #ffffff; }
-  .decoration-diagonal--j { background: var(--sap-brand-blue-darker); }
+  .decoration-diagonal--b {
+    background: #ffffff;
+  }
+  .decoration-diagonal--j {
+    background: var(--sap-brand-blue-darker);
+  }
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -984,8 +1017,14 @@ export const logoTreatment = 'white' as const
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
       <rect width="1280" height="720" fill="var(--sap-brand-blue-darker)" />
       <polygon points="100,72 1280,72 1280,576 1024,648 100,648" fill="var(--sap-brand-blue)" />
-      <polygon points="256,180 1280,180 1280,540 920,612 256,612" fill="var(--sap-brand-blue-light, #89D1FF)" />
-      <polygon points="448,288 1280,288 1280,468 808,540 448,540" fill="var(--sap-brand-blue-pale, #D1EFFF)" />
+      <polygon
+        points="256,180 1280,180 1280,540 920,612 256,612"
+        fill="var(--sap-brand-blue-light, #89D1FF)"
+      />
+      <polygon
+        points="448,288 1280,288 1280,468 808,540 448,540"
+        fill="var(--sap-brand-blue-pale, #D1EFFF)"
+      />
     </svg>
   </div>
 </template>
@@ -1005,7 +1044,7 @@ export const logoTreatment = 'white' as const
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -1022,12 +1061,16 @@ export const logoTreatment = 'white' as const
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background: linear-gradient(180deg, var(--sap-brand-blue-darker) 0%, var(--sap-black, #000) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--sap-brand-blue-darker) 0%,
+      var(--sap-black, #000) 100%
+    );
   }
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -1037,17 +1080,21 @@ For Phase A pilot, ship a shared placeholder that handles all three variants (c/
 
 ```vue
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
   <div :class="['decoration-multi', `decoration-multi--${variant ?? 'c'}`]" aria-hidden="true">
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
       <!-- Two overlapping shapes; specific positions/colors per variant via CSS vars -->
-      <polygon points="0,0 1280,0 1280,432 768,432 768,720 0,720"
-               :fill="`var(--decoration-multi-bg, var(--sap-brand-blue-darker))`" />
-      <polygon points="768,288 1280,288 1280,720 768,720"
-               :fill="`var(--decoration-multi-accent, var(--sap-brand-blue))`" />
+      <polygon
+        points="0,0 1280,0 1280,432 768,432 768,720 0,720"
+        :fill="`var(--decoration-multi-bg, var(--sap-brand-blue-darker))`"
+      />
+      <polygon
+        points="768,288 1280,288 1280,720 768,720"
+        :fill="`var(--decoration-multi-accent, var(--sap-brand-blue))`"
+      />
     </svg>
   </div>
 </template>
@@ -1080,9 +1127,9 @@ defineProps<{ variant?: string }>()
 </style>
 
 <script lang="ts">
-// Auto: fall through to per-variant; we report 'white' here as the most common case
-// for c/d/e backgrounds. cover-variants.ts will respect this via the fallthrough rule.
-export const logoTreatment = 'white' as const
+  // Auto: fall through to per-variant; we report 'white' here as the most common case
+  // for c/d/e backgrounds. cover-variants.ts will respect this via the fallthrough rule.
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -1175,7 +1222,7 @@ const DECORATION_BY_LETTER = {
   // ...
   c: DecorationMultiShapeC,
   d: DecorationMultiShapeD,
-  e: DecorationMultiShapeE,
+  e: DecorationMultiShapeE
   // ...
 }
 ```
@@ -1216,37 +1263,37 @@ files and the cover-variants.ts wiring update.]"
 
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
-import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
-import Speaker from '../components/Speaker.vue'
-import { getEvent } from '../setup/data'
+  import { computed } from 'vue'
+  import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
+  import Speaker from '../components/Speaker.vue'
+  import { getEvent } from '../setup/data'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-const fm = computed(() => props.frontmatter ?? {})
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
 
-const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
-const Decoration = computed(() => getDecoration(variantLetter.value))
-const isDarkBg = computed(() => useDarkLogo(variantLetter.value, fm.value.image as string | undefined))
-const logoSrc = computed(() => isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg')
+  const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
+  const Decoration = computed(() => getDecoration(variantLetter.value))
+  const isDarkBg = computed(() =>
+    useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
+  )
+  const logoSrc = computed(() =>
+    isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
+  )
 
-const eventData = getEvent()
-const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
+  const eventData = getEvent()
+  const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 </script>
 
 <template>
   <div :class="['cover', `cover--${variantLetter}`, { 'cover--dark': isDarkBg }]">
-    <component
-      :is="Decoration"
-      :variant="variantLetter"
-      :image="(fm.image as string | undefined)"
-    />
+    <component :is="Decoration" :variant="variantLetter" :image="fm.image as string | undefined" />
     <img class="cover-logo" :src="logoSrc" alt="SAP" />
     <div class="cover-content">
       <h1 v-if="fm.title">{{ fm.title }}</h1>
       <p v-if="fm.subtitle" class="subtitle">{{ fm.subtitle }}</p>
       <slot />
       <footer class="cover-footer">
-        <Speaker :presenter="(fm.presenter as string | undefined)" />
+        <Speaker :presenter="fm.presenter as string | undefined" />
         <span class="event">{{ eventName }}</span>
       </footer>
     </div>
@@ -1307,7 +1354,9 @@ const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
     letter-spacing: 0.06em;
   }
   /* Suppress the global slide-styles ::after accent — covers don't use it */
-  .cover::after { content: none !important; }
+  .cover::after {
+    content: none !important;
+  }
 </style>
 ```
 
@@ -1343,7 +1392,7 @@ git commit -m "feat(cover): rewrite using decoration components + cover-tokens"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
@@ -1361,13 +1410,21 @@ defineProps<{ variant?: string }>()
     background: var(--sap-brand-blue-darker);
   }
   .divider-wedge--b {
-    background: linear-gradient(135deg, var(--sap-brand-blue-darker) 0%, var(--sap-brand-blue) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--sap-brand-blue-darker) 0%,
+      var(--sap-brand-blue) 100%
+    );
   }
   .divider-wedge--c {
     background: var(--sap-brand-teal-dark);
   }
   .divider-wedge--d {
-    background: linear-gradient(135deg, var(--sap-brand-purple-dark) 0%, var(--sap-brand-blue-darker) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--sap-brand-purple-dark) 0%,
+      var(--sap-brand-blue-darker) 100%
+    );
   }
 </style>
 ```
@@ -1376,12 +1433,12 @@ defineProps<{ variant?: string }>()
 
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
-import DividerWedge from '../components/decorations/DividerWedge.vue'
+  import { computed } from 'vue'
+  import DividerWedge from '../components/decorations/DividerWedge.vue'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-const fm = computed(() => props.frontmatter ?? {})
-const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
+  const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
 </script>
 
 <template>
@@ -1413,12 +1470,14 @@ const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
   }
   .divider h1 {
     font-size: var(--typography-divider-title-size, 4rem);
-    line-height: var(--typography-divider-title-line-height, 1.0);
+    line-height: var(--typography-divider-title-line-height, 1);
     margin: 0;
     color: #ffffff;
     max-width: 80%;
   }
-  .divider::after { content: none !important; }
+  .divider::after {
+    content: none !important;
+  }
 </style>
 ```
 
@@ -1448,6 +1507,7 @@ Open http://localhost:3031.
 - [ ] **Step 2: Click through every cover variant (slides 2–13 in the gallery)**
 
 For each, verify:
+
 - Decoration renders
 - SAP logo visible (check it's the right color: white on dark, primary on light)
 - Title position looks reasonable (top-left content area)
@@ -1497,11 +1557,14 @@ Note the thank-you A and B variant differences. Confirm whether they share struc
 
 ```vue
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
-  <div :class="['decoration-thankyou', `decoration-thankyou--${variant ?? 'a'}`]" aria-hidden="true" />
+  <div
+    :class="['decoration-thankyou', `decoration-thankyou--${variant ?? 'a'}`]"
+    aria-hidden="true"
+  />
 </template>
 
 <style scoped>
@@ -1520,7 +1583,7 @@ defineProps<{ variant?: string }>()
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>
 ```
 
@@ -1528,15 +1591,15 @@ export const logoTreatment = 'white' as const
 
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
-import DecorationThankYou from '../components/decorations/DecorationThankYou.vue'
-import Speaker from '../components/Speaker.vue'
-import { getEvent } from '../setup/data'
+  import { computed } from 'vue'
+  import DecorationThankYou from '../components/decorations/DecorationThankYou.vue'
+  import Speaker from '../components/Speaker.vue'
+  import { getEvent } from '../setup/data'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-const fm = computed(() => props.frontmatter ?? {})
-const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
-const event = getEvent()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
+  const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
+  const event = getEvent()
 </script>
 
 <template>
@@ -1544,7 +1607,7 @@ const event = getEvent()
     <DecorationThankYou :variant="variant" />
     <div class="thank-you-content">
       <h1>Thank you.</h1>
-      <Speaker :presenter="(fm.presenter as string | undefined)" />
+      <Speaker :presenter="fm.presenter as string | undefined" />
       <p v-if="event.hashtag" class="hashtag">{{ event.hashtag }}</p>
       <slot />
     </div>
@@ -1573,7 +1636,7 @@ const event = getEvent()
   }
   .thank-you h1 {
     font-size: var(--typography-thankyou-title-size, 6rem);
-    line-height: var(--typography-thankyou-title-line-height, 1.0);
+    line-height: var(--typography-thankyou-title-line-height, 1);
     margin: 0;
     color: #ffffff;
   }
@@ -1582,7 +1645,9 @@ const event = getEvent()
     font-size: 1.25rem;
     letter-spacing: 0.05em;
   }
-  .thank-you::after { content: none !important; }
+  .thank-you::after {
+    content: none !important;
+  }
 </style>
 ```
 
@@ -1714,11 +1779,15 @@ The Agenda layout has its own typography concerns (numbered list items, item spa
 }
 ```
 
-The Agenda *component* (not the layout) has its own list-item typography. Update theme/components/Agenda.vue similarly:
+The Agenda _component_ (not the layout) has its own list-item typography. Update theme/components/Agenda.vue similarly:
 
 ```css
-.agenda { font-size: var(--typography-content-body-size, 1.5rem); }
-.agenda li { line-height: var(--typography-content-body-line-height, 1.5); }
+.agenda {
+  font-size: var(--typography-content-body-size, 1.5rem);
+}
+.agenda li {
+  line-height: var(--typography-content-body-line-height, 1.5);
+}
 ```
 
 - [ ] **Step 3: Verify build**
@@ -1790,6 +1859,7 @@ mkdir -p public/covers
 - [ ] **Step 2: Pick and download a permissive-license Unsplash photo**
 
 Selection criteria:
+
 - Business / technology / abstract theme (broadly applicable to SAP-style presentations)
 - Portrait or near-square aspect ratio (right-half cover placeholder is ~0.91:1; landscape photos crop badly)
 - Subject space on the right side (so the SAP logo and title text on the left don't overlap subjects)
@@ -1799,6 +1869,7 @@ Selection criteria:
 Suggested search: <https://unsplash.com/s/photos/business-technology-abstract>
 
 When you find one:
+
 - Click "Download free" → choose "Original" or "Medium" (1920+ px wide is fine)
 - Save to `public/covers/cover-default.jpg`
 - **Note** the photographer's name and the photo's Unsplash URL — needed for attribution in CONTENT-GUIDE.
@@ -1858,6 +1929,7 @@ The `image` field maps to `DecorationPhoto`'s `image` prop. cover.vue's `useDark
 
 Run: `npm run dev`
 Open http://localhost:3030/2 (cover slide). Verify:
+
 - Photo renders on the right half
 - SAP logo (color version) is visible top-left
 - Title "Building Cloud-Native Apps with SAP CAP" is readable on the left half
@@ -1946,32 +2018,32 @@ Insert after the "Component decision tree" section, before "Slide-text length bu
 The cover layout has 12 visual variants. Reference by letter (POTX-faithful) or
 descriptive alias (self-documenting):
 
-| Letter | Alias | Visual treatment | Logo |
-|---|---|---|---|
-| `a` | `photo` | Photo on right half, white background | Primary (color) when photo is supplied; white when not |
-| `b` | `diagonal` | Solid blue with diagonal cut to white triangle | White |
-| `c` | `photo-portrait` | Multi-shape composition, blue palette | White |
-| `d` | `multi-shape` | Multi-shape composition, teal/green palette | White |
-| `e` | `multi-shape-purple` | Multi-shape composition, purple/pink palette | White |
-| `f` | `solid-blue` | Solid SAP brand blue | White |
-| `g` | `wedges` | Nested layered diagonal wedges | White |
-| `h` | `solid-teal` | Solid SAP brand teal | White |
-| `i` | `solid-purple` | Solid SAP brand purple | White |
-| `j` | `diagonal-tinted` | Diagonal silhouette on tinted blue | White |
-| `k` | `solid-blue-darker` | Solid darker brand blue | White |
-| `l` | `gradient-fade` | Vertical gradient blue → black | White |
+| Letter | Alias                | Visual treatment                               | Logo                                                   |
+| ------ | -------------------- | ---------------------------------------------- | ------------------------------------------------------ |
+| `a`    | `photo`              | Photo on right half, white background          | Primary (color) when photo is supplied; white when not |
+| `b`    | `diagonal`           | Solid blue with diagonal cut to white triangle | White                                                  |
+| `c`    | `photo-portrait`     | Multi-shape composition, blue palette          | White                                                  |
+| `d`    | `multi-shape`        | Multi-shape composition, teal/green palette    | White                                                  |
+| `e`    | `multi-shape-purple` | Multi-shape composition, purple/pink palette   | White                                                  |
+| `f`    | `solid-blue`         | Solid SAP brand blue                           | White                                                  |
+| `g`    | `wedges`             | Nested layered diagonal wedges                 | White                                                  |
+| `h`    | `solid-teal`         | Solid SAP brand teal                           | White                                                  |
+| `i`    | `solid-purple`       | Solid SAP brand purple                         | White                                                  |
+| `j`    | `diagonal-tinted`    | Diagonal silhouette on tinted blue             | White                                                  |
+| `k`    | `solid-blue-darker`  | Solid darker brand blue                        | White                                                  |
+| `l`    | `gradient-fade`      | Vertical gradient blue → black                 | White                                                  |
 
 Both forms are equivalent:
 
-​```yaml
+​`yaml
 layout: cover
 variant: a
-​```
+​`
 
-​```yaml
+​`yaml
 layout: cover
 variant: photo
-​```
+​`
 ```
 
 - [ ] **Step 2: Add the photo override section**
@@ -1983,14 +2055,15 @@ Insert a new section "Cover photos":
 
 Cover A (`variant: photo` or `variant: a`) supports a custom hero image:
 
-​```yaml
+​`yaml
 layout: cover
 variant: a
 image: /covers/my-photo.jpg
 title: My Talk Title
-​```
+​`
 
 **Where to put photos:**
+
 - Drop image files in `public/covers/`
 - Reference as `/covers/<filename>` in slide front-matter
 - Recommended aspect ratio: portrait or near-square (1:1 to 1:1.4)
@@ -2010,7 +2083,7 @@ the public demo; replace it for your own deck.
 
 Insert a new section "Typography tokens":
 
-```markdown
+````markdown
 ## Typography tokens
 
 Layouts consume font sizes and line-heights via CSS variables emitted from
@@ -2026,13 +2099,14 @@ the POTX. The current tokens (auto-generated in `theme/styles/_extracted/typogra
 If you need a one-off override, set the token at the slide level:
 
 ​```html
+
 <div style="--typography-content-title-size: 2rem">
   <!-- this slide's title is smaller -->
 </div>
 ​```
 
 Don't override globally — the tokens regenerate from the POTX on each `npm run extract-brand` run, so any global hand-tune would be lost.
-```
+````
 
 - [ ] **Step 4: Add Unsplash attribution at the bottom**
 
@@ -2041,7 +2115,7 @@ Insert at the very end:
 ```markdown
 ## Asset attributions
 
-- **`public/covers/cover-default.jpg`** — Photo by [<photographer>](<unsplash-photo-url>) on Unsplash. Used under the [Unsplash License](https://unsplash.com/license).
+- **`public/covers/cover-default.jpg`** — Photo by [<photographer>](unsplash-photo-url) on Unsplash. Used under the [Unsplash License](https://unsplash.com/license).
 - **`theme/public/logos/logo-sap-primary.svg`** and **`logo-sap-white.svg`** — Official SAP brand assets from SAP Brand Tools. Use according to SAP brand guidelines.
 ```
 
@@ -2105,6 +2179,7 @@ Insert above the existing `## [0.1.0]` entry:
 ### Visual fidelity sweep — all major layouts now POTX-correct
 
 **Architecture:**
+
 - New `theme/components/decorations/` directory: thin SVG decoration components
   (Photo, Diagonal, Wedges, Solid, MultiShape, Gradient, DividerWedge, ThankYou)
   consumed by layouts via `<component :is>` composition.
@@ -2116,6 +2191,7 @@ Insert above the existing `## [0.1.0]` entry:
   picker, dark-bg classifier with auto white/primary logo selection.
 
 **Layout fidelity:**
+
 - 12 cover variants now render proper POTX decorations (was: flat blue gradients).
 - 4 divider variants properly themed.
 - 2 thank-you variants get solid + diagonal decorations.
@@ -2123,14 +2199,17 @@ Insert above the existing `## [0.1.0]` entry:
   font sizes and line-heights.
 
 **Sample deck:**
+
 - Cover A demonstrates the photo path with a permissively-licensed Unsplash image.
 - Documented swap path for SAP press-kit imagery.
 
 **Assets:**
+
 - Official white-monochrome SAP logo from Brand Tools added at
   `theme/public/logos/logo-sap-white.svg`. Used automatically on dark-background covers.
 
 **Testing:**
+
 - ~25 visual regression baselines updated.
 - New unit tests: cover-variants resolver, cover-tokens emitter,
   typography-tokens emitter, extended parse-layouts.
@@ -2223,12 +2302,10 @@ gh release create v0.2.0 --title "v0.2.0 — POTX visual fidelity" --notes-file 
 The template now renders SAP-brand-correct covers, dividers, thank-you, and content layouts. Sample deck demos the photo path. Auto-generated tokens mean future POTX brand updates flow through automatically.
 
 **Phase 2 candidates** (deferred from spec §3 / spec §4.4):
+
 - Animations and transitions matching POTX
 - Internal-vs-external SAP lockup variants
 - RTL language support
 - Real SAP press-kit imagery shipped (legal review needed first)
 
 <!-- PLAN_END -->
-
-
-

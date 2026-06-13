@@ -5,10 +5,7 @@
 
 <template>
   <div class="layout title-photo">
-    <div
-      class="photo-half"
-      :style="fm.photo ? { backgroundImage: `url(${fm.photo})` } : {}"
-    >
+    <div class="photo-half" :style="fm.photo ? { backgroundImage: `url(${fm.photo})` } : {}">
       <slot name="photo" />
     </div>
     <div class="text-half">

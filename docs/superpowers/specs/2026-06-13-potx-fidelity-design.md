@@ -65,59 +65,59 @@ The architectural foundation is a **decoration component library** (`theme/compo
 
 **New (Stage A):**
 
-| Path | Purpose |
-|---|---|
-| `theme/styles/_extracted/cover-tokens.css` | GENERATED — POTX-derived geometry constants |
-| `theme/styles/_extracted/typography-tokens.css` | GENERATED — POTX-derived font/spacing constants |
-| `theme/components/decorations/DecorationPhoto.vue` | Cover A — photo placeholder + fallback wedge motif |
-| `theme/components/decorations/DecorationDiagonal.vue` | Covers B / J — diagonal-cut blue silhouette |
-| `theme/components/decorations/DecorationWedges.vue` | Cover G — nested layered wedges |
-| `theme/components/decorations/DecorationSolid.vue` | Covers F / H / I / K — solid full-bleed |
-| `theme/components/decorations/DecorationMultiShape.vue` | Covers C / D / E — multi-element compositions |
-| `theme/components/decorations/DecorationGradient.vue` | Cover L — gradient fade |
-| `theme/components/decorations/DividerWedge.vue` | Divider A–D backgrounds |
-| `theme/setup/cover-variants.ts` | Alias map + decoration picker + dark-bg classifier |
-| `scripts/lib/emit-cover-tokens.mjs` (+ test) | Emits cover-tokens.css from layouts.json |
-| `scripts/lib/emit-typography-tokens.mjs` (+ test) | Emits typography-tokens.css from layouts.json |
+| Path                                                    | Purpose                                            |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| `theme/styles/_extracted/cover-tokens.css`              | GENERATED — POTX-derived geometry constants        |
+| `theme/styles/_extracted/typography-tokens.css`         | GENERATED — POTX-derived font/spacing constants    |
+| `theme/components/decorations/DecorationPhoto.vue`      | Cover A — photo placeholder + fallback wedge motif |
+| `theme/components/decorations/DecorationDiagonal.vue`   | Covers B / J — diagonal-cut blue silhouette        |
+| `theme/components/decorations/DecorationWedges.vue`     | Cover G — nested layered wedges                    |
+| `theme/components/decorations/DecorationSolid.vue`      | Covers F / H / I / K — solid full-bleed            |
+| `theme/components/decorations/DecorationMultiShape.vue` | Covers C / D / E — multi-element compositions      |
+| `theme/components/decorations/DecorationGradient.vue`   | Cover L — gradient fade                            |
+| `theme/components/decorations/DividerWedge.vue`         | Divider A–D backgrounds                            |
+| `theme/setup/cover-variants.ts`                         | Alias map + decoration picker + dark-bg classifier |
+| `scripts/lib/emit-cover-tokens.mjs` (+ test)            | Emits cover-tokens.css from layouts.json           |
+| `scripts/lib/emit-typography-tokens.mjs` (+ test)       | Emits typography-tokens.css from layouts.json      |
 
 **New (Stage B):**
 
-| Path | Purpose |
-|---|---|
+| Path                                                  | Purpose                |
+| ----------------------------------------------------- | ---------------------- |
 | `theme/components/decorations/DecorationThankYou.vue` | Thank-you variants a/b |
 
 **Modified:**
 
-| Path | Change |
-|---|---|
-| `scripts/lib/parse-layouts.mjs` | Capture `<p:pic>` geometry + `<a:lstStyle>` text styles |
-| `scripts/extract-brand.mjs` | Call new emitters; cover-tokens & typography-tokens written |
-| `theme/styles/index.css` | Import the two new token files (after horizon-mapping, before slide-styles) |
-| `theme/layouts/cover.vue` | Rewrite using new architecture |
-| `theme/layouts/divider.vue` | Rewrite using DividerWedge |
-| `theme/layouts/thank-you.vue` | Rewrite using DecorationThankYou |
-| `theme/layouts/title-text.vue` | Consume typography-tokens |
-| `theme/layouts/title-text-2col.vue` | Consume typography-tokens |
-| `theme/layouts/title-text-3col.vue` | Consume typography-tokens |
-| `theme/layouts/content-image-2col.vue` | POTX gutter/spacing fidelity |
-| `theme/layouts/content-image-3col.vue` | Same |
-| `theme/layouts/content-image-4col.vue` | Same |
-| `theme/layouts/title-content.vue` | Consume typography-tokens |
-| `theme/layouts/title-only.vue` | Consume typography-tokens |
-| `theme/layouts/title.vue` | Consume typography-tokens |
-| `theme/layouts/title-photo.vue` | Consume typography-tokens |
-| `theme/layouts/content-photo-1.vue` | Same |
-| `theme/layouts/content-photo-2.vue` | Same |
-| `theme/layouts/q-and-a.vue` | POTX closing-slide treatment |
-| `theme/layouts/agenda.vue` | Numbered list spacing per POTX |
+| Path                                   | Change                                                                      |
+| -------------------------------------- | --------------------------------------------------------------------------- |
+| `scripts/lib/parse-layouts.mjs`        | Capture `<p:pic>` geometry + `<a:lstStyle>` text styles                     |
+| `scripts/extract-brand.mjs`            | Call new emitters; cover-tokens & typography-tokens written                 |
+| `theme/styles/index.css`               | Import the two new token files (after horizon-mapping, before slide-styles) |
+| `theme/layouts/cover.vue`              | Rewrite using new architecture                                              |
+| `theme/layouts/divider.vue`            | Rewrite using DividerWedge                                                  |
+| `theme/layouts/thank-you.vue`          | Rewrite using DecorationThankYou                                            |
+| `theme/layouts/title-text.vue`         | Consume typography-tokens                                                   |
+| `theme/layouts/title-text-2col.vue`    | Consume typography-tokens                                                   |
+| `theme/layouts/title-text-3col.vue`    | Consume typography-tokens                                                   |
+| `theme/layouts/content-image-2col.vue` | POTX gutter/spacing fidelity                                                |
+| `theme/layouts/content-image-3col.vue` | Same                                                                        |
+| `theme/layouts/content-image-4col.vue` | Same                                                                        |
+| `theme/layouts/title-content.vue`      | Consume typography-tokens                                                   |
+| `theme/layouts/title-only.vue`         | Consume typography-tokens                                                   |
+| `theme/layouts/title.vue`              | Consume typography-tokens                                                   |
+| `theme/layouts/title-photo.vue`        | Consume typography-tokens                                                   |
+| `theme/layouts/content-photo-1.vue`    | Same                                                                        |
+| `theme/layouts/content-photo-2.vue`    | Same                                                                        |
+| `theme/layouts/q-and-a.vue`            | POTX closing-slide treatment                                                |
+| `theme/layouts/agenda.vue`             | Numbered list spacing per POTX                                              |
 
 **New (Stage C):**
 
-| Path | Purpose |
-|---|---|
-| `public/covers/cover-default.jpg` | Unsplash demo photo for sample deck |
-| `slides.md` | Updated to use `image: /covers/cover-default.jpg` on cover |
-| `CONTENT-GUIDE.md` | Variant alias table; photo override; SAP press-kit upgrade path; typography reference |
+| Path                              | Purpose                                                                               |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| `public/covers/cover-default.jpg` | Unsplash demo photo for sample deck                                                   |
+| `slides.md`                       | Updated to use `image: /covers/cover-default.jpg` on cover                            |
+| `CONTENT-GUIDE.md`                | Variant alias table; photo override; SAP press-kit upgrade path; typography reference |
 
 ## 5. Component contracts
 
@@ -207,21 +207,25 @@ Every decoration component:
 
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
-import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
-import Speaker from '../components/Speaker.vue'
-import { getEvent } from '../setup/data'
+  import { computed } from 'vue'
+  import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
+  import Speaker from '../components/Speaker.vue'
+  import { getEvent } from '../setup/data'
 
-const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
 
-const fm = computed(() => props.frontmatter ?? {})
-const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
-const Decoration = computed(() => getDecoration(variantLetter.value))
-const isDarkBg = computed(() => useDarkLogo(variantLetter.value, fm.value.image as string | undefined))
-const logoSrc = computed(() => isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg')
+  const fm = computed(() => props.frontmatter ?? {})
+  const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
+  const Decoration = computed(() => getDecoration(variantLetter.value))
+  const isDarkBg = computed(() =>
+    useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
+  )
+  const logoSrc = computed(() =>
+    isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
+  )
 
-const eventData = getEvent()
-const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
+  const eventData = getEvent()
+  const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 </script>
 
 <template>
@@ -242,6 +246,7 @@ const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 ```
 
 Key points:
+
 - `<component :is="Decoration">` for dynamic decoration selection.
 - Explicit `Speaker` import to avoid the auto-resolution name-collision class of bug we hit with Agenda.
 - The SAP logo is a peer of the decoration, not embedded in it — single source of truth for logo position.
@@ -258,17 +263,32 @@ import DecorationGradient from '../components/decorations/DecorationGradient.vue
 
 const DECORATION_BY_LETTER = {
   a: DecorationPhoto,
-  b: DecorationDiagonal, c: DecorationMultiShape, d: DecorationMultiShape, e: DecorationMultiShape,
-  f: DecorationSolid, g: DecorationWedges, h: DecorationSolid,
-  i: DecorationSolid, j: DecorationDiagonal, k: DecorationSolid, l: DecorationGradient
+  b: DecorationDiagonal,
+  c: DecorationMultiShape,
+  d: DecorationMultiShape,
+  e: DecorationMultiShape,
+  f: DecorationSolid,
+  g: DecorationWedges,
+  h: DecorationSolid,
+  i: DecorationSolid,
+  j: DecorationDiagonal,
+  k: DecorationSolid,
+  l: DecorationGradient
 } as const
 
 const ALIASES: Record<string, string> = {
-  photo: 'a', diagonal: 'b',
-  'photo-portrait': 'c', 'multi-shape': 'd', 'multi-shape-purple': 'e',
-  'solid-blue': 'f', wedges: 'g', 'solid-teal': 'h',
-  'solid-purple': 'i', 'diagonal-tinted': 'j',
-  'solid-blue-darker': 'k', 'gradient-fade': 'l'
+  photo: 'a',
+  diagonal: 'b',
+  'photo-portrait': 'c',
+  'multi-shape': 'd',
+  'multi-shape-purple': 'e',
+  'solid-blue': 'f',
+  wedges: 'g',
+  'solid-teal': 'h',
+  'solid-purple': 'i',
+  'diagonal-tinted': 'j',
+  'solid-blue-darker': 'k',
+  'gradient-fade': 'l'
 }
 
 const DARK_BG_VARIANTS = new Set(['b', 'f', 'g', 'h', 'i', 'j', 'k', 'l'])
@@ -344,11 +364,11 @@ Documented gaps: any per-placeholder override beyond the extracted set falls bac
 
 ### 6.1 Three modes
 
-| Mode | When | Source |
-|---|---|---|
-| `primary` | Light backgrounds | `/logos/logo-sap-primary.svg` (color SAP logo) |
-| `white` | Dark backgrounds | `/logos/logo-sap-white.svg` (white-monochrome) |
-| `auto` | Multi-shape covers | Decoration component exports `logoTreatment` constant |
+| Mode      | When               | Source                                                |
+| --------- | ------------------ | ----------------------------------------------------- |
+| `primary` | Light backgrounds  | `/logos/logo-sap-primary.svg` (color SAP logo)        |
+| `white`   | Dark backgrounds   | `/logos/logo-sap-white.svg` (white-monochrome)        |
+| `auto`    | Multi-shape covers | Decoration component exports `logoTreatment` constant |
 
 ### 6.2 White logo asset
 
@@ -399,33 +419,36 @@ Cover A is light-background (white) when an image is supplied — primary logo. 
 ## 8. Testing
 
 **Unit tests (fast, ~ms each):**
+
 - `cover-variants.test.ts` — alias resolution, decoration picker, dark-bg classification
 - `emit-cover-tokens.test.ts` — CSS emission from synthetic layout data
 - `emit-typography-tokens.test.ts` — CSS emission from synthetic layout data
 - `parse-layouts.test.ts` (extended) — verify `pics` field is populated, `lstStyle` captured
 
 **Visual regression:**
+
 - ~25 baselines updated in `tests/visual.spec.ts-snapshots/`
 - Existing workflow handles capture + commit
 - The baseline diff is the visible "before/after" of the fidelity work
 
 **Manual smoke tests:**
+
 - End of Stage A: `npm run dev` → click through 12 covers + 4 dividers
 - End of Stage B: typography on content layouts looks POTX-correct
 - End of Stage C: demo deck looks polished with photo cover
 
 ## 9. Risks & mitigations
 
-| Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| Multi-shape covers (C/D/E) more complex than expected | Medium-High | Medium | Inspect XML before coding; split into 3 files if needed |
-| Auto logo treatment heuristic gets corner wrong | Medium | Low (visual annoyance) | Kitchen-sink validation; explicit override per variant |
-| Typography-tokens fidelity gap — POTX has placeholder-level overrides we can't fully express | High | Medium | Extract the 10 most-impactful values; document gaps; rely on slide-styles fallback |
-| POTX percentages don't match expected visual proportions | Low | Medium | Trust the data; investigate rendering, not the numbers |
-| `<component :is>` SSR/dev-mode quirks in Slidev | Low | Medium | Standard Vue 3; falls back to `v-if` cascade if needed |
-| Demo Unsplash photo's URL changes | Very Low | Low | Pin specific Unsplash photo ID; document attribution |
-| Photo aspect ratio mismatch — Cover A right-half is ≈0.91:1, most stock photos are 16:9 | Medium | Low | `object-fit: cover`; document portrait-leaning hero in CONTENT-GUIDE |
-| Stage B typography churn breaks visual baselines for many slides at once | High | Low | Expected. Reviewers diff carefully; intentional sweep |
+| Risk                                                                                         | Likelihood  | Impact                 | Mitigation                                                                         |
+| -------------------------------------------------------------------------------------------- | ----------- | ---------------------- | ---------------------------------------------------------------------------------- |
+| Multi-shape covers (C/D/E) more complex than expected                                        | Medium-High | Medium                 | Inspect XML before coding; split into 3 files if needed                            |
+| Auto logo treatment heuristic gets corner wrong                                              | Medium      | Low (visual annoyance) | Kitchen-sink validation; explicit override per variant                             |
+| Typography-tokens fidelity gap — POTX has placeholder-level overrides we can't fully express | High        | Medium                 | Extract the 10 most-impactful values; document gaps; rely on slide-styles fallback |
+| POTX percentages don't match expected visual proportions                                     | Low         | Medium                 | Trust the data; investigate rendering, not the numbers                             |
+| `<component :is>` SSR/dev-mode quirks in Slidev                                              | Low         | Medium                 | Standard Vue 3; falls back to `v-if` cascade if needed                             |
+| Demo Unsplash photo's URL changes                                                            | Very Low    | Low                    | Pin specific Unsplash photo ID; document attribution                               |
+| Photo aspect ratio mismatch — Cover A right-half is ≈0.91:1, most stock photos are 16:9      | Medium      | Low                    | `object-fit: cover`; document portrait-leaning hero in CONTENT-GUIDE               |
+| Stage B typography churn breaks visual baselines for many slides at once                     | High        | Low                    | Expected. Reviewers diff carefully; intentional sweep                              |
 
 ## 10. Out of scope
 
@@ -450,6 +473,7 @@ Cover A is light-background (white) when an image is supplied — primary logo. 
 No new runtime dependencies. The Unsplash photo is a static asset, not a fetch.
 
 Existing dependencies cover all this work:
+
 - `fast-xml-parser` (parsing extended `<p:pic>` and `<a:lstStyle>` elements)
 - `vue` (`<component :is>` is core Vue 3)
 - `@playwright/test` (baseline updates)

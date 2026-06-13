@@ -80,14 +80,13 @@ describe('useDarkLogo', () => {
     expect(useDarkLogo('l')).toBe(true)
   })
 
-  it('returns false for variant a when image is supplied', () => {
+  it('returns false for variant a (logo and title sit in always-white left half)', () => {
+    // Cover A's left half is always white — the right-half decoration
+    // (photo or wedge fallback) doesn't affect the logo/title color.
+    expect(useDarkLogo('a')).toBe(false)
     expect(useDarkLogo('a', '/some-image.jpg')).toBe(false)
-  })
-
-  it('returns true for variant a when no image (fallback wedge is dark)', () => {
-    expect(useDarkLogo('a')).toBe(true)
-    expect(useDarkLogo('a', undefined)).toBe(true)
-    expect(useDarkLogo('a', '')).toBe(true)
+    expect(useDarkLogo('a', undefined)).toBe(false)
+    expect(useDarkLogo('a', '')).toBe(false)
   })
 
   it('honors per-decoration logoTreatment for multi-shape variants c and e', () => {

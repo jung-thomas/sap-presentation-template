@@ -5,7 +5,7 @@
 
 <template>
   <div class="layout image-slide">
-    <img :src="(fm.src as string)" :alt="(fm.alt as string) ?? ''" />
+    <img :src="fm.src as string" :alt="(fm.alt as string) ?? ''" />
   </div>
 </template>
 

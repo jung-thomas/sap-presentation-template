@@ -54,6 +54,12 @@
     top: var(--cover-logo-top, 7.35%);
     left: var(--cover-logo-left, 4.13%);
     width: var(--cover-logo-width, 5.96%);
+    /* SVGs without intrinsic dimensions need an explicit aspect-ratio.
+       The POTX places the logo in a 727192 × 360000 EMU box ≈ 2:1 wide.
+       Both logo SVG variants render with a transparent canvas where the
+       wordmark fills roughly half the canvas height, so 2:1 keeps the
+       visual size consistent with the POTX. */
+    aspect-ratio: 2 / 1;
     height: auto;
     z-index: 2;
   }

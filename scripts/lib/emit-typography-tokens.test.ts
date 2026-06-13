@@ -4,9 +4,7 @@ import { emitTypographyTokensCss } from './emit-typography-tokens.mjs'
 const SAMPLE_LAYOUTS = [
   {
     name: 'Cover A',
-    placeholders: [
-      { type: 'title', textStyles: { fontSize: 36, lineSpacing: 90 } }
-    ],
+    placeholders: [{ type: 'title', textStyles: { fontSize: 36, lineSpacing: 90 } }],
     pics: []
   },
   {

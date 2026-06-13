@@ -6,7 +6,12 @@
 <template>
   <div class="layout content-photo-1">
     <div class="header">
-      <img v-if="fm.photo" :src="(fm.photo as string)" :alt="(fm.alt as string) ?? ''" class="avatar" />
+      <img
+        v-if="fm.photo"
+        :src="fm.photo as string"
+        :alt="(fm.alt as string) ?? ''"
+        class="avatar"
+      />
       <div v-else class="avatar avatar--placeholder" />
       <h1 v-if="fm.title">
         {{ fm.title }}

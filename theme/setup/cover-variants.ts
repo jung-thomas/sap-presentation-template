@@ -61,9 +61,12 @@ export function getDecoration(letter: string) {
   return DECORATION_BY_LETTER[letter as keyof typeof DECORATION_BY_LETTER] ?? DecorationPhoto
 }
 
-export function useDarkLogo(letter: string, image?: string): boolean {
-  // Cover A with no image renders the wedge fallback (dark) → white logo
-  if (letter === 'a' && !image) return true
+export function useDarkLogo(letter: string, _image?: string): boolean {
+  // Cover A's logo and title sit in the LEFT half, which is always white
+  // regardless of whether the right half shows a photo or the wedge fallback.
+  // Always use the primary (color) logo and dark text on Cover A.
+  // (The `_image` parameter is unused but kept in the signature for clarity.)
+  if (letter === 'a') return false
   if (DARK_BG_VARIANTS.has(letter)) return true
   if (AUTO_LOGO_VARIANTS.has(letter)) {
     return DECORATION_LOGO_TREATMENTS[letter] === 'white'

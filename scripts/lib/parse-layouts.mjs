@@ -78,10 +78,10 @@ function extractTextStyles(lstStyle) {
   const lnSpc = lvl1.lnSpc ?? {}
   const result = {}
   if (defRPr['@_sz'] != null) {
-    result.fontSize = Number(defRPr['@_sz']) / 100  // 100ths of a point → points
+    result.fontSize = Number(defRPr['@_sz']) / 100 // 100ths of a point → points
   }
   if (lnSpc.spcPct?.['@_val'] != null) {
-    result.lineSpacing = Number(lnSpc.spcPct['@_val']) / 1000  // ‰ → percent
+    result.lineSpacing = Number(lnSpc.spcPct['@_val']) / 1000 // ‰ → percent
   }
   return Object.keys(result).length > 0 ? result : undefined
 }
