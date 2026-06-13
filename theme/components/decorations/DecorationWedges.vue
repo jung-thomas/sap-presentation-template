@@ -3,8 +3,14 @@
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
       <rect width="1280" height="720" fill="var(--sap-brand-blue-darker)" />
       <polygon points="100,72 1280,72 1280,576 1024,648 100,648" fill="var(--sap-brand-blue)" />
-      <polygon points="256,180 1280,180 1280,540 920,612 256,612" fill="var(--sap-brand-blue-light, #89D1FF)" />
-      <polygon points="448,288 1280,288 1280,468 808,540 448,540" fill="var(--sap-brand-blue-pale, #D1EFFF)" />
+      <polygon
+        points="256,180 1280,180 1280,540 920,612 256,612"
+        fill="var(--sap-brand-blue-light, #89D1FF)"
+      />
+      <polygon
+        points="448,288 1280,288 1280,468 808,540 448,540"
+        fill="var(--sap-brand-blue-pale, #D1EFFF)"
+      />
     </svg>
   </div>
 </template>
@@ -24,5 +30,5 @@
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>

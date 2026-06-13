@@ -53,18 +53,22 @@ describe('resolveCoverVariant', () => {
   })
 })
 
+function componentName(component: unknown): string {
+  return (component as { name: string }).name
+}
+
 describe('getDecoration', () => {
   it('returns the right component per letter', () => {
-    expect((getDecoration('a') as any).name).toBe('DecorationPhoto')
-    expect((getDecoration('b') as any).name).toBe('DecorationDiagonal')
-    expect((getDecoration('g') as any).name).toBe('DecorationWedges')
-    expect((getDecoration('f') as any).name).toBe('DecorationSolid')
-    expect((getDecoration('l') as any).name).toBe('DecorationGradient')
-    expect((getDecoration('c') as any).name).toBe('DecorationMultiShape')
+    expect(componentName(getDecoration('a'))).toBe('DecorationPhoto')
+    expect(componentName(getDecoration('b'))).toBe('DecorationDiagonal')
+    expect(componentName(getDecoration('g'))).toBe('DecorationWedges')
+    expect(componentName(getDecoration('f'))).toBe('DecorationSolid')
+    expect(componentName(getDecoration('l'))).toBe('DecorationGradient')
+    expect(componentName(getDecoration('c'))).toBe('DecorationMultiShape')
   })
 
   it('falls back to DecorationPhoto for unknown letters', () => {
-    expect((getDecoration('z') as any).name).toBe('DecorationPhoto')
+    expect(componentName(getDecoration('z'))).toBe('DecorationPhoto')
   })
 })
 

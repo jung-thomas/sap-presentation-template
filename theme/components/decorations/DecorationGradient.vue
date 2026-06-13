@@ -8,10 +8,14 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    background: linear-gradient(180deg, var(--sap-brand-blue-darker) 0%, var(--sap-black, #000) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--sap-brand-blue-darker) 0%,
+      var(--sap-black, #000) 100%
+    );
   }
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>

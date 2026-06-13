@@ -1,14 +1,18 @@
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
   <div :class="['decoration-multi', `decoration-multi--${variant ?? 'c'}`]" aria-hidden="true">
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
-      <polygon points="0,0 1280,0 1280,432 768,432 768,720 0,720"
-               fill="var(--decoration-multi-bg, var(--sap-brand-blue-darker))" />
-      <polygon points="768,288 1280,288 1280,720 768,720"
-               fill="var(--decoration-multi-accent, var(--sap-brand-blue))" />
+      <polygon
+        points="0,0 1280,0 1280,432 768,432 768,720 0,720"
+        fill="var(--decoration-multi-bg, var(--sap-brand-blue-darker))"
+      />
+      <polygon
+        points="768,288 1280,288 1280,720 768,720"
+        fill="var(--decoration-multi-accent, var(--sap-brand-blue))"
+      />
     </svg>
   </div>
 </template>
@@ -41,5 +45,5 @@ defineProps<{ variant?: string }>()
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>

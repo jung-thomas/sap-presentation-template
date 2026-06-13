@@ -1,9 +1,12 @@
 <script setup lang="ts">
-defineProps<{ variant?: string }>()
+  defineProps<{ variant?: string }>()
 </script>
 
 <template>
-  <div :class="['decoration-diagonal', `decoration-diagonal--${variant ?? 'b'}`]" aria-hidden="true">
+  <div
+    :class="['decoration-diagonal', `decoration-diagonal--${variant ?? 'b'}`]"
+    aria-hidden="true"
+  >
     <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
       <polygon points="0,0 1280,0 1280,504 896,720 0,720" fill="var(--sap-brand-blue)" />
     </svg>
@@ -22,10 +25,14 @@ defineProps<{ variant?: string }>()
     height: 100%;
     display: block;
   }
-  .decoration-diagonal--b { background: #ffffff; }
-  .decoration-diagonal--j { background: var(--sap-brand-blue-darker); }
+  .decoration-diagonal--b {
+    background: #ffffff;
+  }
+  .decoration-diagonal--j {
+    background: var(--sap-brand-blue-darker);
+  }
 </style>
 
 <script lang="ts">
-export const logoTreatment = 'white' as const
+  export const logoTreatment = 'white' as const
 </script>
