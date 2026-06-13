@@ -5,3 +5,12 @@ dist/
 .DS_Store
 .vite/
 *.log
+
+# Playwright run artifacts (only baselines under tests/ are committed)
+playwright-report/
+test-results/
+
+# SAP brand source — internal SAP IP, not redistributed.
+# Each fork-author obtains the official POTX from the SAP brand portal
+# and places it locally before running `npm run extract-brand`.
+SAP_Corp.potx
