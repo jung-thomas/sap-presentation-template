@@ -27,12 +27,14 @@
     background: linear-gradient(135deg, var(--sap-brand-blue-pale), #fff);
   }
   h1 {
-    font-size: 5rem;
+    font-size: var(--typography-content-title-size, 5rem);
+    line-height: var(--typography-content-title-line-height, 1.1);
     color: var(--sap-brand-blue-darker);
     margin: 0;
   }
   .prompt {
-    font-size: 1.5rem;
+    font-size: var(--typography-content-body-size, 1.5rem);
+    line-height: var(--typography-content-body-line-height, 1.4);
     color: var(--sapContent_LabelColor);
     margin: 0;
   }
