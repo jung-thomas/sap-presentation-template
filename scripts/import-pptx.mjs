@@ -21,7 +21,7 @@
  *   node scripts/import-pptx.mjs <path-to-file.pptx> [--dpi 150] [--out public/imported]
  */
 
-import { existsSync, mkdirSync, createWriteStream } from 'node:fs'
+import { existsSync, mkdirSync } from 'node:fs'
 import { readFile, writeFile, rm } from 'node:fs/promises'
 import { basename, extname, join, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
