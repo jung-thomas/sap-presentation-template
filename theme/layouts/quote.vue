@@ -24,8 +24,8 @@
     height: 100%;
   }
   blockquote {
-    font-size: 2.75rem;
-    line-height: 1.3;
+    font-size: var(--typography-quote-title-size, 2.75rem);
+    line-height: var(--typography-quote-title-line-height, 1.3);
     color: var(--sap-brand-blue-darker);
     margin: 0 0 2rem;
     font-weight: 500;
@@ -41,7 +41,7 @@
     line-height: 1;
   }
   footer {
-    font-size: 1.25rem;
+    font-size: var(--typography-quote-body-size, 1.25rem);
     color: var(--sapContent_LabelColor);
   }
   .author {
