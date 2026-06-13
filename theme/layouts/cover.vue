@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
+  import { assetUrl } from '../setup/assets'
   import Speaker from '../components/Speaker.vue'
   import { getEvent } from '../setup/data'
 
@@ -13,10 +14,10 @@
     useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
   )
   const logoSrc = computed(() =>
-    isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
+    assetUrl(isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg')
   )
   const presenter = computed(() => fm.value.presenter as string | undefined)
-  const image = computed(() => fm.value.image as string | undefined)
+  const image = computed(() => assetUrl(fm.value.image as string | undefined))
 
   const eventData = getEvent()
   const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
