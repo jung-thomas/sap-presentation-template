@@ -7,45 +7,37 @@ info: |
 ---
 
 ---
-
 layout: cover
 title: Building Cloud-Native Apps with SAP CAP
 subtitle: From zero to production on BTP
 presenter: thomas-jung
 variant: a
-
+image: /covers/cover-default.jpg
 ---
 
 ---
-
 layout: agenda
 title: Agenda
 items:
-
-- Foundations of CAP
-- The data modelling layer
-- Service definitions & OData
-- Deploying to BTP
-- Live demo
-- Q & A
-
+  - Foundations of CAP
+  - The data modelling layer
+  - Service definitions & OData
+  - Deploying to BTP
+  - Live demo
+  - Q & A
 ---
 
 ---
-
 layout: divider
 title: Foundations
 variant: a
-
 ---
 
 Part 1 of 6
 
 ---
-
 layout: title-text
 title: What is SAP CAP?
-
 ---
 
 The **SAP Cloud Application Programming Model** (CAP) is a framework of languages, libraries, and tools for building cloud-native business applications on SAP BTP.
@@ -58,10 +50,8 @@ The **SAP Cloud Application Programming Model** (CAP) is a framework of language
 <KeyTakeaway>CAP lets you focus on domain logic — the framework handles persistence, protocols, and security boilerplate.</KeyTakeaway>
 
 ---
-
 layout: title-text-2col
 title: CAP vs. Classic ABAP Development
-
 ---
 
 ::left::
@@ -83,10 +73,8 @@ title: CAP vs. Classic ABAP Development
 - Continuous delivery on BTP
 
 ---
-
 layout: title-content
 title: The Data Modelling Layer
-
 ---
 
 ```sql
@@ -111,10 +99,8 @@ entity Authors : managed {
 Managed entities get `createdAt` / `createdBy` / `modifiedAt` / `modifiedBy` for free.
 
 ---
-
 layout: title-text
 title: Service Definitions
-
 ---
 
 CDS services are **projection layers** over your domain entities. They control what is exposed, to whom, and in what shape.
@@ -134,20 +120,16 @@ service CatalogService @(path: '/browse') {
 <DemoCallout kind="live" fallback="walk through the code on screen" />
 
 ---
-
 layout: divider
 title: Live Demo
 variant: b
-
 ---
 
 Let's deploy to BTP
 
 ---
-
 layout: title-text
 title: The Deployment Pipeline
-
 ---
 
 ```bash
@@ -163,10 +145,8 @@ cds up
 A single Cloud Foundry application manifest is generated automatically from your `package.json` and `mta.yaml`.
 
 ---
-
 layout: title-text-2col
 title: Speaker Profile
-
 ---
 
 ::left::
@@ -180,42 +160,34 @@ Meet the SAP Developer Advocates team — community-focused engineers who run wo
 <Speaker presenter="thomas-jung" />
 
 ---
-
 layout: title-content
 title: SAP Developer Advocates Programme
-
 ---
 
 <DeveloperAdvocates />
 
 ---
-
 layout: title-content
 title: CAP Feature Roadmap
-
 ---
 
 <script setup>
 const roadmapPhases = [
-  { label: 'Phase 1', status: 'available',      items: ['CDS data modelling', 'OData service exposure', 'SQLite local dev'] },
+  { label: 'Phase 1', status: 'available', items: ['CDS data modelling', 'OData service exposure', 'SQLite local dev'] },
   { label: 'Phase 2', status: 'in-development', items: ['HANA Cloud deployment', 'Authentication with XSUAA', 'Fiori Elements UI'] },
-  { label: 'Phase 3', status: 'planned',         items: ['Event-driven messaging', 'Remote service integration', 'AI extensions'] }
+  { label: 'Phase 3', status: 'planned', items: ['Event-driven messaging', 'Remote service integration', 'AI extensions'] }
 ]
 </script>
 
 <Roadmap :phases="roadmapPhases" />
 
 ---
-
 layout: q-and-a
 presenter: thomas-jung
-
 ---
 
 ---
-
 layout: thank-you
 presenter: thomas-jung
 variant: a
-
 ---
