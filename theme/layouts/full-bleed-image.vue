@@ -3,10 +3,7 @@
 </script>
 
 <template>
-  <div
-    class="layout full-bleed-image"
-    :style="src ? { backgroundImage: `url(${src})` } : {}"
-  >
+  <div class="layout full-bleed-image" :style="src ? { backgroundImage: `url(${src})` } : {}">
     <div v-if="title" class="overlay">
       <h1>{{ title }}</h1>
       <slot />

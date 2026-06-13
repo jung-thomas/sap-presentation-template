@@ -9,8 +9,8 @@
     event?: string // overrides event.yaml#name
   }>()
   const variant = props.variant ?? 'a'
-  const event = getEvent()
-  const eventName = props.event ?? event.name
+  const eventData = getEvent()
+  const eventName = props.event ?? eventData.name
 </script>
 
 <template>
