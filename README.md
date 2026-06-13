@@ -64,17 +64,17 @@ This produces:
 
 ## What's in the box
 
-| Path | Purpose |
-| --- | --- |
-| `slides.md` | Your deck (Markdown) |
-| `presenters/<slug>.yaml` | Your bio, photo, socials |
-| `teams/<slug>.yaml` | Named groups of presenter slugs |
-| `programs/<slug>.yaml` | Program metadata (taglines, engagement links) |
-| `event.yaml` | This deck's event metadata + default presenter |
-| `snippets/*.md` | Reusable Markdown fragments |
-| `public/` | Your images, screenshots |
-| `theme/` | The SAP theme (you don't usually edit) |
-| `SAP_Corp.potx` | Source of truth for brand assets |
+| Path                     | Purpose                                        |
+| ------------------------ | ---------------------------------------------- |
+| `slides.md`              | Your deck (Markdown)                           |
+| `presenters/<slug>.yaml` | Your bio, photo, socials                       |
+| `teams/<slug>.yaml`      | Named groups of presenter slugs                |
+| `programs/<slug>.yaml`   | Program metadata (taglines, engagement links)  |
+| `event.yaml`             | This deck's event metadata + default presenter |
+| `snippets/*.md`          | Reusable Markdown fragments                    |
+| `public/`                | Your images, screenshots                       |
+| `theme/`                 | The SAP theme (you don't usually edit)         |
+| `SAP_Corp.potx`          | Source of truth for brand assets               |
 
 ## Authoring
 

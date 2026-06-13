@@ -5,8 +5,12 @@
 <template>
   <div class="layout title">
     <div class="title-inner">
-      <h1 v-if="title">{{ title }}</h1>
-      <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
+      <p v-if="subtitle" class="subtitle">
+        {{ subtitle }}
+      </p>
       <slot />
     </div>
   </div>

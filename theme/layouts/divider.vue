@@ -5,7 +5,9 @@
 <template>
   <div :class="['layout', 'divider', `divider--${variant ?? 'a'}`]">
     <div class="divider-content">
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
       <slot />
     </div>
   </div>

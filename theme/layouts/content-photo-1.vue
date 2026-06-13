@@ -7,7 +7,9 @@
     <div class="header">
       <img v-if="photo" :src="photo" :alt="alt ?? ''" class="avatar" />
       <div v-else class="avatar avatar--placeholder" />
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
     </div>
     <div class="body">
       <slot />

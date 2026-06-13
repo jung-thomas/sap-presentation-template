@@ -4,11 +4,19 @@
 
 <template>
   <div class="layout title-text-3col">
-    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="title">
+      {{ title }}
+    </h1>
     <div class="cols">
-      <div class="col"><slot name="left" /></div>
-      <div class="col"><slot name="middle" /></div>
-      <div class="col"><slot name="right" /></div>
+      <div class="col">
+        <slot name="left" />
+      </div>
+      <div class="col">
+        <slot name="middle" />
+      </div>
+      <div class="col">
+        <slot name="right" />
+      </div>
     </div>
   </div>
 </template>

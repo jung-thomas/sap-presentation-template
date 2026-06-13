@@ -8,7 +8,9 @@
       <slot name="photo" />
     </div>
     <div class="text-half">
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
       <slot />
     </div>
   </div>

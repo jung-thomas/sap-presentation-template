@@ -77,7 +77,7 @@ async function convertToPdf(pptxPath, workDir) {
     'pdf',
     '--outdir',
     workDir,
-    resolve(pptxPath),
+    resolve(pptxPath)
   ])
   const stem = basename(pptxPath, extname(pptxPath))
   const pdfPath = join(workDir, `${stem}.pdf`)
@@ -110,7 +110,7 @@ async function rasteriseWithPdfToImg(pdfPath, outDir, dpi) {
   } catch {
     throw new Error(
       'pdf-to-img is not installed. Run: npm install pdf-to-img\n' +
-        'Or install LibreOffice + poppler-utils for pdftoppm support.',
+        'Or install LibreOffice + poppler-utils for pdftoppm support.'
     )
   }
 
@@ -147,7 +147,9 @@ async function main() {
   const { pptxPath, dpi, out } = parseArgs(process.argv)
 
   if (!pptxPath) {
-    console.error('Usage: node scripts/import-pptx.mjs <file.pptx> [--dpi 150] [--out public/imported]')
+    console.error(
+      'Usage: node scripts/import-pptx.mjs <file.pptx> [--dpi 150] [--out public/imported]'
+    )
     process.exit(1)
   }
 
@@ -161,15 +163,13 @@ async function main() {
   if (!tools.soffice) {
     console.error(
       '[import-pptx] LibreOffice (soffice) is not installed or not in PATH.\n' +
-        'Install from https://www.libreoffice.org/',
+        'Install from https://www.libreoffice.org/'
     )
     process.exit(1)
   }
 
   if (!tools.pdftoppm) {
-    console.error(
-      '[import-pptx] pdftoppm not found; will attempt pdf-to-img npm package …',
-    )
+    console.error('[import-pptx] pdftoppm not found; will attempt pdf-to-img npm package …')
   }
 
   // Prepare output directory

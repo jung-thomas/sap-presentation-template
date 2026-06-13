@@ -1,5 +1,7 @@
 <template>
-  <TitleContent v-bind="$attrs"><slot /></TitleContent>
+  <TitleContent v-bind="$attrs">
+    <slot />
+  </TitleContent>
 </template>
 
 <script setup lang="ts">

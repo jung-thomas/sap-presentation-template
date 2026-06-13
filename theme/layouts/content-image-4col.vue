@@ -4,23 +4,41 @@
 
 <template>
   <div class="layout content-image-4col">
-    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="title">
+      {{ title }}
+    </h1>
     <div class="cols">
       <div class="col">
-        <div class="col-image"><slot name="c1-image" /></div>
-        <div class="col-text"><slot name="c1" /></div>
+        <div class="col-image">
+          <slot name="c1-image" />
+        </div>
+        <div class="col-text">
+          <slot name="c1" />
+        </div>
       </div>
       <div class="col">
-        <div class="col-image"><slot name="c2-image" /></div>
-        <div class="col-text"><slot name="c2" /></div>
+        <div class="col-image">
+          <slot name="c2-image" />
+        </div>
+        <div class="col-text">
+          <slot name="c2" />
+        </div>
       </div>
       <div class="col">
-        <div class="col-image"><slot name="c3-image" /></div>
-        <div class="col-text"><slot name="c3" /></div>
+        <div class="col-image">
+          <slot name="c3-image" />
+        </div>
+        <div class="col-text">
+          <slot name="c3" />
+        </div>
       </div>
       <div class="col">
-        <div class="col-image"><slot name="c4-image" /></div>
-        <div class="col-text"><slot name="c4" /></div>
+        <div class="col-image">
+          <slot name="c4-image" />
+        </div>
+        <div class="col-text">
+          <slot name="c4" />
+        </div>
       </div>
     </div>
   </div>

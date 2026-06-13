@@ -16,8 +16,12 @@
 <template>
   <div :class="['cover', `cover--${variant}`]">
     <div class="cover-content">
-      <h1 v-if="title">{{ title }}</h1>
-      <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
+      <p v-if="subtitle" class="subtitle">
+        {{ subtitle }}
+      </p>
       <slot />
       <footer class="cover-footer">
         <Speaker v-if="presenter" :presenter="presenter" />

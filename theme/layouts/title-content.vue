@@ -4,7 +4,9 @@
 
 <template>
   <div class="layout title-content">
-    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="title">
+      {{ title }}
+    </h1>
     <div class="content">
       <slot />
     </div>

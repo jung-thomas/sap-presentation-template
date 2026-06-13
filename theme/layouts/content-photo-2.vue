@@ -5,7 +5,9 @@
 <template>
   <div class="layout content-photo-2">
     <div class="header">
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">
+        {{ title }}
+      </h1>
       <img v-if="photo" :src="photo" :alt="alt ?? ''" class="avatar" />
       <div v-else class="avatar avatar--placeholder" />
     </div>

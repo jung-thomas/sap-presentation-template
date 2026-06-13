@@ -4,7 +4,9 @@
 
 <template>
   <div class="layout text-screenshot">
-    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="title">
+      {{ title }}
+    </h1>
     <div class="grid">
       <div class="text-area">
         <slot />

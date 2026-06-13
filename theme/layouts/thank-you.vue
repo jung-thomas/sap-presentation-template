@@ -8,7 +8,9 @@
   <div :class="['layout', 'thank-you', `thank-you--${props.variant ?? 'a'}`]">
     <h1>Thank you.</h1>
     <Speaker :presenter="presenter" />
-    <p v-if="event.hashtag" class="hashtag">{{ event.hashtag }}</p>
+    <p v-if="event.hashtag" class="hashtag">
+      {{ event.hashtag }}
+    </p>
     <slot />
   </div>
 </template>
