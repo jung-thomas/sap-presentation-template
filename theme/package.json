@@ -1,0 +1,22 @@
+{
+  "name": "slidev-theme-sap",
+  "version": "0.1.0",
+  "description": "SAP-branded Slidev theme with Fiori Horizon look-and-feel",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./styles/*": "./styles/*",
+    "./layouts/*": "./layouts/*",
+    "./components/*": "./components/*"
+  },
+  "files": ["index.ts", "layouts", "components", "styles", "setup", "public"],
+  "slidev": {
+    "colorSchema": "light",
+    "highlighter": "shiki"
+  },
+  "peerDependencies": {
+    "@slidev/cli": "^0.49.0",
+    "vue": "^3.5.0"
+  }
+}
