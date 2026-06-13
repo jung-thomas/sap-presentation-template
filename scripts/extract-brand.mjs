@@ -19,9 +19,19 @@ import { emitBrandTokensCss } from './lib/emit-tokens.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
-const POTX = process.argv.includes('--potx')
-  ? process.argv[process.argv.indexOf('--potx') + 1]
-  : resolve(ROOT, 'SAP_Corp.potx')
+
+function getPotxPath() {
+  const idx = process.argv.indexOf('--potx')
+  if (idx === -1) return resolve(ROOT, 'SAP_Corp.potx')
+  const value = process.argv[idx + 1]
+  if (!value || value.startsWith('--')) {
+    console.error('--potx requires a path argument')
+    process.exit(1)
+  }
+  return resolve(value)
+}
+
+const POTX = getPotxPath()
 
 const OUT_DIR = resolve(ROOT, 'theme/styles/_extracted')
 const OUT_MEDIA = resolve(OUT_DIR, 'media/raw')
@@ -47,66 +57,71 @@ async function main() {
   await mkdir(OUT_MEDIA, { recursive: true })
 
   const potxTmp = await extractPotxToTemp(POTX)
+  try {
+    const themeXml = await getPotxFile(POTX, 'ppt/theme/theme1.xml')
+    const theme = parseThemeXml(themeXml)
+    console.log(`  ${theme.colors.length} colors  |  major font: ${theme.fonts.major}`)
 
-  const themeXml = await getPotxFile(POTX, 'ppt/theme/theme1.xml')
-  const theme = parseThemeXml(themeXml)
-  console.log(`  ${theme.colors.length} colors  |  major font: ${theme.fonts.major}`)
+    const layouts = await extractAllLayouts(potxTmp)
+    console.log(`  ${layouts.length} slide layouts`)
 
-  const layouts = await extractAllLayouts(potxTmp)
-  console.log(`  ${layouts.length} slide layouts`)
+    const media = await extractMedia(potxTmp, OUT_MEDIA)
+    console.log(`  ${media.count} media files`)
 
-  const media = await extractMedia(potxTmp, OUT_MEDIA)
-  console.log(`  ${media.count} media files`)
+    const css = emitBrandTokensCss({
+      colors: theme.colors,
+      fonts: theme.fonts,
+      meta: { potxHash, date }
+    })
+    await writeFile(resolve(OUT_DIR, 'brand-tokens.css'), css, 'utf-8')
 
-  const css = emitBrandTokensCss({
-    colors: theme.colors,
-    fonts: theme.fonts,
-    meta: { potxHash, date }
-  })
-  await writeFile(resolve(OUT_DIR, 'brand-tokens.css'), css, 'utf-8')
+    await writeFile(
+      resolve(OUT_DIR, 'layouts.json'),
+      JSON.stringify({ potxHash, layouts }, null, 2),
+      'utf-8'
+    )
 
-  await writeFile(
-    resolve(OUT_DIR, 'layouts.json'),
-    JSON.stringify({ extractedAt: date, potxHash, layouts }, null, 2),
-    'utf-8'
-  )
-
-  const readme = [
-    '# Extracted brand assets',
-    '',
-    `**Extracted:** ${date}`,
-    `**Source POTX:** \`SAP_Corp.potx\``,
-    `**POTX SHA-256:** \`${potxHash}\``,
-    `**Major font:** \`${theme.fonts.major}\``,
-    `**Color count:** ${theme.colors.length}`,
-    `**Layout count:** ${layouts.length}`,
-    `**Media files:** ${media.count}`,
-    '',
-    'Do not edit files in this directory by hand. Re-run `npm run extract-brand` after replacing `SAP_Corp.potx`.',
-    ''
-  ].join('\n')
-  await writeFile(resolve(OUT_DIR, 'README.md'), readme, 'utf-8')
-
-  if (!existsSync(OUT_LOGOS_MANIFEST)) {
-    const stub = [
-      '# Curate role names for each media file extracted from the POTX.',
-      '# Files unchanged across extractions keep their roles automatically.',
-      '#',
-      '# Recommended roles:',
-      '#   logo-sap-primary, logo-sap-monochrome, logo-sap-white',
-      '#   icon-<name>, illustration-<name>',
+    const readme = [
+      '# Extracted brand assets',
       '',
-      ...media.manifest.map((m) => `${m.file}:\n  sha256: ${m.sha256}\n  role: ""`)
+      `**Extracted:** ${date}`,
+      `**Source POTX:** \`SAP_Corp.potx\``,
+      `**POTX SHA-256:** \`${potxHash}\``,
+      `**Major font:** \`${theme.fonts.major}\``,
+      `**Color count:** ${theme.colors.length}`,
+      `**Layout count:** ${layouts.length}`,
+      `**Media files:** ${media.count}`,
+      '',
+      'Do not edit files in this directory by hand. Re-run `npm run extract-brand` after replacing `SAP_Corp.potx`.',
+      ''
     ].join('\n')
-    await writeFile(OUT_LOGOS_MANIFEST, stub, 'utf-8')
-    console.log(`  wrote stub: ${OUT_LOGOS_MANIFEST}`)
-  } else {
-    console.log(`  logo manifest exists (not overwriting): ${OUT_LOGOS_MANIFEST}`)
-  }
+    await writeFile(resolve(OUT_DIR, 'README.md'), readme, 'utf-8')
 
-  const expectedFont = '72'
-  if (!theme.fonts.major.includes(expectedFont)) {
-    console.warn(`WARNING: POTX major font "${theme.fonts.major}" does not contain "${expectedFont}".`)
+    if (!existsSync(OUT_LOGOS_MANIFEST)) {
+      const stub = [
+        '# Curate role names for each media file extracted from the POTX.',
+        '# Files unchanged across extractions keep their roles automatically.',
+        '#',
+        '# Recommended roles:',
+        '#   logo-sap-primary, logo-sap-monochrome, logo-sap-white',
+        '#   icon-<name>, illustration-<name>',
+        '',
+        ...media.manifest.map((m) => `${m.file}:\n  sha256: ${m.sha256}\n  role: ""`)
+      ].join('\n')
+      await writeFile(OUT_LOGOS_MANIFEST, stub, 'utf-8')
+      console.log(`  wrote stub: ${OUT_LOGOS_MANIFEST}`)
+    } else {
+      console.log(`  logo manifest exists (not overwriting): ${OUT_LOGOS_MANIFEST}`)
+    }
+
+    const expectedFont = '72'
+    if (!theme.fonts.major.includes(expectedFont)) {
+      console.warn(
+        `WARNING: POTX major font "${theme.fonts.major}" does not contain "${expectedFont}".`
+      )
+    }
+  } finally {
+    await rm(potxTmp, { recursive: true, force: true })
   }
 
   console.log('Done.')

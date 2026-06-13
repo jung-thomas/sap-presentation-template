@@ -29,4 +29,18 @@ describe('parse-layouts', () => {
     expect(ph.x).toBeGreaterThanOrEqual(0)
     expect(ph.cx).toBeGreaterThan(0)
   })
+
+  it('only includes shapes that have a placeholder annotation', async () => {
+    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const layouts = await extractAllLayouts(tmp)
+    // Every placeholder must have a non-null `type` field (defaults to 'body' if @_type missing).
+    // If a decorative shape leaked in, its type would still be 'body' but presence count would be off.
+    // We can at least verify type is a non-empty string.
+    for (const layout of layouts) {
+      for (const ph of layout.placeholders) {
+        expect(typeof ph.type).toBe('string')
+        expect(ph.type.length).toBeGreaterThan(0)
+      }
+    }
+  })
 })

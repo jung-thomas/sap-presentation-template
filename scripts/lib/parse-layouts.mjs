@@ -28,16 +28,17 @@ export async function extractAllLayouts(potxTmp) {
     const cSld = layout?.cSld
     const name = cSld?.['@_name'] ?? ''
     const spTree = cSld?.spTree
-    const sps = Array.isArray(spTree?.sp) ? spTree.sp : spTree?.sp ? [spTree.sp] : []
+    const sps = spTree?.sp ?? []
     const placeholders = []
     for (const sp of sps) {
       const ph = sp.nvSpPr?.nvPr?.ph
+      if (!ph) continue // decorative shape, not a placeholder
       const xfrm = sp.spPr?.xfrm ?? {}
       const off = xfrm.off ?? {}
       const ext = xfrm.ext ?? {}
       placeholders.push({
-        type: ph?.['@_type'] ?? 'body',
-        idx: ph?.['@_idx'] ?? null,
+        type: ph['@_type'] ?? 'body',
+        idx: ph['@_idx'] ?? null,
         x: off['@_x'] != null ? Number(off['@_x']) : null,
         y: off['@_y'] != null ? Number(off['@_y']) : null,
         cx: ext['@_cx'] != null ? Number(ext['@_cx']) : null,
