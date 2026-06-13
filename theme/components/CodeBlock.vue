@@ -16,7 +16,9 @@
     <div class="codeblock-body">
       <slot />
     </div>
-    <figcaption v-if="caption">{{ caption }}</figcaption>
+    <figcaption v-if="caption">
+      {{ caption }}
+    </figcaption>
   </figure>
 </template>
 

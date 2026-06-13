@@ -1,7 +1,9 @@
 <template>
   <aside class="key-takeaway">
     <header>Key takeaway</header>
-    <div class="content"><slot /></div>
+    <div class="content">
+      <slot />
+    </div>
   </aside>
 </template>
 

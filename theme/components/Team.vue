@@ -9,7 +9,9 @@
 
 <template>
   <div class="team">
-    <header v-if="t.tagline" class="team-tagline">{{ t.tagline }}</header>
+    <header v-if="t.tagline" class="team-tagline">
+      {{ t.tagline }}
+    </header>
     <div class="team-grid" :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }">
       <Bio v-for="p in t.presenters" :key="p.slug" :presenter="p.slug" compact />
     </div>

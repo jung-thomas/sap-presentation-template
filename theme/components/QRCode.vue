@@ -13,7 +13,9 @@
 <template>
   <figure class="qrcode">
     <img v-if="dataUrl" :src="dataUrl" :alt="`QR code: ${url}`" :width="size ?? 200" />
-    <figcaption v-if="caption">{{ caption }}</figcaption>
+    <figcaption v-if="caption">
+      {{ caption }}
+    </figcaption>
   </figure>
 </template>
 

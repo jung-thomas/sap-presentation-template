@@ -17,7 +17,9 @@
           <span class="status">{{ phase.status }}</span>
         </header>
         <ul>
-          <li v-for="item in phase.items" :key="item">{{ item }}</li>
+          <li v-for="item in phase.items" :key="item">
+            {{ item }}
+          </li>
         </ul>
       </div>
     </div>

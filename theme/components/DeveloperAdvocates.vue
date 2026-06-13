@@ -8,8 +8,12 @@
 <template>
   <div class="dev-advocates">
     <h2>SAP Developer Advocates</h2>
-    <p class="dev-advocates-tagline">{{ program.tagline }}</p>
-    <p class="dev-advocates-desc">{{ program.description }}</p>
+    <p class="dev-advocates-tagline">
+      {{ program.tagline }}
+    </p>
+    <p class="dev-advocates-desc">
+      {{ program.description }}
+    </p>
 
     <Team team="dev-advocates" />
 
