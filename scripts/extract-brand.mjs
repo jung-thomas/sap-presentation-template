@@ -16,6 +16,8 @@ import { parseThemeXml } from './lib/parse-theme.mjs'
 import { extractAllLayouts } from './lib/parse-layouts.mjs'
 import { extractMedia } from './lib/extract-media.mjs'
 import { emitBrandTokensCss } from './lib/emit-tokens.mjs'
+import { emitCoverTokensCss } from './lib/emit-cover-tokens.mjs'
+import { emitTypographyTokensCss } from './lib/emit-typography-tokens.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
@@ -80,6 +82,14 @@ async function main() {
       JSON.stringify({ potxHash, layouts }, null, 2),
       'utf-8'
     )
+
+    const coverTokens = emitCoverTokensCss(layouts)
+    await writeFile(resolve(OUT_DIR, 'cover-tokens.css'), coverTokens, 'utf-8')
+
+    const typographyTokens = emitTypographyTokensCss(layouts)
+    await writeFile(resolve(OUT_DIR, 'typography-tokens.css'), typographyTokens, 'utf-8')
+
+    console.log('  wrote cover-tokens.css + typography-tokens.css')
 
     const readme = [
       '# Extracted brand assets',
