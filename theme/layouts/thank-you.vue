@@ -1,14 +1,18 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
   import { getEvent } from '../setup/data'
+
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  const fm = computed(() => props.frontmatter ?? {})
+  const presenter = computed(() => fm.value.presenter as string | undefined)
+  const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
   const event = getEvent()
 </script>
 
 <template>
-  <div :class="['layout', 'thank-you', `thank-you--${fm.variant ?? 'a'}`]">
+  <div :class="['layout', 'thank-you', `thank-you--${variant}`]">
     <h1>Thank you.</h1>
-    <Speaker :presenter="(fm.presenter as string | undefined)" />
+    <Speaker :presenter="presenter" />
     <p v-if="event.hashtag" class="hashtag">
       {{ event.hashtag }}
     </p>

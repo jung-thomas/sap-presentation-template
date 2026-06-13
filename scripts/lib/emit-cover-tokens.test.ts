@@ -42,4 +42,10 @@ describe('emit-cover-tokens', () => {
   it('handles missing Cover A gracefully', () => {
     expect(() => emitCoverTokensCss([])).toThrow(/Cover A not found/)
   })
+
+  it('throws when Cover A has no <p:pic> elements (logo)', () => {
+    expect(() => emitCoverTokensCss([{ name: 'Cover A', placeholders: [], pics: [] }])).toThrow(
+      /no.*pic/i
+    )
+  })
 })

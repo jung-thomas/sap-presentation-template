@@ -1,13 +1,16 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  const fm = computed(() => props.frontmatter ?? {})
+  const presenter = computed(() => fm.value.presenter as string | undefined)
 </script>
 
 <template>
   <div class="layout q-and-a">
     <h1>Questions?</h1>
     <p class="prompt">Ask now, or find me later.</p>
-    <Bio :presenter="(fm.presenter as string | undefined)" compact />
+    <Bio :presenter="presenter" compact />
     <slot />
   </div>
 </template>

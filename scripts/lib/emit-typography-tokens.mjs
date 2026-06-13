@@ -1,3 +1,8 @@
+// 1pt = 1/72 inch. Slidev slides are ~7.5" tall at 720px = 96 px/in.
+// We use 0.0833rem per pt (1/12) as a presentation-scale conversion that
+// keeps body text comfortably readable at typical projector resolution.
+// (Not the web standard 1pt = 1/96rem — slides are physically larger
+// than browser pages and POTX point sizes are designed for projection.)
 const PT_TO_REM = 1 / 12
 
 function ptToRem(pt) {
@@ -36,7 +41,9 @@ export function emitTypographyTokensCss(layouts) {
         lines.push(`  --typography-${prefix}-${type}-size: ${ptToRem(ts.fontSize)};`)
       }
       if (ts.lineSpacing != null) {
-        lines.push(`  --typography-${prefix}-${type}-line-height: ${lineSpacingToMultiplier(ts.lineSpacing)};`)
+        lines.push(
+          `  --typography-${prefix}-${type}-line-height: ${lineSpacingToMultiplier(ts.lineSpacing)};`
+        )
       }
     }
   }
