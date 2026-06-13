@@ -1,0 +1,12 @@
+slug: thomas-jung
+name: Thomas Jung
+title: Developer Advocate, SAP
+photo: /presenters/thomas-jung.jpg
+initials: TJ
+bio: |
+  Thomas Jung is a Developer Advocate at SAP focused on cloud-native development
+  with the SAP Cloud Application Programming Model.
+socials:
+  - { platform: linkedin, handle: thomas-jung }
+  - { platform: github, handle: thomasjung }
+email: thomas.jung@sap.com

@@ -107,7 +107,7 @@ sap-presentation-template/
 └──────────────────────────────────────────────────────────────┘
 ```
 
-The brand POTX is a *brand-specific overlay* on top of `@sap-theming`, not a replacement. Maximum reuse of SAP's published theming infrastructure; minimum drift between web rendering and PowerPoint rendering.
+The brand POTX is a _brand-specific overlay_ on top of `@sap-theming`, not a replacement. Maximum reuse of SAP's published theming infrastructure; minimum drift between web rendering and PowerPoint rendering.
 
 ### 4.3 Build & deploy flow
 
@@ -132,36 +132,36 @@ variant: c
 title: ...
 ```
 
-| Slidev layout | POTX origin | Notes |
-|---|---|---|
-| `cover` | Cover A–L | 12 visual variants |
-| `agenda` | Agenda A, B | 2 variants |
-| `divider` | Divider Page A–D | 4 variants |
-| `title-only` | Title Only | |
-| `title-text` | Title and Text | single content area |
-| `title-text-2col` | Title and Text: 2 Columns | `::left::` / `::right::` slots |
-| `title-text-3col` | Title and Text: 3 Columns | three slots |
-| `content-image-2col` | 2 Columns - Text and Images | |
-| `content-image-3col` | 3 Columns - Text and Images | |
-| `content-image-4col` | 4 Columns - Text and Images | |
-| `title-image-third` | Title and Text with Image 1/3 | |
-| `full-bleed-image` | Full Bleed Image | |
-| `text-screenshot` | Text and Screenshot | |
-| `title-content` | Title and Content | |
-| `quote` | Quote | |
-| `q-and-a` | Q & A | |
-| `thank-you` | Thank You A, B | 2 variants |
-| `blank` | Blank | escape hatch |
-| `image-slide` | (new) | full-bleed PNG/JPG for foreign-branded imports |
-| `tips-tricks` | User guide TIPS & TRICKS | |
-| `color-palette` | User guide COLOR PALETTE | |
-| `brand-site` | User guide SAP BRAND SITE | |
-| `title-photo` | Title Photo | |
-| `content-photo-1` | Content Photo 1 | |
-| `content-photo-2` | Content Photo 2 | |
-| `title` | Title | |
-| `content-1` | Content 1 | |
-| `two-content` | Two Content | |
+| Slidev layout        | POTX origin                   | Notes                                          |
+| -------------------- | ----------------------------- | ---------------------------------------------- |
+| `cover`              | Cover A–L                     | 12 visual variants                             |
+| `agenda`             | Agenda A, B                   | 2 variants                                     |
+| `divider`            | Divider Page A–D              | 4 variants                                     |
+| `title-only`         | Title Only                    |                                                |
+| `title-text`         | Title and Text                | single content area                            |
+| `title-text-2col`    | Title and Text: 2 Columns     | `::left::` / `::right::` slots                 |
+| `title-text-3col`    | Title and Text: 3 Columns     | three slots                                    |
+| `content-image-2col` | 2 Columns - Text and Images   |                                                |
+| `content-image-3col` | 3 Columns - Text and Images   |                                                |
+| `content-image-4col` | 4 Columns - Text and Images   |                                                |
+| `title-image-third`  | Title and Text with Image 1/3 |                                                |
+| `full-bleed-image`   | Full Bleed Image              |                                                |
+| `text-screenshot`    | Text and Screenshot           |                                                |
+| `title-content`      | Title and Content             |                                                |
+| `quote`              | Quote                         |                                                |
+| `q-and-a`            | Q & A                         |                                                |
+| `thank-you`          | Thank You A, B                | 2 variants                                     |
+| `blank`              | Blank                         | escape hatch                                   |
+| `image-slide`        | (new)                         | full-bleed PNG/JPG for foreign-branded imports |
+| `tips-tricks`        | User guide TIPS & TRICKS      |                                                |
+| `color-palette`      | User guide COLOR PALETTE      |                                                |
+| `brand-site`         | User guide SAP BRAND SITE     |                                                |
+| `title-photo`        | Title Photo                   |                                                |
+| `content-photo-1`    | Content Photo 1               |                                                |
+| `content-photo-2`    | Content Photo 2               |                                                |
+| `title`              | Title                         |                                                |
+| `content-1`          | Content 1                     |                                                |
+| `two-content`        | Two Content                   |                                                |
 
 The POTX `>DO NOT USE>` and `>Copilot layouts>` placeholders are excluded by name.
 
@@ -171,34 +171,34 @@ Organized by category. All components have sensible defaults — the simplest in
 
 **People & teams**
 
-| Component | Props | Data source |
-|---|---|---|
-| `<Bio>` | `presenter?: string` (slug, default: event default), `compact?: boolean` | `presenters/<slug>.yaml` |
-| `<Speaker>` | `presenter?: string` OR `presenters?: string[]` | `presenters/<slug>.yaml` |
-| `<Team>` | `team: string` (slug) | `teams/<slug>.yaml` → `presenters/*.yaml` |
-| `<DeveloperAdvocates>` | (none) | `programs/developer-advocates.yaml` + `teams/dev-advocates.yaml` |
+| Component              | Props                                                                    | Data source                                                      |
+| ---------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| `<Bio>`                | `presenter?: string` (slug, default: event default), `compact?: boolean` | `presenters/<slug>.yaml`                                         |
+| `<Speaker>`            | `presenter?: string` OR `presenters?: string[]`                          | `presenters/<slug>.yaml`                                         |
+| `<Team>`               | `team: string` (slug)                                                    | `teams/<slug>.yaml` → `presenters/*.yaml`                        |
+| `<DeveloperAdvocates>` | (none)                                                                   | `programs/developer-advocates.yaml` + `teams/dev-advocates.yaml` |
 
 `<DeveloperAdvocates>` is a slide-level component — typically used on its own slide with `layout: blank` or `layout: title-only`. It composes `<Team team="dev-advocates" />` plus program tagline and engagement links.
 
 **Deck framing**
 
-| Component | Props | Data source |
-|---|---|---|
-| `<Agenda>` | `current?: number` (slide index for "you are here") | deck-level `agenda:` front-matter |
-| `<EventBadge>` | (none) | `event.yaml` |
-| `<Disclaimer>` | `kind: 'forward-looking' \| 'informational' \| 'safe-harbor'` | `programs/disclaimers.yaml` |
-| `<Roadmap>` | `phases: Phase[]`, `suppressDisclaimer?: boolean` | inline data; auto-includes `<Disclaimer kind="forward-looking">` unless suppressed |
+| Component      | Props                                                         | Data source                                                                        |
+| -------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `<Agenda>`     | `current?: number` (slide index for "you are here")           | deck-level `agenda:` front-matter                                                  |
+| `<EventBadge>` | (none)                                                        | `event.yaml`                                                                       |
+| `<Disclaimer>` | `kind: 'forward-looking' \| 'informational' \| 'safe-harbor'` | `programs/disclaimers.yaml`                                                        |
+| `<Roadmap>`    | `phases: Phase[]`, `suppressDisclaimer?: boolean`             | inline data; auto-includes `<Disclaimer kind="forward-looking">` unless suppressed |
 
 **In-slide elements**
 
-| Component | Props | Data source |
-|---|---|---|
-| `<QRCode>` | `url: string`, `caption?: string`, `size?: number` (default 200) | none — generated at build via `qrcode` npm |
-| `<SocialIcon>` | `platform: 'twitter' \| 'x' \| 'linkedin' \| 'mastodon' \| 'github' \| 'bsky'`, `handle: string` | none |
-| `<Logo>` | `variant?: string` (e.g., `primary`, `monochrome`) | `theme/public/logos/manifest.yaml` |
-| `<DemoCallout>` | `kind?: 'live' \| 'recorded' \| 'interactive'` (default `live`) | none |
-| `<CodeBlock>` | `lang: string`, `filename?: string`, `caption?: string`, `highlight?: string` (e.g., "3-5") | default slot (the code) |
-| `<KeyTakeaway>` | (default slot for the takeaway text) | none |
+| Component       | Props                                                                                            | Data source                                |
+| --------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| `<QRCode>`      | `url: string`, `caption?: string`, `size?: number` (default 200)                                 | none — generated at build via `qrcode` npm |
+| `<SocialIcon>`  | `platform: 'twitter' \| 'x' \| 'linkedin' \| 'mastodon' \| 'github' \| 'bsky'`, `handle: string` | none                                       |
+| `<Logo>`        | `variant?: string` (e.g., `primary`, `monochrome`)                                               | `theme/public/logos/manifest.yaml`         |
+| `<DemoCallout>` | `kind?: 'live' \| 'recorded' \| 'interactive'` (default `live`)                                  | none                                       |
+| `<CodeBlock>`   | `lang: string`, `filename?: string`, `caption?: string`, `highlight?: string` (e.g., "3-5")      | default slot (the code)                    |
+| `<KeyTakeaway>` | (default slot for the takeaway text)                                                             | none                                       |
 
 ### 5.3 Component design principles
 
@@ -235,6 +235,7 @@ Slidev runtime + UI5 Web Components (single source of CSS variables for both)
 **Input:** `SAP_Corp.potx`
 
 **Output:**
+
 1. `theme/styles/_extracted/brand-tokens.css` — semantic CSS custom properties (`--sap-brand-blue: #0070F2;`, `--sap-text-secondary: #...;`, etc.)
 2. `theme/styles/_extracted/layouts.json` — for each POTX slide layout: name, placeholder positions in EMU (914400 per inch), default text styles. Used as a reference by Vue layout authors and by the visual regression baseline.
 3. `theme/styles/_extracted/media/raw/` — all media files (PNGs, SVGs) extracted as-is.
@@ -242,6 +243,7 @@ Slidev runtime + UI5 Web Components (single source of CSS variables for both)
 5. `theme/styles/_extracted/README.md` — POTX SHA-256 hash, extraction date, declared font name, brand version.
 
 **Steps:**
+
 1. Unzip the POTX (using `unzipper` or Node 22's built-in zip support).
 2. Parse `ppt/theme/theme1.xml` with `fast-xml-parser` to extract color scheme + font scheme.
 3. Parse all `ppt/slideLayouts/slideLayout*.xml` to extract per-layout geometry and placeholder text styles.
@@ -320,9 +322,9 @@ slug: developer-advocates
 tagline: ...
 description: ...
 engagementLinks:
-  - { label: "Newsletter", url: "..." }
-  - { label: "Discord", url: "..." }
-  - { label: "Office Hours", url: "..." }
+  - { label: 'Newsletter', url: '...' }
+  - { label: 'Discord', url: '...' }
+  - { label: 'Office Hours', url: '...' }
 ```
 
 ```yaml
@@ -344,7 +346,7 @@ The shipped disclaimer texts are the **current public versions** (publicly avail
 name: SAP TechEd 2025
 date: 2025-09-09
 venue: Las Vegas, NV
-hashtag: "#SAPTechEd"
+hashtag: '#SAPTechEd'
 defaultPresenter: thomas-jung
 ```
 
@@ -392,16 +394,16 @@ PNG/JPG and screenshots are zero-tooling: drop into `public/imported/<event>/`, 
 
 ### 9.1 npm scripts
 
-| Command | Purpose |
-|---|---|
-| `npm run dev` | Slidev dev server at localhost:3030, hot reload |
-| `npm run build` | Static build to `dist/` |
-| `npm run export` | PDF export of deck → `slides-export.pdf` |
-| `npm run gallery` | Open the kitchen-sink layout gallery in dev |
-| `npm run extract-brand` | Re-extract from POTX (run when brand changes) |
-| `npm run import-pptx <file>` | Import a foreign PPTX (requires LibreOffice) |
-| `npm run test:visual` | Run Playwright visual regression locally |
-| `npm run test:visual:update` | Update Playwright snapshot baselines |
+| Command                      | Purpose                                         |
+| ---------------------------- | ----------------------------------------------- |
+| `npm run dev`                | Slidev dev server at localhost:3030, hot reload |
+| `npm run build`              | Static build to `dist/`                         |
+| `npm run export`             | PDF export of deck → `slides-export.pdf`        |
+| `npm run gallery`            | Open the kitchen-sink layout gallery in dev     |
+| `npm run extract-brand`      | Re-extract from POTX (run when brand changes)   |
+| `npm run import-pptx <file>` | Import a foreign PPTX (requires LibreOffice)    |
+| `npm run test:visual`        | Run Playwright visual regression locally        |
+| `npm run test:visual:update` | Update Playwright snapshot baselines            |
 
 ### 9.2 Node version
 
@@ -418,7 +420,7 @@ PNG/JPG and screenshots are zero-tooling: drop into `public/imported/<event>/`, 
 ### 9.4 First-time setup for a fork-author
 
 1. Click "Use this template" → create a new repo.
-2. **Settings → Pages → Source: GitHub Actions** *(one-time UI step; GitHub limitation, can't be automated for the user).*
+2. **Settings → Pages → Source: GitHub Actions** _(one-time UI step; GitHub limitation, can't be automated for the user)._
 3. **Replace the demo presenter:** the template ships with `presenters/thomas-jung.yaml` so the template repo's own GitHub Pages renders a working demo. On fork, either (a) replace its contents with your own data and rename the file, or (b) delete it and copy `presenters/_example.yaml` → `presenters/<your-slug>.yaml`. Then update `event.yaml#defaultPresenter` to your slug.
 4. Edit `event.yaml` — set `defaultPresenter` and event metadata.
 5. Edit `slides.md` — write your talk.
@@ -478,16 +480,16 @@ The font-loading wait is critical — the `72` font must be loaded before screen
 
 ## 13. Risks & mitigations
 
-| Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| POTX OOXML schema changes between brand versions | Low | Medium | Extraction script logs warnings; tests pin to known POTX shape; fork-authors don't auto-update — they re-run extract intentionally. |
-| The `72` web font in `@sap-theming/theming-base-content` lags the POTX | Medium | Low | Extraction script warns when typeface names diverge. Visual difference normally imperceptible. |
-| UI5 Web Components version drift breaking themed components | Medium | Medium | Pin minor version in `package.json`. Visual regression catches drift on next CI run after `npm update`. |
-| GitHub Pages soft bandwidth limit (100 GB/month) | Very Low | Low | Documented in README; typical decks well under limit. |
-| PPTX import via LibreOffice produces poor output for complex slides | Medium | Low | Documented manual fallback (PowerPoint → PNG). `import-pptx` is best-effort. |
-| Slidev breaking changes between major versions | Medium | Medium | Pin Slidev major version. Document migration in CHANGELOG. Forks stay on pinned version until they choose to upgrade. |
-| Visual-regression false positives from font-loading timing | Medium | Low | `waitForFunction(() => document.fonts.ready)` plus settle delay. |
-| Playwright snapshots bloat the repo | Low | Low | Committed without LFS by default (~30 MB at 45 layouts). LFS upgrade documented. |
+| Risk                                                                   | Likelihood | Impact | Mitigation                                                                                                                          |
+| ---------------------------------------------------------------------- | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| POTX OOXML schema changes between brand versions                       | Low        | Medium | Extraction script logs warnings; tests pin to known POTX shape; fork-authors don't auto-update — they re-run extract intentionally. |
+| The `72` web font in `@sap-theming/theming-base-content` lags the POTX | Medium     | Low    | Extraction script warns when typeface names diverge. Visual difference normally imperceptible.                                      |
+| UI5 Web Components version drift breaking themed components            | Medium     | Medium | Pin minor version in `package.json`. Visual regression catches drift on next CI run after `npm update`.                             |
+| GitHub Pages soft bandwidth limit (100 GB/month)                       | Very Low   | Low    | Documented in README; typical decks well under limit.                                                                               |
+| PPTX import via LibreOffice produces poor output for complex slides    | Medium     | Low    | Documented manual fallback (PowerPoint → PNG). `import-pptx` is best-effort.                                                        |
+| Slidev breaking changes between major versions                         | Medium     | Medium | Pin Slidev major version. Document migration in CHANGELOG. Forks stay on pinned version until they choose to upgrade.               |
+| Visual-regression false positives from font-loading timing             | Medium     | Low    | `waitForFunction(() => document.fonts.ready)` plus settle delay.                                                                    |
+| Playwright snapshots bloat the repo                                    | Low        | Low    | Committed without LFS by default (~30 MB at 45 layouts). LFS upgrade documented.                                                    |
 
 ## 14. Open questions (resolve during implementation)
 

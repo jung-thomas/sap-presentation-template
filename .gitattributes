@@ -1,2 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Binary assets — never normalize line endings
+*.potx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary
+*.heapsnapshot binary

@@ -1,0 +1,55 @@
+/*
+ * Deck-level spacing, typography, and transitions.
+ * Component- and layout-specific styles live next to the Vue file.
+ */
+
+.slidev-layout {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sap-font-major);
+  color: var(--sapTextColor);
+  background-color: var(--sapBackgroundColor);
+  padding: 3rem 4rem;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: var(--sap-font-major);
+  font-weight: 700;
+  color: var(--sap-brand-blue-darker);
+  letter-spacing: -0.01em;
+}
+
+.slidev-layout h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.slidev-layout h2 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.slidev-layout h3 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Footer accent shared across most layouts */
+.slidev-layout::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sap-brand-blue), var(--sap-brand-teal));
+}

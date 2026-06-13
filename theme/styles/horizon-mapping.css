@@ -1,0 +1,49 @@
+/*
+ * Horizon mapping — aliases UI5 Horizon CSS variable names to our
+ * extracted brand tokens. This is the bridge that ensures live
+ * <ui5-*> components on slides match the brand exactly.
+ *
+ * Source of truth: theme/styles/_extracted/brand-tokens.css
+ * (which is generated from SAP_Corp.potx).
+ *
+ * Hand-written, rarely changes. When SAP Horizon ships a new
+ * variable name worth aliasing, add it here.
+ */
+
+:root {
+  /* Brand-color level mappings */
+  --sapBrandColor: var(--sap-brand-blue);
+  --sapHighlightColor: var(--sap-brand-blue);
+  --sapSelectedColor: var(--sap-brand-blue);
+
+  /* Buttons */
+  --sapButton_Background: var(--sap-brand-blue);
+  --sapButton_Hover_Background: var(--sap-brand-blue-dark);
+  --sapButton_Emphasized_Background: var(--sap-brand-blue);
+  --sapButton_Emphasized_Hover_Background: var(--sap-brand-blue-dark);
+
+  /* Lists & cards */
+  --sapList_Background: #ffffff;
+  --sapList_HeaderBackground: #ffffff;
+  --sapList_SelectionBackgroundColor: var(--sap-brand-blue-pale);
+
+  /* Text */
+  --sapTextColor: #1d2d3e;
+  --sapContent_LabelColor: #475e75;
+  --sapContent_NonInteractiveIconColor: var(--sap-brand-blue);
+
+  /* Surfaces */
+  --sapBackgroundColor: #ffffff;
+  --sapTile_Background: #ffffff;
+  --sapGroup_TitleBackground: #ffffff;
+
+  /* Status (semantic) */
+  --sapPositiveColor: var(--sap-brand-green);
+  --sapNegativeColor: var(--sap-brand-red);
+  --sapCriticalColor: var(--sap-brand-orange);
+  --sapInformativeColor: var(--sap-brand-blue);
+
+  /* Typography */
+  --sapFontFamily: var(--sap-font-major);
+  --sapFontHeaderFamily: var(--sap-font-major);
+}

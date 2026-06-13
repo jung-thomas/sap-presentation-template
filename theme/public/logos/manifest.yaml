@@ -1,0 +1,270 @@
+# Curate role names for each media file extracted from the POTX.
+# Files unchanged across extractions keep their roles automatically.
+#
+# Recommended roles:
+#   logo-sap-primary, logo-sap-monochrome, logo-sap-white
+#   icon-<name>, illustration-<name>
+
+logo-sap-primary.svg:
+  sha256: ""
+  role: "logo-sap-primary"
+  note: "Placeholder — replace with official SAP logo from https://www.sap.com/about/company/brand.html"
+
+image1.png:
+  sha256: c11519d92480aaf1d7ab46428a71aee5100d4c8bd2a27f191627f2469079f31f
+  role: ""
+image10.png:
+  sha256: 102665cb848752387366dbfce740ebf6985bb53ed000e0129d7270eddd3db6f4
+  role: ""
+image11.svg:
+  sha256: 29a99055c3f272eebd397d0fdfd2fd9bf54c993bb587e51df70e09361318a38c
+  role: ""
+image12.png:
+  sha256: 6d50b2dd405e52627a9b81ebf03750f74feb03d82ec91a7e98b77c788e6e5a6e
+  role: ""
+image13.svg:
+  sha256: afd7019b634ff1fc7a2899fb267619574b729d66f168acee7984446edeb5124d
+  role: ""
+image14.svg:
+  sha256: 8af49c07096351fe493ce0dc4187dd80cc1f125e4bc768817f8a14f9e5c631fa
+  role: ""
+image15.png:
+  sha256: 797df76b07b51b13e3f973842079b01f40e4f3b091715797a7bbdbcf76b379cc
+  role: ""
+image16.png:
+  sha256: f5a8911611b929ed9cbe7b6a848ccb0f231569b5c4ba0043295ce696fd8afe88
+  role: ""
+image17.png:
+  sha256: 9ea13bd60038c016fcaf23f3a4cdbf93f5a7ca099866d8bba2e211ff68118030
+  role: ""
+image18.png:
+  sha256: 0ac365264eda5970a2ffe5ffa60b0813c14fb3779fbae6ca0102a054e32c1535
+  role: ""
+image19.png:
+  sha256: 5b1eae22837bd652a99d1e91e021c0d79538cd2b191084d869cdd6b58d929237
+  role: ""
+image2.png:
+  sha256: 05857112bbbcd33eb52102c7a2db3b906d6af789580b91258ac175cc83d438db
+  role: ""
+image20.png:
+  sha256: 195e4a62ccacc371f03e547f8f1305ae168287276bff73658c6178fb7aae23c0
+  role: ""
+image21.png:
+  sha256: fd613b9d1e98efb1577d8a003ab0473ecfe17dcfd05d766552a5af91974121eb
+  role: ""
+image22.png:
+  sha256: c6b5ccef7090c97d166c0b167d8fe1478706a6e85f56949ff2a99c712a968efb
+  role: ""
+image23.png:
+  sha256: 31e57a688a74b6e6efb3cfa27ca638afb3fff45b920f867f14dfc1ecc2140330
+  role: ""
+image24.png:
+  sha256: 19c226d82f8da1c249c3b92ea667d215ccbe0b48093493c6a10b255e7bb2f3ec
+  role: ""
+image25.png:
+  sha256: 67fb559cdd05fe5f2146b96b83a33e5350c68bb3f8523c405b873dfb8893ce4c
+  role: ""
+image26.png:
+  sha256: 9ed27b6eff4ef1a0eab70c32123187690b94c929ef4db87483e84d10d3f0f994
+  role: ""
+image27.png:
+  sha256: 94b0130904cd075a4340b488d0f20ae237b78c6163ef230bfa168f777768a757
+  role: ""
+image28.svg:
+  sha256: 3c741cdd08a0f56c5681eb54c91c7ca3f45e3ee3fc02071fb64b9ba01a318c52
+  role: ""
+image29.png:
+  sha256: daad01aaf155742f9499fa2f2f621570b1ae84a156321cf8e4a7ed52521399cc
+  role: ""
+image3.svg:
+  sha256: e6433be17707b700ff213f9dacdfd64025a72c3ef9b455da2c3b172f2d20257e
+  role: ""
+image30.svg:
+  sha256: 5b133364a5e6e2868f5263f46255426b4e304a59d7ed1b033d88a8616570c841
+  role: ""
+image31.png:
+  sha256: d25701dcb6a82f32b3c38333275e2bc2b497deab9c76c54d7210eb35c4b268c6
+  role: ""
+image32.svg:
+  sha256: 53dad7e6957605c339756a029e2a3c235d30088c0931dc604e031e13c7ccbde7
+  role: ""
+image33.png:
+  sha256: 1ac659513eb8b693842d6d44a3d7eea6367c52392b2bd102304000ef7de780aa
+  role: ""
+image34.svg:
+  sha256: 05ed94721c3e2f9cb878d7c8427a257ed9b2773e3c3fb51e087fe454ad32e964
+  role: ""
+image35.png:
+  sha256: f35767e8cbc9d487f0ee7e520c44a6da394fa6d35d138c0ae12f1c463733c511
+  role: ""
+image36.svg:
+  sha256: 9144e5bb5ed547346dc62dc9eb5883c3046ea28f10fb8b4e55a57b7eef468654
+  role: ""
+image37.png:
+  sha256: ab7c04c35a686548e5767926488bf8361c423896d7a7012ed1ac1f04d626ca38
+  role: ""
+image38.svg:
+  sha256: 5c9e95eeeffe17458de394f94208bb460e9c01805eaecf2f0c106c506f4980c8
+  role: ""
+image39.png:
+  sha256: 34c4696dbb98764937314997b2d925373f56b865092cb059571f37176ac24ee0
+  role: ""
+image4.bin:
+  sha256: 32bf441a99ee3b692df7359bdaa523dea25c8b1160a40b04cbe16e5b0068cab5
+  role: ""
+image40.png:
+  sha256: 3617e79dee1cd67c2501caa88421f2fc65f61ed20ce9096f063473a8c72c2952
+  role: ""
+image41.png:
+  sha256: b069692285bd70880eebb17e09e7676770c678f4f04af66a9e1c0c5eef6dd19b
+  role: ""
+image42.jpeg:
+  sha256: c134f0e0ff972254ed1ebf93444d95029e5454769503aebb3fbadb5f8682c976
+  role: ""
+image43.png:
+  sha256: c36c53fb81d8e0236c269eff832cd4b67a6c407860884eacc2b96d03e64bac53
+  role: ""
+image44.svg:
+  sha256: 37113e6053980c5ae1c9fb2001dee862e9b261fdd173e3ba16b73651b8b0d315
+  role: ""
+image45.png:
+  sha256: b52a97f85d9260830e05bd840171bee0aea5946e04dd3a25b9c05882c8dd768b
+  role: ""
+image46.svg:
+  sha256: d95abad756b87b1c9bc86073fe88c9959eece7b5fbfe2b4dd59d259c195d9e7e
+  role: ""
+image47.png:
+  sha256: 90a989af721bc1f2a78f3ee85cdfe5789d5f2acd923c05b82f35da42e1a3e6fa
+  role: ""
+image48.svg:
+  sha256: 6ba2924c40378b123a9f53076b65931ffdb5581bd32df588a225eb51e1b8ca69
+  role: ""
+image49.png:
+  sha256: 58aaf228545e94acdec303724fb75d7308fe6eb528160b0fb8ed6030bfa137de
+  role: ""
+image5.png:
+  sha256: 8edb8bb23dc6b80d89fecaf49e028ee4c965f08ff68830382d53c299384cbd81
+  role: ""
+image50.svg:
+  sha256: 0ca66086e77adb7c04d12a696b3a21f3c86b5c7009203bf9d61681a6f35aaa0b
+  role: ""
+image51.png:
+  sha256: 97f19ac94aae00a49f891e7503775a1b539fa8603b69a1e6029867b8b69eb50b
+  role: ""
+image52.svg:
+  sha256: 7a06cf6975d8fbd8d625767ed5f5e58490104310dbc00f3b22960c0e49d4d6ea
+  role: ""
+image53.png:
+  sha256: 4386df348ea7d0a88f2b9f82590f7d1509a2d903b3b81da838f5eeae3a3e798e
+  role: ""
+image54.svg:
+  sha256: e56c13517c0e34d85f713160e50499dd7a60b69bbe071a673124e3fa7589fa91
+  role: ""
+image55.png:
+  sha256: 2d817af2fcb0ab15304208a6b31a69fc97089a3aed83e06c58cb7a6a19495c06
+  role: ""
+image56.svg:
+  sha256: bbb47ecaa06b079578ae2afce13ccd59e4d035da791ef15fa4a638e4458835ad
+  role: ""
+image57.png:
+  sha256: 08b2c3a46772443019a9a2fd9062c9e63be206171abd2c3c38d06c8c3c426bd2
+  role: ""
+image58.svg:
+  sha256: 58637428ca700fb3f4502c0d6be7680d211790fa94a81e672d796e4ab033a13b
+  role: ""
+image59.png:
+  sha256: 51132e0ac5de048dd1cd5bfb58963c0c373ed914500a21619b6af343bd8179cb
+  role: ""
+image6.png:
+  sha256: a7e7f2ac5d975d527c504df77ee0037ec54e02ea02af77a22c8f68dfcc7824b1
+  role: ""
+image60.svg:
+  sha256: 230d619781468ac3dd92a9f8615159cc60cb4e41c6c6847fe3d96a422c8e9cdd
+  role: ""
+image61.png:
+  sha256: 2d03fa2f7bf7eec9bba6e874b21e8c20f188b43c51a6ad1b5a6064d139492185
+  role: ""
+image62.svg:
+  sha256: 9e5682be6a100cb3b52b74a4c56cdc2aa916c5d0782a34adc23ed3117a9efd18
+  role: ""
+image63.png:
+  sha256: 64630982d028bc05ea55245e10869c7560ab0045599fb771610d15653d053640
+  role: ""
+image64.svg:
+  sha256: b809d51e6e1ee501b32caa137184e7f0d3e3a7c5b313acd62c773678e8b67240
+  role: ""
+image65.png:
+  sha256: f2c9ecdbb770203801890b115610bd3472156798be4b10bc85ceb0522693119b
+  role: ""
+image66.svg:
+  sha256: ee029c03a978226e48408878355dee276676e59ea54463177c18120756f187b2
+  role: ""
+image67.png:
+  sha256: 3f65fa210de8bb8de8f925937656d8223fd31875e11785b404e64d91209eb36f
+  role: ""
+image68.svg:
+  sha256: 628cdd6e895464d57a97100116f564bb16297b776305dfb55fb60a15c0c64249
+  role: ""
+image69.png:
+  sha256: 262abd72bbc843de638592935858f3867087a24f0603790cd53bd407edf89e25
+  role: ""
+image7.svg:
+  sha256: 889e05f8f496ea39a14a5eef506f0fc5346bb2e94a84410cbe3ca6b4a9cb4ffa
+  role: ""
+image70.svg:
+  sha256: 72ad27cc495046250e47ea0fb2ea027b07b0ac727aeda6b4cdb1599a60aaeed1
+  role: ""
+image71.png:
+  sha256: 16ee9f614da1397b6f4bc355e0e0354388612551451cc3d767eac65f8c59254f
+  role: ""
+image72.svg:
+  sha256: 71fbd54f28fcb59f7bdab331090552795d90e7c864a67ab51ec0d9940931c458
+  role: ""
+image73.jpeg:
+  sha256: 1dc8db571ee87456ad8b2363e7e0c306308c46d2df2a41edcc4c5206b7ea0941
+  role: ""
+image74.jpeg:
+  sha256: 65964e1fb36c755da6846e5bd1cbe09eeccb8fa6bd1b9e845b4bce41404391e3
+  role: ""
+image75.jpeg:
+  sha256: ef372f10b37b648e4cdac9c85e3e0766ad5ebacd9b2860222f141a338b556bf7
+  role: ""
+image76.jpeg:
+  sha256: 6aca57e6f88bc0437e2892b6f304383ed11209272184fdee961b197f5e915212
+  role: ""
+image77.jpeg:
+  sha256: 03eefef4f3627bb70184d1471864dcce3b57257f517282f6726493559de52400
+  role: ""
+image78.jpeg:
+  sha256: f7c8ed376ef376ac9f696bec0df0ece1ccbb195bd5d4256612449d6c3b249f08
+  role: ""
+image79.jpeg:
+  sha256: c223ccc48789c86ec9fa7182965765e20059c168ff51542635a414a5636da972
+  role: ""
+image8.png:
+  sha256: 7d2286233f14fd9957a16facd6c4b2835cb3a718478026818bc758f61b8a406b
+  role: ""
+image80.jpeg:
+  sha256: 49646ca9911d31c99fa23df8a804cfb4c40230460519658f5bdee94fc9890422
+  role: ""
+image81.jpeg:
+  sha256: 389251637f85ce0b35ce3263d00162d2032ebb13e0d20d1be43e6d5158a4a0b6
+  role: ""
+image82.jpeg:
+  sha256: f38f03ebbbcfc804b640615c92744284e47c0e688e7c8941e5f7527b691f7739
+  role: ""
+image83.jpeg:
+  sha256: daca6a6d578e7ca4625628f900ade0fe476120f142d43cc1e71069395cacd3c2
+  role: ""
+image84.jpeg:
+  sha256: b0686df64830fb588d3157c6bf5568351ebda751a1b437baae32121708d19fd7
+  role: ""
+image85.png:
+  sha256: 086d7d2e6ffcba47fb087a5fac39626c20498745dfa1db118eda10fcfa97227c
+  role: ""
+image86.png:
+  sha256: 82ab996bd87e96fba6e717fab76a5631e0b14a9a29a640f5ed0a0bf4bb7f03b7
+  role: ""
+image9.svg:
+  sha256: 7e03c3282fdbdef824aa8e381d5679171a03903aec576efa62a9a7b036142830
+  role: ""

@@ -1,0 +1,57 @@
+{
+  "name": "sap-presentation-template",
+  "version": "0.1.0",
+  "brandVersion": "2024.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "theme"
+  ],
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export",
+    "extract-brand": "node scripts/extract-brand.mjs",
+    "import-pptx": "node scripts/import-pptx.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "gallery": "slidev pages/all-layouts.md --port 3031"
+  },
+  "dependencies": {
+    "@sap-theming/theming-base-content": "^11.20.0",
+    "@slidev/cli": "^0.49.0",
+    "@ui5/webcomponents": "^2.5.0",
+    "@ui5/webcomponents-fiori": "^2.5.0",
+    "qrcode": "^1.5.4",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.4",
+    "@playwright/test": "^1.48.0",
+    "@rollup/plugin-yaml": "^4.1.2",
+    "@slidev/theme-default": "^0.25.0",
+    "@types/node": "^22.0.0",
+    "@types/qrcode": "^1.5.5",
+    "@vitejs/plugin-vue": "6.0.7",
+    "@vue/test-utils": "2.4.11",
+    "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^9.30.0",
+    "fast-xml-parser": "^4.5.0",
+    "happy-dom": "20.10.2",
+    "prettier": "^3.3.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "8.61.0",
+    "unzipper": "^0.12.0",
+    "vitest": "^2.1.0"
+  },
+  "optionalDependencies": {
+    "pdf-to-img": "^4.0.0"
+  }
+}

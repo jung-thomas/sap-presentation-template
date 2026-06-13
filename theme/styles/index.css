@@ -1,0 +1,20 @@
+/*
+ * Theme entry — order matters.
+ *
+ * 1. @sap-theming/theming-base-content provides the Horizon CSS variables
+ *    (--sapButton_*, --sapList_*, etc.), the "72" web font, and SAP-icons.
+ *    NOTE: This package does not ship a separate fonts.css — all @font-face
+ *    declarations for the 72 typeface are embedded in css_variables.css.
+ * 2. Our extracted brand tokens (--sap-brand-*, --sap-font-major, …) overlay
+ *    SAP corporate identity on top of Horizon defaults.
+ * 3. horizon-mapping.css aliases UI5 Horizon variable names to our extracted
+ *    tokens, so live <ui5-*> components and our own slide components share
+ *    a single source of truth.
+ * 4. slide-styles.css contains deck-level spacing, typography, transitions.
+ */
+
+@import '@sap-theming/theming-base-content/content/Base/baseLib/sap_horizon/css_variables.css';
+
+@import './_extracted/brand-tokens.css';
+@import './horizon-mapping.css';
+@import './slide-styles.css';
