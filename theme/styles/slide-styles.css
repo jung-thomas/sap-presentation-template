@@ -4,6 +4,8 @@
  */
 
 .slidev-layout {
+  position: relative;
+  overflow: hidden;
   font-family: var(--sap-font-major);
   color: var(--sapTextColor);
   background-color: var(--sapBackgroundColor);
