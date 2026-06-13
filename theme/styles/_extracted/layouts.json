@@ -1,0 +1,1907 @@
+{
+  "extractedAt": "2026-06-13",
+  "potxHash": "e4d67e33a22b683a9702a5482be739ea4e54c72a5fcb773b625fe9ff60e7354a",
+  "layouts": [
+    {
+      "file": "slideLayout1.xml",
+      "name": "Cover A",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 4765449,
+          "cy": 997196
+        },
+        {
+          "type": "pic",
+          "idx": "15",
+          "x": 5969000,
+          "y": 0,
+          "cx": 6226175,
+          "cy": 6858000
+        }
+      ]
+    },
+    {
+      "file": "slideLayout2.xml",
+      "name": "Cover B",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 7875176,
+          "y": 0,
+          "cx": 4320000,
+          "cy": 6858000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 2206502,
+          "cx": 5465762,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout3.xml",
+      "name": "Cover C",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 11183936,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout4.xml",
+      "name": "Cover D",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 5358719,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout5.xml",
+      "name": "Cover E",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 5358719,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout6.xml",
+      "name": "Cover F",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503239,
+          "y": 2706317,
+          "cx": 5129700,
+          "cy": 997196
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 5970588,
+          "y": 1931313,
+          "cx": 5660044,
+          "cy": 2829600
+        }
+      ]
+    },
+    {
+      "file": "slideLayout7.xml",
+      "name": "Cover G",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 5100393,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout8.xml",
+      "name": "Cover H",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503239,
+          "y": 2706317,
+          "cx": 5112116,
+          "cy": 997196
+        },
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 5980250,
+          "y": 1932069,
+          "cx": 5711687,
+          "cy": 2828844
+        }
+      ]
+    },
+    {
+      "file": "slideLayout9.xml",
+      "name": "Cover I",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 4024430,
+          "cx": 11187112,
+          "cy": 997196
+        },
+        {
+          "type": "pic",
+          "idx": "16",
+          "x": 0,
+          "y": -1,
+          "cx": 12195175,
+          "cy": 3430800
+        }
+      ]
+    },
+    {
+      "file": "slideLayout10.xml",
+      "name": "Cover J",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 4024430,
+          "cx": 10683936,
+          "cy": 997196
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 0,
+          "y": -1,
+          "cx": 12195175,
+          "cy": 3429001
+        }
+      ]
+    },
+    {
+      "file": "slideLayout11.xml",
+      "name": "Cover K",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2706317,
+          "cx": 6134326,
+          "cy": 997196
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6923314,
+          "y": 0,
+          "cx": 5271861,
+          "cy": 6858000
+        }
+      ]
+    },
+    {
+      "file": "slideLayout12.xml",
+      "name": "Cover L",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 5970588,
+          "y": 0,
+          "cx": 6224588,
+          "cy": 6858000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 2706317,
+          "cx": 5230813,
+          "cy": 997196
+        }
+      ]
+    },
+    {
+      "file": "slideLayout13.xml",
+      "name": "Agenda A",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 505381,
+          "cx": 11186476,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 11186477,
+          "cy": 4804619
+        }
+      ]
+    },
+    {
+      "file": "slideLayout14.xml",
+      "name": "Agenda B",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 505381,
+          "cx": 7373174,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 504001,
+          "y": 1548000,
+          "cx": 7373174,
+          "cy": 4805175
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8128001,
+          "y": 0,
+          "cx": 4067174,
+          "cy": 6858000
+        }
+      ]
+    },
+    {
+      "file": "slideLayout15.xml",
+      "name": "Divider Page A",
+      "placeholders": [
+        {
+          "type": "ctrTitle",
+          "idx": null,
+          "x": 504000,
+          "y": 3090446,
+          "cx": 11185200,
+          "cy": 677108
+        }
+      ]
+    },
+    {
+      "file": "slideLayout16.xml",
+      "name": "Divider Page B",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 503239,
+          "y": 2305050,
+          "cx": 4745037,
+          "cy": 685800
+        },
+        {
+          "type": "ctrTitle",
+          "idx": null,
+          "x": 504000,
+          "y": 1375046,
+          "cx": 11185200,
+          "cy": 677108
+        }
+      ]
+    },
+    {
+      "file": "slideLayout17.xml",
+      "name": "Divider Page C",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "12",
+          "x": 1,
+          "y": 3427200,
+          "cx": 12195175,
+          "cy": 3430800
+        },
+        {
+          "type": "ctrTitle",
+          "idx": null,
+          "x": 504000,
+          "y": 1375046,
+          "cx": 11185200,
+          "cy": 677108
+        }
+      ]
+    },
+    {
+      "file": "slideLayout18.xml",
+      "name": "Divider Page D",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2726189,
+          "y": 1767938,
+          "cx": 6739622,
+          "cy": 3322123
+        },
+        {
+          "type": "ctrTitle",
+          "idx": null,
+          "x": 503238,
+          "y": 3090446,
+          "cx": 11187112,
+          "cy": 677108
+        }
+      ]
+    },
+    {
+      "file": "slideLayout19.xml",
+      "name": "Title Only",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": null,
+          "y": null,
+          "cx": null,
+          "cy": null
+        }
+      ]
+    },
+    {
+      "file": "slideLayout20.xml",
+      "name": "Title and Text",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 11186477,
+          "cy": 4805175
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout21.xml",
+      "name": "Title and Text: 2 Columns",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 6225477,
+          "y": 1548000,
+          "cx": 5465000,
+          "cy": 4805175
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 5465000,
+          "cy": 4805175
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout22.xml",
+      "name": "Title and Text: 3 Columns",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 8126477,
+          "y": 1548000,
+          "cx": 3564000,
+          "cy": 4806000
+        },
+        {
+          "type": "body",
+          "idx": "12",
+          "x": 4315238,
+          "y": 1548000,
+          "cx": 3564000,
+          "cy": 4806000
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 3564000,
+          "cy": 4806000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout23.xml",
+      "name": "2 Columns - Text and Images",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 6221413,
+          "y": 4770000,
+          "cx": 5469064,
+          "cy": 1583175
+        },
+        {
+          "type": "pic",
+          "idx": "14",
+          "x": 6225477,
+          "y": 1548000,
+          "cx": 5465000,
+          "cy": 2792593
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 4770000,
+          "cx": 5465000,
+          "cy": 1583175
+        },
+        {
+          "type": "pic",
+          "idx": "12",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 5465000,
+          "cy": 2792593
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout24.xml",
+      "name": "3 Columns - Text and Images",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 8128000,
+          "y": 4354921,
+          "cx": 3562477,
+          "cy": 1998253
+        },
+        {
+          "type": "pic",
+          "idx": "14",
+          "x": 8128000,
+          "y": 1548000,
+          "cx": 3562477,
+          "cy": 2294662
+        },
+        {
+          "type": "body",
+          "idx": "15",
+          "x": 4314824,
+          "y": 4354921,
+          "cx": 3560763,
+          "cy": 1998253
+        },
+        {
+          "type": "pic",
+          "idx": "16",
+          "x": 4314826,
+          "y": 1548000,
+          "cx": 3560762,
+          "cy": 2294662
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 4354921,
+          "cx": 3560000,
+          "cy": 1998253
+        },
+        {
+          "type": "pic",
+          "idx": "12",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 3560000,
+          "cy": 2294662
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout25.xml",
+      "name": "4 Columns - Text and Images",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 9099598,
+          "y": 3877200,
+          "cx": 2590879,
+          "cy": 2475975
+        },
+        {
+          "type": "pic",
+          "idx": "14",
+          "x": 9080501,
+          "y": 1548000,
+          "cx": 2609976,
+          "cy": 1871663
+        },
+        {
+          "type": "body",
+          "idx": "17",
+          "x": 6234398,
+          "y": 3877200,
+          "cx": 2590879,
+          "cy": 2475975
+        },
+        {
+          "type": "pic",
+          "idx": "18",
+          "x": 6221413,
+          "y": 1548000,
+          "cx": 2606675,
+          "cy": 1871663
+        },
+        {
+          "type": "body",
+          "idx": "15",
+          "x": 3369199,
+          "y": 3877200,
+          "cx": 2590879,
+          "cy": 2475975
+        },
+        {
+          "type": "pic",
+          "idx": "16",
+          "x": 3362325,
+          "y": 1548000,
+          "cx": 2606675,
+          "cy": 1871663
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 503999,
+          "y": 3877200,
+          "cx": 2590879,
+          "cy": 2475975
+        },
+        {
+          "type": "pic",
+          "idx": "12",
+          "x": 503999,
+          "y": 1548000,
+          "cx": 2605913,
+          "cy": 1871663
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout26.xml",
+      "name": "Title and Text with Image 1/3",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 8127175,
+          "y": 0,
+          "cx": 4068000,
+          "cy": 6858000
+        },
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 503998,
+          "y": 1548000,
+          "cx": 7371589,
+          "cy": 4805175
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 504000,
+          "cx": 7371589,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout27.xml",
+      "name": "Full Bleed Image",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 1,
+          "y": 0,
+          "cx": 12195175,
+          "cy": 6858000
+        }
+      ]
+    },
+    {
+      "file": "slideLayout28.xml",
+      "name": "Text and Screenshot",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "13",
+          "x": 6221413,
+          "y": 1557338,
+          "cx": 5469064,
+          "cy": 4795837
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 5465000,
+          "cy": 4806000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        }
+      ]
+    },
+    {
+      "file": "slideLayout29.xml",
+      "name": "Title and Content",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": "1",
+          "x": 504000,
+          "y": 1548000,
+          "cx": 11185200,
+          "cy": 4805175
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": null,
+          "y": null,
+          "cx": null,
+          "cy": null
+        }
+      ]
+    },
+    {
+      "file": "slideLayout30.xml",
+      "name": "Quote",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2409825,
+          "y": 1543050,
+          "cx": 8061100,
+          "cy": 3973513
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 1455738,
+          "y": 3256398,
+          "cx": 9282112,
+          "cy": 646112
+        },
+        {
+          "type": "body",
+          "idx": "12",
+          "x": 2409825,
+          "y": 5832475,
+          "cx": 8328025,
+          "cy": 520700
+        },
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 503238,
+          "y": 503238,
+          "cx": 11183937,
+          "cy": 370800
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 11546207,
+          "y": 6536751,
+          "cx": 144270,
+          "cy": 138499
+        }
+      ]
+    },
+    {
+      "file": "slideLayout31.xml",
+      "name": "Q & A",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 2781300,
+          "cx": 4765675,
+          "cy": 646112
+        },
+        {
+          "type": "body",
+          "idx": "13",
+          "x": 503238,
+          "y": 503238,
+          "cx": 11183937,
+          "cy": 370800
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 11546207,
+          "y": 6536751,
+          "cx": 144270,
+          "cy": 138499
+        },
+        {
+          "type": "body",
+          "idx": "14",
+          "x": 503238,
+          "y": 3725638,
+          "cx": 4765675,
+          "cy": 393925
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 5970588,
+          "y": 1931313,
+          "cx": 5660044,
+          "cy": 2829600
+        }
+      ]
+    },
+    {
+      "file": "slideLayout32.xml",
+      "name": "Thank You A",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 503238,
+          "y": 2905125,
+          "cx": 1837041,
+          "cy": 246221
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 503238,
+          "y": 1543050,
+          "cx": 5465762,
+          "cy": 846386
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504000,
+          "y": 6145872,
+          "cx": 6704011,
+          "cy": 208122
+        }
+      ]
+    },
+    {
+      "file": "slideLayout33.xml",
+      "name": "Thank you B",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 4024430,
+          "cx": 5466588,
+          "cy": 998420
+        },
+        {
+          "type": "pic",
+          "idx": "16",
+          "x": 0,
+          "y": -1,
+          "cx": 12195175,
+          "cy": 3430800
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504000,
+          "y": 6145872,
+          "cx": 6704011,
+          "cy": 208122
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 11296650,
+          "y": 6494825,
+          "cx": 898525,
+          "cy": 360000
+        }
+      ]
+    },
+    {
+      "file": "slideLayout34.xml",
+      "name": "Blank",
+      "placeholders": []
+    },
+    {
+      "file": "slideLayout35.xml",
+      "name": "User guide TIPS & TRICKS",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 3105509,
+          "y": 1142617,
+          "cx": 2177030,
+          "cy": 4924425
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 503238,
+          "y": 1142617,
+          "cx": 1741943,
+          "cy": 4795641
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6238181,
+          "y": 1142617,
+          "cx": 2176236,
+          "cy": 2769989
+        },
+        {
+          "type": "dt",
+          "idx": "15",
+          "x": 540000,
+          "y": 6433200,
+          "cx": 2743200,
+          "cy": 180000
+        },
+        {
+          "type": "ftr",
+          "idx": "16",
+          "x": 4038600,
+          "y": 6433200,
+          "cx": 4114800,
+          "cy": 180000
+        },
+        {
+          "type": "sldNum",
+          "idx": "17",
+          "x": 11313553,
+          "y": 6433200,
+          "cx": 335521,
+          "cy": 180000
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 9082088,
+          "y": 1142616,
+          "cx": 2239735,
+          "cy": 2431435
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 309985,
+          "cx": 5560809,
+          "cy": 193899
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 505575,
+          "y": 537299,
+          "cx": 10728000,
+          "cy": 332399
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 11546207,
+          "y": 6536751,
+          "cx": 144270,
+          "cy": 138499
+        }
+      ]
+    },
+    {
+      "file": "slideLayout36.xml",
+      "name": "User guide SAP BRAND SITE",
+      "placeholders": [
+        {
+          "type": "dt",
+          "idx": "15",
+          "x": 540000,
+          "y": 6433200,
+          "cx": 2743200,
+          "cy": 180000
+        },
+        {
+          "type": "ftr",
+          "idx": "16",
+          "x": 4038600,
+          "y": 6433200,
+          "cx": 4114800,
+          "cy": 180000
+        },
+        {
+          "type": "sldNum",
+          "idx": "17",
+          "x": 11313553,
+          "y": 6433200,
+          "cx": 335521,
+          "cy": 180000
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 309985,
+          "cx": 5560809,
+          "cy": 193899
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 505575,
+          "y": 537299,
+          "cx": 10728000,
+          "cy": 332399
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 11546207,
+          "y": 6536751,
+          "cx": 144270,
+          "cy": 138499
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 3375642,
+          "y": 2402037,
+          "cx": 2607498,
+          "cy": 1477328
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4066177,
+          "y": 1881656,
+          "cx": 1296830,
+          "cy": 246221
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 1198576,
+          "y": 1881656,
+          "cx": 570669,
+          "cy": 246221
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 2402037,
+          "cx": 2607498,
+          "cy": 1231106
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6245122,
+          "y": 2380971,
+          "cx": 2607498,
+          "cy": 1969770
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6914073,
+          "y": 1881656,
+          "cx": 1407437,
+          "cy": 246221
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 9770347,
+          "y": 1881656,
+          "cx": 1572546,
+          "cy": 246221
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 9082852,
+          "y": 2402037,
+          "cx": 2607498,
+          "cy": 1231106
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 5422515,
+          "cx": 11202163,
+          "cy": 338554
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 3362325,
+          "y": 4611087,
+          "cx": 2607498,
+          "cy": 594886
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 503238,
+          "y": 4600214,
+          "cx": 2607498,
+          "cy": 594886
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6223765,
+          "y": 4591589,
+          "cx": 2607498,
+          "cy": 594886
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 9079677,
+          "y": 4586781,
+          "cx": 2607498,
+          "cy": 594886
+        }
+      ]
+    },
+    {
+      "file": "slideLayout37.xml",
+      "name": "User guide COLOR PALETTE",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 1141007,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 1141007,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 1141007,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 1141007,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 1140182,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 1140182,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 1735645,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 1735645,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 1735645,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 1735645,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 1734820,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 1734820,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 2330283,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 2330283,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 2330283,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 2330283,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 2329458,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 2329458,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 2924921,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 2924921,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 2924921,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 2924921,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 2924096,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 2924096,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 3519559,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 3519559,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 3519559,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 3519559,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 3518734,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 3518734,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 4114197,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 4114197,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 4114197,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 4114197,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 4113372,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 4113372,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 4708836,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 4708836,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 4708836,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 4708836,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 4708011,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 4708011,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 5303474,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 5303474,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 5303474,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 5303474,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 5302649,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 5302649,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 5898112,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 2405161,
+          "y": 5898112,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 4306321,
+          "y": 5898112,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6227422,
+          "y": 5898112,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 8129588,
+          "y": 5897287,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 10050689,
+          "y": 5897287,
+          "cx": 1656000,
+          "cy": 455888
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 504001,
+          "y": 309985,
+          "cx": 5560809,
+          "cy": 193899
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 505575,
+          "y": 537299,
+          "cx": 10728000,
+          "cy": 332399
+        }
+      ]
+    },
+    {
+      "file": "slideLayout38.xml",
+      "name": ">Copilot layouts >",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 0,
+          "y": 0,
+          "cx": 12195175,
+          "cy": 6858000
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 430325,
+          "y": 656823,
+          "cx": 11359935,
+          "cy": 2893100
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 430325,
+          "y": 3029169,
+          "cx": 10154990,
+          "cy": 1569660
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 430326,
+          "y": 5186455,
+          "cx": 11359932,
+          "cy": 923330
+        },
+        {
+          "type": "dt",
+          "idx": "15",
+          "x": 590249,
+          "y": 6537073,
+          "cx": 985275,
+          "cy": 141861
+        },
+        {
+          "type": "ftr",
+          "idx": "16",
+          "x": 1584685,
+          "y": 6537073,
+          "cx": 2948351,
+          "cy": 141861
+        },
+        {
+          "type": "sldNum",
+          "idx": "17",
+          "x": 320341,
+          "y": 6537073,
+          "cx": 265838,
+          "cy": 141861
+        }
+      ]
+    },
+    {
+      "file": "slideLayout39.xml",
+      "name": "Title Photo",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 7875176,
+          "y": 0,
+          "cx": 4320000,
+          "cy": 6858000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 2206502,
+          "cx": 5465762,
+          "cy": 997196
+        },
+        {
+          "type": "subTitle",
+          "idx": "1",
+          "x": 504000,
+          "y": 4267200,
+          "cx": 5471873,
+          "cy": 493713
+        }
+      ]
+    },
+    {
+      "file": "slideLayout40.xml",
+      "name": "Title",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 6923314,
+          "y": 0,
+          "cx": 5271861,
+          "cy": 6858000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 2706317,
+          "cx": 6418067,
+          "cy": 997196
+        },
+        {
+          "type": "subTitle",
+          "idx": "1",
+          "x": 504000,
+          "y": 4267200,
+          "cx": 5503449,
+          "cy": 493713
+        }
+      ]
+    },
+    {
+      "file": "slideLayout41.xml",
+      "name": "Content 1",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 503238,
+          "y": 1543050,
+          "cx": 11187112,
+          "cy": 4811713
+        }
+      ]
+    },
+    {
+      "file": "slideLayout42.xml",
+      "name": "Two Content",
+      "placeholders": [
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "10",
+          "x": 503239,
+          "y": 1543050,
+          "cx": 5467350,
+          "cy": 4811713
+        },
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 6223000,
+          "y": 1543050,
+          "cx": 5467350,
+          "cy": 4811713
+        }
+      ]
+    },
+    {
+      "file": "slideLayout43.xml",
+      "name": "Content Photo 1",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "10",
+          "x": 8127175,
+          "y": 0,
+          "cx": 4068000,
+          "cy": 6858000
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504000,
+          "y": 504000,
+          "cx": 7371589,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "11",
+          "x": 503238,
+          "y": 1543050,
+          "cx": 7372350,
+          "cy": 4811713
+        }
+      ]
+    },
+    {
+      "file": "slideLayout44.xml",
+      "name": "Content Photo 2",
+      "placeholders": [
+        {
+          "type": "pic",
+          "idx": "13",
+          "x": 6221413,
+          "y": 1557338,
+          "cx": 5469064,
+          "cy": 4795837
+        },
+        {
+          "type": "title",
+          "idx": null,
+          "x": 504001,
+          "y": 504000,
+          "cx": 11186476,
+          "cy": 369332
+        },
+        {
+          "type": "body",
+          "idx": "14",
+          "x": 503237,
+          "y": 1543050,
+          "cx": 5464175,
+          "cy": 4810125
+        }
+      ]
+    },
+    {
+      "file": "slideLayout45.xml",
+      "name": ">DO NOT USE>",
+      "placeholders": [
+        {
+          "type": "body",
+          "idx": null,
+          "x": 0,
+          "y": 0,
+          "cx": 12195175,
+          "cy": 6858000
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 430325,
+          "y": 656823,
+          "cx": 11359935,
+          "cy": 2785378
+        },
+        {
+          "type": "body",
+          "idx": null,
+          "x": 430324,
+          "y": 4365269,
+          "cx": 10154990,
+          "cy": 1569660
+        },
+        {
+          "type": "dt",
+          "idx": "15",
+          "x": 590249,
+          "y": 6537073,
+          "cx": 985275,
+          "cy": 141861
+        },
+        {
+          "type": "ftr",
+          "idx": "16",
+          "x": 1584685,
+          "y": 6537073,
+          "cx": 2948351,
+          "cy": 141861
+        },
+        {
+          "type": "sldNum",
+          "idx": "17",
+          "x": 320341,
+          "y": 6537073,
+          "cx": 265838,
+          "cy": 141861
+        }
+      ]
+    }
+  ]
+}
