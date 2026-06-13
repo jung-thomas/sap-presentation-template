@@ -1,0 +1,33 @@
+<script setup lang="ts">
+  import { resolveTeam } from '../setup/data'
+  import Bio from './Bio.vue'
+
+  const props = defineProps<{ team: string; columns?: number }>()
+  const t = resolveTeam(props.team)
+  const cols = props.columns ?? Math.min(3, t.presenters.length)
+</script>
+
+<template>
+  <div class="team">
+    <header v-if="t.tagline" class="team-tagline">{{ t.tagline }}</header>
+    <div class="team-grid" :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }">
+      <Bio v-for="p in t.presenters" :key="p.slug" :presenter="p.slug" compact />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+  .team {
+    width: 100%;
+  }
+  .team-tagline {
+    font-size: 1.25rem;
+    color: var(--sap-brand-blue-dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .team-grid {
+    display: grid;
+    gap: 1rem;
+  }
+</style>
