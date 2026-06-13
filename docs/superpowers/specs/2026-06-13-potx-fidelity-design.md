@@ -201,6 +201,7 @@ Every decoration component:
   - `a`: solid brand-blue-darker, large "Thank you" centered
   - `b`: diagonal split treatment
 - **Refines based on POTX inspection during implementation.**
+- **Pre-implementation step (Stage B):** before writing the component, inspect `slideLayout32.xml` (Thank You A) and `slideLayout33.xml` (Thank You B) to confirm geometry, color treatment, and any decorative elements. Add concrete geometry to this section before coding.
 
 ### 5.3 cover.vue contract
 
@@ -323,6 +324,8 @@ Emitted by `scripts/lib/emit-cover-tokens.mjs`. Reads layouts.json (specifically
 
 Slide dimensions baked in: 12,192,000 × 6,858,000 EMU (16:9 at 13.333" × 7.5").
 
+**Logo position sweep:** Cover A's logo position is the canonical default. During the `parse-layouts.mjs` extension (step 1 of Stage A), the implementer must verify that **all 12 cover layouts use the same logo position** by reading each layout's `<p:pic>` geometry. If any layout uses a different logo position, the emitter widens to emit per-variant logo tokens (e.g., `--cover-b-logo-top`) consumed by variant-specific CSS overrides. If all match (most likely case), keep the single set of tokens.
+
 ### 5.6 typography-tokens.css generation
 
 Emitted by `scripts/lib/emit-typography-tokens.mjs`. Reads placeholder text styles from layouts.json (`<a:lstStyle>` per placeholder), derives:
@@ -388,6 +391,9 @@ Cover A is light-background (white) when an image is supplied — primary logo. 
 17. Add `public/covers/cover-default.jpg` (Unsplash demo image)
 18. Update `slides.md` so cover slide uses this image
 19. Update Playwright baselines for all changed layouts (~25 baselines)
+    - Run `npm run test:visual:update` once Stage A and Stage B are complete and visually validated locally.
+    - The baseline diff IS the reviewable artifact for visual fidelity. The PR description should call out the intentional baseline replacement and link to before/after screenshot pairs for spot-checking.
+    - If a reviewer disputes a specific layout's new look, narrow the baseline update to just that file and iterate.
 20. Update CONTENT-GUIDE: variant alias table, photo override pattern, SAP press-kit upgrade path, typography token reference, Unsplash attribution
 
 ## 8. Testing
