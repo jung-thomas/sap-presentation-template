@@ -16,8 +16,8 @@ describe('socialUrl', () => {
     expect(socialUrl({ platform: 'x', handle: 'sapdevs' })).toBe('https://x.com/sapdevs')
   })
   it('respects explicit url override', () => {
-    expect(
-      socialUrl({ platform: 'mastodon', handle: 'me', url: 'https://hachyderm.io/@me' })
-    ).toBe('https://hachyderm.io/@me')
+    expect(socialUrl({ platform: 'mastodon', handle: 'me', url: 'https://hachyderm.io/@me' })).toBe(
+      'https://hachyderm.io/@me'
+    )
   })
 })
