@@ -32,7 +32,3 @@
     background: var(--sap-brand-blue-darker);
   }
 </style>
-
-<script lang="ts">
-  export const logoTreatment = 'white' as const
-</script>

@@ -26,8 +26,3 @@
     background: var(--sap-brand-blue-darker);
   }
 </style>
-
-<script lang="ts">
-  // Logo treatment hint consumed by setup/cover-variants.ts useDarkLogo()
-  export const logoTreatment = 'white' as const
-</script>

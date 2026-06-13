@@ -15,7 +15,3 @@
     );
   }
 </style>
-
-<script lang="ts">
-  export const logoTreatment = 'white' as const
-</script>

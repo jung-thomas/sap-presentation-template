@@ -43,7 +43,3 @@
     --decoration-multi-accent: var(--sap-brand-pink);
   }
 </style>
-
-<script lang="ts">
-  export const logoTreatment = 'white' as const
-</script>

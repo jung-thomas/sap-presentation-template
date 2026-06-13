@@ -2,10 +2,9 @@ import DecorationPhoto from '../components/decorations/DecorationPhoto.vue'
 import DecorationDiagonal from '../components/decorations/DecorationDiagonal.vue'
 import DecorationWedges from '../components/decorations/DecorationWedges.vue'
 import DecorationSolid from '../components/decorations/DecorationSolid.vue'
-import DecorationMultiShape, {
-  logoTreatment as multiLogoTreatment
-} from '../components/decorations/DecorationMultiShape.vue'
+import DecorationMultiShape from '../components/decorations/DecorationMultiShape.vue'
 import DecorationGradient from '../components/decorations/DecorationGradient.vue'
+import { multiShapeLogoTreatment as multiLogoTreatment } from '../components/decorations/decoration-logo-treatments'
 
 const DECORATION_BY_LETTER = {
   a: DecorationPhoto,
