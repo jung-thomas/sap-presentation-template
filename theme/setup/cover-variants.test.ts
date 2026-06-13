@@ -90,9 +90,15 @@ describe('useDarkLogo', () => {
     expect(useDarkLogo('a', '')).toBe(true)
   })
 
-  it('honors per-decoration logoTreatment for multi-shape variants c/d/e', () => {
+  it('honors per-decoration logoTreatment for multi-shape variants c and e', () => {
     expect(useDarkLogo('c')).toBe(true)
-    expect(useDarkLogo('d')).toBe(true)
     expect(useDarkLogo('e')).toBe(true)
+  })
+
+  it('overrides multi-shape default for Cover D (POTX has LogoBlack — light bg)', () => {
+    // POTX layouts.json shows LogoBlack-Dynamic referenced from slideLayout4 (Cover D),
+    // indicating that variant uses the primary/color logo (light background) despite
+    // sharing DecorationMultiShape with c/e. The cover-variants override map handles this.
+    expect(useDarkLogo('d')).toBe(false)
   })
 })

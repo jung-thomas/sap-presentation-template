@@ -22,9 +22,14 @@ const DECORATION_BY_LETTER = {
   l: DecorationGradient
 } as const
 
+// Per-variant overrides take precedence over the decoration component's
+// default. Use this when POTX inspection reveals a variant has a different
+// background contrast than the component's family default. Cover D's POTX
+// XML references LogoBlack-Dynamic (the primary/color logo), indicating
+// it has a light background despite using the multi-shape decoration.
 const DECORATION_LOGO_TREATMENTS: Record<string, 'primary' | 'white' | undefined> = {
   c: multiLogoTreatment,
-  d: multiLogoTreatment,
+  d: 'primary',
   e: multiLogoTreatment
 }
 
