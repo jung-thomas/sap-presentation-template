@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="SAP">
+  <!--
+    PLACEHOLDER — replace with the official SAP logo from https://www.sap.com/about/company/brand.html
+    This file must exist for the <Logo> component default (variant="logo-sap-primary") to resolve.
+    The official SAP logo is not redistributable without SAP brand licensing.
+  -->
+  <rect width="120" height="40" rx="3" fill="#0070F2"/>
+  <text
+    x="60" y="28"
+    font-family="'72', 'SAP 72', Arial, sans-serif"
+    font-size="22"
+    font-weight="700"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="2"
+  >SAP</text>
+</svg>

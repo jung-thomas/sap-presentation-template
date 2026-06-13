@@ -5,6 +5,11 @@
 #   logo-sap-primary, logo-sap-monochrome, logo-sap-white
 #   icon-<name>, illustration-<name>
 
+logo-sap-primary.svg:
+  sha256: ""
+  role: "logo-sap-primary"
+  note: "Placeholder — replace with official SAP logo from https://www.sap.com/about/company/brand.html"
+
 image1.png:
   sha256: c11519d92480aaf1d7ab46428a71aee5100d4c8bd2a27f191627f2469079f31f
   role: ""
