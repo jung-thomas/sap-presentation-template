@@ -1,2 +1,2 @@
-// Placeholder — filled in during Phase 3 (theme foundation).
+// Slidev theme entry. Slidev auto-imports setup/main.ts when it's at this path.
 export {}
