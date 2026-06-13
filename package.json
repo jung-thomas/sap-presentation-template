@@ -4,8 +4,12 @@
   "brandVersion": "2024.1",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
-  "workspaces": ["theme"],
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "theme"
+  ],
   "scripts": {
     "dev": "slidev",
     "build": "slidev build",

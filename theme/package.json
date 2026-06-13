@@ -10,7 +10,14 @@
     "./layouts/*": "./layouts/*",
     "./components/*": "./components/*"
   },
-  "files": ["index.ts", "layouts", "components", "styles", "setup", "public"],
+  "files": [
+    "index.ts",
+    "layouts",
+    "components",
+    "styles",
+    "setup",
+    "public"
+  ],
   "slidev": {
     "colorSchema": "light",
     "highlighter": "shiki"

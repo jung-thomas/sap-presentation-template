@@ -21,7 +21,7 @@
 - The plan applies **TDD** wherever logic is testable (extraction script, data resolvers, components with logic). Pure-display Vue files don't need unit tests; they're covered by Playwright visual regression at the end.
 - File paths are exact and absolute-from-repo-root (e.g., `theme/components/Bio.vue`).
 - When a step says "Run X / Expected Y," pause if Y doesn't appear and investigate.
-- Reference the spec for *why* — this document is the *what* and *how*.
+- Reference the spec for _why_ — this document is the _what_ and _how_.
 
 > **⚠️ File ordering note for human readers:** Phases 1–5 appear in **reverse order** in this file (Phase 6 → Phase 5 → ... → Phase 1), then Phases 7–18 follow normally. Always navigate by **phase number**, not file position. The "Phase index" below jumps to the right place. Tool-driven execution (e.g., subagent-driven-development) follows the numbered phases, so this doesn't affect automated runs — only humans reading top-to-bottom.
 
@@ -68,12 +68,12 @@ For each component, after writing it: add a one-slide demo in `slides.md` (repla
 
 ```vue
 <script setup lang="ts">
-import type { SocialLink } from '../types'
-import { socialUrl } from '../setup/social'
+  import type { SocialLink } from '../types'
+  import { socialUrl } from '../setup/social'
 
-const props = defineProps<{ platform: SocialLink['platform']; handle: string; url?: string }>()
-const href = socialUrl({ platform: props.platform, handle: props.handle, url: props.url })
-const label = `${props.platform}: ${props.handle}`
+  const props = defineProps<{ platform: SocialLink['platform']; handle: string; url?: string }>()
+  const href = socialUrl({ platform: props.platform, handle: props.handle, url: props.url })
+  const label = `${props.platform}: ${props.handle}`
 </script>
 
 <template>
@@ -84,21 +84,29 @@ const label = `${props.platform}: ${props.handle}`
 </template>
 
 <style scoped>
-.social-icon {
-  display: inline-flex;
-  gap: 0.4rem;
-  align-items: baseline;
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--sap-radius-button);
-  background: var(--sap-brand-blue-pale);
-  color: var(--sap-brand-blue-dark);
-  text-decoration: none;
-  font-size: 0.95rem;
-  margin-right: 0.4rem;
-}
-.social-icon:hover { background: var(--sap-brand-blue); color: #fff; }
-.platform { text-transform: capitalize; font-weight: 600; }
-.handle { opacity: 0.85; }
+  .social-icon {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: baseline;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--sap-radius-button);
+    background: var(--sap-brand-blue-pale);
+    color: var(--sap-brand-blue-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-right: 0.4rem;
+  }
+  .social-icon:hover {
+    background: var(--sap-brand-blue);
+    color: #fff;
+  }
+  .platform {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+  .handle {
+    opacity: 0.85;
+  }
 </style>
 ```
 
@@ -123,50 +131,44 @@ git commit -m "feat(component): SocialIcon"
 
 ```vue
 <script setup lang="ts">
-import { resolvePresenter } from '../setup/data'
-import SocialIcon from './SocialIcon.vue'
+  import { resolvePresenter } from '../setup/data'
+  import SocialIcon from './SocialIcon.vue'
 
-const props = defineProps<{ presenter?: string; compact?: boolean }>()
-const p = resolvePresenter(props.presenter)
+  const props = defineProps<{ presenter?: string; compact?: boolean }>()
+  const p = resolvePresenter(props.presenter)
 </script>
 
 <template>
   <ui5-card :class="['bio', { compact }]">
-    <ui5-card-header
-      slot=""
-      :title-text="p.name"
-      :subtitle-text="p.title"
-    >
-      <ui5-avatar
-        slot="avatar"
-        :initials="p.initials"
-        size="L"
-        shape="Circle"
-      >
+    <ui5-card-header slot="" :title-text="p.name" :subtitle-text="p.title">
+      <ui5-avatar slot="avatar" :initials="p.initials" size="L" shape="Circle">
         <img v-if="p.photo" :src="p.photo" :alt="p.name" />
       </ui5-avatar>
     </ui5-card-header>
     <div v-if="!compact && p.bio" class="bio-body">{{ p.bio }}</div>
     <div class="bio-socials">
-      <SocialIcon
-        v-for="s in p.socials"
-        :key="`${s.platform}-${s.handle}`"
-        v-bind="s"
-      />
+      <SocialIcon v-for="s in p.socials" :key="`${s.platform}-${s.handle}`" v-bind="s" />
     </div>
   </ui5-card>
 </template>
 
 <style scoped>
-.bio { width: 100%; max-width: 28rem; }
-.bio-body {
-  padding: 0.75rem 1rem 0.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--sapTextColor);
-}
-.bio-socials { padding: 0 1rem 1rem; }
-.bio.compact .bio-body { display: none; }
+  .bio {
+    width: 100%;
+    max-width: 28rem;
+  }
+  .bio-body {
+    padding: 0.75rem 1rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--sapTextColor);
+  }
+  .bio-socials {
+    padding: 0 1rem 1rem;
+  }
+  .bio.compact .bio-body {
+    display: none;
+  }
 </style>
 ```
 
@@ -191,12 +193,12 @@ git commit -m "feat(component): Bio"
 
 ```vue
 <script setup lang="ts">
-import { resolvePresenter, resolvePresenters } from '../setup/data'
+  import { resolvePresenter, resolvePresenters } from '../setup/data'
 
-const props = defineProps<{ presenter?: string; presenters?: string[] }>()
-const list = props.presenters
-  ? resolvePresenters(props.presenters)
-  : [resolvePresenter(props.presenter)]
+  const props = defineProps<{ presenter?: string; presenters?: string[] }>()
+  const list = props.presenters
+    ? resolvePresenters(props.presenters)
+    : [resolvePresenter(props.presenter)]
 </script>
 
 <template>
@@ -210,8 +212,13 @@ const list = props.presenters
 </template>
 
 <style scoped>
-.speaker { font-size: 1rem; color: var(--sapContent_LabelColor); }
-.speaker-title { opacity: 0.85; }
+  .speaker {
+    font-size: 1rem;
+    color: var(--sapContent_LabelColor);
+  }
+  .speaker-title {
+    opacity: 0.85;
+  }
 </style>
 ```
 
@@ -234,40 +241,37 @@ git commit -m "feat(component): Speaker"
 
 ```vue
 <script setup lang="ts">
-import { resolveTeam } from '../setup/data'
-import Bio from './Bio.vue'
+  import { resolveTeam } from '../setup/data'
+  import Bio from './Bio.vue'
 
-const props = defineProps<{ team: string; columns?: number }>()
-const t = resolveTeam(props.team)
-const cols = props.columns ?? Math.min(3, t.presenters.length)
+  const props = defineProps<{ team: string; columns?: number }>()
+  const t = resolveTeam(props.team)
+  const cols = props.columns ?? Math.min(3, t.presenters.length)
 </script>
 
 <template>
   <div class="team">
     <header v-if="t.tagline" class="team-tagline">{{ t.tagline }}</header>
     <div class="team-grid" :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }">
-      <Bio
-        v-for="p in t.presenters"
-        :key="p.slug"
-        :presenter="p.slug"
-        compact
-      />
+      <Bio v-for="p in t.presenters" :key="p.slug" :presenter="p.slug" compact />
     </div>
   </div>
 </template>
 
 <style scoped>
-.team { width: 100%; }
-.team-tagline {
-  font-size: 1.25rem;
-  color: var(--sap-brand-blue-dark);
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-.team-grid {
-  display: grid;
-  gap: 1rem;
-}
+  .team {
+    width: 100%;
+  }
+  .team-tagline {
+    font-size: 1.25rem;
+    color: var(--sap-brand-blue-dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .team-grid {
+    display: grid;
+    gap: 1rem;
+  }
 </style>
 ```
 
@@ -290,10 +294,10 @@ git commit -m "feat(component): Team"
 
 ```vue
 <script setup lang="ts">
-import { resolveProgram } from '../setup/data'
-import Team from './Team.vue'
+  import { resolveProgram } from '../setup/data'
+  import Team from './Team.vue'
 
-const program = resolveProgram('developer-advocates')
+  const program = resolveProgram('developer-advocates')
 </script>
 
 <template>
@@ -313,45 +317,49 @@ const program = resolveProgram('developer-advocates')
         target="_blank"
         rel="noopener"
         class="engage-link"
-      >{{ link.label }}</a>
+        >{{ link.label }}</a
+      >
     </div>
   </div>
 </template>
 
 <style scoped>
-.dev-advocates h2 {
-  color: var(--sap-brand-blue-darker);
-  margin-bottom: 0.5rem;
-}
-.dev-advocates-tagline {
-  font-size: 1.5rem;
-  color: var(--sap-brand-blue);
-  margin-bottom: 1rem;
-}
-.dev-advocates-desc {
-  font-size: 1.05rem;
-  margin-bottom: 1.5rem;
-  max-width: 60rem;
-}
-.dev-advocates-engage {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 0.75rem;
-  align-items: baseline;
-  flex-wrap: wrap;
-}
-.dev-advocates-engage .label {
-  font-weight: 600;
-  color: var(--sapContent_LabelColor);
-}
-.engage-link {
-  color: var(--sap-brand-blue);
-  text-decoration: none;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid var(--sap-brand-blue);
-  border-radius: var(--sap-radius-button);
-}
-.engage-link:hover { background: var(--sap-brand-blue); color: #fff; }
+  .dev-advocates h2 {
+    color: var(--sap-brand-blue-darker);
+    margin-bottom: 0.5rem;
+  }
+  .dev-advocates-tagline {
+    font-size: 1.5rem;
+    color: var(--sap-brand-blue);
+    margin-bottom: 1rem;
+  }
+  .dev-advocates-desc {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    max-width: 60rem;
+  }
+  .dev-advocates-engage {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .dev-advocates-engage .label {
+    font-weight: 600;
+    color: var(--sapContent_LabelColor);
+  }
+  .engage-link {
+    color: var(--sap-brand-blue);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--sap-brand-blue);
+    border-radius: var(--sap-radius-button);
+  }
+  .engage-link:hover {
+    background: var(--sap-brand-blue);
+    color: #fff;
+  }
 </style>
 ```
 
@@ -374,8 +382,8 @@ git commit -m "feat(component): DeveloperAdvocates"
 
 ```vue
 <script setup lang="ts">
-import { getEvent } from '../setup/data'
-const event = getEvent()
+  import { getEvent } from '../setup/data'
+  const event = getEvent()
 </script>
 
 <template>
@@ -387,18 +395,23 @@ const event = getEvent()
 </template>
 
 <style scoped>
-.event-badge {
-  display: inline-flex;
-  gap: 0.4rem;
-  align-items: baseline;
-  padding: 0.25rem 0.75rem;
-  background: var(--sap-brand-blue-pale);
-  color: var(--sap-brand-blue-dark);
-  border-radius: var(--sap-radius-button);
-  font-size: 0.9rem;
-}
-.event-name { font-weight: 600; }
-.event-date, .event-hashtag { opacity: 0.8; }
+  .event-badge {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: baseline;
+    padding: 0.25rem 0.75rem;
+    background: var(--sap-brand-blue-pale);
+    color: var(--sap-brand-blue-dark);
+    border-radius: var(--sap-radius-button);
+    font-size: 0.9rem;
+  }
+  .event-name {
+    font-weight: 600;
+  }
+  .event-date,
+  .event-hashtag {
+    opacity: 0.8;
+  }
 </style>
 ```
 
@@ -421,13 +434,16 @@ git commit -m "feat(component): EventBadge"
 
 ```vue
 <script setup lang="ts">
-import { resolveDisclaimers } from '../setup/data'
-import type { Disclaimers } from '../types'
+  import { resolveDisclaimers } from '../setup/data'
+  import type { Disclaimers } from '../types'
 
-const props = defineProps<{ kind: keyof Disclaimers }>()
-const all = resolveDisclaimers()
-const text = all[props.kind]
-if (!text) throw new Error(`disclaimer kind "${String(props.kind)}" not found in programs/disclaimers.yaml`)
+  const props = defineProps<{ kind: keyof Disclaimers }>()
+  const all = resolveDisclaimers()
+  const text = all[props.kind]
+  if (!text)
+    throw new Error(
+      `disclaimer kind "${String(props.kind)}" not found in programs/disclaimers.yaml`
+    )
 </script>
 
 <template>
@@ -437,16 +453,16 @@ if (!text) throw new Error(`disclaimer kind "${String(props.kind)}" not found in
 </template>
 
 <style scoped>
-.disclaimer {
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--sapContent_LabelColor);
-  background: var(--sapList_SelectionBackgroundColor, #f0f5ff);
-  border-left: 3px solid var(--sap-brand-blue);
-  padding: 0.75rem 1rem;
-  max-width: 60rem;
-  white-space: pre-wrap;
-}
+  .disclaimer {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--sapContent_LabelColor);
+    background: var(--sapList_SelectionBackgroundColor, #f0f5ff);
+    border-left: 3px solid var(--sap-brand-blue);
+    padding: 0.75rem 1rem;
+    max-width: 60rem;
+    white-space: pre-wrap;
+  }
 </style>
 ```
 
@@ -471,11 +487,11 @@ git commit -m "feat(component): Disclaimer"
 
 ```vue
 <script setup lang="ts">
-const props = defineProps<{
-  items?: string[]
-  current?: number // 1-based index of "you are here"
-}>()
-const list = props.items ?? []
+  const props = defineProps<{
+    items?: string[]
+    current?: number // 1-based index of "you are here"
+  }>()
+  const list = props.items ?? []
 </script>
 
 <template>
@@ -492,33 +508,40 @@ const list = props.items ?? []
 </template>
 
 <style scoped>
-.agenda {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.5rem;
-}
-.agenda li {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e5e9ed;
-  color: var(--sapTextColor);
-  opacity: 0.6;
-}
-.agenda li.active { opacity: 1; color: var(--sap-brand-blue); font-weight: 600; }
-.agenda li.done { opacity: 0.35; text-decoration: line-through; }
-.num {
-  font-family: var(--sap-font-major);
-  font-weight: 700;
-  color: var(--sap-brand-blue);
-  min-width: 2.5rem;
-}
+  .agenda {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .agenda li {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e9ed;
+    color: var(--sapTextColor);
+    opacity: 0.6;
+  }
+  .agenda li.active {
+    opacity: 1;
+    color: var(--sap-brand-blue);
+    font-weight: 600;
+  }
+  .agenda li.done {
+    opacity: 0.35;
+    text-decoration: line-through;
+  }
+  .num {
+    font-family: var(--sap-font-major);
+    font-weight: 700;
+    color: var(--sap-brand-blue);
+    min-width: 2.5rem;
+  }
 </style>
 ```
 
-> **Why no auto-from-front-matter for v1:** Slidev's per-slide front-matter API is straightforward (`$slidev.nav.currentSlideMeta`), but accessing *deck-level* keys like `agenda:` requires importing `useSlidevContext` and is version-sensitive. Passing an explicit `items` prop in the slide is unambiguous and works on every Slidev version. We can add deck-level integration later as a v1.x improvement.
+> **Why no auto-from-front-matter for v1:** Slidev's per-slide front-matter API is straightforward (`$slidev.nav.currentSlideMeta`), but accessing _deck-level_ keys like `agenda:` requires importing `useSlidevContext` and is version-sensitive. Passing an explicit `items` prop in the slide is unambiguous and works on every Slidev version. We can add deck-level integration later as a v1.x improvement.
 
 - [ ] **Step 2: Commit**
 
@@ -569,13 +592,11 @@ git commit -m "chore: smoke-test core components in slides.md"
 
 ---
 
-
-
 ## Phase 5: Data files (presenters, teams, programs, event, snippets)
 
 Author the YAML and Markdown files that components will resolve. These are template-shipped defaults; fork-authors edit them.
 
-### Task 5.1: presenters/_example.yaml (the contributor template)
+### Task 5.1: presenters/\_example.yaml (the contributor template)
 
 **Files:**
 
@@ -779,7 +800,7 @@ git commit -m "feat: disclaimer texts (forward-looking, informational, safe-harb
 name: Sample Event 2026
 date: 2026-06-13
 venue: Online
-hashtag: "#SAPSample"
+hashtag: '#SAPSample'
 defaultPresenter: thomas-jung
 ```
 
@@ -858,8 +879,6 @@ git commit -m "feat: starter snippets (codejam, community-thanks, legal-disclaim
 
 ---
 
-
-
 ## Phase 4: Data layer
 
 Wire `@rollup/plugin-yaml` into Slidev's Vite config so `.yaml` files import as JS objects, then write `theme/setup/data.ts` — a small set of resolvers that components call (`resolvePresenter(slug)`, `resolveTeam(slug)`, etc.). End state: a Vue component can `import { resolvePresenter } from 'slidev-theme-sap/setup/data'` and get a typed `Presenter` object.
@@ -896,7 +915,7 @@ git add vite.config.ts
 git commit -m "chore: enable YAML imports via @rollup/plugin-yaml"
 ```
 
-### Task 4.2: TypeScript module declaration for *.yaml
+### Task 4.2: TypeScript module declaration for \*.yaml
 
 **Files:**
 
@@ -1012,7 +1031,7 @@ Expected: FAIL with module-not-found.
 
 - [ ] **Step 3: Implement the data layer**
 
-Note the indirection through "virtual:data-*" module names: in production we use `import.meta.glob`, but for unit tests we mock those names. We'll provide a thin `_dataSources.ts` that switches between real glob and test mocks.
+Note the indirection through "virtual:data-\*" module names: in production we use `import.meta.glob`, but for unit tests we mock those names. We'll provide a thin `_dataSources.ts` that switches between real glob and test mocks.
 
 `theme/setup/_dataSources.ts`:
 
@@ -1041,7 +1060,10 @@ import eventData from '/event.yaml'
 function indexBySlug(modules: Record<string, unknown>): Record<string, any> {
   const result: Record<string, any> = {}
   for (const [path, mod] of Object.entries(modules)) {
-    const slug = path.split('/').pop()!.replace(/\.yaml$/, '')
+    const slug = path
+      .split('/')
+      .pop()!
+      .replace(/\.yaml$/, '')
     if (slug.startsWith('_')) continue // skip _example.yaml
     result[slug] = mod
   }
@@ -1170,20 +1192,22 @@ import { socialUrl } from './social'
 
 describe('socialUrl', () => {
   it('builds LinkedIn URL', () => {
-    expect(socialUrl({ platform: 'linkedin', handle: 'thomas-jung' }))
-      .toBe('https://www.linkedin.com/in/thomas-jung')
+    expect(socialUrl({ platform: 'linkedin', handle: 'thomas-jung' })).toBe(
+      'https://www.linkedin.com/in/thomas-jung'
+    )
   })
   it('builds GitHub URL', () => {
-    expect(socialUrl({ platform: 'github', handle: 'thomasjung' }))
-      .toBe('https://github.com/thomasjung')
+    expect(socialUrl({ platform: 'github', handle: 'thomasjung' })).toBe(
+      'https://github.com/thomasjung'
+    )
   })
   it('builds X URL', () => {
-    expect(socialUrl({ platform: 'x', handle: 'sapdevs' }))
-      .toBe('https://x.com/sapdevs')
+    expect(socialUrl({ platform: 'x', handle: 'sapdevs' })).toBe('https://x.com/sapdevs')
   })
   it('respects explicit url override', () => {
-    expect(socialUrl({ platform: 'mastodon', handle: 'me', url: 'https://hachyderm.io/@me' }))
-      .toBe('https://hachyderm.io/@me')
+    expect(socialUrl({ platform: 'mastodon', handle: 'me', url: 'https://hachyderm.io/@me' })).toBe(
+      'https://hachyderm.io/@me'
+    )
   })
 })
 ```
@@ -1231,8 +1255,6 @@ git commit -m "feat: social-link URL builder"
 ```
 
 ---
-
-
 
 ## Phase 3: Theme foundation
 
@@ -1380,9 +1402,21 @@ git commit -m "feat: horizon-mapping aliases UI5 vars to brand tokens"
   letter-spacing: -0.01em;
 }
 
-.slidev-layout h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; }
-.slidev-layout h2 { font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.75rem; }
-.slidev-layout h3 { font-size: 1.5rem; line-height: 1.3; margin-bottom: 0.5rem; }
+.slidev-layout h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.slidev-layout h2 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.slidev-layout h3 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
 
 .slidev-layout p,
 .slidev-layout li {
@@ -1462,7 +1496,7 @@ export interface Program {
 
 export interface Disclaimers {
   'forward-looking': string
-  'informational': string
+  informational: string
   'safe-harbor': string
   [key: string]: string
 }
@@ -1577,8 +1611,6 @@ Ctrl-C the serve process.
 If `dist/` snuck into git (it shouldn't — `.gitignore` excludes it), remove and recommit. Otherwise no commit needed.
 
 ---
-
-
 
 ## Phase 2: Brand extraction script
 
@@ -1788,7 +1820,7 @@ export function parseThemeXml(xml) {
 }
 ```
 
-> **Why regex over the XML parser here?** The PowerPoint XML is well-formed but namespace-prefixed in ways that make `fast-xml-parser` traversal verbose. For *flat extraction* (find all colors, find one font name) regex is shorter and equally robust. We'll use `fast-xml-parser` properly in Task 2.4 where we need structured layout traversal.
+> **Why regex over the XML parser here?** The PowerPoint XML is well-formed but namespace-prefixed in ways that make `fast-xml-parser` traversal verbose. For _flat extraction_ (find all colors, find one font name) regex is shorter and equally robust. We'll use `fast-xml-parser` properly in Task 2.4 where we need structured layout traversal.
 
 - [ ] **Step 4: Run test — should pass**
 
@@ -1986,49 +2018,49 @@ export const CROSSWALK = {
   '002A86': 'sap-brand-blue-dark',
   '00144A': 'sap-brand-blue-darker',
   '89D1FF': 'sap-brand-blue-light',
-  'D1EFFF': 'sap-brand-blue-pale',
+  D1EFFF: 'sap-brand-blue-pale',
   // Teals
   '049F9A': 'sap-brand-teal',
   '07838F': 'sap-brand-teal-dark',
   '02414C': 'sap-brand-teal-darker',
   '012931': 'sap-brand-teal-darkest',
   '2CE0BF': 'sap-brand-teal-bright',
-  'C2FCEE': 'sap-brand-teal-pale',
+  C2FCEE: 'sap-brand-teal-pale',
   // Greens
-  '188918': 'sap-brand-green',
+  188918: 'sap-brand-green',
   '36A41D': 'sap-brand-green-bright',
-  '164323': 'sap-brand-green-dark',
+  164323: 'sap-brand-green-dark',
   '0E2B16': 'sap-brand-green-darkest',
   '97DD40': 'sap-brand-green-light',
-  'EBF5CB': 'sap-brand-green-pale',
+  EBF5CB: 'sap-brand-green-pale',
   // Reds
-  'D20A0A': 'sap-brand-red',
-  'EE3939': 'sap-brand-red-bright',
+  D20A0A: 'sap-brand-red',
+  EE3939: 'sap-brand-red-bright',
   '5A0404': 'sap-brand-red-dark',
-  '350000': 'sap-brand-red-darkest',
+  350000: 'sap-brand-red-darkest',
   '6D1900': 'sap-brand-red-mid',
   '450B00': 'sap-brand-red-darker',
   // Oranges/yellows
-  'E76500': 'sap-brand-orange',
-  'C35500': 'sap-brand-orange-dark',
-  'F0AB00': 'sap-brand-yellow',
+  E76500: 'sap-brand-orange',
+  C35500: 'sap-brand-orange-dark',
+  F0AB00: 'sap-brand-yellow',
   // Magentas/pinks
-  'DF1278': 'sap-brand-pink',
+  DF1278: 'sap-brand-pink',
   '71014B': 'sap-brand-pink-dark',
-  '510136': 'sap-brand-pink-darker',
-  'CC00DC': 'sap-brand-magenta',
+  510136: 'sap-brand-pink-darker',
+  CC00DC: 'sap-brand-magenta',
   // Purples
   '5D36FF': 'sap-brand-purple',
   '7858FF': 'sap-brand-purple-bright',
-  'B894FF': 'sap-brand-purple-light',
+  B894FF: 'sap-brand-purple-light',
   '28004A': 'sap-brand-purple-dark',
   '0E0637': 'sap-brand-purple-darker',
   '1C0C6E': 'sap-brand-purple-darkest',
-  '510080': 'sap-brand-purple-deep',
-  'E2D8FF': 'sap-brand-purple-pale',
+  510080: 'sap-brand-purple-deep',
+  E2D8FF: 'sap-brand-purple-pale',
   // Neutrals
   '000000': 'sap-black',
-  'FFFFFF': 'sap-white'
+  FFFFFF: 'sap-white'
 }
 
 export function resolveColorName(hex) {
@@ -2387,7 +2419,9 @@ async function main() {
   // 9. Verify @sap-theming font alignment (warning only)
   const expectedFont = '72'
   if (!theme.fonts.major.includes(expectedFont)) {
-    console.warn(`WARNING: POTX major font "${theme.fonts.major}" does not contain "${expectedFont}".`)
+    console.warn(
+      `WARNING: POTX major font "${theme.fonts.major}" does not contain "${expectedFont}".`
+    )
     console.warn('@sap-theming/theming-base-content ships the "72" web font; verify alignment.')
   }
 
@@ -2486,8 +2520,6 @@ git commit -m "chore: refresh extraction metadata"
 
 ---
 
-
-
 ## Phase 1: Project scaffolding
 
 Set up Node 22, TypeScript, npm workspaces (root + `theme/`), ESLint, Prettier, and a minimal Slidev project. End state: `npm run dev` opens an empty Slidev deck.
@@ -2495,6 +2527,7 @@ Set up Node 22, TypeScript, npm workspaces (root + `theme/`), ESLint, Prettier, 
 ### Task 1.1: Pin Node version
 
 **Files:**
+
 - Create: `.nvmrc`
 - Create: `.node-version`
 
@@ -2519,6 +2552,7 @@ git commit -m "chore: pin Node 22"
 ### Task 1.2: Root package.json with workspaces
 
 **Files:**
+
 - Create: `package.json`
 - Modify: `.gitignore`
 
@@ -2599,6 +2633,7 @@ git commit -m "chore: scaffold root package with npm workspaces"
 ### Task 1.3: Theme workspace package skeleton
 
 **Files:**
+
 - Create: `theme/package.json`
 - Create: `theme/index.ts`
 
@@ -2651,6 +2686,7 @@ git commit -m "chore: add theme workspace package skeleton"
 ### Task 1.4: TypeScript configuration
 
 **Files:**
+
 - Create: `tsconfig.json`
 - Create: `theme/tsconfig.json`
 
@@ -2705,6 +2741,7 @@ git commit -m "chore: add TypeScript configuration"
 ### Task 1.5: ESLint + Prettier + EditorConfig
 
 **Files:**
+
 - Create: `eslint.config.js`
 - Create: `.prettierrc.json`
 - Create: `.prettierignore`
@@ -2795,6 +2832,7 @@ git commit -m "chore: add ESLint + Prettier + EditorConfig"
 ### Task 1.6: Minimal slides.md so dev server starts
 
 **Files:**
+
 - Create: `slides.md`
 
 - [ ] **Step 1: Write a placeholder slides.md**
@@ -2836,6 +2874,7 @@ git commit -m "feat: placeholder slides.md to verify dev server"
 ### Task 1.7: Pre-create extraction and logo directories
 
 **Files:**
+
 - Create: `theme/styles/_extracted/.gitkeep`
 - Create: `theme/styles/_extracted/media/raw/.gitkeep`
 - Create: `theme/public/logos/.gitkeep`
@@ -2895,14 +2934,14 @@ cp theme/styles/_extracted/media/raw/<sap-mono>.svg theme/public/logos/logo-sap-
 
 ```vue
 <script setup lang="ts">
-const props = defineProps<{
-  variant?: string
-  alt?: string
-  ext?: 'svg' | 'png'
-}>()
-const variant = props.variant ?? 'logo-sap-primary'
-const ext = props.ext ?? 'svg'
-const src = `/logos/${variant}.${ext}`
+  const props = defineProps<{
+    variant?: string
+    alt?: string
+    ext?: 'svg' | 'png'
+  }>()
+  const variant = props.variant ?? 'logo-sap-primary'
+  const ext = props.ext ?? 'svg'
+  const src = `/logos/${variant}.${ext}`
 </script>
 
 <template>
@@ -2910,7 +2949,10 @@ const src = `/logos/${variant}.${ext}`
 </template>
 
 <style scoped>
-.sap-logo { height: 2.5rem; width: auto; }
+  .sap-logo {
+    height: 2.5rem;
+    width: auto;
+  }
 </style>
 ```
 
@@ -2969,15 +3011,15 @@ Expected: PASS.
 
 ```vue
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import { makeQrDataUrl } from '../setup/qrcode'
+  import { ref, watchEffect } from 'vue'
+  import { makeQrDataUrl } from '../setup/qrcode'
 
-const props = defineProps<{ url: string; caption?: string; size?: number }>()
-const dataUrl = ref<string>('')
+  const props = defineProps<{ url: string; caption?: string; size?: number }>()
+  const dataUrl = ref<string>('')
 
-watchEffect(async () => {
-  dataUrl.value = await makeQrDataUrl(props.url, props.size ?? 200)
-})
+  watchEffect(async () => {
+    dataUrl.value = await makeQrDataUrl(props.url, props.size ?? 200)
+  })
 </script>
 
 <template>
@@ -2988,9 +3030,19 @@ watchEffect(async () => {
 </template>
 
 <style scoped>
-.qrcode { display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.qrcode img { border-radius: var(--sap-radius-button); }
-.qrcode figcaption { font-size: 0.9rem; color: var(--sapContent_LabelColor); }
+  .qrcode {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .qrcode img {
+    border-radius: var(--sap-radius-button);
+  }
+  .qrcode figcaption {
+    font-size: 0.9rem;
+    color: var(--sapContent_LabelColor);
+  }
 </style>
 ```
 
@@ -3013,10 +3065,10 @@ git commit -m "feat(component): QRCode"
 
 ```vue
 <script setup lang="ts">
-const props = defineProps<{ kind?: 'live' | 'recorded' | 'interactive'; fallback?: string }>()
-const kind = props.kind ?? 'live'
-const labels = { live: 'Live Demo', recorded: 'Recorded Demo', interactive: 'Try it Yourself' }
-const icons = { live: '🎬', recorded: '📹', interactive: '🖱️' }
+  const props = defineProps<{ kind?: 'live' | 'recorded' | 'interactive'; fallback?: string }>()
+  const kind = props.kind ?? 'live'
+  const labels = { live: 'Live Demo', recorded: 'Recorded Demo', interactive: 'Try it Yourself' }
+  const icons = { live: '🎬', recorded: '📹', interactive: '🖱️' }
 </script>
 
 <template>
@@ -3029,22 +3081,34 @@ const icons = { live: '🎬', recorded: '📹', interactive: '🖱️' }
 </template>
 
 <style scoped>
-.demo-callout {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem 1rem;
-  border-radius: var(--sap-radius-card);
-  background: var(--sap-brand-blue);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: var(--sap-shadow-card);
-}
-.demo-callout--recorded { background: var(--sap-brand-purple); }
-.demo-callout--interactive { background: var(--sap-brand-green); }
-.icon { font-size: 1.5rem; }
-.label { font-size: 1.25rem; }
-.fallback { font-size: 0.85rem; opacity: 0.85; font-weight: 400; }
+  .demo-callout {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--sap-radius-card);
+    background: var(--sap-brand-blue);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: var(--sap-shadow-card);
+  }
+  .demo-callout--recorded {
+    background: var(--sap-brand-purple);
+  }
+  .demo-callout--interactive {
+    background: var(--sap-brand-green);
+  }
+  .icon {
+    font-size: 1.5rem;
+  }
+  .label {
+    font-size: 1.25rem;
+  }
+  .fallback {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    font-weight: 400;
+  }
 </style>
 ```
 
@@ -3067,12 +3131,12 @@ git commit -m "feat(component): DemoCallout"
 
 ```vue
 <script setup lang="ts">
-defineProps<{
-  lang?: string
-  filename?: string
-  caption?: string
-  highlight?: string
-}>()
+  defineProps<{
+    lang?: string
+    filename?: string
+    caption?: string
+    highlight?: string
+  }>()
 </script>
 
 <template>
@@ -3089,31 +3153,39 @@ defineProps<{
 </template>
 
 <style scoped>
-.codeblock {
-  margin: 0;
-  border-radius: var(--sap-radius-card);
-  overflow: hidden;
-  border: 1px solid #e5e9ed;
-  box-shadow: var(--sap-shadow-card);
-  background: #fff;
-}
-.codeblock-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background: var(--sap-brand-blue-darker);
-  color: #fff;
-  font-size: 0.85rem;
-}
-.filename { font-family: monospace; }
-.lang { opacity: 0.8; text-transform: uppercase; }
-.codeblock-body :deep(pre) { margin: 0; padding: 1rem; }
-.codeblock figcaption {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  color: var(--sapContent_LabelColor);
-  background: #fafbfc;
-}
+  .codeblock {
+    margin: 0;
+    border-radius: var(--sap-radius-card);
+    overflow: hidden;
+    border: 1px solid #e5e9ed;
+    box-shadow: var(--sap-shadow-card);
+    background: #fff;
+  }
+  .codeblock-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: var(--sap-brand-blue-darker);
+    color: #fff;
+    font-size: 0.85rem;
+  }
+  .filename {
+    font-family: monospace;
+  }
+  .lang {
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .codeblock-body :deep(pre) {
+    margin: 0;
+    padding: 1rem;
+  }
+  .codeblock figcaption {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--sapContent_LabelColor);
+    background: #fafbfc;
+  }
 </style>
 ```
 
@@ -3145,27 +3217,27 @@ git commit -m "feat(component): CodeBlock"
 </template>
 
 <style scoped>
-.key-takeaway {
-  border-left: 6px solid var(--sap-brand-blue);
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(90deg, var(--sap-brand-blue-pale), transparent);
-  border-radius: 0 var(--sap-radius-card) var(--sap-radius-card) 0;
-  max-width: 56rem;
-  margin: 1.5rem 0;
-}
-.key-takeaway header {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--sap-brand-blue);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.key-takeaway .content {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--sapTextColor);
-}
+  .key-takeaway {
+    border-left: 6px solid var(--sap-brand-blue);
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(90deg, var(--sap-brand-blue-pale), transparent);
+    border-radius: 0 var(--sap-radius-card) var(--sap-radius-card) 0;
+    max-width: 56rem;
+    margin: 1.5rem 0;
+  }
+  .key-takeaway header {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sap-brand-blue);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .key-takeaway .content {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--sapTextColor);
+  }
 </style>
 ```
 
@@ -3262,23 +3334,19 @@ Expected: FAIL (cannot resolve Roadmap.vue).
 
 ```vue
 <script setup lang="ts">
-import type { RoadmapPhase } from '../types'
-import Disclaimer from './Disclaimer.vue'
+  import type { RoadmapPhase } from '../types'
+  import Disclaimer from './Disclaimer.vue'
 
-defineProps<{
-  phases: RoadmapPhase[]
-  suppressDisclaimer?: boolean
-}>()
+  defineProps<{
+    phases: RoadmapPhase[]
+    suppressDisclaimer?: boolean
+  }>()
 </script>
 
 <template>
   <div class="roadmap">
     <div class="phases">
-      <div
-        v-for="phase in phases"
-        :key="phase.label"
-        :class="['phase', `phase--${phase.status}`]"
-      >
+      <div v-for="phase in phases" :key="phase.label" :class="['phase', `phase--${phase.status}`]">
         <header>
           <span class="label">{{ phase.label }}</span>
           <span class="status">{{ phase.status }}</span>
@@ -3293,36 +3361,55 @@ defineProps<{
 </template>
 
 <style scoped>
-.roadmap { display: flex; flex-direction: column; gap: 1.5rem; }
-.phases {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 1rem;
-}
-.phase {
-  border: 1px solid #e5e9ed;
-  border-radius: var(--sap-radius-card);
-  padding: 1rem;
-  background: #fff;
-}
-.phase--planned { border-left: 4px solid var(--sap-brand-orange); }
-.phase--in-development { border-left: 4px solid var(--sap-brand-blue); }
-.phase--available { border-left: 4px solid var(--sap-brand-green); }
-.phase header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.5rem;
-}
-.label { font-weight: 700; font-size: 1.1rem; }
-.status {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--sapContent_LabelColor);
-}
-.phase ul { padding-left: 1.25rem; margin: 0; }
-.phase li { font-size: 0.95rem; line-height: 1.5; }
+  .roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+  }
+  .phase {
+    border: 1px solid #e5e9ed;
+    border-radius: var(--sap-radius-card);
+    padding: 1rem;
+    background: #fff;
+  }
+  .phase--planned {
+    border-left: 4px solid var(--sap-brand-orange);
+  }
+  .phase--in-development {
+    border-left: 4px solid var(--sap-brand-blue);
+  }
+  .phase--available {
+    border-left: 4px solid var(--sap-brand-green);
+  }
+  .phase header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .label {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .status {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--sapContent_LabelColor);
+  }
+  .phase ul {
+    padding-left: 1.25rem;
+    margin: 0;
+  }
+  .phase li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
 </style>
 ```
 
@@ -3369,18 +3456,18 @@ Expected: prints the title and subtitle placeholder positions in EMU. Use them a
 
 ```vue
 <script setup lang="ts">
-import { getEvent } from '../setup/data'
+  import { getEvent } from '../setup/data'
 
-const props = defineProps<{
-  title?: string
-  subtitle?: string
-  variant?: string // a..l
-  presenter?: string
-  event?: string // overrides event.yaml#name
-}>()
-const variant = props.variant ?? 'a'
-const event = getEvent()
-const eventName = props.event ?? event.name
+  const props = defineProps<{
+    title?: string
+    subtitle?: string
+    variant?: string // a..l
+    presenter?: string
+    event?: string // overrides event.yaml#name
+  }>()
+  const variant = props.variant ?? 'a'
+  const event = getEvent()
+  const eventName = props.event ?? event.name
 </script>
 
 <template>
@@ -3399,62 +3486,86 @@ const eventName = props.event ?? event.name
 </template>
 
 <style scoped>
-.cover {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 4rem 5rem;
-  position: relative;
-  overflow: hidden;
-}
-.cover-content { position: relative; z-index: 1; max-width: 70%; }
-.cover h1 {
-  font-size: 4.5rem;
-  line-height: 1.05;
-  color: #fff;
-  margin: 0 0 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-}
-.cover .subtitle {
-  font-size: 1.75rem;
-  color: rgba(255, 255, 255, 0.95);
-  margin: 0 0 2rem;
-}
-.cover-footer {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-.cover-footer .event {
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  opacity: 0.85;
-}
+  .cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-content {
+    position: relative;
+    z-index: 1;
+    max-width: 70%;
+  }
+  .cover h1 {
+    font-size: 4.5rem;
+    line-height: 1.05;
+    color: #fff;
+    margin: 0 0 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+  }
+  .cover .subtitle {
+    font-size: 1.75rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 2rem;
+  }
+  .cover-footer {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .cover-footer .event {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
 
-/* Variant backgrounds — keyed to the SAP Horizon palette */
-.cover--a { background: linear-gradient(135deg, var(--sap-brand-blue-dark), var(--sap-brand-blue)); }
-.cover--b { background: linear-gradient(135deg, var(--sap-brand-blue), var(--sap-brand-teal)); }
-.cover--c { background: linear-gradient(135deg, var(--sap-brand-blue-darker), var(--sap-brand-purple-dark)); }
-.cover--d { background: linear-gradient(135deg, var(--sap-brand-teal), var(--sap-brand-green)); }
-.cover--e { background: linear-gradient(135deg, var(--sap-brand-purple-dark), var(--sap-brand-pink-dark)); }
-.cover--f { background: var(--sap-brand-blue-darker); }
-.cover--g { background: var(--sap-brand-blue); }
-.cover--h { background: var(--sap-brand-teal-dark); }
-.cover--i { background: var(--sap-brand-purple); }
-.cover--j {
-  background: var(--sap-brand-blue-darker)
-    radial-gradient(at 30% 20%, var(--sap-brand-blue) 0%, transparent 50%);
-}
-.cover--k {
-  background: var(--sap-brand-blue-darker)
-    radial-gradient(at 70% 80%, var(--sap-brand-teal) 0%, transparent 60%);
-}
-.cover--l { background: linear-gradient(180deg, var(--sap-brand-blue-darker), var(--sap-black)); }
+  /* Variant backgrounds — keyed to the SAP Horizon palette */
+  .cover--a {
+    background: linear-gradient(135deg, var(--sap-brand-blue-dark), var(--sap-brand-blue));
+  }
+  .cover--b {
+    background: linear-gradient(135deg, var(--sap-brand-blue), var(--sap-brand-teal));
+  }
+  .cover--c {
+    background: linear-gradient(135deg, var(--sap-brand-blue-darker), var(--sap-brand-purple-dark));
+  }
+  .cover--d {
+    background: linear-gradient(135deg, var(--sap-brand-teal), var(--sap-brand-green));
+  }
+  .cover--e {
+    background: linear-gradient(135deg, var(--sap-brand-purple-dark), var(--sap-brand-pink-dark));
+  }
+  .cover--f {
+    background: var(--sap-brand-blue-darker);
+  }
+  .cover--g {
+    background: var(--sap-brand-blue);
+  }
+  .cover--h {
+    background: var(--sap-brand-teal-dark);
+  }
+  .cover--i {
+    background: var(--sap-brand-purple);
+  }
+  .cover--j {
+    background: var(--sap-brand-blue-darker)
+      radial-gradient(at 30% 20%, var(--sap-brand-blue) 0%, transparent 50%);
+  }
+  .cover--k {
+    background: var(--sap-brand-blue-darker)
+      radial-gradient(at 70% 80%, var(--sap-brand-teal) 0%, transparent 60%);
+  }
+  .cover--l {
+    background: linear-gradient(180deg, var(--sap-brand-blue-darker), var(--sap-black));
+  }
 </style>
 ```
 
@@ -3477,7 +3588,7 @@ git commit -m "feat(layout): cover (12 variants)"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ title?: string }>()
+  defineProps<{ title?: string }>()
 </script>
 
 <template>
@@ -3488,15 +3599,18 @@ defineProps<{ title?: string }>()
 </template>
 
 <style scoped>
-.title-only {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 4rem 5rem;
-  height: 100%;
-}
-.title-only h1 { font-size: 4rem; color: var(--sap-brand-blue-darker); }
+  .title-only {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 5rem;
+    height: 100%;
+  }
+  .title-only h1 {
+    font-size: 4rem;
+    color: var(--sap-brand-blue-darker);
+  }
 </style>
 ```
 
@@ -3517,7 +3631,7 @@ git commit -m "feat(layout): title-only"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ title?: string }>()
+  defineProps<{ title?: string }>()
 </script>
 
 <template>
@@ -3530,13 +3644,22 @@ defineProps<{ title?: string }>()
 </template>
 
 <style scoped>
-.title-text { padding: 3rem 4rem; height: 100%; display: flex; flex-direction: column; }
-.title-text h1 {
-  font-size: 2.75rem;
-  color: var(--sap-brand-blue-darker);
-  margin-bottom: 1.5rem;
-}
-.title-text .content { flex: 1; font-size: 1.25rem; line-height: 1.55; }
+  .title-text {
+    padding: 3rem 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .title-text h1 {
+    font-size: 2.75rem;
+    color: var(--sap-brand-blue-darker);
+    margin-bottom: 1.5rem;
+  }
+  .title-text .content {
+    flex: 1;
+    font-size: 1.25rem;
+    line-height: 1.55;
+  }
 </style>
 ```
 
@@ -3557,7 +3680,7 @@ git commit -m "feat(layout): title-text"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ title?: string }>()
+  defineProps<{ title?: string }>()
 </script>
 
 <template>
@@ -3571,10 +3694,27 @@ defineProps<{ title?: string }>()
 </template>
 
 <style scoped>
-.title-text-2col { padding: 3rem 4rem; height: 100%; display: flex; flex-direction: column; }
-.title-text-2col h1 { font-size: 2.75rem; color: var(--sap-brand-blue-darker); margin-bottom: 1.5rem; }
-.cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-.col { font-size: 1.15rem; line-height: 1.55; }
+  .title-text-2col {
+    padding: 3rem 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .title-text-2col h1 {
+    font-size: 2.75rem;
+    color: var(--sap-brand-blue-darker);
+    margin-bottom: 1.5rem;
+  }
+  .cols {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .col {
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
 </style>
 ```
 
@@ -3595,7 +3735,7 @@ git commit -m "feat(layout): title-text-2col"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ title?: string; variant?: 'a' | 'b' | 'c' | 'd' }>()
+  defineProps<{ title?: string; variant?: 'a' | 'b' | 'c' | 'd' }>()
 </script>
 
 <template>
@@ -3608,19 +3748,31 @@ defineProps<{ title?: string; variant?: 'a' | 'b' | 'c' | 'd' }>()
 </template>
 
 <style scoped>
-.divider {
-  height: 100%;
-  padding: 5rem;
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-.divider h1 { font-size: 4rem; color: #fff; max-width: 80%; }
+  .divider {
+    height: 100%;
+    padding: 5rem;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+  .divider h1 {
+    font-size: 4rem;
+    color: #fff;
+    max-width: 80%;
+  }
 
-.divider--a { background: var(--sap-brand-blue-darker); }
-.divider--b { background: linear-gradient(135deg, var(--sap-brand-blue-darker), var(--sap-brand-blue)); }
-.divider--c { background: var(--sap-brand-teal-dark); }
-.divider--d { background: linear-gradient(135deg, var(--sap-brand-purple-dark), var(--sap-brand-blue-darker)); }
+  .divider--a {
+    background: var(--sap-brand-blue-darker);
+  }
+  .divider--b {
+    background: linear-gradient(135deg, var(--sap-brand-blue-darker), var(--sap-brand-blue));
+  }
+  .divider--c {
+    background: var(--sap-brand-teal-dark);
+  }
+  .divider--d {
+    background: linear-gradient(135deg, var(--sap-brand-purple-dark), var(--sap-brand-blue-darker));
+  }
 </style>
 ```
 
@@ -3641,7 +3793,7 @@ git commit -m "feat(layout): divider (4 variants)"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ author?: string; source?: string }>()
+  defineProps<{ author?: string; source?: string }>()
 </script>
 
 <template>
@@ -3657,32 +3809,37 @@ defineProps<{ author?: string; source?: string }>()
 </template>
 
 <style scoped>
-.quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5rem;
-  height: 100%;
-}
-blockquote {
-  font-size: 2.75rem;
-  line-height: 1.3;
-  color: var(--sap-brand-blue-darker);
-  margin: 0 0 2rem;
-  font-weight: 500;
-  position: relative;
-}
-blockquote::before {
-  content: '"';
-  position: absolute;
-  top: -3rem;
-  left: -1rem;
-  font-size: 8rem;
-  color: var(--sap-brand-blue-pale);
-  line-height: 1;
-}
-footer { font-size: 1.25rem; color: var(--sapContent_LabelColor); }
-.author { font-weight: 600; }
+  .quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem;
+    height: 100%;
+  }
+  blockquote {
+    font-size: 2.75rem;
+    line-height: 1.3;
+    color: var(--sap-brand-blue-darker);
+    margin: 0 0 2rem;
+    font-weight: 500;
+    position: relative;
+  }
+  blockquote::before {
+    content: '"';
+    position: absolute;
+    top: -3rem;
+    left: -1rem;
+    font-size: 8rem;
+    color: var(--sap-brand-blue-pale);
+    line-height: 1;
+  }
+  footer {
+    font-size: 1.25rem;
+    color: var(--sapContent_LabelColor);
+  }
+  .author {
+    font-weight: 600;
+  }
 </style>
 ```
 
@@ -3703,7 +3860,7 @@ git commit -m "feat(layout): quote"
 
 ```vue
 <script setup lang="ts">
-defineProps<{ presenter?: string }>()
+  defineProps<{ presenter?: string }>()
 </script>
 
 <template>
@@ -3716,18 +3873,26 @@ defineProps<{ presenter?: string }>()
 </template>
 
 <style scoped>
-.q-and-a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1.5rem;
-  padding: 4rem 5rem;
-  height: 100%;
-  background: linear-gradient(135deg, var(--sap-brand-blue-pale), #fff);
-}
-h1 { font-size: 5rem; color: var(--sap-brand-blue-darker); margin: 0; }
-.prompt { font-size: 1.5rem; color: var(--sapContent_LabelColor); margin: 0; }
+  .q-and-a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 4rem 5rem;
+    height: 100%;
+    background: linear-gradient(135deg, var(--sap-brand-blue-pale), #fff);
+  }
+  h1 {
+    font-size: 5rem;
+    color: var(--sap-brand-blue-darker);
+    margin: 0;
+  }
+  .prompt {
+    font-size: 1.5rem;
+    color: var(--sapContent_LabelColor);
+    margin: 0;
+  }
 </style>
 ```
 
@@ -3748,9 +3913,9 @@ git commit -m "feat(layout): q-and-a (with Bio)"
 
 ```vue
 <script setup lang="ts">
-import { getEvent } from '../setup/data'
-const props = defineProps<{ presenter?: string; variant?: 'a' | 'b' }>()
-const event = getEvent()
+  import { getEvent } from '../setup/data'
+  const props = defineProps<{ presenter?: string; variant?: 'a' | 'b' }>()
+  const event = getEvent()
 </script>
 
 <template>
@@ -3763,25 +3928,33 @@ const event = getEvent()
 </template>
 
 <style scoped>
-.thank-you {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 1.5rem;
-  height: 100%;
-  padding: 5rem;
-  color: #fff;
-}
-.thank-you h1 { font-size: 6rem; margin: 0; color: #fff; }
-.hashtag {
-  margin-top: 2rem;
-  font-size: 1.25rem;
-  letter-spacing: 0.05em;
-}
-.thank-you--a { background: var(--sap-brand-blue-darker); }
-.thank-you--b { background: linear-gradient(135deg, var(--sap-brand-blue), var(--sap-brand-teal)); }
+  .thank-you {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    height: 100%;
+    padding: 5rem;
+    color: #fff;
+  }
+  .thank-you h1 {
+    font-size: 6rem;
+    margin: 0;
+    color: #fff;
+  }
+  .hashtag {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+  }
+  .thank-you--a {
+    background: var(--sap-brand-blue-darker);
+  }
+  .thank-you--b {
+    background: linear-gradient(135deg, var(--sap-brand-blue), var(--sap-brand-teal));
+  }
 </style>
 ```
 
@@ -3802,12 +3975,12 @@ git commit -m "feat(layout): thank-you (2 variants)"
 
 ```vue
 <script setup lang="ts">
-defineProps<{
-  title?: string
-  variant?: 'a' | 'b'
-  items?: string[]
-  current?: number
-}>()
+  defineProps<{
+    title?: string
+    variant?: 'a' | 'b'
+    items?: string[]
+    current?: number
+  }>()
 </script>
 
 <template>
@@ -3819,9 +3992,21 @@ defineProps<{
 </template>
 
 <style scoped>
-.agenda-layout { padding: 3rem 5rem; height: 100%; display: flex; flex-direction: column; gap: 2rem; }
-.agenda-layout h1 { font-size: 3rem; color: var(--sap-brand-blue-darker); margin: 0; }
-.agenda-layout--b { background: var(--sap-brand-blue-pale); }
+  .agenda-layout {
+    padding: 3rem 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .agenda-layout h1 {
+    font-size: 3rem;
+    color: var(--sap-brand-blue-darker);
+    margin: 0;
+  }
+  .agenda-layout--b {
+    background: var(--sap-brand-blue-pale);
+  }
 </style>
 ```
 
@@ -3848,7 +4033,10 @@ git commit -m "feat(layout): agenda (2 variants)"
 </template>
 
 <style scoped>
-.blank { padding: 0; height: 100%; }
+  .blank {
+    padding: 0;
+    height: 100%;
+  }
 </style>
 ```
 
@@ -3862,34 +4050,42 @@ theme: ./theme
 ---
 
 ---
+
 layout: cover
 variant: a
 title: Test Cover
 subtitle: A subtitle
+
 ---
 
 ---
+
 layout: divider
 title: Section break
+
 ---
 
 ---
+
 layout: title-text
 title: Hello
+
 ---
 
 This is the body.
 
 ---
+
 layout: quote
 author: SAP team
+
 ---
 
 The future is built on a foundation of careful work.
 
 ---
-layout: thank-you
----
+
+## layout: thank-you
 ```
 
 Run: `npm run dev`
@@ -3936,7 +4132,7 @@ To keep this plan tractable, layouts of similar shape are grouped — when you s
 
 ```vue
 <script setup lang="ts">
-defineProps<{ title?: string }>()
+  defineProps<{ title?: string }>()
 </script>
 
 <template>
@@ -3956,12 +4152,37 @@ defineProps<{ title?: string }>()
 </template>
 
 <style scoped>
-.content-image-2col { padding: 3rem 4rem; height: 100%; display: flex; flex-direction: column; }
-.content-image-2col h1 { font-size: 2.5rem; color: var(--sap-brand-blue-darker); margin-bottom: 1.5rem; }
-.cols { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.col { display: flex; flex-direction: column; gap: 1rem; }
-.col-image :deep(img) { width: 100%; height: auto; border-radius: var(--sap-radius-card); }
-.col-text { font-size: 1.05rem; line-height: 1.5; }
+  .content-image-2col {
+    padding: 3rem 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .content-image-2col h1 {
+    font-size: 2.5rem;
+    color: var(--sap-brand-blue-darker);
+    margin-bottom: 1.5rem;
+  }
+  .cols {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .col-image :deep(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--sap-radius-card);
+  }
+  .col-text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
 </style>
 ```
 
@@ -3990,7 +4211,7 @@ defineProps<{ title?: string }>()
 
 ```vue
 <script setup lang="ts">
-defineProps<{ src: string; alt?: string }>()
+  defineProps<{ src: string; alt?: string }>()
 </script>
 
 <template>
@@ -4000,17 +4221,23 @@ defineProps<{ src: string; alt?: string }>()
 </template>
 
 <style scoped>
-.image-slide {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  padding: 0;
-}
-.image-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.image-slide::after { content: none !important; }
+  .image-slide {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    padding: 0;
+  }
+  .image-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .image-slide::after {
+    content: none !important;
+  }
 </style>
 ```
 
@@ -4054,8 +4281,8 @@ defineProps<{ src: string; alt?: string }>()
 </template>
 
 <script setup lang="ts">
-import TitleContent from './title-content.vue'
-defineOptions({ inheritAttrs: false })
+  import TitleContent from './title-content.vue'
+  defineOptions({ inheritAttrs: false })
 </script>
 ```
 
@@ -4076,20 +4303,20 @@ defineOptions({ inheritAttrs: false })
 
 ```vue
 <script setup lang="ts">
-const swatches = [
-  { name: 'Brand Blue', var: '--sap-brand-blue' },
-  { name: 'Brand Blue Bright', var: '--sap-brand-blue-bright' },
-  { name: 'Brand Blue Dark', var: '--sap-brand-blue-dark' },
-  { name: 'Brand Blue Darker', var: '--sap-brand-blue-darker' },
-  { name: 'Brand Teal', var: '--sap-brand-teal' },
-  { name: 'Brand Green', var: '--sap-brand-green' },
-  { name: 'Brand Red', var: '--sap-brand-red' },
-  { name: 'Brand Orange', var: '--sap-brand-orange' },
-  { name: 'Brand Yellow', var: '--sap-brand-yellow' },
-  { name: 'Brand Purple', var: '--sap-brand-purple' },
-  { name: 'Brand Pink', var: '--sap-brand-pink' },
-  { name: 'Brand Magenta', var: '--sap-brand-magenta' }
-]
+  const swatches = [
+    { name: 'Brand Blue', var: '--sap-brand-blue' },
+    { name: 'Brand Blue Bright', var: '--sap-brand-blue-bright' },
+    { name: 'Brand Blue Dark', var: '--sap-brand-blue-dark' },
+    { name: 'Brand Blue Darker', var: '--sap-brand-blue-darker' },
+    { name: 'Brand Teal', var: '--sap-brand-teal' },
+    { name: 'Brand Green', var: '--sap-brand-green' },
+    { name: 'Brand Red', var: '--sap-brand-red' },
+    { name: 'Brand Orange', var: '--sap-brand-orange' },
+    { name: 'Brand Yellow', var: '--sap-brand-yellow' },
+    { name: 'Brand Purple', var: '--sap-brand-purple' },
+    { name: 'Brand Pink', var: '--sap-brand-pink' },
+    { name: 'Brand Magenta', var: '--sap-brand-magenta' }
+  ]
 </script>
 
 <template>
@@ -4098,7 +4325,10 @@ const swatches = [
     <div class="swatches">
       <div v-for="s in swatches" :key="s.var" class="swatch">
         <div class="chip" :style="{ background: `var(${s.var})` }" />
-        <div class="meta"><strong>{{ s.name }}</strong><code>{{ s.var }}</code></div>
+        <div class="meta">
+          <strong>{{ s.name }}</strong
+          ><code>{{ s.var }}</code>
+        </div>
       </div>
     </div>
     <slot />
@@ -4106,14 +4336,42 @@ const swatches = [
 </template>
 
 <style scoped>
-.color-palette { padding: 3rem 4rem; height: 100%; }
-.color-palette h1 { font-size: 2.5rem; color: var(--sap-brand-blue-darker); margin-bottom: 1.5rem; }
-.swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.swatch { display: flex; gap: 0.75rem; align-items: center; }
-.chip { width: 3rem; height: 3rem; border-radius: var(--sap-radius-button); border: 1px solid #e5e9ed; }
-.meta { display: flex; flex-direction: column; }
-.meta strong { font-size: 0.95rem; }
-.meta code { font-size: 0.75rem; color: var(--sapContent_LabelColor); }
+  .color-palette {
+    padding: 3rem 4rem;
+    height: 100%;
+  }
+  .color-palette h1 {
+    font-size: 2.5rem;
+    color: var(--sap-brand-blue-darker);
+    margin-bottom: 1.5rem;
+  }
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .swatch {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .chip {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--sap-radius-button);
+    border: 1px solid #e5e9ed;
+  }
+  .meta {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta strong {
+    font-size: 0.95rem;
+  }
+  .meta code {
+    font-size: 0.75rem;
+    color: var(--sapContent_LabelColor);
+  }
 </style>
 ```
 
@@ -4173,32 +4431,41 @@ fonts:
 ---
 
 ---
+
 layout: cover
 variant: a
 title: Cloud-Native Development
 subtitle: Building modern SAP applications with CAP and BTP
+
 ---
 
 ---
+
 layout: agenda
 title: Agenda
 :items:
-  - Foundations
-  - The CAP development model
-  - Live demo
-  - Roadmap
-  - Q & A
+
+- Foundations
+- The CAP development model
+- Live demo
+- Roadmap
+- Q & A
+
 ---
 
 ---
+
 layout: divider
 variant: a
 title: Foundations
+
 ---
 
 ---
+
 layout: title-text
 title: Why CAP?
+
 ---
 
 The SAP Cloud Application Programming Model is a framework for building cloud-native business applications:
@@ -4212,8 +4479,10 @@ The SAP Cloud Application Programming Model is a framework for building cloud-na
 <KeyTakeaway>One model, many runtimes — CAP services run anywhere SAP runs.</KeyTakeaway>
 
 ---
+
 layout: title-text-2col
 title: How it compares
+
 ---
 
 ::left::
@@ -4233,14 +4502,18 @@ title: How it compares
 - Single source of truth
 
 ---
+
 layout: divider
 variant: b
 title: The CAP development model
+
 ---
 
 ---
+
 layout: title-content
 title: A minimal CAP service
+
 ---
 
 <CodeBlock lang="cds" filename="srv/catalog-service.cds">
@@ -4249,7 +4522,7 @@ title: A minimal CAP service
 using { my.bookshop as my } from '../db/schema';
 
 service CatalogService @(path:'/browse') {
-  @readonly entity Books as projection on my.Books;
+@readonly entity Books as projection on my.Books;
 }
 \`\`\`
 
@@ -4258,27 +4531,35 @@ service CatalogService @(path:'/browse') {
 That's a working OData V4 service.
 
 ---
+
 layout: divider
 variant: c
 title: Live demo
+
 ---
 
 ---
+
 layout: title-only
 title: Let's see it live.
+
 ---
 
 <DemoCallout kind="live" fallback="see screenshots in following slides" />
 
 ---
+
 layout: divider
 variant: d
 title: Roadmap
+
 ---
 
 ---
+
 layout: title-content
 title: What's next for CAP
+
 ---
 
 <Roadmap :phases="[
@@ -4288,19 +4569,23 @@ title: What's next for CAP
 ]" />
 
 ---
+
 layout: title-only
 title: SAP Developer Advocates
+
 ---
 
 <DeveloperAdvocates />
 
 ---
-layout: q-and-a
----
+
+## layout: q-and-a
 
 ---
+
 layout: thank-you
 variant: a
+
 ---
 ```
 
@@ -4428,7 +4713,9 @@ const ROOT = resolve(__dirname, '..')
 function shell(cmd, args, opts = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, args, { stdio: 'inherit', ...opts })
-    child.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`${cmd} exited ${code}`))))
+    child.on('close', (code) =>
+      code === 0 ? resolve() : reject(new Error(`${cmd} exited ${code}`))
+    )
     child.on('error', reject)
   })
 }
@@ -4441,7 +4728,12 @@ async function main() {
   }
   const pptx = resolve(args[0])
   const nameIdx = args.indexOf('--name')
-  const name = nameIdx >= 0 ? args[nameIdx + 1] : basename(pptx, extname(pptx)).toLowerCase().replace(/[^a-z0-9-]+/g, '-')
+  const name =
+    nameIdx >= 0
+      ? args[nameIdx + 1]
+      : basename(pptx, extname(pptx))
+          .toLowerCase()
+          .replace(/[^a-z0-9-]+/g, '-')
 
   if (!existsSync(pptx)) {
     console.error(`File not found: ${pptx}`)
@@ -4451,10 +4743,14 @@ async function main() {
   const tools = await detectTools()
   if (!tools.soffice) {
     console.error('LibreOffice (soffice) not found on PATH.')
-    console.error('Install LibreOffice from https://www.libreoffice.org or use the manual fallback:')
+    console.error(
+      'Install LibreOffice from https://www.libreoffice.org or use the manual fallback:'
+    )
     console.error('  1. Open the PPTX in PowerPoint')
     console.error('  2. File → Export → Change file type → PNG')
-    console.error('  3. Drop PNGs into public/imported/<name>/ named slide-01.png, slide-02.png, ...')
+    console.error(
+      '  3. Drop PNGs into public/imported/<name>/ named slide-01.png, slide-02.png, ...'
+    )
     process.exit(1)
   }
 
@@ -4479,7 +4775,8 @@ async function main() {
     for (const file of files) {
       const n = Number(file.match(/(\d+)/)[1])
       const padded = `slide-${String(n).padStart(2, '0')}.png`
-      if (file !== padded) await copyFile(join(outDir, file), join(outDir, padded)).then(() => rm(join(outDir, file)))
+      if (file !== padded)
+        await copyFile(join(outDir, file), join(outDir, padded)).then(() => rm(join(outDir, file)))
     }
   } else {
     console.log('pdftoppm not found — falling back to pdf-to-img npm...')
@@ -4620,62 +4917,80 @@ info: Visual reference and regression baseline for every layout and component.
 ---
 
 ---
+
 layout: cover
 variant: a
 title: Layout Gallery
 subtitle: Every layout, every component, in one deck
+
 ---
 
 ---
+
 layout: title-only
 title: Cover variants (a–l)
+
 ---
 
 This gallery shows the 12 cover variants, all dividers, all content layouts, and every component.
 
 ---
+
 layout: cover
 variant: a
 title: Cover A
+
 ---
 
 ---
+
 layout: cover
 variant: b
 title: Cover B
+
 ---
 
 <!-- Repeat for c through l -->
 
 ---
+
 layout: divider
 variant: a
 title: Divider A
+
 ---
 
 ---
+
 layout: divider
 variant: b
 title: Divider B
+
 ---
 
 <!-- c, d -->
 
 ---
+
 layout: title-only
 title: Just a title.
+
 ---
 
 ---
+
 layout: title-text
 title: Title and text
+
 ---
 
 Body content here. Lorem ipsum dolor sit amet.
 
 ---
+
 layout: title-text-2col
 title: Two columns
+
 ---
 
 ::left::
@@ -4685,8 +5000,10 @@ Left column content.
 Right column content.
 
 ---
+
 layout: title-text-3col
 title: Three columns
+
 ---
 
 ::left::
@@ -4699,65 +5016,83 @@ Middle.
 Right.
 
 ---
+
 layout: quote
 author: Anonymous
 source: this gallery
+
 ---
 
 A pithy quote that fits the layout.
 
 ---
-layout: q-and-a
----
+
+## layout: q-and-a
 
 ---
+
 layout: thank-you
 variant: a
+
 ---
 
 ---
+
 layout: title-only
 title: Components
+
 ---
 
 ---
+
 layout: title-content
 title: Bio component
+
 ---
 
 <Bio />
 
 ---
+
 layout: title-content
 title: Speaker component
+
 ---
 
 <Speaker /> presented this section.
 
 ---
+
 layout: title-content
 title: Team component
+
 ---
 
 <Team team="dev-advocates" />
 
 ---
+
 layout: title-only
 title: Developer Advocates
+
 ---
 
 <DeveloperAdvocates />
 
 ---
+
 layout: title-content
 title: Disclaimer (forward-looking)
+
 ---
 
 <Disclaimer kind="forward-looking" />
 
 ---
+
 layout: title-content
 title: Roadmap
+
 ---
 
 <Roadmap :phases="[
@@ -4766,15 +5101,19 @@ title: Roadmap
 ]" />
 
 ---
+
 layout: title-content
 title: KeyTakeaway
+
 ---
 
 <KeyTakeaway>The takeaway is succinct, memorable, and one sentence.</KeyTakeaway>
 
 ---
+
 layout: title-content
 title: DemoCallout
+
 ---
 
 <DemoCallout kind="live" />
@@ -4782,8 +5121,10 @@ title: DemoCallout
 <DemoCallout kind="interactive" />
 
 ---
+
 layout: title-content
 title: QRCode + EventBadge
+
 ---
 
 <QRCode url="https://developers.sap.com" caption="Scan to follow up" />
@@ -4791,23 +5132,27 @@ title: QRCode + EventBadge
 <EventBadge />
 
 ---
+
 layout: title-content
 title: Logo
+
 ---
 
 <Logo variant="logo-sap-primary" />
 
 ---
-layout: color-palette
----
+
+## layout: color-palette
 
 ---
-layout: brand-site
----
+
+## layout: brand-site
 
 ---
+
 layout: tips-tricks
 title: Authoring tips
+
 ---
 
 ### Layout selection
@@ -4842,7 +5187,7 @@ Snapshot the kitchen-sink gallery on every PR.
 ### Task 13.1: Install Playwright browsers
 
 - [ ] Run: `npx playwright install --with-deps chromium`
-Expected: downloads Chromium + system dependencies.
+      Expected: downloads Chromium + system dependencies.
 
 ### Task 13.2: Playwright config
 
@@ -5131,6 +5476,7 @@ Both follow [semver](https://semver.org).
 - README + CONTENT-GUIDE
 
 ### Brand version: 2024.1
+
 - Initial extraction from `SAP_Corp.potx` (SAP Horizon palette, "72 Brand" typeface)
 ```
 
@@ -5222,7 +5568,3 @@ gh pr create --base main --head feat/initial-implementation \
 The template is live, documented, and ready for forks. Subsequent work (more layouts, internationalization, analytics, etc.) lives in v1.x plans against the spec's "Open questions" and "Out-of-scope" lists.
 
 <!-- PLAN_END_MARKER -->
-
-
-
-
