@@ -1,17 +1,31 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
+  import Speaker from '../components/Speaker.vue'
   import { getEvent } from '../setup/data'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
 
-  const variant = computed(() => (fm.value.variant as string) ?? 'a')
+  const variantLetter = computed(() => resolveCoverVariant(fm.value.variant as string | undefined))
+  const Decoration = computed(() => getDecoration(variantLetter.value))
+  const isDarkBg = computed(() =>
+    useDarkLogo(variantLetter.value, fm.value.image as string | undefined)
+  )
+  const logoSrc = computed(() =>
+    isDarkBg.value ? '/logos/logo-sap-white.svg' : '/logos/logo-sap-primary.svg'
+  )
+  const presenter = computed(() => fm.value.presenter as string | undefined)
+  const image = computed(() => fm.value.image as string | undefined)
+
   const eventData = getEvent()
   const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
 </script>
 
 <template>
-  <div :class="['cover', `cover--${variant}`]">
+  <div :class="['cover', `cover--${variantLetter}`, { 'cover--dark': isDarkBg }]">
+    <component :is="Decoration" :variant="variantLetter" :image="image" />
+    <img class="cover-logo" :src="logoSrc" alt="SAP" />
     <div class="cover-content">
       <h1 v-if="fm.title">
         {{ fm.title }}
@@ -21,8 +35,7 @@
       </p>
       <slot />
       <footer class="cover-footer">
-        <Speaker v-if="fm.presenter" :presenter="(fm.presenter as string)" />
-        <Speaker v-else />
+        <Speaker :presenter="presenter" />
         <span class="event">{{ eventName }}</span>
       </footer>
     </div>
@@ -31,83 +44,64 @@
 
 <style scoped>
   .cover {
+    position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 4rem 5rem;
-    position: relative;
     overflow: hidden;
   }
+  .cover-logo {
+    position: absolute;
+    top: var(--cover-logo-top, 7.35%);
+    left: var(--cover-logo-left, 4.13%);
+    width: var(--cover-logo-width, 5.96%);
+    /* SVGs without intrinsic dimensions need an explicit aspect-ratio.
+       The POTX places the logo in a 727192 × 360000 EMU box ≈ 2:1 wide.
+       Both logo SVG variants render with a transparent canvas where the
+       wordmark fills roughly half the canvas height, so 2:1 keeps the
+       visual size consistent with the POTX. */
+    aspect-ratio: 2 / 1;
+    height: auto;
+    z-index: 2;
+  }
   .cover-content {
-    position: relative;
-    z-index: 1;
-    max-width: 70%;
+    position: absolute;
+    top: var(--cover-title-top, 39.46%);
+    left: var(--cover-title-left, 4.13%);
+    width: var(--cover-title-width, 39.08%);
+    z-index: 2;
+    color: var(--sap-brand-blue-darker);
+  }
+  .cover--dark .cover-content {
+    color: #ffffff;
   }
   .cover h1 {
-    font-size: 4.5rem;
-    line-height: 1.05;
-    color: #fff;
-    margin: 0 0 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.015em;
+    font-size: var(--typography-cover-title-size, 3rem);
+    line-height: var(--typography-cover-title-line-height, 0.9);
+    margin: 0 0 1rem;
+    font-weight: 700;
+    color: inherit;
   }
   .cover .subtitle {
-    font-size: 1.75rem;
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.5rem;
+    color: inherit;
+    opacity: 0.9;
     margin: 0 0 2rem;
   }
   .cover-footer {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: inherit;
+    opacity: 0.85;
   }
   .cover-footer .event {
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    opacity: 0.85;
   }
-
-  /* Variant backgrounds — keyed to the SAP Horizon palette */
-  .cover--a {
-    background: linear-gradient(135deg, var(--sap-brand-blue-dark), var(--sap-brand-blue));
-  }
-  .cover--b {
-    background: linear-gradient(135deg, var(--sap-brand-blue), var(--sap-brand-teal));
-  }
-  .cover--c {
-    background: linear-gradient(135deg, var(--sap-brand-blue-darker), var(--sap-brand-purple-dark));
-  }
-  .cover--d {
-    background: linear-gradient(135deg, var(--sap-brand-teal), var(--sap-brand-green));
-  }
-  .cover--e {
-    background: linear-gradient(135deg, var(--sap-brand-purple-dark), var(--sap-brand-pink-dark));
-  }
-  .cover--f {
-    background: var(--sap-brand-blue-darker);
-  }
-  .cover--g {
-    background: var(--sap-brand-blue);
-  }
-  .cover--h {
-    background: var(--sap-brand-teal-dark);
-  }
-  .cover--i {
-    background: var(--sap-brand-purple);
-  }
-  .cover--j {
-    background: var(--sap-brand-blue-darker)
-      radial-gradient(at 30% 20%, var(--sap-brand-blue) 0%, transparent 50%);
-  }
-  .cover--k {
-    background: var(--sap-brand-blue-darker)
-      radial-gradient(at 70% 80%, var(--sap-brand-teal) 0%, transparent 60%);
-  }
-  .cover--l {
-    background: linear-gradient(180deg, var(--sap-brand-blue-darker), var(--sap-black));
+  /* Suppress the global slide-styles ::after accent — covers don't use it */
+  .cover::after {
+    content: none !important;
   }
 </style>

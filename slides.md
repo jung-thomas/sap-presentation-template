@@ -12,6 +12,7 @@ title: Building Cloud-Native Apps with SAP CAP
 subtitle: From zero to production on BTP
 presenter: thomas-jung
 variant: a
+image: /covers/cover-default.jpg
 ---
 
 ---
@@ -172,9 +173,9 @@ title: CAP Feature Roadmap
 
 <script setup>
 const roadmapPhases = [
-  { label: 'Phase 1', status: 'available',      items: ['CDS data modelling', 'OData service exposure', 'SQLite local dev'] },
+  { label: 'Phase 1', status: 'available', items: ['CDS data modelling', 'OData service exposure', 'SQLite local dev'] },
   { label: 'Phase 2', status: 'in-development', items: ['HANA Cloud deployment', 'Authentication with XSUAA', 'Fiori Elements UI'] },
-  { label: 'Phase 3', status: 'planned',         items: ['Event-driven messaging', 'Remote service integration', 'AI extensions'] }
+  { label: 'Phase 3', status: 'planned', items: ['Event-driven messaging', 'Remote service integration', 'AI extensions'] }
 ]
 </script>
 

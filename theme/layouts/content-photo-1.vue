@@ -6,7 +6,12 @@
 <template>
   <div class="layout content-photo-1">
     <div class="header">
-      <img v-if="fm.photo" :src="(fm.photo as string)" :alt="(fm.alt as string) ?? ''" class="avatar" />
+      <img
+        v-if="fm.photo"
+        :src="fm.photo as string"
+        :alt="(fm.alt as string) ?? ''"
+        class="avatar"
+      />
       <div v-else class="avatar avatar--placeholder" />
       <h1 v-if="fm.title">
         {{ fm.title }}
@@ -43,13 +48,14 @@
     border: 2px solid var(--sap-brand-blue);
   }
   .header h1 {
-    font-size: 2.5rem;
+    font-size: var(--typography-content-title-size, 2.5rem);
+    line-height: var(--typography-content-title-line-height, 1.1);
     color: var(--sap-brand-blue-darker);
     margin: 0;
   }
   .body {
     flex: 1;
-    font-size: 1.2rem;
-    line-height: 1.55;
+    font-size: var(--typography-content-body-size, 1.2rem);
+    line-height: var(--typography-content-body-line-height, 1.55);
   }
 </style>

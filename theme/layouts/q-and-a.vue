@@ -1,13 +1,16 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  const fm = computed(() => props.frontmatter ?? {})
+  const presenter = computed(() => fm.value.presenter as string | undefined)
 </script>
 
 <template>
   <div class="layout q-and-a">
     <h1>Questions?</h1>
     <p class="prompt">Ask now, or find me later.</p>
-    <Bio :presenter="(fm.presenter as string | undefined)" compact />
+    <Bio :presenter="presenter" compact />
     <slot />
   </div>
 </template>
@@ -24,12 +27,14 @@
     background: linear-gradient(135deg, var(--sap-brand-blue-pale), #fff);
   }
   h1 {
-    font-size: 5rem;
+    font-size: var(--typography-content-title-size, 5rem);
+    line-height: var(--typography-content-title-line-height, 1.1);
     color: var(--sap-brand-blue-darker);
     margin: 0;
   }
   .prompt {
-    font-size: 1.5rem;
+    font-size: var(--typography-content-body-size, 1.5rem);
+    line-height: var(--typography-content-body-line-height, 1.4);
     color: var(--sapContent_LabelColor);
     margin: 0;
   }

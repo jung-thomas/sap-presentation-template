@@ -8,11 +8,13 @@
 
 <template>
   <ui5-card :class="['bio', { compact }]">
+    <!-- eslint-disable vue/no-deprecated-slot-attribute -- UI5 Web Components use native HTML slot attributes -->
     <ui5-card-header slot="header" :title-text="p.name" :subtitle-text="p.title">
       <ui5-avatar slot="avatar" :initials="p.initials" size="L" shape="Circle">
         <img v-if="p.photo" :src="p.photo" :alt="p.name" />
       </ui5-avatar>
     </ui5-card-header>
+    <!-- eslint-enable vue/no-deprecated-slot-attribute -->
     <div v-if="!compact && p.bio" class="bio-body">
       {{ p.bio }}
     </div>

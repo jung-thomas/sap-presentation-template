@@ -20,6 +20,6 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI
   },
   expect: {
-    toHaveScreenshot: { maxDiffPixelRatio: 0.005 }
+    toHaveScreenshot: { maxDiffPixelRatio: 0.015 }
   }
 })

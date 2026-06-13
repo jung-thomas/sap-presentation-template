@@ -4,10 +4,7 @@
 </script>
 
 <template>
-  <div
-    class="layout full-bleed-image"
-    :style="fm.src ? { backgroundImage: `url(${fm.src})` } : {}"
-  >
+  <div class="layout full-bleed-image" :style="fm.src ? { backgroundImage: `url(${fm.src})` } : {}">
     <div v-if="fm.title" class="overlay">
       <h1>{{ fm.title }}</h1>
       <slot />

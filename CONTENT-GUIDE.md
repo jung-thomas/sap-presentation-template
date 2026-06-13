@@ -65,6 +65,70 @@ Use components to add structured, on-brand elements inside any layout.
 
 ---
 
+## Cover variants
+
+The cover layout has 12 visual variants. Reference by letter (POTX-faithful)
+or descriptive alias (self-documenting):
+
+| Letter | Alias                | Visual treatment                               | Logo                                                   |
+| ------ | -------------------- | ---------------------------------------------- | ------------------------------------------------------ |
+| `a`    | `photo`              | Photo on right half, white background          | Primary (always — left half is white)                  |
+| `b`    | `diagonal`           | Solid blue with diagonal cut to white triangle | White                                                  |
+| `c`    | `photo-portrait`     | Multi-shape composition, blue palette          | White                                                  |
+| `d`    | `multi-shape`        | Multi-shape composition, teal/green palette    | Primary (POTX uses LogoBlack-Dynamic for this variant) |
+| `e`    | `multi-shape-purple` | Multi-shape composition, purple/pink palette   | White                                                  |
+| `f`    | `solid-blue`         | Solid SAP brand blue                           | White                                                  |
+| `g`    | `wedges`             | Nested layered diagonal wedges                 | White                                                  |
+| `h`    | `solid-teal`         | Solid SAP brand teal                           | White                                                  |
+| `i`    | `solid-purple`       | Solid SAP brand purple                         | White                                                  |
+| `j`    | `diagonal-tinted`    | Diagonal silhouette on tinted blue             | White                                                  |
+| `k`    | `solid-blue-darker`  | Solid darker brand blue                        | White                                                  |
+| `l`    | `gradient-fade`      | Vertical gradient blue → black                 | White                                                  |
+
+Both forms are equivalent:
+
+```yaml
+layout: cover
+variant: a
+```
+
+```yaml
+layout: cover
+variant: photo
+```
+
+---
+
+## Cover photos
+
+Cover A (`variant: photo` or `variant: a`) supports a custom hero image:
+
+```yaml
+layout: cover
+variant: a
+image: /covers/my-photo.jpg
+title: My Talk Title
+```
+
+**Where to put photos:**
+
+- Drop image files in `public/covers/`
+- Reference as `/covers/<filename>` in slide front-matter
+- Recommended aspect ratio: portrait or near-square (1:1 to 1:1.4)
+- Recommended resolution: at least 1920px on long edge
+- Subjects should be on the right side (the title sits on the left half)
+
+**When no `image` is set,** Cover A renders the brand-blue nested-wedges
+fallback decoration so the deck always looks complete.
+
+**For SAP-internal users:** the official SAP press-kit imagery
+([brand.sap.com](https://brand.sap.com)) is the recommended source for
+production decks. Download the .jpg and replace `cover-default.jpg`. The
+Unsplash photo shipped with the template is a permissively-licensed
+placeholder for the public demo; replace it for your own deck.
+
+---
+
 ## Slide-text length budgets
 
 Keep slides sparse. These are maximums, not targets.
@@ -124,6 +188,36 @@ These resources are publicly accessible to any community speaker.
 
 ---
 
+## Typography tokens
+
+Layouts consume font sizes and line-heights via CSS variables emitted
+from the POTX. The current tokens (auto-generated in
+`theme/styles/_extracted/typography-tokens.css`):
+
+- `--typography-cover-title-size` and `--typography-cover-title-line-height`
+- `--typography-content-title-size` and `--typography-content-title-line-height`
+- `--typography-content-body-size` and `--typography-content-body-line-height`
+- `--typography-divider-title-size` and `--typography-divider-title-line-height`
+- `--typography-thankyou-title-size` and `--typography-thankyou-title-line-height`
+- `--typography-quote-title-size` and `--typography-quote-body-size` (when present)
+
+If you need a one-off override, set the token at the slide level:
+
+```html
+<div style="--typography-content-title-size: 2rem">
+  <!-- this slide's title is smaller -->
+</div>
+```
+
+Don't override globally — the tokens regenerate from the POTX on each
+`npm run extract-brand` run, so any global hand-tune would be lost.
+
+**Note:** if a layout's token is absent in `typography-tokens.css` (the
+POTX may not have `lstStyle` data for every placeholder), the layout
+falls back to its hardcoded CSS default value.
+
+---
+
 ## Quality patterns
 
 These patterns keep slides effective and on-brand.
@@ -170,3 +264,10 @@ git add -A && git commit -m "chore: bump brand to <version>"
 ```
 
 If the visual diff reveals unintended regressions (e.g., a spacing token changed), fix the affected layout before updating baselines.
+
+---
+
+## Asset attributions
+
+- **`public/covers/cover-default.jpg`** — Photo by [Marvin Meyer](https://unsplash.com/@marvelous) on [Unsplash](https://unsplash.com/photos/SYTO3xs06fU). Used under the [Unsplash License](https://unsplash.com/license).
+- **`public/logos/logo-sap-primary.svg`** and **`logo-sap-white.svg`** — Official SAP brand assets from SAP Brand Tools. Use according to SAP brand guidelines.

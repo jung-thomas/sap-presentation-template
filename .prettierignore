@@ -11,3 +11,9 @@ SAP_Corp.potx
 *.jpeg
 *.svg
 *.woff2
+
+# Slidev source files use YAML front-matter delimiters (---) that
+# Prettier treats as horizontal rules and surrounds with blank lines,
+# which BREAKS Slidev's per-slide front-matter parsing.
+slides.md
+pages/all-layouts.md

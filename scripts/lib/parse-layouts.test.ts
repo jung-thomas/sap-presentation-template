@@ -43,4 +43,29 @@ describe('parse-layouts', () => {
       }
     }
   })
+
+  it('captures <p:pic> elements per layout (e.g., the SAP logo on Cover A)', async () => {
+    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const layouts = await extractAllLayouts(tmp)
+    const cover = layouts.find((l) => l.name === 'Cover A')
+    expect(cover).toBeDefined()
+    expect(Array.isArray(cover.pics)).toBe(true)
+    expect(cover.pics.length).toBeGreaterThanOrEqual(1)
+    const pic = cover.pics[0]
+    expect(pic.x).toBeGreaterThanOrEqual(0)
+    expect(pic.y).toBeGreaterThanOrEqual(0)
+    expect(pic.cx).toBeGreaterThan(0)
+    expect(pic.cy).toBeGreaterThan(0)
+  })
+
+  it('captures placeholder lstStyle font size when present', async () => {
+    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const layouts = await extractAllLayouts(tmp)
+    const cover = layouts.find((l) => l.name === 'Cover A')
+    const title = cover.placeholders.find((p) => p.type === 'title')
+    expect(title).toBeDefined()
+    if (title.textStyles?.fontSize !== undefined) {
+      expect(title.textStyles.fontSize).toBeGreaterThan(0)
+    }
+  })
 })

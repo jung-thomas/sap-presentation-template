@@ -16,5 +16,7 @@
 @import '@sap-theming/theming-base-content/content/Base/baseLib/sap_horizon/css_variables.css';
 
 @import './_extracted/brand-tokens.css';
+@import './_extracted/cover-tokens.css';
+@import './_extracted/typography-tokens.css';
 @import './horizon-mapping.css';
 @import './slide-styles.css';

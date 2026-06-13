@@ -24,7 +24,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: var(--typography-content-body-size, 1.5rem);
   }
   .agenda li {
     display: flex;
@@ -34,6 +34,7 @@
     border-bottom: 1px solid #e5e9ed;
     color: var(--sapTextColor);
     opacity: 0.6;
+    line-height: var(--typography-content-body-line-height, 1.5);
   }
   .agenda li.active {
     opacity: 1;
