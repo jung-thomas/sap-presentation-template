@@ -132,7 +132,7 @@ function generateMarkdown(slug, pngFiles) {
   const slides = pngFiles
     .map((f) => {
       const src = `/imported/${slug}/${basename(f)}`
-      return `---\nlayout: full-bleed-image\n---\n\n![Imported slide](${src})\n`
+      return `---\nlayout: image-slide\nsrc: ${src}\n---\n`
     })
     .join('\n')
 
