@@ -692,7 +692,8 @@ vi.mock('../components/decorations/DecorationSolid.vue', () => ({
   logoTreatment: 'white'
 }))
 vi.mock('../components/decorations/DecorationMultiShape.vue', () => ({
-  default: { name: 'DecorationMultiShape' }
+  default: { name: 'DecorationMultiShape' },
+  logoTreatment: 'white'
 }))
 vi.mock('../components/decorations/DecorationGradient.vue', () => ({
   default: { name: 'DecorationGradient' }
@@ -762,6 +763,19 @@ describe('useDarkLogo', () => {
     expect(useDarkLogo('a', undefined)).toBe(true)
     expect(useDarkLogo('a', '')).toBe(true)
   })
+
+  it('honors per-decoration logoTreatment for multi-shape variants c/d/e', () => {
+    // The DecorationSolid mock at top exports logoTreatment: 'white' — this stands
+    // in for what DecorationMultiShape will declare. Auto variants should consult it.
+    // (In a more thorough test we would also mock DecorationMultiShape; here we
+    // verify the auto-branch executes — it should return true since the mock has
+    // logoTreatment: 'white'.)
+    // For a real multi-shape variant: c, d, e — the auto branch reads
+    // DecorationMultiShape's logoTreatment export.
+    expect(useDarkLogo('c')).toBe(true)
+    expect(useDarkLogo('d')).toBe(true)
+    expect(useDarkLogo('e')).toBe(true)
+  })
 })
 ```
 
@@ -779,7 +793,7 @@ import DecorationPhoto from '../components/decorations/DecorationPhoto.vue'
 import DecorationDiagonal from '../components/decorations/DecorationDiagonal.vue'
 import DecorationWedges from '../components/decorations/DecorationWedges.vue'
 import DecorationSolid, { logoTreatment as solidLogoTreatment } from '../components/decorations/DecorationSolid.vue'
-import DecorationMultiShape from '../components/decorations/DecorationMultiShape.vue'
+import DecorationMultiShape, { logoTreatment as multiLogoTreatment } from '../components/decorations/DecorationMultiShape.vue'
 import DecorationGradient from '../components/decorations/DecorationGradient.vue'
 
 const DECORATION_BY_LETTER = {
@@ -797,6 +811,16 @@ const DECORATION_BY_LETTER = {
   l: DecorationGradient
 } as const
 
+// Each decoration component may export a `logoTreatment` constant that
+// determines whether the SAP logo on top of it should be the color or
+// white-monochrome variant. We index those exports here so useDarkLogo()
+// can resolve them per variant.
+const DECORATION_LOGO_TREATMENTS: Record<string, 'primary' | 'white' | undefined> = {
+  c: multiLogoTreatment,
+  d: multiLogoTreatment,
+  e: multiLogoTreatment
+}
+
 const ALIASES: Record<string, string> = {
   photo: 'a',
   diagonal: 'b',
@@ -813,6 +837,7 @@ const ALIASES: Record<string, string> = {
 }
 
 const DARK_BG_VARIANTS = new Set(['b', 'f', 'g', 'h', 'i', 'j', 'k', 'l'])
+const AUTO_LOGO_VARIANTS = new Set(['c', 'd', 'e'])
 
 export function resolveCoverVariant(input?: string): string {
   if (!input) return 'a'
@@ -828,7 +853,13 @@ export function getDecoration(letter: string) {
 export function useDarkLogo(letter: string, image?: string): boolean {
   // Cover A with no image renders the wedge fallback (dark) → white logo
   if (letter === 'a' && !image) return true
-  return DARK_BG_VARIANTS.has(letter)
+  // Variants with a known dark background → white logo
+  if (DARK_BG_VARIANTS.has(letter)) return true
+  // Multi-shape variants (c/d/e) defer to the decoration component's exported preference
+  if (AUTO_LOGO_VARIANTS.has(letter)) {
+    return DECORATION_LOGO_TREATMENTS[letter] === 'white'
+  }
+  return false
 }
 ```
 
