@@ -2,15 +2,19 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { extractMedia } from './extract-media.mjs'
 import { extractPotxToTemp } from './unzip-potx.mjs'
 import { mkdtemp, rm, readdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
-describe('extract-media', () => {
+const POTX_PATH = resolve('SAP_Corp.potx')
+const HAS_POTX = existsSync(POTX_PATH)
+
+describe.skipIf(!HAS_POTX)('extract-media', () => {
   let potxTmp: string
   let outDir: string
 
   beforeAll(async () => {
-    potxTmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    potxTmp = await extractPotxToTemp(POTX_PATH)
     outDir = await mkdtemp(join(tmpdir(), 'media-out-'))
   })
 

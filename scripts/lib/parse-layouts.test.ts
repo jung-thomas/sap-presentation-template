@@ -1,11 +1,15 @@
 import { describe, it, expect } from 'vitest'
 import { extractAllLayouts } from './parse-layouts.mjs'
 import { extractPotxToTemp } from './unzip-potx.mjs'
+import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-describe('parse-layouts', () => {
+const POTX_PATH = resolve('SAP_Corp.potx')
+const HAS_POTX = existsSync(POTX_PATH)
+
+describe.skipIf(!HAS_POTX)('parse-layouts', () => {
   it('extracts all 45 slide layouts from the POTX', async () => {
-    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const tmp = await extractPotxToTemp(POTX_PATH)
     const layouts = await extractAllLayouts(tmp)
 
     expect(layouts).toHaveLength(45)
@@ -20,7 +24,7 @@ describe('parse-layouts', () => {
   })
 
   it('captures placeholder geometry in EMU', async () => {
-    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const tmp = await extractPotxToTemp(POTX_PATH)
     const layouts = await extractAllLayouts(tmp)
     const cover = layouts.find((l) => l.name === 'Cover A')
     expect(cover).toBeDefined()
@@ -31,7 +35,7 @@ describe('parse-layouts', () => {
   })
 
   it('only includes shapes that have a placeholder annotation', async () => {
-    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const tmp = await extractPotxToTemp(POTX_PATH)
     const layouts = await extractAllLayouts(tmp)
     // Every placeholder must have a non-null `type` field (defaults to 'body' if @_type missing).
     // If a decorative shape leaked in, its type would still be 'body' but presence count would be off.
@@ -45,7 +49,7 @@ describe('parse-layouts', () => {
   })
 
   it('captures <p:pic> elements per layout (e.g., the SAP logo on Cover A)', async () => {
-    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const tmp = await extractPotxToTemp(POTX_PATH)
     const layouts = await extractAllLayouts(tmp)
     const cover = layouts.find((l) => l.name === 'Cover A')
     expect(cover).toBeDefined()
@@ -59,7 +63,7 @@ describe('parse-layouts', () => {
   })
 
   it('captures placeholder lstStyle font size when present', async () => {
-    const tmp = await extractPotxToTemp(resolve('SAP_Corp.potx'))
+    const tmp = await extractPotxToTemp(POTX_PATH)
     const layouts = await extractAllLayouts(tmp)
     const cover = layouts.find((l) => l.name === 'Cover A')
     const title = cover.placeholders.find((p) => p.type === 'title')
