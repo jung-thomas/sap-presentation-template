@@ -25,7 +25,7 @@
 </script>
 
 <template>
-  <div class="anvil-grid" :style="style"></div>
+  <div class="anvil-grid" :style="style" aria-hidden="true"></div>
 </template>
 
 <style scoped>
