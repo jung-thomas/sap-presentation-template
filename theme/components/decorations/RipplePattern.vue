@@ -52,18 +52,26 @@
     position: absolute;
     pointer-events: none;
     z-index: 1;
+    /* Anvil-pattern decorations should never sit underneath title or body
+       text — per SAP brand examples on brand.sap.com, the ripple appears as
+       a thin decorative band along the slide edge. Each placement variant
+       below sets a height capped well below the title/content region.
+       Slight opacity preserves readability if a long title line overflows
+       toward the band; the SAP brand examples show the ripple at full
+       saturation but always with text safely above it. */
+    opacity: 0.85;
   }
   .ripple-bottom {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 30%;
+    height: 12%;
   }
   .ripple-top {
     left: 0;
     right: 0;
     top: 0;
-    height: 30%;
+    height: 12%;
   }
   .ripple-full {
     inset: 0;
@@ -80,7 +88,15 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* `contain` preserves the SVG's natural ~3.4:1 aspect (5242×1553), so the
+       anvils render at their intended density inside the band. `cover` would
+       upscale the pattern beyond the band (and over the title text). */
+    object-fit: contain;
+    object-position: bottom;
+  }
+  .ripple-top .ripple-img,
+  .ripple-top .ripple-inline :deep(svg) {
+    object-position: top;
   }
   .ripple-inline :deep(path) {
     fill: var(--ripple-color) !important;
