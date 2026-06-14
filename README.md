@@ -86,6 +86,21 @@ This produces:
 
 See [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) for layout/component conventions, slide-text length budgets, and curated SAP brand voice references.
 
+### Keyboard shortcuts (Slidev built-ins)
+
+While presenting or previewing, the deck supports Slidev's standard keyboard shortcuts:
+
+| Key                       | Action                                  |
+| ------------------------- | --------------------------------------- |
+| `→` / `←`                 | Next / previous slide                   |
+| `o`                       | Toggle slide overview / navigator panel |
+| `f`                       | Toggle full-screen                      |
+| `g <number>` then `Enter` | Go to slide by number                   |
+| `d`                       | Toggle dark mode                        |
+| `?`                       | Show full Slidev shortcut reference     |
+
+> **Tip:** if the slide overview panel (opened with `o`) appears cut off at the edges of your browser window, press `o` again to dismiss it, or click the `×` icon at the top-right of the overview. Slidev positions the close affordance relative to the viewport — very tall slide lists may extend past the visible area in non-full-screen browser windows.
+
 ## License
 
 The template scaffolding is MIT-licensed. Derived brand-token CSS files in `theme/styles/_extracted/` reflect publicly-documented SAP Horizon palette colors. Any SAP brand assets you place locally (`SAP_Corp.potx`, official logos) remain SAP property — use according to SAP brand guidelines.

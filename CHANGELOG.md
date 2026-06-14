@@ -7,6 +7,16 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.3.1] — 2026-06-14
+
+### Fixed
+
+- **Ripple decoration no longer renders under cover-slide text.** v0.3.0 set `<RipplePattern>`'s default bottom-band height to 30% of the slide and used `object-fit: cover`, which upscaled the SVG (natural aspect ~3.4:1) far past the band's intended boundary and produced a noisy backdrop behind the cover title and presenter signature. v0.3.1 reduces the band to 12% of slide height, switches to `object-fit: contain` to preserve the SVG's intended density, and pins the image to the bottom edge — the ripple now reads as a thin decorative footer matching the SAP brand portal examples.
+
+### Documentation
+
+- Added a "Keyboard shortcuts" section to [README.md](./README.md) listing Slidev's standard keybindings (`o` for slide overview, `f` for full-screen, etc.) and a tip for dismissing the overview panel when its close affordance is positioned outside the visible viewport.
+
 ## [0.3.0] — 2026-06-14
 
 ### Added
