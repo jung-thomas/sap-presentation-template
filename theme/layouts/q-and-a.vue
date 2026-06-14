@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
   const presenter = computed(() => fm.value.presenter as string | undefined)
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
@@ -12,6 +14,7 @@
     <p class="prompt">Ask now, or find me later.</p>
     <Bio :presenter="presenter" compact />
     <slot />
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

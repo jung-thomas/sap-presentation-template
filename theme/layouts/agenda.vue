@@ -1,7 +1,11 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
   import AgendaList from '../components/Agenda.vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
 
-  defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
+  const fm = computed(() => props.frontmatter ?? {})
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
@@ -9,6 +13,7 @@
     <h1>{{ $frontmatter?.title ?? 'Agenda' }}</h1>
     <AgendaList :items="$frontmatter?.items" :current="$frontmatter?.current" />
     <slot />
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

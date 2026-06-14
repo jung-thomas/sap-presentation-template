@@ -2,12 +2,14 @@
   import { computed } from 'vue'
   import DecorationThankYou from '../components/decorations/DecorationThankYou.vue'
   import Speaker from '../components/Speaker.vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
   import { getEvent } from '../setup/data'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
   const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
   const presenter = computed(() => fm.value.presenter as string | undefined)
+  const classification = computed(() => fm.value.classification as string | null | undefined)
   const event = getEvent()
 </script>
 
@@ -20,6 +22,7 @@
       <p v-if="event.hashtag" class="hashtag">{{ event.hashtag }}</p>
       <slot />
     </div>
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

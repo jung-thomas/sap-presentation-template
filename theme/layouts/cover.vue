@@ -3,6 +3,7 @@
   import { resolveCoverVariant, getDecoration, useDarkLogo } from '../setup/cover-variants'
   import { assetUrl } from '../setup/assets'
   import Speaker from '../components/Speaker.vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
   import { getEvent } from '../setup/data'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
@@ -21,6 +22,7 @@
 
   const eventData = getEvent()
   const eventName = computed(() => (fm.value.event as string) ?? eventData.name)
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
@@ -40,6 +42,7 @@
         <span class="event">{{ eventName }}</span>
       </footer>
     </div>
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

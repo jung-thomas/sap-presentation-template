@@ -1,10 +1,12 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import DividerWedge from '../components/decorations/DividerWedge.vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
   const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
@@ -16,6 +18,7 @@
       </h1>
       <slot />
     </div>
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 
