@@ -7,6 +7,50 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.3.0] — 2026-06-14
+
+### Added
+
+- POTX-sourced decoration assets: Anvil Ripple (`image38.svg`), Flat Anvil primitive, SAP wordmark, brand-licensed cover photos, ~18 SAP icon glyphs (all bundled in `public/sap/`)
+- Named color tokens: `--sap-blue-7`, `--sap-mango-6`, `--sap-text-on-blue-11`, etc. — 54 total, parsed from POTX legend slide 20
+- Theme-scheme aliases: `--sap-accent-1..6`, `--sap-link`, `--sap-text-primary`, `--sap-text-secondary`
+- SAP "72" typeface as the default body+heading font, sourced from `@sap-theming/theming-base-content` (Apache 2.0)
+- `<RipplePattern>`, `<FlatAnvil>`, `<AnvilGrid>`, `<PhotoFrame>`, `<WordmarkBookmark>` decoration components
+- `<SapIcon>`, `<HarveyBall>`, `<ClassificationFooter>` utility components
+- Logo clear-space enforcement: `theme/setup/clear-space.ts` computes the keep-out box; per-pixel ΔE Playwright test scaffold (full coverage deferred to v0.4)
+- `classification:` front-matter (per-deck and per-slide); default `INTERNAL` from POTX
+- `themeConfig.font: 'inter'` per-deck opt-out via `theme/setup/font.ts`
+- `agenda:` front-matter overrides for POTX-derived agenda config
+- Layouts: Quote, Q&A (`Join the conversation`), Title Photo, Full-bleed Image, Screenshot — and 12 cover variants (was 5)
+- `decisions.yaml`: every POTX layout has a documented ship/alias/exclude status (35 ship + 5 alias + 5 exclude)
+- `THIRD-PARTY-NOTICES.md` for bundled SAP brand assets
+
+### Changed
+
+- v0.2 hand-rolled SVG decoration approximations replaced with POTX-sourced assets (Ripple, Flat Anvil)
+- `<Bio>` extended to dual-API: v0.2 single-presenter (`:presenter`/`:compact`) keeps working AND new team-mode (`:people`) for POTX slide-14 composition
+- All 22 non-excluded layouts render `<ClassificationFooter>`
+- Theme parser (`parse-theme.mjs`) now returns `themeAccents` from clrScheme
+- All v0.2 `--sap-brand-{descriptor}` and `--sap-color-{hex}` tokens kept as deprecated aliases pointing to canonical `--sap-{family}-{tint}` names (49-token rename map in `emit-palette-tokens.mjs`)
+
+### Fixed
+
+- Visual-regression baseline coverage: previous v0.2 baselines for slides 22-99 were silently testing the same demo slide due to a Playwright `reuseExistingServer` rogue-server issue. Rebaseline against the 148-slide gallery deck restored true coverage (84/99 baselines refreshed)
+
+### Deprecated
+
+- `--sap-brand-blue` and family — use `--sap-blue-7` and family
+- `--sap-color-{hex}` fallbacks — use `--sap-{family}-{tint}`
+- `--sap-font-major`, `--sap-font-minor` — use `--sap-font-family`
+
+### Excluded from POTX
+
+- 5 layouts: 3 author-only tip slides, `>Copilot layouts >`, `>DO NOT USE>`
+
+### Out of scope (deferred to v0.4)
+
+- Dimensional Graphic Pattern, Copilot/Joule layouts, animation/transition fidelity, i18n classification, deeper Templafy interop, `horizon-mapping.css` migration to canonical token names, per-slide Playwright navigation for clear-space tests, hidden-slide pruning at build time
+
 ## [0.2.0] — 2026-06-13
 
 ### Visual fidelity sweep — all major layouts now POTX-correct
