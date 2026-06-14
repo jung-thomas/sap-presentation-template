@@ -665,3 +665,200 @@ title: "Component: Disclaimer (safe-harbor)"
 ---
 
 <Disclaimer kind="safe-harbor" />
+
+---
+
+layout: content
+title: "Content Layout — Text Variant"
+variant: text
+
+---
+
+This is a content slide with text variant. Use for flowing prose or bullet points.
+
+- Bullet one
+- Bullet two
+- Bullet three
+
+---
+
+layout: content
+title: "Content Layout — 2-Column"
+variant: 2col
+
+---
+
+::left::
+
+Left column content.
+
+::right::
+
+Right column content.
+
+---
+
+layout: content
+title: "Content Layout — 3-Column"
+variant: 3col
+
+---
+
+::col1::
+
+Column 1
+
+::col2::
+
+Column 2
+
+::col3::
+
+Column 3
+
+---
+
+layout: content
+title: "Content Layout — Default"
+variant: default
+
+---
+
+Default content layout with standard styling and spacing.
+
+---
+
+layout: content-image
+title: "Content Image — 1-3 Layout"
+variant: 1-3
+
+---
+
+::col1::
+
+Text or content in left column.
+
+::col2::
+
+::col3::
+
+![Placeholder](https://placehold.co/400x300/0070F2/white?text=Image)
+
+---
+
+layout: full-bleed-image
+title: "Full Bleed Image Layout"
+
+---
+
+![Full bleed image](https://placehold.co/1920x1080/222222/white?text=Full+Bleed+Image)
+
+---
+
+layout: screenshot
+title: "Screenshot Layout"
+
+---
+
+![Screenshot](https://placehold.co/960x600/F0F0F0/333333?text=Screenshot)
+
+---
+
+layout: quote
+title: "Quote Layout"
+
+---
+
+"The future belongs to those who believe in the beauty of their dreams." — Eleanor Roosevelt
+
+---
+
+layout: blank
+title: "Blank Layout"
+
+---
+
+A completely blank canvas for custom content.
+
+---
+
+layout: agenda
+title: "Agenda Layout — Variant A"
+variant: a
+
+---
+
+---
+
+layout: agenda
+title: "Agenda Layout — Variant B"
+variant: b
+
+---
+
+---
+
+layout: content-image
+title: "Content + Image — 2-Column"
+variant: 2col
+
+---
+
+::text::
+
+Text or content alongside an image.
+
+::image::
+
+![Placeholder](https://placehold.co/600x400/0070F2/white?text=Image)
+
+---
+
+layout: content-image
+title: "Content + Image — 3-Column"
+variant: 3col
+
+---
+
+::col1::
+
+Text pane one.
+
+::col2::
+
+![Placeholder](https://placehold.co/400x300/0070F2/white?text=Image)
+
+::col3::
+
+Text pane three.
+
+---
+
+layout: content-image
+title: "Content + Image — 4-Column"
+variant: 4col
+
+---
+
+::col1::
+
+Pane 1
+
+::col2::
+
+Pane 2
+
+::col3::
+
+Pane 3
+
+::col4::
+
+Pane 4
+
+---
+
+layout: qa
+presenter: thomas-jung
+
+---
