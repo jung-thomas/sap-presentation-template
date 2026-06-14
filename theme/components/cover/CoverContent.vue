@@ -42,7 +42,7 @@
 
     <div class="cover-byline">
       <span v-if="presenterData" class="cover-name">
-        {{ presenterData.name }}<span v-if="presenterData.title">, {{ presenterData.title }}</span>
+        {{ presenterData.name }}, {{ presenterData.title }}
       </span>
       <span class="cover-date">{{ formattedDate }}</span>
     </div>
