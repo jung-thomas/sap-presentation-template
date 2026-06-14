@@ -53,3 +53,51 @@ export function resolveCoverVariant(input?: string): CoverLetter {
 export function getVariantSpec(letter: CoverLetter): CoverVariantConfig {
   return COVER_VARIANTS[letter]
 }
+
+const UNIMPLEMENTED_LETTERS = new Set(['b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
+
+/**
+ * Build-time / runtime validator for the cover layout. Throws on:
+ *   - unimplemented variants (b..j) with a v0.4.1 migration message
+ *   - variants k/l without image: front-matter
+ *
+ * Variant 'a' with image: set is allowed but emits a console warning.
+ *
+ * Returns the variant letter unchanged when valid.
+ */
+export function validateVariant(input: string, ctx: { hasImage: boolean }): CoverLetter {
+  const lower = input.toLowerCase()
+
+  if (UNIMPLEMENTED_LETTERS.has(lower)) {
+    throw new Error(
+      `Cover variant '${lower}' is not yet implemented in v0.4.0. ` +
+        `Available: a, k, l. Tracked for v0.4.1 in ` +
+        `docs/superpowers/audit/2026-06-14-v0.4-findings.md.`
+    )
+  }
+
+  if (!VALID_LETTERS.has(lower as CoverLetter)) {
+    throw new Error(
+      `Cover variant '${lower}' is not a recognized letter. ` + `Use one of: a, k, l.`
+    )
+  }
+
+  const letter = lower as CoverLetter
+  const spec = COVER_VARIANTS[letter]
+
+  if (spec.hasPhoto && !ctx.hasImage) {
+    throw new Error(
+      `Cover variant '${letter}' requires an image: front-matter. ` +
+        `Add image: /path/to/photo.png (relative to public/) to your slide.`
+    )
+  }
+
+  if (!spec.hasPhoto && ctx.hasImage) {
+    console.warn(
+      `[cover] variant '${letter}' ignores image: front-matter ` +
+        `(this variant has no photo region).`
+    )
+  }
+
+  return letter
+}

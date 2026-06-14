@@ -1,9 +1,10 @@
 // theme/setup/cover-variants.test.ts
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import {
   COVER_VARIANTS,
   resolveCoverVariant,
   getVariantSpec,
+  validateVariant,
   type CoverLetter
 } from './cover-variants'
 
@@ -63,5 +64,39 @@ describe('getVariantSpec', () => {
     expect(getVariantSpec('a')).toBe(COVER_VARIANTS.a)
     expect(getVariantSpec('k')).toBe(COVER_VARIANTS.k)
     expect(getVariantSpec('l')).toBe(COVER_VARIANTS.l)
+  })
+})
+
+describe('validateVariant', () => {
+  it('returns the letter unchanged for valid variants', () => {
+    expect(validateVariant('a', { hasImage: false })).toBe('a')
+    expect(validateVariant('k', { hasImage: true })).toBe('k')
+    expect(validateVariant('l', { hasImage: true })).toBe('l')
+  })
+
+  it('throws for unimplemented variants with a migration message', () => {
+    expect(() => validateVariant('b', { hasImage: false })).toThrow(
+      /Cover variant 'b' is not yet implemented in v0.4.0.*Available: a, k, l.*v0.4.1/
+    )
+    expect(() => validateVariant('c', { hasImage: false })).toThrow(/Cover variant 'c'/)
+  })
+
+  it('throws when variant k is used without image', () => {
+    expect(() => validateVariant('k', { hasImage: false })).toThrow(
+      /variant 'k' requires an image:/
+    )
+  })
+
+  it('throws when variant l is used without image', () => {
+    expect(() => validateVariant('l', { hasImage: false })).toThrow(
+      /variant 'l' requires an image:/
+    )
+  })
+
+  it('emits a dev-mode warning when variant a is given an image (does not throw)', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    expect(validateVariant('a', { hasImage: true })).toBe('a')
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining("variant 'a' ignores image:"))
+    warn.mockRestore()
   })
 })
