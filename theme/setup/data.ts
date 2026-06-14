@@ -27,10 +27,15 @@ export function resolvePresenters(slugs: string[]): Presenter[] {
   return slugs.map((s) => resolvePresenter(s))
 }
 
-export function resolveTeam(slug: string): Team & { presenters: Presenter[] } {
+export function resolveTeam(slug: string): Team & { presenters: (Presenter & { qr?: string })[] } {
   const t = teams[slug]
   if (!t) throw new Error(`team "${slug}" not found in /teams/`)
-  return { ...t, presenters: resolvePresenters(t.members) }
+  const presenters = t.members.map((m) => {
+    const memberObj = typeof m === 'string' ? { slug: m } : m
+    const presenter = resolvePresenter(memberObj.slug)
+    return { ...presenter, qr: memberObj.qr }
+  })
+  return { ...t, presenters }
 }
 
 export function resolveProgram(slug: string): Program {

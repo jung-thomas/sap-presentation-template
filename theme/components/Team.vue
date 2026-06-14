@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { resolveTeam } from '../setup/data'
   import Bio from './Bio.vue'
+  import QRCode from './QRCode.vue'
 
   const props = defineProps<{ team: string; columns?: number }>()
   const t = resolveTeam(props.team)
@@ -13,7 +14,10 @@
       {{ t.tagline }}
     </header>
     <div class="team-grid" :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }">
-      <Bio v-for="p in t.presenters" :key="p.slug" :presenter="p.slug" compact />
+      <div v-for="p in t.presenters" :key="p.slug" class="team-member">
+        <Bio :presenter="p.slug" compact />
+        <QRCode v-if="p.qr" :url="p.qr" :size="64" class="team-qr" />
+      </div>
     </div>
   </div>
 </template>
@@ -31,5 +35,15 @@
   .team-grid {
     display: grid;
     gap: 1rem;
+  }
+  .team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .team-qr {
+    width: 64px;
+    height: 64px;
   }
 </style>
