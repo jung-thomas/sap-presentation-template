@@ -12,6 +12,9 @@ import '@ui5/webcomponents-fiori/dist/TimelineItem.js'
 
 import { setTheme } from '@ui5/webcomponents-base/dist/config/Theme.js'
 
+// Wire up font configuration.
+import './font'
+
 export default defineAppSetup(({ app: _app, router: _router }) => {
   // Force Horizon theme for UI5 Web Components.
   setTheme('sap_horizon')
