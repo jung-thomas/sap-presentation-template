@@ -182,9 +182,96 @@ const roadmapPhases = [
 <Roadmap :phases="roadmapPhases" />
 
 ---
-layout: q-and-a
-presenter: thomas-jung
+layout: cover
+variant: c
+image: /sap/covers/cover-1.png
+title: Building on BTP
+subtitle: A v0.3 cover demo
+classification: PUBLIC
 ---
+
+---
+layout: agenda
+title: Today's agenda (with override)
+agenda:
+  showSubsections: false
+items:
+  - title: Welcome
+  - title: BTP overview
+    subsections:
+      - The platform
+      - Key services
+  - title: Demo
+  - title: Q&A
+classification: PUBLIC
+---
+
+---
+layout: quote
+classification: PUBLIC
+author: Steve Lucas
+source: SAP CEO
+---
+
+> Innovation is the lifeblood of our success.
+
+---
+layout: title-only
+title: Meet our team
+classification: PUBLIC
+---
+
+<Bio :people="[
+  { name: 'Nina Thompson', role: 'Data Analyst', qr: 'https://people.sap.com/nina' },
+  { name: 'Marcus Bennett', role: 'CSM', qr: 'https://people.sap.com/marcus' },
+  { name: 'Sofia Nguyen', role: 'QA Engineer', qr: 'https://people.sap.com/sofia' },
+  { name: 'Ethan Brooks', role: 'Tech Sales', qr: 'https://people.sap.com/ethan' }
+]" />
+
+---
+layout: title-only
+title: HarveyBall ratings
+classification: PUBLIC
+---
+
+<div style="display:flex; gap:1.5rem; align-items:center; padding:2rem;">
+  <HarveyBall :value="0" :of="4" /> <span>0/4</span>
+  <HarveyBall :value="1" :of="4" /> <span>1/4</span>
+  <HarveyBall :value="2" :of="4" /> <span>2/4</span>
+  <HarveyBall :value="3" :of="4" /> <span>3/4</span>
+  <HarveyBall :value="4" :of="4" /> <span>4/4</span>
+</div>
+
+---
+layout: title-only
+title: SAP icon catalog
+classification: PUBLIC
+---
+
+<div style="display:flex; gap:2rem; align-items:center; padding:2rem; font-size:3rem; color:var(--sap-blue-7)">
+  <SapIcon name="wrench" size="3rem" />
+  <SapIcon name="lightbulb" size="3rem" />
+  <SapIcon name="family-care" size="3rem" />
+</div>
+
+---
+layout: q-and-a
+title: Join the conversation
+presenter: thomas-jung
+classification: PUBLIC
+---
+
+Submit questions at https://sap.com/qa
+
+---
+hidden: true
+layout: title-text
+title: Hidden speaker notes (dev-mode only)
+---
+
+This slide has `hidden: true` in front-matter. v0.3 does not yet implement
+build-time pruning of hidden slides, so it currently renders in all modes.
+Tracked for a future Vite plugin.
 
 ---
 layout: thank-you

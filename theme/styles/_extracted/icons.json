@@ -1,0 +1,74 @@
+{
+  "wrench": {
+    "src": "/sap/icons/wrench.svg",
+    "viewBox": "0 0 43.18 43.18"
+  },
+  "write-new-document": {
+    "src": "/sap/icons/write-new-document.svg",
+    "viewBox": "0 0 43.18 43.18"
+  },
+  "tags": {
+    "src": "/sap/icons/tags.svg",
+    "viewBox": "0 0 43.18 43.18"
+  },
+  "newspaper": {
+    "src": "/sap/icons/newspaper.svg",
+    "viewBox": "0 0 43.18 43.18"
+  },
+  "e-learning": {
+    "src": "/sap/icons/e-learning.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "lightbulb": {
+    "src": "/sap/icons/lightbulb.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "family-care": {
+    "src": "/sap/icons/family-care.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "customer": {
+    "src": "/sap/icons/customer.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "target-group": {
+    "src": "/sap/icons/target-group.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "add-coursebook": {
+    "src": "/sap/icons/add-coursebook.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "popup-window": {
+    "src": "/sap/icons/popup-window.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "dimension": {
+    "src": "/sap/icons/dimension.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "add-product": {
+    "src": "/sap/icons/add-product.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "people-connected": {
+    "src": "/sap/icons/people-connected.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "overview-chart": {
+    "src": "/sap/icons/overview-chart.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "laptop": {
+    "src": "/sap/icons/laptop.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "full-stacked-column-chart": {
+    "src": "/sap/icons/full-stacked-column-chart.svg",
+    "viewBox": "0 0 96.21 96.21"
+  },
+  "message-popup": {
+    "src": "/sap/icons/message-popup.svg",
+    "viewBox": "0 0 96.21 96.21"
+  }
+}

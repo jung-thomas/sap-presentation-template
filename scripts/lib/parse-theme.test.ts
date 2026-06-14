@@ -23,4 +23,11 @@ describe.skipIf(!HAS_POTX)('parse-theme', () => {
     expect(theme.fonts.major).toMatch(/72/)
     expect(theme.fonts.minor).toMatch(/72/)
   })
+
+  it('extracts theme accents from clrScheme', async () => {
+    const xml = await getPotxFile(POTX_PATH, 'ppt/theme/theme1.xml')
+    const theme = parseThemeXml(xml)
+    expect(theme.themeAccents.accent1).toBe('E76500')
+    expect(theme.themeAccents.hlink).toBe('0070F2')
+  })
 })

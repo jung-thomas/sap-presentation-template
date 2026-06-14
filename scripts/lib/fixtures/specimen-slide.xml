@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+       xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
+       xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+       show="0">
+  <p:cSld>
+    <p:spTree>
+      <p:sp><p:nvSpPr><p:cNvPr id="1" name="Title 1"/><p:nvPr><p:ph type="ctrTitle"/></p:nvPr></p:nvSpPr>
+        <p:txBody>
+          <a:p>
+            <a:r><a:t>Meet</a:t></a:r>
+            <a:r><a:t> our team </a:t></a:r>
+            <a:r><a:t>&amp; friends</a:t></a:r>
+          </a:p>
+        </p:txBody></p:sp>
+      <p:sp><p:nvSpPr><p:cNvPr id="2" name="Spaker name - Dynamic"/></p:nvSpPr></p:sp>
+      <p:sp><p:nvSpPr><p:cNvPr id="3" name="Date - Dynamic"/></p:nvSpPr></p:sp>
+      <p:sp><p:nvSpPr><p:cNvPr id="4" name="Partner Logo Placeholder"/></p:nvSpPr></p:sp>
+      <p:sp><p:nvSpPr><p:cNvPr id="5" name="Rectangle 22"/></p:nvSpPr></p:sp>
+    </p:spTree>
+  </p:cSld>
+</p:sld>

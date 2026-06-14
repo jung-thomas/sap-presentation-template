@@ -1,6 +1,10 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
+
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  const fm = computed(() => props.frontmatter ?? {})
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
@@ -42,6 +46,7 @@
         </div>
       </div>
     </div>
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

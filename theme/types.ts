@@ -24,11 +24,16 @@ export interface Presenter {
   email?: string
 }
 
+export interface TeamMember {
+  slug: string
+  qr?: string
+}
+
 export interface Team {
   slug: string
   name: string
   tagline?: string
-  members: string[] // presenter slugs
+  members: (string | TeamMember)[] // presenter slugs, or objects with qr field
 }
 
 export interface Program {

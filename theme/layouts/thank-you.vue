@@ -1,25 +1,28 @@
 <script setup lang="ts">
   import { computed } from 'vue'
-  import DecorationThankYou from '../components/decorations/DecorationThankYou.vue'
+  import RipplePattern from '../components/decorations/RipplePattern.vue'
+  import WordmarkBookmark from '../components/decorations/WordmarkBookmark.vue'
   import Speaker from '../components/Speaker.vue'
-  import { getEvent } from '../setup/data'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
-  const variant = computed(() => (fm.value.variant as string | undefined) ?? 'a')
+  const variant = computed(() => ((fm.value.variant as string) ?? 'b').toLowerCase())
   const presenter = computed(() => fm.value.presenter as string | undefined)
-  const event = getEvent()
+  const coPresenter = computed(() => fm.value.coPresenter as string | undefined)
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
   <div :class="['thank-you', `thank-you--${variant}`]">
-    <DecorationThankYou :variant="variant" />
+    <RipplePattern placement="hero-band" />
+    <WordmarkBookmark placement="bottom-right" />
     <div class="thank-you-content">
       <h1>Thank you.</h1>
-      <Speaker :presenter="presenter" />
-      <p v-if="event.hashtag" class="hashtag">{{ event.hashtag }}</p>
-      <slot />
+      <Speaker v-if="presenter" :presenter="presenter" />
+      <Speaker v-if="coPresenter" :presenter="coPresenter" />
     </div>
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 
@@ -30,31 +33,25 @@
     height: 100%;
     overflow: hidden;
   }
-  .thank-you-content {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 1.5rem;
-    padding: 5rem;
+  .thank-you--a {
+    background: #ffffff;
+    color: var(--sap-text-primary);
+  }
+  .thank-you--b {
+    background: var(--sap-blue-11);
     color: #ffffff;
+  }
+  .thank-you-content {
+    position: absolute;
+    top: 50%;
+    left: 4.13%;
+    transform: translateY(-50%);
+    z-index: 2;
+    font-family: var(--sap-font-family);
   }
   .thank-you h1 {
-    font-size: var(--typography-thankyou-title-size, 6rem);
-    line-height: var(--typography-thankyou-title-line-height, 1);
-    margin: 0;
-    color: #ffffff;
-  }
-  .hashtag {
-    margin-top: 2rem;
-    font-size: 1.25rem;
-    letter-spacing: 0.05em;
-  }
-  .thank-you::after {
-    content: none !important;
+    font-family: var(--sap-font-family-bold);
+    font-size: 4rem;
+    margin: 0 0 2rem;
   }
 </style>

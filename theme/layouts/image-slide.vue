@@ -1,11 +1,16 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+  import ClassificationFooter from '../components/ClassificationFooter.vue'
+
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
-  const fm = props.frontmatter ?? {}
+  const fm = computed(() => props.frontmatter ?? {})
+  const classification = computed(() => fm.value.classification as string | null | undefined)
 </script>
 
 <template>
   <div class="layout image-slide">
     <img :src="fm.src as string" :alt="(fm.alt as string) ?? ''" />
+    <ClassificationFooter :level="classification" />
   </div>
 </template>
 

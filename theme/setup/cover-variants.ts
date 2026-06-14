@@ -1,75 +1,106 @@
-import DecorationPhoto from '../components/decorations/DecorationPhoto.vue'
-import DecorationDiagonal from '../components/decorations/DecorationDiagonal.vue'
-import DecorationWedges from '../components/decorations/DecorationWedges.vue'
-import DecorationSolid from '../components/decorations/DecorationSolid.vue'
-import DecorationMultiShape from '../components/decorations/DecorationMultiShape.vue'
-import DecorationGradient from '../components/decorations/DecorationGradient.vue'
-import { multiShapeLogoTreatment as multiLogoTreatment } from '../components/decorations/decoration-logo-treatments'
+// theme/setup/cover-variants.ts
+import RipplePattern from '../components/decorations/RipplePattern.vue'
+import FlatAnvil from '../components/decorations/FlatAnvil.vue'
+import PhotoFrame from '../components/decorations/PhotoFrame.vue'
+import WordmarkBookmark from '../components/decorations/WordmarkBookmark.vue'
+import type { Component } from 'vue'
 
-const DECORATION_BY_LETTER = {
-  a: DecorationPhoto,
-  b: DecorationDiagonal,
-  c: DecorationMultiShape,
-  d: DecorationMultiShape,
-  e: DecorationMultiShape,
-  f: DecorationSolid,
-  g: DecorationWedges,
-  h: DecorationSolid,
-  i: DecorationSolid,
-  j: DecorationDiagonal,
-  k: DecorationSolid,
-  l: DecorationGradient
-} as const
+export type CoverLetter = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l'
 
-// Per-variant overrides take precedence over the decoration component's
-// default. Use this when POTX inspection reveals a variant has a different
-// background contrast than the component's family default. Cover D's POTX
-// XML references LogoBlack-Dynamic (the primary/color logo), indicating
-// it has a light background despite using the multi-shape decoration.
-const DECORATION_LOGO_TREATMENTS: Record<string, 'primary' | 'white' | undefined> = {
-  c: multiLogoTreatment,
-  d: 'primary',
-  e: multiLogoTreatment
+interface VariantSpec {
+  decorations: Component[] // rendered in z-order
+  background: string // CSS background color
+  textOnBg: 'light' | 'dark' // 'light' = white text, 'dark' = brand-blue-darker
 }
 
-const ALIASES: Record<string, string> = {
-  photo: 'a',
-  diagonal: 'b',
+// Per spec §4.6 / "Cover variant taxonomy" table.
+const VARIANTS: Record<CoverLetter, VariantSpec> = {
+  a: {
+    decorations: [RipplePattern],
+    background: '#ffffff',
+    textOnBg: 'dark'
+  },
+  b: {
+    decorations: [PhotoFrame, FlatAnvil],
+    background: 'var(--sap-blue-10)',
+    textOnBg: 'light'
+  },
+  c: {
+    decorations: [PhotoFrame],
+    background: 'var(--sap-blue-11)',
+    textOnBg: 'light'
+  },
+  d: {
+    decorations: [PhotoFrame, FlatAnvil, FlatAnvil],
+    background: 'var(--sap-blue-2)',
+    textOnBg: 'dark'
+  },
+  e: {
+    decorations: [PhotoFrame, FlatAnvil, FlatAnvil],
+    background: 'var(--sap-blue-10)',
+    textOnBg: 'light'
+  },
+  f: {
+    decorations: [PhotoFrame],
+    background: 'var(--sap-grey-11)',
+    textOnBg: 'light'
+  },
+  g: {
+    decorations: [PhotoFrame],
+    background: '#ffffff',
+    textOnBg: 'dark'
+  },
+  h: {
+    decorations: [PhotoFrame],
+    background: 'var(--sap-blue-6)',
+    textOnBg: 'light'
+  },
+  i: {
+    decorations: [PhotoFrame],
+    background: 'var(--sap-yellow-6)',
+    textOnBg: 'dark'
+  },
+  j: {
+    decorations: [PhotoFrame, FlatAnvil],
+    background: 'var(--sap-blue-10)',
+    textOnBg: 'light'
+  },
+  k: {
+    decorations: [PhotoFrame],
+    background: 'var(--sap-blue-6)',
+    textOnBg: 'light'
+  },
+  l: {
+    decorations: [PhotoFrame, FlatAnvil],
+    background: 'var(--sap-blue-2)',
+    textOnBg: 'dark'
+  }
+}
+
+const ALIASES: Record<string, CoverLetter> = {
+  ripple: 'a',
+  photo: 'b',
   'photo-portrait': 'c',
   'multi-shape': 'd',
   'multi-shape-purple': 'e',
-  'solid-blue': 'f',
-  wedges: 'g',
-  'solid-teal': 'h',
-  'solid-purple': 'i',
-  'diagonal-tinted': 'j',
-  'solid-blue-darker': 'k',
+  'solid-grey': 'f',
+  minimal: 'g',
+  'solid-blue': 'h',
+  'solid-yellow': 'i',
+  'photo-anvil': 'j',
+  'solid-blue-mid': 'k',
   'gradient-fade': 'l'
 }
 
-const DARK_BG_VARIANTS = new Set(['b', 'f', 'g', 'h', 'i', 'j', 'k', 'l'])
-const AUTO_LOGO_VARIANTS = new Set(['c', 'd', 'e'])
-
-export function resolveCoverVariant(input?: string): string {
+export function resolveCoverVariant(input?: string): CoverLetter {
   if (!input) return 'a'
   const lower = input.toLowerCase()
-  if (lower.length === 1 && lower >= 'a' && lower <= 'l') return lower
+  if (lower.length === 1 && lower >= 'a' && lower <= 'l') return lower as CoverLetter
   return ALIASES[lower] ?? 'a'
 }
 
-export function getDecoration(letter: string) {
-  return DECORATION_BY_LETTER[letter as keyof typeof DECORATION_BY_LETTER] ?? DecorationPhoto
+export function getVariantSpec(letter: CoverLetter): VariantSpec {
+  return VARIANTS[letter]
 }
 
-export function useDarkLogo(letter: string, _image?: string): boolean {
-  // Cover A's logo and title sit in the LEFT half, which is always white
-  // regardless of whether the right half shows a photo or the wedge fallback.
-  // Always use the primary (color) logo and dark text on Cover A.
-  // (The `_image` parameter is unused but kept in the signature for clarity.)
-  if (letter === 'a') return false
-  if (DARK_BG_VARIANTS.has(letter)) return true
-  if (AUTO_LOGO_VARIANTS.has(letter)) {
-    return DECORATION_LOGO_TREATMENTS[letter] === 'white'
-  }
-  return false
-}
+export { RipplePattern, FlatAnvil, PhotoFrame, WordmarkBookmark }

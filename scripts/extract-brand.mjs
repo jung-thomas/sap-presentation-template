@@ -1,143 +1,115 @@
 #!/usr/bin/env node
-/**
- * extract-brand.mjs — POTX → theme/styles/_extracted/ + theme/public/logos/manifest.yaml
- *
- * Usage: node scripts/extract-brand.mjs [--potx <path>]
- */
-
-import { readFile, writeFile, mkdir, rm } from 'node:fs/promises'
+import { readFile, writeFile, mkdir, rm, copyFile, readdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { resolve, dirname } from 'node:path'
+import { resolve, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import yaml from 'js-yaml'
 
 import { extractPotxToTemp, getPotxFile } from './lib/unzip-potx.mjs'
 import { parseThemeXml } from './lib/parse-theme.mjs'
+import { parsePalette } from './lib/parse-potx-palette.mjs'
+import { parseAllSpecimens } from './lib/parse-potx-specimens.mjs'
+import { parseAllTags } from './lib/parse-potx-tags.mjs'
 import { extractAllLayouts } from './lib/parse-layouts.mjs'
-import { extractMedia } from './lib/extract-media.mjs'
+import { classifyMedia } from './lib/extract-media.mjs'
 import { emitBrandTokensCss } from './lib/emit-tokens.mjs'
 import { emitCoverTokensCss } from './lib/emit-cover-tokens.mjs'
 import { emitTypographyTokensCss } from './lib/emit-typography-tokens.mjs'
+import { buildLayoutManifest } from './lib/emit-layout-manifest.mjs'
+import { buildIconsCatalog } from './lib/emit-icons-catalog.mjs'
+import { parseAgendaConfig } from './lib/emit-agenda-defaults.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
-
-function getPotxPath() {
-  const idx = process.argv.indexOf('--potx')
-  if (idx === -1) return resolve(ROOT, 'SAP_Corp.potx')
-  const value = process.argv[idx + 1]
-  if (!value || value.startsWith('--')) {
-    console.error('--potx requires a path argument')
-    process.exit(1)
-  }
-  return resolve(value)
-}
-
-const POTX = getPotxPath()
-
+const POTX = resolve(ROOT, 'SAP_Corp.potx')
 const OUT_DIR = resolve(ROOT, 'theme/styles/_extracted')
-const OUT_MEDIA = resolve(OUT_DIR, 'media/raw')
-const OUT_LOGOS_MANIFEST = resolve(ROOT, 'theme/public/logos/manifest.yaml')
+const PUBLIC_SAP = resolve(ROOT, 'public/sap')
 
 async function fileSha256(p) {
-  const buf = await readFile(p)
-  return createHash('sha256').update(buf).digest('hex')
+  return createHash('sha256').update(await readFile(p)).digest('hex')
+}
+
+async function loadAllMedia(potxTmp) {
+  const mediaDir = join(potxTmp, 'ppt', 'media')
+  if (!existsSync(mediaDir)) {
+    throw new Error(`POTX is missing ppt/media/ directory — expected SAP brand assets to be present`)
+  }
+  const files = await readdir(mediaDir)
+  if (files.length === 0) {
+    throw new Error(`POTX ppt/media/ directory is empty — expected SAP brand assets to be present`)
+  }
+  const out = {}
+  for (const f of files) {
+    const buf = await readFile(join(mediaDir, f))
+    out[f] = f.endsWith('.svg') ? buf.toString('utf-8') : buf
+  }
+  return out
 }
 
 async function main() {
-  if (!existsSync(POTX)) {
-    console.error(`POTX not found: ${POTX}`)
-    process.exit(1)
-  }
-
-  console.log(`Extracting from: ${POTX}`)
+  if (!existsSync(POTX)) { console.error(`POTX not found: ${POTX}`); process.exit(1) }
   const potxHash = await fileSha256(POTX)
   const date = new Date().toISOString().slice(0, 10)
 
-  // Clean and recreate output dirs
   await rm(OUT_DIR, { recursive: true, force: true })
-  await mkdir(OUT_MEDIA, { recursive: true })
+  await mkdir(join(OUT_DIR, 'media', 'icons'), { recursive: true })
+  await mkdir(join(OUT_DIR, 'media', 'cover-photos'), { recursive: true })
+  await mkdir(join(PUBLIC_SAP, 'icons'), { recursive: true })
+  await mkdir(join(PUBLIC_SAP, 'covers'), { recursive: true })
 
   const potxTmp = await extractPotxToTemp(POTX)
   try {
     const themeXml = await getPotxFile(POTX, 'ppt/theme/theme1.xml')
     const theme = parseThemeXml(themeXml)
-    console.log(`  ${theme.colors.length} colors  |  major font: ${theme.fonts.major}`)
-
+    const palette = parsePalette(await getPotxFile(POTX, 'ppt/slides/slide20.xml'))
+    const specimens = await parseAllSpecimens(potxTmp)
+    const tags = await parseAllTags(potxTmp)
     const layouts = await extractAllLayouts(potxTmp)
-    console.log(`  ${layouts.length} slide layouts`)
+    const decisions = yaml.load(await readFile(resolve(ROOT, 'scripts/decisions.yaml'), 'utf-8'))
+    const mediaFiles = await loadAllMedia(potxTmp)
+    const classified = await classifyMedia(mediaFiles)
 
-    const media = await extractMedia(potxTmp, OUT_MEDIA)
-    console.log(`  ${media.count} media files`)
+    const manifest = buildLayoutManifest({ layouts, decisions })
+    const iconsCatalog = buildIconsCatalog(classified.icons)
+    const agendaTag = tags.find(t => t.name === 'SP_AGENDA')
+    const agendaDefaults = parseAgendaConfig(agendaTag?.value ?? '')
 
-    const css = emitBrandTokensCss({
-      colors: theme.colors,
-      fonts: theme.fonts,
-      meta: { potxHash, date }
-    })
-    await writeFile(resolve(OUT_DIR, 'brand-tokens.css'), css, 'utf-8')
+    await writeFile(resolve(OUT_DIR, 'brand-tokens.css'),
+      emitBrandTokensCss({ palette, themeAccents: theme.themeAccents, meta: { potxHash, date } }))
+    await writeFile(resolve(OUT_DIR, 'cover-tokens.css'), emitCoverTokensCss(layouts))
+    await writeFile(resolve(OUT_DIR, 'typography-tokens.css'), emitTypographyTokensCss(layouts))
+    await writeFile(resolve(OUT_DIR, 'palette.json'), JSON.stringify(palette, null, 2))
+    await writeFile(resolve(OUT_DIR, 'layouts.json'), JSON.stringify(manifest, null, 2))
+    await writeFile(resolve(OUT_DIR, 'icons.json'), JSON.stringify(iconsCatalog, null, 2))
+    await writeFile(resolve(OUT_DIR, 'agenda-defaults.json'), JSON.stringify(agendaDefaults, null, 2))
+    await writeFile(resolve(OUT_DIR, 'specimens.json'), JSON.stringify(specimens, null, 2))
 
-    await writeFile(
-      resolve(OUT_DIR, 'layouts.json'),
-      JSON.stringify({ potxHash, layouts }, null, 2),
-      'utf-8'
-    )
-
-    const coverTokens = emitCoverTokensCss(layouts)
-    await writeFile(resolve(OUT_DIR, 'cover-tokens.css'), coverTokens, 'utf-8')
-
-    const typographyTokens = emitTypographyTokensCss(layouts)
-    await writeFile(resolve(OUT_DIR, 'typography-tokens.css'), typographyTokens, 'utf-8')
-
-    console.log('  wrote cover-tokens.css + typography-tokens.css')
-
-    const readme = [
-      '# Extracted brand assets',
-      '',
-      `**Extracted:** ${date}`,
-      `**Source POTX:** \`SAP_Corp.potx\``,
-      `**POTX SHA-256:** \`${potxHash}\``,
-      `**Major font:** \`${theme.fonts.major}\``,
-      `**Color count:** ${theme.colors.length}`,
-      `**Layout count:** ${layouts.length}`,
-      `**Media files:** ${media.count}`,
-      '',
-      'Do not edit files in this directory by hand. Re-run `npm run extract-brand` after replacing `SAP_Corp.potx`.',
-      ''
-    ].join('\n')
-    await writeFile(resolve(OUT_DIR, 'README.md'), readme, 'utf-8')
-
-    if (!existsSync(OUT_LOGOS_MANIFEST)) {
-      const stub = [
-        '# Curate role names for each media file extracted from the POTX.',
-        '# Files unchanged across extractions keep their roles automatically.',
-        '#',
-        '# Recommended roles:',
-        '#   logo-sap-primary, logo-sap-monochrome, logo-sap-white',
-        '#   icon-<name>, illustration-<name>',
-        '',
-        ...media.manifest.map((m) => `${m.file}:\n  sha256: ${m.sha256}\n  role: ""`)
-      ].join('\n')
-      await writeFile(OUT_LOGOS_MANIFEST, stub, 'utf-8')
-      console.log(`  wrote stub: ${OUT_LOGOS_MANIFEST}`)
-    } else {
-      console.log(`  logo manifest exists (not overwriting): ${OUT_LOGOS_MANIFEST}`)
+    const copies = [
+      [classified.ripple,    'media/sap-anvil-ripple.svg', 'anvil-ripple.svg'],
+      [classified.wordmark,  'media/sap-wordmark.png',     'wordmark.png'],
+      [classified.flatAnvil, 'media/sap-flat-anvil.svg',   'flat-anvil.svg']
+    ]
+    for (const [src, extracted, pub] of copies) {
+      if (!src) continue
+      await copyFile(join(potxTmp, 'ppt', 'media', src), resolve(OUT_DIR, extracted))
+      await copyFile(join(potxTmp, 'ppt', 'media', src), resolve(PUBLIC_SAP, pub))
+    }
+    let n = 0
+    for (const photo of classified.photos.slice(0, 3)) {
+      n++
+      await copyFile(join(potxTmp, 'ppt', 'media', photo), resolve(OUT_DIR, `media/cover-photos/cover-${n}.png`))
+      await copyFile(join(potxTmp, 'ppt', 'media', photo), resolve(PUBLIC_SAP, `covers/cover-${n}.png`))
+    }
+    for (const icon of classified.icons) {
+      await copyFile(join(potxTmp, 'ppt', 'media', icon.src), resolve(OUT_DIR, `media/icons/${icon.name}.svg`))
+      await copyFile(join(potxTmp, 'ppt', 'media', icon.src), resolve(PUBLIC_SAP, `icons/${icon.name}.svg`))
     }
 
-    const expectedFont = '72'
-    if (!theme.fonts.major.includes(expectedFont)) {
-      console.warn(
-        `WARNING: POTX major font "${theme.fonts.major}" does not contain "${expectedFont}".`
-      )
-    }
+    console.log(`✓ ${palette.length} colors, ${manifest.layouts.length} layouts (${manifest.totals.ship}/${manifest.totals.alias}/${manifest.totals.exclude}), ${classified.icons.length} icons, ${classified.photos.length} photos`)
   } finally {
     await rm(potxTmp, { recursive: true, force: true })
   }
-
-  console.log('Done.')
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+main().catch((e) => { console.error(e); process.exit(1) })

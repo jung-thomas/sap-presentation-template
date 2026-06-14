@@ -2,6 +2,7 @@ slug: dev-advocates
 name: SAP Developer Advocates
 tagline: Helping developers build the future on SAP BTP.
 members:
-  - thomas-jung
+  - slug: thomas-jung
+    qr: https://people.sap.com/profile/thomas.jung
   # Add more presenter slugs here as the team grows. Each slug must
   # have a matching file under presenters/<slug>.yaml.

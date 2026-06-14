@@ -1,0 +1,251 @@
+[
+  {
+    "slideNumber": 1,
+    "hidden": false,
+    "title": "Title goes hereand here and here",
+    "layout": "slideLayout1.xml",
+    "dynamicFields": [
+      "Spaker name - Dynamic",
+      "Date - Dynamic",
+      "Partner Logo Placeholder"
+    ],
+    "media": [
+      "image38.svg",
+      "image37.png"
+    ]
+  },
+  {
+    "slideNumber": 2,
+    "hidden": false,
+    "title": "Title goes hereand here and here",
+    "layout": "slideLayout1.xml",
+    "dynamicFields": [
+      "Spaker name - Dynamic",
+      "Date - Dynamic",
+      "Partner Logo Placeholder"
+    ],
+    "media": [
+      "image39.png"
+    ]
+  },
+  {
+    "slideNumber": 3,
+    "hidden": false,
+    "title": "Title goes hereand here and here",
+    "layout": "slideLayout11.xml",
+    "dynamicFields": [
+      "Spaker name - Dynamic",
+      "Date - Dynamic",
+      "Partner Logo Placeholder"
+    ],
+    "media": [
+      "image40.png"
+    ]
+  },
+  {
+    "slideNumber": 4,
+    "hidden": false,
+    "title": "Title goes hereand here and here",
+    "layout": "slideLayout12.xml",
+    "dynamicFields": [
+      "Spaker name - Dynamic",
+      "Date - Dynamic",
+      "Partner Logo Placeholder"
+    ],
+    "media": [
+      "image41.png"
+    ]
+  },
+  {
+    "slideNumber": 5,
+    "hidden": false,
+    "title": "Agenda",
+    "layout": "slideLayout14.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 6,
+    "hidden": false,
+    "title": "Divider page",
+    "layout": "slideLayout17.xml",
+    "dynamicFields": [],
+    "media": [
+      "image38.svg",
+      "image37.png"
+    ]
+  },
+  {
+    "slideNumber": 7,
+    "hidden": false,
+    "title": "Text with image",
+    "layout": "slideLayout21.xml",
+    "dynamicFields": [],
+    "media": [
+      "image42.jpeg"
+    ]
+  },
+  {
+    "slideNumber": 8,
+    "hidden": false,
+    "title": "Data points",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": [
+      "image44.svg",
+      "image43.png"
+    ]
+  },
+  {
+    "slideNumber": 9,
+    "hidden": false,
+    "title": "Text with icons",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": [
+      "image47.png",
+      "image52.svg",
+      "image55.png",
+      "image46.svg",
+      "image51.png",
+      "image50.svg",
+      "image54.svg",
+      "image45.png",
+      "image49.png",
+      "image53.png",
+      "image48.svg",
+      "image56.svg"
+    ]
+  },
+  {
+    "slideNumber": 10,
+    "hidden": false,
+    "title": "Roadmap",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 11,
+    "hidden": false,
+    "title": "Table – four columns",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 12,
+    "hidden": false,
+    "title": "Diagram with icons",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": [
+      "image57.png",
+      "image62.svg",
+      "image70.svg",
+      "image65.png",
+      "image61.png",
+      "image69.png",
+      "image60.svg",
+      "image64.svg",
+      "image68.svg",
+      "image59.png",
+      "image67.png",
+      "image72.svg",
+      "image63.png",
+      "image58.svg",
+      "image66.svg",
+      "image71.png"
+    ]
+  },
+  {
+    "slideNumber": 13,
+    "hidden": false,
+    "title": "Team slide",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": [
+      "image76.jpeg",
+      "image75.jpeg",
+      "image80.jpeg",
+      "image74.jpeg",
+      "image79.jpeg",
+      "image73.jpeg",
+      "image78.jpeg",
+      "image77.jpeg"
+    ]
+  },
+  {
+    "slideNumber": 14,
+    "hidden": false,
+    "title": "Meet our team",
+    "layout": "slideLayout19.xml",
+    "dynamicFields": [],
+    "media": [
+      "image82.jpeg",
+      "image81.jpeg",
+      "image85.png",
+      "image38.svg",
+      "image37.png",
+      "image84.jpeg",
+      "image83.jpeg"
+    ]
+  },
+  {
+    "slideNumber": 15,
+    "hidden": false,
+    "title": "“Lorem ipsum dolor sit amet, consetetur tempor sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet.”",
+    "layout": "slideLayout30.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 16,
+    "hidden": false,
+    "title": "Join the conversation",
+    "layout": "slideLayout31.xml",
+    "dynamicFields": [],
+    "media": [
+      "image86.png"
+    ]
+  },
+  {
+    "slideNumber": 17,
+    "hidden": false,
+    "title": "Thank you.",
+    "layout": "slideLayout33.xml",
+    "dynamicFields": [
+      "Spaker name - Dynamic",
+      "Spaker name - Dynamic"
+    ],
+    "media": [
+      "image85.png",
+      "image38.svg",
+      "image37.png"
+    ]
+  },
+  {
+    "slideNumber": 18,
+    "hidden": true,
+    "title": "Tips & tricks – your user guide",
+    "layout": "slideLayout35.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 19,
+    "hidden": true,
+    "title": "Tips & tricks – your user guide – SAP brand site",
+    "layout": "slideLayout36.xml",
+    "dynamicFields": [],
+    "media": []
+  },
+  {
+    "slideNumber": 20,
+    "hidden": true,
+    "title": "Tips & tricks – your user guide – color palette",
+    "layout": "slideLayout37.xml",
+    "dynamicFields": [],
+    "media": []
+  }
+]

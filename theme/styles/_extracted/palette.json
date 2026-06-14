@@ -1,0 +1,380 @@
+[
+  {
+    "name": "Blue 2",
+    "family": "blue",
+    "tint": 2,
+    "hex": "D1EFFF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Blue 4",
+    "family": "blue",
+    "tint": 4,
+    "hex": "89D1FF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Blue 6",
+    "family": "blue",
+    "tint": 6,
+    "hex": "1B90FF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Blue 7",
+    "family": "blue",
+    "tint": 7,
+    "hex": "0070F2",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Blue 10",
+    "family": "blue",
+    "tint": 10,
+    "hex": "002A86",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Blue 11",
+    "family": "blue",
+    "tint": 11,
+    "hex": "00144A",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Grey 2",
+    "family": "grey",
+    "tint": 2,
+    "hex": "EAECEE",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Grey 4",
+    "family": "grey",
+    "tint": 4,
+    "hex": "A9B4BE",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Grey 6",
+    "family": "grey",
+    "tint": 6,
+    "hex": "5B738B",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Grey 7",
+    "family": "grey",
+    "tint": 7,
+    "hex": "475E75",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Grey 10",
+    "family": "grey",
+    "tint": 10,
+    "hex": "1A2733",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Grey 11",
+    "family": "grey",
+    "tint": 11,
+    "hex": "12171C",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Teal 2",
+    "family": "teal",
+    "tint": 2,
+    "hex": "C2FCEE",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Teal 4",
+    "family": "teal",
+    "tint": 4,
+    "hex": "2CE0BF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Teal 6",
+    "family": "teal",
+    "tint": 6,
+    "hex": "049F9A",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Teal 7",
+    "family": "teal",
+    "tint": 7,
+    "hex": "07838F",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Teal 10",
+    "family": "teal",
+    "tint": 10,
+    "hex": "02414C",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Teal 11",
+    "family": "teal",
+    "tint": 11,
+    "hex": "012931",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Green 2",
+    "family": "green",
+    "tint": 2,
+    "hex": "EBF5CB",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Green 4",
+    "family": "green",
+    "tint": 4,
+    "hex": "97DD40",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Green 6",
+    "family": "green",
+    "tint": 6,
+    "hex": "36A41D",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Green 7",
+    "family": "green",
+    "tint": 7,
+    "hex": "188918",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Green 10",
+    "family": "green",
+    "tint": 10,
+    "hex": "164323",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Green 11",
+    "family": "green",
+    "tint": 11,
+    "hex": "0E2B16",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Mango 2",
+    "family": "mango",
+    "tint": 2,
+    "hex": "FFF3B8",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Mango 4",
+    "family": "mango",
+    "tint": 4,
+    "hex": "FFC933",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Mango 6",
+    "family": "mango",
+    "tint": 6,
+    "hex": "E76500",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Mango 7",
+    "family": "mango",
+    "tint": 7,
+    "hex": "C35500",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Mango 10",
+    "family": "mango",
+    "tint": 10,
+    "hex": "6D1900",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Mango 11",
+    "family": "mango",
+    "tint": 11,
+    "hex": "450B00",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Red 2",
+    "family": "red",
+    "tint": 2,
+    "hex": "FFD5EA",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Red 4",
+    "family": "red",
+    "tint": 4,
+    "hex": "FF8CB2",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Red 6",
+    "family": "red",
+    "tint": 6,
+    "hex": "EE3939",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Red 7",
+    "family": "red",
+    "tint": 7,
+    "hex": "D20A0A",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Red 10",
+    "family": "red",
+    "tint": 10,
+    "hex": "5A0404",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Red 11",
+    "family": "red",
+    "tint": 11,
+    "hex": "350000",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Raspberry 2",
+    "family": "raspberry",
+    "tint": 2,
+    "hex": "FFDCE8",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Raspberry 4",
+    "family": "raspberry",
+    "tint": 4,
+    "hex": "FEADC8",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Raspberry 6",
+    "family": "raspberry",
+    "tint": 6,
+    "hex": "FA4F96",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Raspberry 7",
+    "family": "raspberry",
+    "tint": 7,
+    "hex": "DF1278",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Raspberry 10",
+    "family": "raspberry",
+    "tint": 10,
+    "hex": "71014B",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Raspberry 11",
+    "family": "raspberry",
+    "tint": 11,
+    "hex": "510136",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Pink 2",
+    "family": "pink",
+    "tint": 2,
+    "hex": "FFDCF3",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Pink 4",
+    "family": "pink",
+    "tint": 4,
+    "hex": "FF8AF0",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Pink 6",
+    "family": "pink",
+    "tint": 6,
+    "hex": "F31DED",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Pink 7",
+    "family": "pink",
+    "tint": 7,
+    "hex": "CC00DC",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Pink 10",
+    "family": "pink",
+    "tint": 10,
+    "hex": "510080",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Pink 11",
+    "family": "pink",
+    "tint": 11,
+    "hex": "28004A",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Indigo 2",
+    "family": "indigo",
+    "tint": 2,
+    "hex": "E2D8FF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Indigo 4",
+    "family": "indigo",
+    "tint": 4,
+    "hex": "B894FF",
+    "textOn": "#000000"
+  },
+  {
+    "name": "Indigo 6",
+    "family": "indigo",
+    "tint": 6,
+    "hex": "7858FF",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Indigo 7",
+    "family": "indigo",
+    "tint": 7,
+    "hex": "5D36FF",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Indigo 10",
+    "family": "indigo",
+    "tint": 10,
+    "hex": "1C0C6E",
+    "textOn": "#FFFFFF"
+  },
+  {
+    "name": "Indigo 11",
+    "family": "indigo",
+    "tint": 11,
+    "hex": "0E0637",
+    "textOn": "#FFFFFF"
+  }
+]
