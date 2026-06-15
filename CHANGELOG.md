@@ -7,6 +7,42 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.1] — 2026-06-15
+
+### Added
+
+- New `<AgendaItem>` component (`theme/components/agenda/AgendaItem.vue`) — one row of the agenda list (number + title + optional description + hairline). Number is 0-based in the prop API and rendered 1-based, zero-padded to 2 digits per POTX convention.
+- New `description` field on agenda items, rendered below the title in the POTX agenda-b style.
+- Bio team-mode `console.warn` when `people.length !== 4` (POTX is a 4-card layout) and when both `people` and `presenter` are passed (mutually exclusive; team mode wins).
+
+### Changed
+
+- **P-4: Agenda layout fully rewritten** to match POTX agenda-b. 66.56% left content + 33.44% right `<AnvilGridDecoration>` column with `bg=var(--sap-blue-10)` and `color=var(--sap-blue-6)`. Hairlines between items are 2px `var(--sap-blue-6)`, NOT light-grey as the audit text initially described. All measurements pixel-derived from `audit/potx-renders/agenda-b.png` (1920×1080).
+- **P-5: Bio team mode fully rewritten** to match POTX slide 14 ("Meet our team"). 50% top `<AnvilGridDecoration>` band + 4-card fixed grid (`grid-template-columns: repeat(4, 1fr)`) anchored at `top: 24.4%; bottom: 12%` so cards intrude into the band by 25.6% of slide height. 47px (2.45%) gap between cards, 80px (4.2%) outer margin. Photo 4:5 portrait aspect with `object-fit: cover`. Replaces v0.3's full-bleed `<AnvilGrid>` and `auto-fit, minmax` cards.
+- `title-only` layout's `<h1>` now renders white when the slide hosts `<Bio :people=...>`, via a `:has(.bio--team)` CSS rule. This keeps the title-only template unchanged (no prop API) while restoring POTX's white-title-on-band overlay.
+- Agenda `variant: a` / `variant: b` distinction removed (POTX agenda-a is just a blank slide; the new layout always renders the agenda-b composition).
+
+### Fixed
+
+- **P-2 (corrected): Slidev "Goto..." dialog** (`g` hotkey) — now stays inside the viewport regardless of slide count, and offers a visible × close button. The v0.4.0 attempt at this fix targeted the wrong DOM element (the `slidev-quick-overview` panel, not the goto dialog). The corrected fix bounds `#slidev-goto-dialog` max-height and injects a real `<button.theme-goto-close>` via `theme/setup/main.ts` that calls Slidev's exported `showGotoDialog` ref. CSS in `theme/styles/index.css` styles the button.
+- `theme/setup/main.ts` import path corrected from `@slidev/client/state` to `@slidev/client/state/index` to avoid a Vite EISDIR error when slides loaded.
+
+### Backward compatibility
+
+- Agenda `items[]` accepts both v0.3 plain strings (coerced to `{ title }`) and v0.4.1 `{ title, description?, subsections? }` objects.
+- Agenda's v0.3 `subsections` field still renders bulleted child rows when `agenda.showSubsections: true`. New `description` field is additive — items can use both (description renders first, then subsections list).
+- Bio single-presenter mode (`<Bio presenter="...">`) is unchanged.
+- Bio team mode (`<Bio :people=[]>`) keeps the existing prop API; only the rendered output differs.
+
+### Deferred to v0.4.2+
+
+- Cover variants `b`–`j` rebuild (still the audit's primary backlog).
+- `RipplePattern.vue` removal (still gated on divider/thank-you rebuilds).
+- Full visual-regression baseline refresh (still gated on the upstream `bi/o` icon-resolution flake — VR baselines for slides hosting UI5 web components currently match against pre-existing flake renders).
+- Other audit findings (A-6 Quote, A-7 Q&A, A-8/9 Thank-you, A-10 DataPoint, A-11 NumberedCards).
+
+See [docs/superpowers/audit/2026-06-14-v0.4-findings.md](docs/superpowers/audit/2026-06-14-v0.4-findings.md) for the full layout audit informing v0.4 / v0.4.1 / v0.4.2 scope.
+
 ## [0.4.0] — 2026-06-14
 
 ### Added
