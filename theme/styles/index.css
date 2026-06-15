@@ -26,51 +26,50 @@
 /* P-2: Slidev's "Goto..." panel (`g` hotkey) #slidev-goto-dialog can extend
    past the viewport when the slide count is large, and offers no visible
    close affordance — users only learn `Escape`/click-outside dismissal by
-   guessing. v0.4.0's first attempt targeted `.slidev-quick-overview` which
-   was the wrong panel entirely.
+   guessing.
 
-   This block:
-   1. Hard-clamps the panel max-height to a fraction of the viewport
-      (90vh, leaving 5vh top + 5vh bottom for breathing room) so it never
-      extends past the visible area under any browser zoom / viewport size.
-   2. Pins the input row (with our injected close button) to the top of
-      the panel via `position: sticky` so users can ALWAYS dismiss the
-      dialog regardless of how much the list has scrolled.
-   3. Styles the `.theme-goto-close` button injected by
-      theme/setup/main.ts.
+   Slidev's Goto.vue ALWAYS renders the autocomplete-list as long as
+   `result.length > 0`, even when the dialog is in its "closed" state
+   (positioned at `top: -5rem` = -80px above viewport). With Slidev's
+   default sizing, the list's natural height happens to fit just barely
+   above the viewport, so users don't see it. But ANY larger height
+   (e.g., from a max-height override) causes the list to overflow into
+   the visible viewport from its closed position — that's the bug the
+   user has been hitting.
 
-   Selectors target Slidev's stable id (`#slidev-goto-dialog`) so they
-   survive theme upgrades inside the @slidev/client package. */
-#slidev-goto-dialog {
-  /* Panel itself stays within the visible area regardless of list length.
-     90vh leaves 5vh on top (matches Slidev's `top-5` of 1.25rem ≈ 2.5%) +
-     ~5vh on bottom for breathing room. !important so it wins over any
-     upstream height the panel might pick up. */
+   The fix: scope all our overrides to the OPEN state via the `:not(.-top-20)`
+   selector, OR equivalently to the explicit `.top-5` open-state class.
+   In the closed state, leave Slidev's natural sizing alone. */
+
+/* OPEN state only: clamp to viewport + flex layout for sticky input row + scrollable list. */
+#slidev-goto-dialog.top-5 {
   max-height: 90vh !important;
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
 }
 
-/* The input row (Slidev's first child div) — pin it sticky so the close
-   button is reachable even if the list has been scrolled. */
-#slidev-goto-dialog > div:first-child {
+#slidev-goto-dialog.top-5 > div:first-child {
   position: sticky !important;
   top: 0 !important;
   z-index: 2 !important;
   flex-shrink: 0 !important;
-  /* Make room for the injected close button. */
   padding-right: 2.5rem !important;
 }
 
-#slidev-goto-dialog .autocomplete-list {
-  /* List occupies remaining vertical space inside the (90vh-bounded)
-     panel and scrolls internally. */
+#slidev-goto-dialog.top-5 .autocomplete-list {
   flex: 1 1 auto !important;
   overflow-y: auto !important;
-  /* Belt-and-suspenders: cap to 80vh so even if flex layout fights us,
-     the list itself won't extend past the viewport. */
   max-height: 80vh !important;
+}
+
+/* CLOSED state: ensure the autocomplete-list never overflows back into
+   the viewport, regardless of its natural height. The dialog itself sits
+   at top: -5rem (= -80px); with overflow: hidden + max-height: 5rem, only
+   the input-row band peeks above the viewport top, never the list. */
+#slidev-goto-dialog.-top-20 {
+  max-height: 5rem !important;
+  overflow: hidden !important;
 }
 
 /* The injected `<button class="theme-goto-close">` (theme/setup/main.ts).
