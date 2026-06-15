@@ -67,4 +67,17 @@ describe('<q-and-a>', () => {
     const w = mount(QAndA, { props: { frontmatter: {} } })
     expect(w.find('.qa-photo img').exists()).toBe(false)
   })
+
+  it('renders Bio when presenter is set', () => {
+    const w = mount(QAndA, { props: { frontmatter: { presenter: 'thomas-jung' } } })
+    expect(w.find('.qa-bio').exists()).toBe(true)
+    // Bio uses ui5-card whose name surfaces via the title-text attribute,
+    // not as plain text content in jsdom.
+    expect(w.find('.qa-bio').html()).toContain('Thomas Jung')
+  })
+
+  it('omits Bio when presenter is absent', () => {
+    const w = mount(QAndA, { props: { frontmatter: {} } })
+    expect(w.find('.qa-bio').exists()).toBe(false)
+  })
 })

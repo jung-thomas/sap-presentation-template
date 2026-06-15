@@ -15,11 +15,16 @@
 
 <template>
   <svg viewBox="0 0 605 297" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <!-- vector-effect keeps the stroke a uniform CSS-pixel width regardless of
+         the host container's aspect ratio. Without it, preserveAspectRatio="none"
+         scales x and y independently and renders horizontal vs vertical strokes
+         at different pixel widths (visibly distorted on non-2:1 frames). -->
     <path
       d="M0 0 0 297 307.459 297 605 0 0 0Z"
       fill="none"
       :stroke="color"
       :stroke-width="strokeWidth"
+      vector-effect="non-scaling-stroke"
     />
   </svg>
 </template>

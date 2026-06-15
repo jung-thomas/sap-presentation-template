@@ -14,10 +14,11 @@
     return ['a', 'b', 'c', 'd'].includes(raw) ? (raw as Variant) : 'a'
   })
 
-  // Variant a is white minimal; b/c/d all carry enough dark visual weight
-  // (blue-6 bg / blue-10 anvil tile / pale-blue band) that the white logo
-  // reads better. Test asserts color logo only on a.
-  const useColorLogo = computed(() => variant.value === 'a')
+  // Logo position is top-left at top: 7.35%. Only variant b has a dark
+  // background there (sap-blue-6); a, c, d all sit on white at that anchor
+  // (c's anvil-tile band starts at 49.8%, d's pale band at 25.9%). Use the
+  // primary (color) logo on a/c/d; only b warrants the white logo.
+  const useColorLogo = computed(() => variant.value !== 'b')
   const logoSrc = computed(() =>
     assetUrl(useColorLogo.value ? '/logos/logo-sap-primary.svg' : '/logos/logo-sap-white.svg')
   )

@@ -34,17 +34,17 @@ describe('<divider> variant resolution', () => {
     expect(w.find('h1.divider-title').text()).toBe('Foundations')
   })
 
-  it('uses the white SAP logo on dark variants (b, c, d)', () => {
-    for (const v of ['b', 'c', 'd']) {
-      const w = mount(Divider, { props: { frontmatter: { variant: v, title: 'X' } } })
-      const src = w.find('img.divider-logo').attributes('src')
-      expect(src).toContain('logo-sap-white')
-    }
+  it('uses the white SAP logo on the dark variant (b only)', () => {
+    const w = mount(Divider, { props: { frontmatter: { variant: 'b', title: 'X' } } })
+    const src = w.find('img.divider-logo').attributes('src')
+    expect(src).toContain('logo-sap-white')
   })
 
-  it('uses the primary SAP logo on variant a (white background)', () => {
-    const w = mount(Divider, { props: { frontmatter: { variant: 'a', title: 'X' } } })
-    const src = w.find('img.divider-logo').attributes('src')
-    expect(src).toContain('logo-sap-primary')
+  it('uses the primary SAP logo on light variants (a, c, d) — logo anchor sits on white in all three', () => {
+    for (const v of ['a', 'c', 'd']) {
+      const w = mount(Divider, { props: { frontmatter: { variant: v, title: 'X' } } })
+      const src = w.find('img.divider-logo').attributes('src')
+      expect(src).toContain('logo-sap-primary')
+    }
   })
 })
