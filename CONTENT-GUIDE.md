@@ -80,14 +80,13 @@ Use the cover layout for the opening slide of a deck (and the divider slide of m
 ```yaml
 ---
 layout: cover
-variant: a            # 'a' | 'k' | 'l'
+variant: a # 'a' | 'k' | 'l'
 title: Your Title Here
-presenter: <slug>     # resolves to Name from presenters/<slug>.yaml
-event: SAP TechEd 2026     # optional; falls back to event.yaml
-date: 2026-09-15           # optional; defaults to today
-image: /covers/photo.png   # required for variants k and l, ignored for a
-partnerLogo: /covers/partner.png   # optional partner-co-branding logo
-                                    # omit for dashed placeholder; use null to hide
+presenter: <slug> # resolves to Name from presenters/<slug>.yaml
+event: SAP TechEd 2026 # optional; falls back to event.yaml
+date: 2026-09-15 # optional; defaults to today
+image: /covers/photo.png # required for variants k and l, ignored for a
+partnerLogo: /covers/partner.png # optional partner-co-branding logo (omit for dashed placeholder; use null to hide)
 classification: PUBLIC
 ---
 ```
@@ -117,25 +116,28 @@ Using `variant: b`–`j` in v0.4.0 throws a build error pointing at `docs/superp
 
 ## Cover photos
 
-Cover A (`variant: photo` or `variant: a`) supports a custom hero image:
+Cover variants `k` and `l` require a hero image. Variant `a` is photo-free.
 
 ```yaml
 layout: cover
-variant: a
+variant: k
 image: /covers/my-photo.jpg
 title: My Talk Title
 ```
 
 **Where to put photos:**
 
-- Drop image files in `public/covers/`
-- Reference as `/covers/<filename>` in slide front-matter
-- Recommended aspect ratio: portrait or near-square (1:1 to 1:1.4)
-- Recommended resolution: at least 1920px on long edge
-- Subjects should be on the right side (the title sits on the left half)
+- Drop image files in `public/covers/` (or `public/sap/covers/` for the bundled brand-licensed set).
+- Reference as `/covers/<filename>` (or `/sap/covers/<filename>`) in slide front-matter.
+- Photos fill the 40%-wide right half of the slide; portrait or near-square subjects (1:1 to 1:1.4) crop best.
+- Recommended resolution: at least 1920 px on the long edge.
 
-**When no `image` is set,** Cover A renders the brand-blue nested-wedges
-fallback decoration so the deck always looks complete.
+**Variant differences:**
+
+- **`k`** — photo fills R-half; white anvil-grid pattern overlays the photo for brand identity.
+- **`l`** — photo sits on a Blue 2 backdrop with a single Flat Anvil shape behind it as a frame.
+
+**Variant `a` ignores `image:`.** If set, the dev-mode console emits a warning; the build does not break. Variants `b`–`j` are not yet implemented in v0.4.0 and throw at build (see "Cover layout" above).
 
 **For SAP-internal users:** the official SAP press-kit imagery
 ([brand.sap.com](https://brand.sap.com)) is the recommended source for
