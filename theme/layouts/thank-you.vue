@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import RipplePattern from '../components/decorations/RipplePattern.vue'
   import WordmarkBookmark from '../components/decorations/WordmarkBookmark.vue'
   import Speaker from '../components/Speaker.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
@@ -14,6 +15,7 @@
 
 <template>
   <div :class="['thank-you', `thank-you--${variant}`]">
+    <RipplePattern placement="hero-band" />
     <WordmarkBookmark placement="bottom-right" />
     <div class="thank-you-content">
       <h1>Thank you.</h1>
