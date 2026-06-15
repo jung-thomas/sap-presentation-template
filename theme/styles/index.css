@@ -95,3 +95,21 @@
   background: rgba(0, 0, 0, 0.05);
   outline: none;
 }
+
+/* P-5: when a Bio team-mode component is used inside a title-only layout
+   (POTX "Meet our team" convention), recolor the title-only <h1> white so
+   it reads on top of the AnvilGridDecoration band that <Bio :people=...>
+   renders. The :has() selector is supported in Chromium / WebKit / Firefox
+   ≥121. Older browsers fall back to the default dark title — content is
+   still readable, just lower-contrast. */
+.title-only:has(.bio--team) h1 {
+  color: #ffffff;
+  /* Pull the title up into the band's top-left region so it sits within
+     the band rather than below it. POTX shows "Meet our team" at top:18%
+     of the band's height (≈9% of slide). */
+  position: absolute;
+  top: 6%;
+  left: 4.2%;
+  margin: 0;
+  z-index: 3; /* above the band, above the cards */
+}
