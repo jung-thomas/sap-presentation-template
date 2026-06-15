@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-const SLIDE_COUNT = 99
+const SLIDE_COUNT = 101
 const SETTLE_MS = 200
 
 async function settle(page: import('@playwright/test').Page) {
