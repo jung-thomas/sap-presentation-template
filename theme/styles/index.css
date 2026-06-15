@@ -105,8 +105,8 @@
 .title-only:has(.bio--team) h1 {
   color: #ffffff;
   /* Pull the title up into the band's top-left region so it sits within
-     the band rather than below it. POTX shows "Meet our team" at top:18%
-     of the band's height (≈9% of slide). */
+     the band rather than below it. POTX shows "Meet our team" near the
+     top edge of the band (~6% of slide); the rule below uses that value. */
   position: absolute;
   top: 6%;
   left: 4.2%;
