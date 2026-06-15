@@ -7,6 +7,52 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.2] — 2026-06-15
+
+### Added
+
+- **Divider — 4 POTX-faithful variants** (a/b/c/d). Variant `a` is white minimal,
+  `b` is sap-blue-6 with a 4-shape FlatAnvil composition, `c` is a 50/50 split with
+  AnvilGridDecoration tile pattern on the bottom half, and `d` is white with a
+  pale-blue (sap-blue-2) horizontal band. Author API unchanged from v0.3.
+- **Thank-you A** — minimal white close: "Contact information:" label,
+  `<SapTaglineLockup>` lockup bottom-right, `<LegalNotice>` © line bottom-center.
+- **Thank-you B** — substantial close: top 50% sap-blue-10 anvil header band,
+  "Thank you." headline, presenter contact card (name / title / address / city /
+  email), optional QR code, tagline lockup, © line.
+- **Quote** — sap-blue-2 background with a giant FlatAnvil highlight in
+  sap-blue-4 behind the quote text. New `company` and `role` frontmatter fields;
+  v0.3 `source` still works as a `company` alias.
+- **Q&A** — sap-blue-2 background with `<FlatAnvilOutline>` (new component) as a
+  photo frame on the right half. New `eyebrow`, `subtitle`, `image` frontmatter
+  fields. Title defaults to "Questions?" when absent.
+- **`<SapTaglineLockup>`** — SAP logo + "Bring out your best." tagline. Used by
+  both thank-you variants. `invert` prop for dark-background placement.
+- **`<LegalNotice>`** — © corporate notice component. Sources from
+  `theme/setup/legal.ts` constant; per-deck override via `legalNotice:` frontmatter.
+- **`<FlatAnvilOutline>`** — stroked variant of `<FlatAnvil>` (same canonical SVG
+  path, `fill="none"` + `stroke="currentColor"`). Used as the Q&A photo frame.
+- **`address?` and `city?` on Presenter type** — surfaces in thank-you-b's
+  contact card. Added to thomas-jung fixture. v-if guards suppress empty rows.
+- **CI production-build smoke test** — `npm run build` step in
+  `.github/workflows/visual-regression.yml`, run before Playwright. Catches
+  production-only failures (like v0.4.1's `import('@slidev/client/state/index')`
+  ENOENT) before they reach GitHub Pages.
+
+### Removed
+
+- **`theme/components/decorations/RipplePattern.vue`** — the v0.3
+  wrong-abstraction. Final consumers (divider + thank-you) migrated to
+  POTX-correct primitives in this release.
+
+### Notes
+
+- Default thank-you variant remains `b` (v0.3 backward-compat). Decks omitting
+  `variant:` keep their existing visual.
+- Inherited `bi/o` icon-resolution flake is unchanged from v0.3; some
+  visual-regression snapshots may still differ from a clean rebaseline. Tracked
+  for a separate fix.
+
 ## [0.4.1] — 2026-06-15
 
 ### Added
