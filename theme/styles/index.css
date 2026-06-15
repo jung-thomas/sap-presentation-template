@@ -30,40 +30,51 @@
    was the wrong panel entirely.
 
    This block:
-   1. Tightens the autocomplete-list max-height to a safer bound so the
-      whole panel fits inside the viewport even when browser chrome is
-      heavy (Windows fullscreen, zoom > 100%, etc.).
-   2. Styles the `.theme-goto-close` button injected by theme/setup/main.ts
-      into the dialog's input row. The button calls Slidev's exported
-      `showGotoDialog` ref to close the panel cleanly; CSS only handles
-      its appearance.
+   1. Hard-clamps the panel max-height to a fraction of the viewport
+      (90vh, leaving 5vh top + 5vh bottom for breathing room) so it never
+      extends past the visible area under any browser zoom / viewport size.
+   2. Pins the input row (with our injected close button) to the top of
+      the panel via `position: sticky` so users can ALWAYS dismiss the
+      dialog regardless of how much the list has scrolled.
+   3. Styles the `.theme-goto-close` button injected by
+      theme/setup/main.ts.
 
    Selectors target Slidev's stable id (`#slidev-goto-dialog`) so they
    survive theme upgrades inside the @slidev/client package. */
 #slidev-goto-dialog {
-  /* Panel itself stays within the visible area regardless of list length. */
-  max-height: calc(100vh - 2.5rem);
-  display: flex;
-  flex-direction: column;
+  /* Panel itself stays within the visible area regardless of list length.
+     90vh leaves 5vh on top (matches Slidev's `top-5` of 1.25rem ≈ 2.5%) +
+     ~5vh on bottom for breathing room. !important so it wins over any
+     upstream height the panel might pick up. */
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
-#slidev-goto-dialog .autocomplete-list {
-  /* Override the upstream `calc(100vh - 100px)` which can overshoot in
-     fullscreen / high-DPI cases on Windows where chrome height differs.
-     Using flex parent + explicit max-height keeps the list scrolling
-     contained inside the panel, which itself is bounded above. */
-  max-height: calc(100vh - 7rem) !important;
-  overflow-y: auto;
-}
-
-/* Make room for the injected close button on the input row. */
+/* The input row (Slidev's first child div) — pin it sticky so the close
+   button is reachable even if the list has been scrolled. */
 #slidev-goto-dialog > div:first-child {
-  position: relative;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2 !important;
+  flex-shrink: 0 !important;
+  /* Make room for the injected close button. */
   padding-right: 2.5rem !important;
 }
 
+#slidev-goto-dialog .autocomplete-list {
+  /* List occupies remaining vertical space inside the (90vh-bounded)
+     panel and scrolls internally. */
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  /* Belt-and-suspenders: cap to 80vh so even if flex layout fights us,
+     the list itself won't extend past the viewport. */
+  max-height: 80vh !important;
+}
+
 /* The injected `<button class="theme-goto-close">` (theme/setup/main.ts).
-   Calls `showGotoDialog.value = false` on click; styling lives here. */
+   Dispatches a synthetic Escape keypress on the input. */
 #slidev-goto-dialog .theme-goto-close {
   position: absolute;
   top: 50%;
