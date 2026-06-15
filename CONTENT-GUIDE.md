@@ -65,37 +65,53 @@ Use components to add structured, on-brand elements inside any layout.
 
 ---
 
-## Cover variants
+## Cover layout
 
-The cover layout has 12 visual variants. Reference by letter (POTX-faithful)
-or descriptive alias (self-documenting):
+Use the cover layout for the opening slide of a deck (and the divider slide of major sections, as a stylistic match).
 
-| Letter | Alias                | Visual treatment                               | Logo                                                   |
-| ------ | -------------------- | ---------------------------------------------- | ------------------------------------------------------ |
-| `a`    | `photo`              | Photo on right half, white background          | Primary (always — left half is white)                  |
-| `b`    | `diagonal`           | Solid blue with diagonal cut to white triangle | White                                                  |
-| `c`    | `photo-portrait`     | Multi-shape composition, blue palette          | White                                                  |
-| `d`    | `multi-shape`        | Multi-shape composition, teal/green palette    | Primary (POTX uses LogoBlack-Dynamic for this variant) |
-| `e`    | `multi-shape-purple` | Multi-shape composition, purple/pink palette   | White                                                  |
-| `f`    | `solid-blue`         | Solid SAP brand blue                           | White                                                  |
-| `g`    | `wedges`             | Nested layered diagonal wedges                 | White                                                  |
-| `h`    | `solid-teal`         | Solid SAP brand teal                           | White                                                  |
-| `i`    | `solid-purple`       | Solid SAP brand purple                         | White                                                  |
-| `j`    | `diagonal-tinted`    | Diagonal silhouette on tinted blue             | White                                                  |
-| `k`    | `solid-blue-darker`  | Solid darker brand blue                        | White                                                  |
-| `l`    | `gradient-fade`      | Vertical gradient blue → black                 | White                                                  |
+### Variants (v0.4.0 ships `a`, `k`, `l`; `b`–`j` arrive in v0.4.1)
 
-Both forms are equivalent:
+- **`variant: a`** — white left, dark navy right with anvil-grid pattern. No photo. Use when you want the title to dominate.
+- **`variant: k`** — blue left, photo right with anvil-grid overlay. Requires `image:` front-matter. Use when the speaker / topic visual is central.
+- **`variant: l`** — white left, light blue right with single Flat Anvil shape behind a photo. Requires `image:`. Use for keynote or product-launch covers.
+
+### Front-matter
 
 ```yaml
+---
 layout: cover
-variant: a
+variant: a            # 'a' | 'k' | 'l'
+title: Your Title Here
+presenter: <slug>     # resolves to Name from presenters/<slug>.yaml
+event: SAP TechEd 2026     # optional; falls back to event.yaml
+date: 2026-09-15           # optional; defaults to today
+image: /covers/photo.png   # required for variants k and l, ignored for a
+partnerLogo: /covers/partner.png   # optional partner-co-branding logo
+                                    # omit for dashed placeholder; use null to hide
+classification: PUBLIC
+---
 ```
 
-```yaml
-layout: cover
-variant: photo
-```
+### Title length
+
+The L-half title region is roughly 770 × 180 px on a 1280 × 720 slide. Two lines of 72-Bold fit ~5–7 words per line, so a soft cap of 14 words keeps titles readable without truncation. Longer titles will line-clamp.
+
+### Partner logo
+
+Three states for `partnerLogo:`:
+
+- **Omitted** → dashed-border placeholder showing "Add partner logo and alt text" (matches POTX wording)
+- **String** (path to image) → renders that image
+- **`null`** → renders nothing (no placeholder)
+
+### Migration from v0.3
+
+If you have a v0.3 deck using `variant: b`–`j`, you have two options:
+
+1. Change `variant:` to `a`, `k`, or `l` (the three v0.4.0 variants). Build will succeed.
+2. Wait for v0.4.1 — the remaining variants will be ported.
+
+Using `variant: b`–`j` in v0.4.0 throws a build error pointing at `docs/superpowers/audit/2026-06-14-v0.4-findings.md` for the v0.4.1 backlog.
 
 ---
 
