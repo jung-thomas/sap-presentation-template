@@ -23,16 +23,75 @@
 @import './horizon-mapping.css';
 @import './slide-styles.css';
 
-/* P-2: pin Slidev's slide-overview close-button into the visible viewport,
-   regardless of browser zoom or viewport size. The default `top-4 right-4`
-   positioning can fall outside the visible area on tall slide lists. */
-.slidev-overview .slidev-icon-btn[title='Close'],
-.slidev-quick-overview [title='Close'] {
-  position: sticky !important;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-  background: var(--slidev-theme-background, #fff);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* P-2: Slidev's "Goto..." panel (`g` hotkey) #slidev-goto-dialog can extend
+   past the viewport when the slide count is large, and offers no visible
+   close affordance — users only learn `Escape`/click-outside dismissal by
+   guessing. v0.4.0's first attempt targeted `.slidev-quick-overview` which
+   was the wrong panel entirely.
+
+   This block:
+   1. Tightens the autocomplete-list max-height to a safer bound so the
+      whole panel fits inside the viewport even when browser chrome is
+      heavy (Windows fullscreen, zoom > 100%, etc.).
+   2. Styles the `.theme-goto-close` button injected by theme/setup/main.ts
+      into the dialog's input row. The button calls Slidev's exported
+      `showGotoDialog` ref to close the panel cleanly; CSS only handles
+      its appearance.
+
+   Selectors target Slidev's stable id (`#slidev-goto-dialog`) so they
+   survive theme upgrades inside the @slidev/client package. */
+#slidev-goto-dialog {
+  /* Panel itself stays within the visible area regardless of list length. */
+  max-height: calc(100vh - 2.5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+#slidev-goto-dialog .autocomplete-list {
+  /* Override the upstream `calc(100vh - 100px)` which can overshoot in
+     fullscreen / high-DPI cases on Windows where chrome height differs.
+     Using flex parent + explicit max-height keeps the list scrolling
+     contained inside the panel, which itself is bounded above. */
+  max-height: calc(100vh - 7rem) !important;
+  overflow-y: auto;
+}
+
+/* Make room for the injected close button on the input row. */
+#slidev-goto-dialog > div:first-child {
+  position: relative;
+  padding-right: 2.5rem !important;
+}
+
+/* The injected `<button class="theme-goto-close">` (theme/setup/main.ts).
+   Calls `showGotoDialog.value = false` on click; styling lives here. */
+#slidev-goto-dialog .theme-goto-close {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--sap-grey-7, #475e75);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   border-radius: 50%;
+  -webkit-user-select: none;
+  user-select: none;
+  opacity: 0.7;
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+#slidev-goto-dialog .theme-goto-close:hover,
+#slidev-goto-dialog .theme-goto-close:focus-visible {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
 }
