@@ -22,3 +22,17 @@
 @import './_extracted/typography-tokens.css';
 @import './horizon-mapping.css';
 @import './slide-styles.css';
+
+/* P-2: pin Slidev's slide-overview close-button into the visible viewport,
+   regardless of browser zoom or viewport size. The default `top-4 right-4`
+   positioning can fall outside the visible area on tall slide lists. */
+.slidev-overview .slidev-icon-btn[title='Close'],
+.slidev-quick-overview [title='Close'] {
+  position: sticky !important;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: var(--slidev-theme-background, #fff);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
