@@ -8,11 +8,13 @@ info: |
 
 ---
 layout: cover
+variant: a
 title: Building Cloud-Native Apps with SAP CAP
 subtitle: From zero to production on BTP
 presenter: thomas-jung
-variant: a
-image: /covers/cover-default.jpg
+event: SAP TechEd 2026
+date: 2026-09-15
+classification: PUBLIC
 ---
 
 ---
@@ -183,7 +185,7 @@ const roadmapPhases = [
 
 ---
 layout: cover
-variant: c
+variant: a
 image: /sap/covers/cover-1.png
 title: Building on BTP
 subtitle: A v0.3 cover demo

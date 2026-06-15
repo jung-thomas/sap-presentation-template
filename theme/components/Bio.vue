@@ -42,7 +42,7 @@
       :title-text="presenterData.name"
       :subtitle-text="presenterData.title"
     >
-      <ui5-avatar slot="avatar" :initials="presenterData.initials" size="L" shape="Circle">
+      <ui5-avatar slot="avatar" :initials="presenterData.initials" size="M" shape="Circle">
         <img v-if="presenterData.photo" :src="presenterData.photo" :alt="presenterData.name" />
       </ui5-avatar>
     </ui5-card-header>
