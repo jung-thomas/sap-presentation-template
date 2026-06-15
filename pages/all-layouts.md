@@ -183,11 +183,15 @@ layout: agenda
 title: "Agenda Layout"
 items:
 
-- Introduction
-- Architecture overview
-- Live demo
-- Q & A
-  current: 2
+- title: Introduction
+  description: Welcome and overview of today's session
+- title: Architecture overview
+  description: Explore the system design and key components
+- title: Live demo
+  description: See the platform in action with real-world scenarios
+- title: Q & A
+  description: Questions and answers with the team
+current: 2
 
 ---
 
@@ -511,6 +515,20 @@ title: "Component: Bio (compact)"
 ---
 
 <Bio presenter="thomas-jung" :compact="true" />
+
+---
+
+layout: title-only
+title: "Component: Bio (team mode)"
+
+---
+
+<Bio :people="[
+  { name: 'Nina Thompson', role: 'Data Analyst', photo: 'https://placehold.co/200x250/0070F2/white?text=Nina', qr: 'https://example.com/nina' },
+  { name: 'Marcus Bennett', role: 'Product Manager', photo: 'https://placehold.co/200x250/0070F2/white?text=Marcus', qr: 'https://example.com/marcus' },
+  { name: 'Sofia Nguyen', role: 'Engineer', photo: 'https://placehold.co/200x250/0070F2/white?text=Sofia', qr: 'https://example.com/sofia' },
+  { name: 'Ethan Brooks', role: 'Designer', photo: 'https://placehold.co/200x250/0070F2/white?text=Ethan', qr: 'https://example.com/ethan' }
+]" />
 
 ---
 
