@@ -21,12 +21,18 @@ classification: PUBLIC
 layout: agenda
 title: Agenda
 items:
-  - Foundations of CAP
-  - The data modelling layer
-  - Service definitions & OData
-  - Deploying to BTP
-  - Live demo
-  - Q & A
+  - title: Foundations of CAP
+    description: Models, services, and runtimes
+  - title: The data modelling layer
+    description: Entities, projections, and CDS associations
+  - title: Service definitions & OData
+    description: Bound actions, custom logic, and protocols
+  - title: Deploying to BTP
+    description: cds up and the multi-tenancy story
+  - title: Live demo
+    description: Hands-on walkthrough
+  - title: Q & A
+    description: Bring your questions
 ---
 
 ---
