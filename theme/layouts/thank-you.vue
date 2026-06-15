@@ -154,13 +154,13 @@
   }
   .thanks-b-tagline {
     position: absolute;
-    bottom: 6%;
+    bottom: 7%;
     right: 18%;
     z-index: 2;
   }
   .thanks-b-legal {
     position: absolute;
-    bottom: 3%;
+    bottom: 4%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
