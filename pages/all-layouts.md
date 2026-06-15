@@ -44,93 +44,84 @@ presenter: thomas-jung
 
 ---
 
-layout: cover
-title: "Cover B"
-subtitle: "Subtitle text"
-variant: b
-presenter: thomas-jung
+layout: title-only
+title: "Cover B (v0.4.1)"
 
 ---
 
----
-
-layout: cover
-title: "Cover C"
-subtitle: "Subtitle text"
-variant: c
-presenter: thomas-jung
+Variant `b` ships in v0.4.1.
 
 ---
 
----
-
-layout: cover
-title: "Cover D"
-subtitle: "Subtitle text"
-variant: d
-presenter: thomas-jung
+layout: title-only
+title: "Cover C (v0.4.1)"
 
 ---
 
----
-
-layout: cover
-title: "Cover E"
-subtitle: "Subtitle text"
-variant: e
-presenter: thomas-jung
+Variant `c` ships in v0.4.1.
 
 ---
 
----
-
-layout: cover
-title: "Cover F"
-subtitle: "Subtitle text"
-variant: f
-presenter: thomas-jung
+layout: title-only
+title: "Cover D (v0.4.1)"
 
 ---
 
----
-
-layout: cover
-title: "Cover G"
-subtitle: "Subtitle text"
-variant: g
-presenter: thomas-jung
+Variant `d` ships in v0.4.1.
 
 ---
 
----
-
-layout: cover
-title: "Cover H"
-subtitle: "Subtitle text"
-variant: h
-presenter: thomas-jung
+layout: title-only
+title: "Cover E (v0.4.1)"
 
 ---
 
----
-
-layout: cover
-title: "Cover I"
-subtitle: "Subtitle text"
-variant: i
-presenter: thomas-jung
+Variant `e` ships in v0.4.1.
 
 ---
 
----
-
-layout: cover
-title: "Cover J"
-subtitle: "Subtitle text"
-variant: j
-presenter: thomas-jung
+layout: title-only
+title: "Cover F (v0.4.1)"
 
 ---
+
+Variant `f` ships in v0.4.1.
+
+---
+
+layout: title-only
+title: "Cover G (v0.4.1)"
+
+---
+
+Variant `g` ships in v0.4.1.
+
+---
+
+layout: title-only
+title: "Cover H (v0.4.1)"
+
+---
+
+Variant `h` ships in v0.4.1.
+
+---
+
+layout: title-only
+title: "Cover I (v0.4.1)"
+
+---
+
+Variant `i` ships in v0.4.1.
+
+---
+
+layout: title-only
+title: "Cover J (v0.4.1)"
+
+---
+
+Variant `j` ships in v0.4.1.
 
 ---
 
@@ -138,6 +129,7 @@ layout: cover
 title: "Cover K"
 subtitle: "Subtitle text"
 variant: k
+image: /sap/covers/cover-1.png
 presenter: thomas-jung
 
 ---
@@ -148,6 +140,7 @@ layout: cover
 title: "Cover L"
 subtitle: "Subtitle text"
 variant: l
+image: /sap/covers/cover-2.png
 presenter: thomas-jung
 
 ---
