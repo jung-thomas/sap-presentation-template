@@ -18,26 +18,15 @@ import './font'
 /**
  * P-2 patch: Slidev's `Goto` dialog (#slidev-goto-dialog, opened with `g`)
  * has no visible close affordance — users only learn `Escape`/click-outside
- * dismissal by accident. We inject a real `<button>` into the input row that
- * calls Slidev's exported `showGotoDialog` ref to dismiss the panel cleanly.
+ * dismissal by accident. We inject a real `<button>` into the input row
+ * that dispatches a synthetic `Escape` keydown on Slidev's input, which
+ * uses Slidev's existing `@keydown.escape="close"` handler in Goto.vue.
  *
  * Has to run on app mount (after `defineAppSetup`) because the dialog
  * element is rendered by Slidev's client and isn't in the DOM until first
  * mount. We use a MutationObserver to wait for the element to appear.
  */
-async function installGotoDialogCloseButton() {
-  // Lazy-import Slidev's state ref so the bundle doesn't break if the
-  // export ever moves.
-  let showGotoDialogRef: { value: boolean } | null = null
-  try {
-    const mod = await import('@slidev/client/state/index')
-    showGotoDialogRef = mod.showGotoDialog
-  } catch {
-    // If the import fails (Slidev internal renamed/moved), fall back to a
-    // simulated Escape keypress on the input — that uses Slidev's existing
-    // @keydown.escape="close" handler.
-  }
-
+function installGotoDialogCloseButton() {
   const inject = (dialog: HTMLElement) => {
     // Guard against double-injection on HMR / repeated DOM mutations.
     if (dialog.querySelector('.theme-goto-close')) return
@@ -52,15 +41,9 @@ async function installGotoDialogCloseButton() {
     btn.addEventListener('click', (e) => {
       e.preventDefault()
       e.stopPropagation()
-      if (showGotoDialogRef) {
-        showGotoDialogRef.value = false
-      } else {
-        const input = dialog.querySelector<HTMLInputElement>('#slidev-goto-input')
-        input?.focus()
-        input?.dispatchEvent(
-          new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })
-        )
-      }
+      const input = dialog.querySelector<HTMLInputElement>('#slidev-goto-input')
+      input?.focus()
+      input?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
     })
     inputRow.appendChild(btn)
   }
@@ -94,7 +77,7 @@ export default defineAppSetup(({ app: _app, router: _router }) => {
   // Defer to next tick so the app has mounted.
   if (typeof window !== 'undefined') {
     queueMicrotask(() => {
-      void installGotoDialogCloseButton()
+      installGotoDialogCloseButton()
     })
   }
 })
