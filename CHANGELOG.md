@@ -7,6 +7,48 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.0] — 2026-06-14
+
+### Added
+
+- New `<AnvilGridDecoration>` component using CSS `background-image: repeat` of a Flat Anvil tile, sourced from `public/sap/anvil-tile.svg` (a 120×60 viewBox with `currentColor` fill so per-variant coloring works via the CSS `color` cascade).
+- New `<PartnerLogoPlaceholder>` component matching POTX's dashed-border partner-logo placeholder. Three states: `partnerLogo:` set to a string renders the logo; omitted renders the dashed placeholder; `null` renders nothing.
+- New `<CoverContent>` and `<CoverDecoration>` components implementing the L/R-split (60/40) cover composition matching POTX cover specimens.
+- Cover layout `date:` front-matter — falls back to today, formatted via `Intl.DateTimeFormat('en-US', { dateStyle: 'long' })`.
+- Cover layout `partnerLogo:` front-matter (string | null | omitted, see three-state behavior above).
+- Build-time `validateVariant()` helper in `theme/setup/cover-variants.ts` throws helpful errors on unimplemented cover variants (`b`–`j`) pointing at the v0.4.1 backlog, and on variants `k`/`l` missing required `image:` front-matter; warns when variant `a` has `image:` set.
+- New "Cover layout" section in `CONTENT-GUIDE.md` documenting the three shipping variants, front-matter shape, 14-word soft title cap, partner-logo control, and v0.3 → v0.4.0 migration.
+
+### Changed
+
+- Cover layout `theme/layouts/cover.vue` rewritten to use a config-table architecture (`COVER_VARIANTS` in `theme/setup/cover-variants.ts`) and a flex-based 60/40 L/R split, replacing v0.3's `<component :is>` decoration loop and the `clear-space` / `cover-tokens` keep-out math.
+- Cover variants `a`, `k`, `l` now match POTX specimens. Other variants (`b`–`j`) defer to v0.4.1 and currently throw build-time errors.
+- Bio avatar size reduced from `size="L"` (80 px) to `size="M"` (48 px) to prevent overlap with title text in single-presenter mode (P-3).
+- Slide-overview close button (`o` key) now stays in the visible viewport via `position: sticky` (P-2).
+- `CoverLetter` type tightened from 12 letters (`'a'..'l'`) to 3 (`'a' | 'k' | 'l'`); descriptive aliases (`photo`, `multi-shape`, etc.) removed from the resolver.
+- Sample deck (`slides.md`) cover slide migrated to v0.4.0 front-matter (date, classification, no longer references unsupported variants); kitchen-sink gallery deck (`pages/all-layouts.md`) cover slides for `b`–`j` swapped to `layout: title-only` placeholders so the gallery compiles under the new validator.
+
+### Deferred to v0.4.1
+
+- Cover variants `b`–`j` rebuild (the audit's primary backlog).
+- `RipplePattern.vue` removal — kept for v0.4.0 because `theme/layouts/divider.vue` and `theme/layouts/thank-you.vue` still depend on it. Those layouts rebuild as part of v0.4.1, at which point RipplePattern can be removed cleanly.
+- Visual-regression baselines for cover-a/k/l + Bio — VR test infrastructure has a pre-existing `bi/o` icon-resolution flake (inherited from v0.3) that prevents gallery-deck slide content from rendering during Playwright runs, so baselines silently match against v0.3 broken renders. The gallery deck source code is migrated for v0.4.0 validators, but actual baseline PNG refresh requires fixing the upstream flake first.
+
+### Migration from v0.3
+
+- Decks using `variant: a`, `k`, or `l` continue to work — visual changes apply automatically (the L/R-split + AnvilGrid replaces the v0.3 footer Ripple).
+- Decks using `variant: b`–`j` will throw at build with a v0.4.1-pointing error message; switch to `variant: a` (or wait for v0.4.1).
+- The new `date:` and `partnerLogo:` front-matter are additive — existing decks render today's date and a dashed partner placeholder by default.
+- v0.3 alias values (`photo`, `multi-shape`, etc.) for the `variant:` field no longer resolve. Use the letter form.
+
+### Open visual-tuning items (deferred per spec §8 Open Questions)
+
+- Anvil-tile size (currently `60×30px` background-size) is a placeholder; final density tuning is v0.4.1 polish.
+- Variant-a anvil contrast (`var(--sap-blue-6)` on `var(--sap-blue-11)`) reads dark-on-dark; lighter accent color may be appropriate.
+- Variant-k anvil overlay color (`rgba(255,255,255,0.4)`) may need tuning depending on photo contrast.
+
+See [docs/superpowers/audit/2026-06-14-v0.4-findings.md](docs/superpowers/audit/2026-06-14-v0.4-findings.md) for the full layout audit informing v0.4.0 and v0.4.1 scope.
+
 ## [0.3.1] — 2026-06-14
 
 ### Fixed
