@@ -218,7 +218,8 @@ classification: PUBLIC
 layout: quote
 classification: PUBLIC
 author: Steve Lucas
-source: SAP CEO
+company: SAP
+role: CEO
 ---
 
 > Innovation is the lifeblood of our success.
@@ -264,7 +265,9 @@ classification: PUBLIC
 
 ---
 layout: q-and-a
+eyebrow: Your perspective matters
 title: Join the conversation
+subtitle: You ask. We answer.
 presenter: thomas-jung
 classification: PUBLIC
 ---
@@ -283,6 +286,8 @@ Tracked for a future Vite plugin.
 
 ---
 layout: thank-you
+variant: b
 presenter: thomas-jung
-variant: a
+qrUrl: https://people.sap.com/thomas
+classification: PUBLIC
 ---

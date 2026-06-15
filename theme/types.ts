@@ -22,6 +22,8 @@ export interface Presenter {
   bio: string
   socials: SocialLink[]
   email?: string
+  address?: string
+  city?: string
 }
 
 export interface TeamMember {

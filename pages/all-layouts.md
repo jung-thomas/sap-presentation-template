@@ -478,6 +478,9 @@ Describe what the screenshot shows. Keep it brief — one or two sentences maxim
 ---
 
 layout: q-and-a
+eyebrow: Sample eyebrow
+title: Sample Q&A title
+subtitle: Sample subtitle
 presenter: thomas-jung
 
 ---
@@ -776,11 +779,13 @@ title: "Screenshot Layout"
 ---
 
 layout: quote
-title: "Quote Layout"
+author: Sample Author
+company: Sample Company
+role: Sample Role
 
 ---
 
-"The future belongs to those who believe in the beauty of their dreams." — Eleanor Roosevelt
+> Sample quote text demonstrating the v0.4.2 quote layout.
 
 ---
 
