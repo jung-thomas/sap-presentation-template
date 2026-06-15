@@ -1,5 +1,12 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+
+// Pin assetUrl() to a pass-through so test assertions don't depend on the
+// resolved Vite BASE_URL (which differs between local dev and CI).
+vi.mock('../setup/assets', () => ({
+  assetUrl: (path?: string) => path
+}))
+
 import SapTaglineLockup from './SapTaglineLockup.vue'
 
 describe('<SapTaglineLockup>', () => {
