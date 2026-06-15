@@ -1,102 +1,122 @@
+<!-- theme/layouts/agenda.vue -->
 <script setup lang="ts">
   import { computed } from 'vue'
-  import agendaDefaults from '../styles/_extracted/agenda-defaults.json'
+  import AgendaItem from '../components/agenda/AgendaItem.vue'
+  import AnvilGridDecoration from '../components/decorations/AnvilGridDecoration.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
 
-  type AgendaConfig = {
-    toc: boolean
-    showSubsections: boolean
-    dividers: boolean
-    sectionNumbers: boolean
-    slideNumbers: boolean
-  }
-
-  type AgendaItem = {
+  type AgendaItemData = {
     title: string
+    description?: string
+    /** v0.3 backward-compat: nested bullet list. Renders below description if both present. */
     subsections?: string[]
   }
 
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
   const classification = computed(() => fm.value.classification as string | null | undefined)
+  const items = computed<AgendaItemData[]>(() => {
+    const raw = fm.value.items
+    if (!Array.isArray(raw)) return []
+    // v0.3 supported items as plain strings; coerce.
+    return raw.map((it) => (typeof it === 'string' ? { title: it } : (it as AgendaItemData)))
+  })
 
-  const config = computed<AgendaConfig>(() => ({
-    ...(agendaDefaults as AgendaConfig),
-    ...((fm.value.agenda as Partial<AgendaConfig>) ?? {})
-  }))
-
-  const items = computed(() => (fm.value.items as AgendaItem[]) ?? [])
+  // v0.3 backward-compat: only render nested bullets if showSubsections is true (legacy default).
+  const agendaConfig = computed(() => (fm.value.agenda as { showSubsections?: boolean }) ?? {})
+  const showSubsections = computed(() => agendaConfig.value.showSubsections === true)
 </script>
 
 <template>
   <div class="layout agenda-layout">
-    <h1>{{ fm.title ?? 'Agenda' }}</h1>
-    <ol class="agenda-list">
-      <li v-for="(item, i) in items" :key="i">
-        <span v-if="config.sectionNumbers" class="num">{{ String(i + 1).padStart(2, '0') }}</span>
-        <span class="text">{{ item.title }}</span>
-        <ul v-if="config.showSubsections && item.subsections" class="subsections">
-          <li v-for="(s, j) in item.subsections" :key="j">{{ s }}</li>
-        </ul>
-      </li>
-    </ol>
-    <slot />
+    <div class="agenda-content">
+      <h1 class="agenda-title">{{ fm.title ?? 'Agenda' }}</h1>
+      <div class="agenda-list">
+        <div v-for="(item, i) in items" :key="i" class="agenda-row">
+          <AgendaItem
+            :index="i"
+            :title="item.title"
+            :description="item.description"
+            :is-last="i === items.length - 1"
+          />
+          <ul
+            v-if="showSubsections && item.subsections && item.subsections.length"
+            class="agenda-subsections"
+          >
+            <li v-for="(s, j) in item.subsections" :key="j">{{ s }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <AnvilGridDecoration
+      class="agenda-decoration"
+      bg="var(--sap-blue-10)"
+      color="var(--sap-blue-6)"
+    />
     <ClassificationFooter :level="classification" />
   </div>
 </template>
 
 <style scoped>
+  /* POTX agenda-b: 1920×1080 → 66.56% left content + 33.44% right anvil column.
+     1278/1920 = 66.5625% (left), 642/1920 = 33.4375% (right). */
   .agenda-layout {
-    padding: 3rem 5rem;
+    position: relative;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .agenda-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Use 66.56% width, 4.2% horizontal padding (POTX-derived item-row left position). */
+    width: 66.56%;
+    height: 100%;
+    padding: 8.4% 4.2% 5% 4.2%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
-  .agenda-layout h1 {
-    font-size: var(--typography-content-title-size, 3rem);
-    line-height: var(--typography-content-title-line-height, 1.1);
-    color: var(--sap-brand-blue-darker);
-    margin: 0;
+  .agenda-decoration {
+    /* AnvilGridDecoration is position:absolute; inset:0 by default — override to right column. */
+    left: 66.56% !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+  }
+  .agenda-title {
+    font-family: var(--sap-font-family-bold, var(--sap-font-major));
+    font-weight: 700;
+    /* POTX title 47px on 1080-tall slide ≈ 4.4% */
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--sap-text-primary, #000);
+    margin: 0 0 0.5rem;
   }
   .agenda-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: var(--typography-content-body-size, 1.5rem);
-  }
-  .agenda-list > li {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e5e9ed;
-    color: var(--sapTextColor);
+    flex: 1;
+  }
+  .agenda-row {
+    /* Each row contains an AgendaItem + (optional) v0.3 subsections. */
+  }
+  .agenda-subsections {
+    list-style: disc inside;
+    margin: 0.5rem 0 1rem 4.5rem;
+    padding: 0;
+    color: var(--sap-text-primary, #000);
     opacity: 0.6;
-    line-height: var(--typography-content-body-line-height, 1.5);
+    font-size: 0.95rem;
   }
-  .agenda-list > li .text {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+  .agenda-subsections li {
+    padding: 0.15rem 0;
   }
-  .num {
-    font-family: var(--sap-font-major);
-    font-weight: 700;
-    color: var(--sap-brand-blue);
-    min-width: 2.5rem;
-  }
-  .subsections {
-    list-style: none;
-    padding: 0 0 0 2.5rem;
-    margin: 0.25rem 0 0 0;
-    font-size: 0.9em;
-    opacity: 0.75;
-  }
-  .subsections li {
-    padding: 0.25rem 0;
-  }
-  .agenda-layout--b {
-    background: var(--sap-brand-blue-pale);
+  /* Suppress the global slide-styles ::after accent — agenda doesn't use it. */
+  .agenda-layout::after {
+    content: none !important;
   }
 </style>
