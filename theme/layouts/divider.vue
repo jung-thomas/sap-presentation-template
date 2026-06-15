@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { computed } from 'vue'
-  import RipplePattern from '../components/decorations/RipplePattern.vue'
   import FlatAnvil from '../components/decorations/FlatAnvil.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
   import { assetUrl } from '../setup/assets'
@@ -17,7 +16,6 @@
 
 <template>
   <div :class="['divider', `divider--${variant}`, { 'divider--dark': isDark }]">
-    <RipplePattern v-if="variant !== 'b'" placement="full" />
     <FlatAnvil v-if="variant === 'b'" />
     <img class="divider-logo" :src="logoSrc" alt="SAP" />
     <div class="divider-content">
