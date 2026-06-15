@@ -30,7 +30,7 @@ async function installGotoDialogCloseButton() {
   // export ever moves.
   let showGotoDialogRef: { value: boolean } | null = null
   try {
-    const mod = await import('@slidev/client/state')
+    const mod = await import('@slidev/client/state/index')
     showGotoDialogRef = mod.showGotoDialog
   } catch {
     // If the import fails (Slidev internal renamed/moved), fall back to a
