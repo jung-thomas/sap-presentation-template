@@ -14,3 +14,6 @@ test-results/
 # Each fork-author obtains the official POTX from the SAP brand portal
 # and places it locally before running `npm run extract-brand`.
 SAP_Corp.potx
+
+# Ad-hoc render captures (Task 10 manual verification, etc.)
+.tmp/
