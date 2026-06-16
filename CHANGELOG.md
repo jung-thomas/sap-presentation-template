@@ -7,6 +7,58 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.2.2] — 2026-06-16
+
+### Fixed (anvil-pattern fidelity hotfix)
+
+v0.4.2.1 fixed anvil silhouette distortion (the brand-rule violation), but
+the **anvil-grid background pattern** itself was a CSS-tiled approximation
+that never matched the POTX. Reported as a recurring issue across the
+agenda sidebar, divider variant c, the Bio team-mode "Meet our team"
+band, and the thank-you variant b band.
+
+Root cause: the original `<AnvilGridDecoration>` rendered a small SVG
+tile via `background-repeat`. No combination of tile size and density
+reproduced the POTX layout because the POTX is **not** a uniform tile —
+it's `image38.svg` ("Ripple_Pattern"), a hand-composed pattern of 1,040
+individual anvil shapes at 5 different sizes, embedded directly in the
+`SAP_Corp.potx` file at `ppt/media/image38.svg`.
+
+Fix:
+
+- **Extract the canonical pattern from POTX** — the source SVG is now
+  shipped at `public/sap/anvil-pattern-source.svg`, byte-for-byte from
+  `SAP_Corp.potx → ppt/media/image38.svg`. 1,040 anvil paths,
+  viewBox 5242.82 × 1553.5, color sap-blue-6.
+- **`<HandPlacedAnvils>`** — new component that fetches the source SVG,
+  parses it via `DOMParser` (XML mode), and inserts it into the host
+  container at mount-time. Renders the literal POTX pattern, not a JS
+  composition.
+- **`shape` prop** — `'wide'` (default) for ~3.5:1 bands (thank-you,
+  Bio team-mode, divider-c) selects POTX slide-6's `srcRect` window.
+  `'portrait'` for narrow tall containers (agenda right column ≈ 0.6:1)
+  selects a vertical slice from the source so anvils render at native
+  pixel scale.
+- **Migrated consumers**: `thank-you.vue`, `agenda.vue`, `divider.vue`
+  (variant c), and `Bio.vue` (team mode) all use `<HandPlacedAnvils>`.
+
+### Added
+
+- **`scripts/inspect-potx.mjs`** — utility to extract or list POTX inner
+  files (slide layouts, masters, media). Useful for future POTX work.
+
+### Notes
+
+- The cover slide (`<CoverDecoration>`) still uses the v0.4.0
+  `<AnvilGridDecoration>` tile — that's a different brand treatment
+  (POTX cover slide pattern), out of scope for this hotfix.
+- `<HandPlacedAnvils>` color is fixed at sap-blue-6 (the value baked
+  into the source SVG paths). If a future consumer needs a different
+  color, replace the SVG's literal `fill="#1B90FF"` with
+  `fill="currentColor"` and thread color through.
+- Vitest: 187/187 passing (+13 over the v0.4.2.1 baseline; previously-
+  skipped tests now run). Production build clean.
+
 ## [0.4.2.1] — 2026-06-15
 
 ### Fixed (brand-fidelity hotfix)

@@ -108,7 +108,7 @@
 
 /* P-5: when a Bio team-mode component is used inside a title-only layout
    (POTX "Meet our team" convention), recolor the title-only <h1> white so
-   it reads on top of the AnvilGridDecoration band that <Bio :people=...>
+   it reads on top of the dark anvil band that <Bio :people=...>
    renders. The :has() selector is supported in Chromium / WebKit / Firefox
    ≥121. Older browsers fall back to the default dark title — content is
    still readable, just lower-contrast. */
