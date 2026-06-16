@@ -69,14 +69,17 @@
     position: absolute;
     top: 0;
     left: 0;
-    /* Use 66.56% width, 4.2% horizontal padding (POTX-derived item-row left position). */
+    /* Use 66.56% width, 4.2% horizontal padding (POTX-derived item-row left position).
+       Tightened top padding (8.4% → 6%) and inter-row gap (1.5rem → 0.5rem) in
+       v0.4.2.3 so 6 agenda items fit within 1080px slide height without
+       clipping the last row. */
     width: 66.56%;
     height: 100%;
-    padding: 8.4% 4.2% 5% 4.2%;
+    padding: 6% 4.2% 3% 4.2%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
   }
   .agenda-decoration {
     /* Right-column band painted with sap-blue-10 navy; HandPlacedAnvils

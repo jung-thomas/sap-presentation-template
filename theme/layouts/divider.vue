@@ -1,54 +1,45 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import HandPlacedAnvils from '../components/decorations/HandPlacedAnvils.vue'
-  import FlatAnvil from '../components/decorations/FlatAnvil.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
   import { assetUrl } from '../setup/assets'
 
-  type Variant = 'a' | 'b' | 'c' | 'd'
-
+  /**
+   * The POTX has a single divider design (slide 6 of SAP_Corp.potx):
+   *   - top half: white background, title in black
+   *   - bottom half: navy (sap-blue-10) with the canonical anvil pattern
+   *     in sap-blue-6, rendered via <HandPlacedAnvils>
+   *
+   * v0.4.2 introduced four variants (a/b/c/d), but only one — variant c —
+   * matched the actual POTX. v0.4.2.3 collapses to the single canonical
+   * design. The `variant:` front-matter field is no longer read; existing
+   * decks that set it will see the canonical design instead. CHANGELOG
+   * notes the breaking change.
+   */
   const props = defineProps<{ frontmatter?: Record<string, unknown> }>()
   const fm = computed(() => props.frontmatter ?? {})
-  const variant = computed<Variant>(() => {
-    const raw = ((fm.value.variant as string) ?? 'a').toLowerCase()
-    return ['a', 'b', 'c', 'd'].includes(raw) ? (raw as Variant) : 'a'
-  })
-
-  // Logo position is top-left at top: 7.35%. Only variant b has a dark
-  // background there (sap-blue-6); a, c, d all sit on white at that anchor
-  // (c's anvil-tile band starts at 49.8%, d's pale band at 25.9%). Use the
-  // primary (color) logo on a/c/d; only b warrants the white logo.
-  const useColorLogo = computed(() => variant.value !== 'b')
-  const logoSrc = computed(() =>
-    assetUrl(useColorLogo.value ? '/logos/logo-sap-primary.svg' : '/logos/logo-sap-white.svg')
-  )
-
   const classification = computed(() => fm.value.classification as string | null | undefined)
+  const logoSrc = computed(() => assetUrl('/logos/logo-sap-primary.svg'))
 </script>
 
 <template>
-  <div :class="['divider', `divider--${variant}`]">
-    <!-- Variant b: 4 FlatAnvil shapes per POTX divider-b multi-shape composition. -->
-    <template v-if="variant === 'b'">
-      <FlatAnvil class="divider-flat-anvil divider-flat-anvil--br1" color="var(--sap-blue-10)" />
-      <FlatAnvil class="divider-flat-anvil divider-flat-anvil--br2" color="var(--sap-blue-7)" />
-      <FlatAnvil class="divider-flat-anvil divider-flat-anvil--tl" color="var(--sap-blue-2)" />
-      <FlatAnvil class="divider-flat-anvil divider-flat-anvil--cl" color="var(--sap-blue-7)" />
-    </template>
-
-    <!-- Variant c: bottom 50% navy band with the canonical POTX anvil pattern -->
-    <div v-if="variant === 'c'" class="divider-anvil-grid">
+  <div class="divider">
+    <!-- Bottom 50% navy band with the canonical POTX anvil pattern -->
+    <div class="divider-anvil-band">
       <HandPlacedAnvils />
     </div>
 
-    <!-- Variant d: pale-blue horizontal band y=280-805 (≈26% to 74.5% of height) -->
-    <div v-if="variant === 'd'" class="divider-band" />
-
+    <!-- POTX has the SAP logo top-left in primary color (sits on the white
+         top half). -->
     <img class="divider-logo" :src="logoSrc" alt="SAP" />
+
+    <!-- Title sits in the white top half. POTX measurement: y=22-30% of
+         slide height. -->
     <div class="divider-content">
       <h1 class="divider-title">{{ fm.title }}</h1>
       <slot />
     </div>
+
     <ClassificationFooter :level="classification" />
   </div>
 </template>
@@ -59,27 +50,12 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #ffffff;
+    color: var(--sap-text-primary);
     font-family: var(--sap-font-family);
   }
-  .divider--a {
-    background: #ffffff;
-    color: var(--sap-text-primary);
-  }
-  .divider--b {
-    background: var(--sap-blue-6);
-    color: #ffffff;
-  }
-  .divider--c {
-    background: #ffffff;
-    color: var(--sap-text-primary);
-  }
-  .divider--d {
-    background: #ffffff;
-    color: var(--sap-text-primary);
-  }
 
-  .divider-anvil-grid {
-    /* Bottom-half navy band with hand-placed anvil composition */
+  .divider-anvil-band {
     position: absolute;
     top: 49.8%;
     left: 0;
@@ -87,50 +63,6 @@
     bottom: 0;
     background: var(--sap-blue-10);
     z-index: 1;
-  }
-
-  .divider-band {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 25.9%;
-    bottom: 25.5%;
-    background: var(--sap-blue-2);
-    z-index: 1;
-  }
-
-  /* Variant b: 4 FlatAnvil containers. Each is sized via width-only +
-     `aspect-ratio: 605 / 297` so the anvil silhouette renders at its
-     canonical 2.04:1 ratio without distortion (brand rule). Heights are
-     no longer set independently — they derive from the width. */
-  .divider-flat-anvil {
-    position: absolute;
-    aspect-ratio: 605 / 297;
-    z-index: 1;
-  }
-  .divider-flat-anvil--br1 {
-    /* Bottom-right large */
-    right: 5%;
-    bottom: 8%;
-    width: 38%;
-  }
-  .divider-flat-anvil--br2 {
-    /* Bottom-right smaller */
-    right: 12%;
-    bottom: 38%;
-    width: 22%;
-  }
-  .divider-flat-anvil--tl {
-    /* Top-left accent */
-    left: 6%;
-    top: 8%;
-    width: 18%;
-  }
-  .divider-flat-anvil--cl {
-    /* Center-left accent */
-    left: 22%;
-    top: 42%;
-    width: 16%;
   }
 
   .divider-logo {
@@ -142,13 +74,16 @@
     height: auto;
     z-index: 3;
   }
+
   .divider-content {
     position: absolute;
-    top: 40%;
+    /* POTX divider title sits at y=22% of slide height, in the white top half */
+    top: 22%;
     left: 4.13%;
     right: 4.13%;
     z-index: 3;
   }
+
   .divider-title {
     font-family: var(--sap-font-family-bold, var(--sap-font-major));
     font-weight: 700;
@@ -157,6 +92,7 @@
     margin: 0;
     color: inherit;
   }
+
   .divider::after {
     content: none !important;
   }

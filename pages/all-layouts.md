@@ -148,32 +148,7 @@ presenter: thomas-jung
 ---
 
 layout: divider
-title: "Divider A"
-variant: a
-
----
-
----
-
-layout: divider
-title: "Divider B"
-variant: b
-
----
-
----
-
-layout: divider
-title: "Divider C"
-variant: c
-
----
-
----
-
-layout: divider
-title: "Divider D"
-variant: d
+title: "Divider"
 
 ---
 
