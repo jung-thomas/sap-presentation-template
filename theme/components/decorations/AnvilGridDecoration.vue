@@ -33,7 +33,13 @@
     position: absolute;
     inset: 0;
     background-repeat: repeat;
-    background-size: 60px 30px;
+    /* Tile SVG is 240×120 (anvil in top-left quadrant, whitespace right + below).
+       Render the tile at 200×100 — keeps the 2:1 tile ratio so the anvil
+       inside the tile renders at its canonical 2.04:1 silhouette without
+       distortion (brand rule: never distort the anvil). The whitespace in
+       the SVG produces visible gaps between repeated anvils, matching the
+       POTX divider-c pattern (no "shark teeth"). */
+    background-size: 200px 100px;
     pointer-events: none;
   }
 </style>

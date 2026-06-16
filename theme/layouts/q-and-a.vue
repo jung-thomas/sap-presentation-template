@@ -92,15 +92,29 @@
     flex: 0 0 50%;
   }
 
+  /* Anvil outline as photo frame on the right half. Sized at the canonical
+     anvil 2.04:1 ratio so the silhouette never distorts (brand rule). The
+     qa-frame is 50% × 100% of slide = 960×1080 px; an 84%-wide outline
+     ≈ 806×395 px sits comfortably inside, vertically centered. */
   .qa-anvil-frame {
     position: absolute;
-    inset: 15% 8%;
+    width: 84%;
+    aspect-ratio: 605 / 297;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1;
   }
 
+  /* Photo nestles inside the anvil outline. Kept smaller than the anvil's
+     bounding box so the trapezoid silhouette reads as a frame around it. */
   .qa-photo {
     position: absolute;
-    inset: 18% 11%;
+    width: 70%;
+    aspect-ratio: 4 / 3;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
     overflow: hidden;
     z-index: 2;
   }

@@ -7,6 +7,47 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.2.1] — 2026-06-15
+
+### Fixed (brand-fidelity hotfix)
+
+v0.4.2 violated the SAP brand rule "never distort or rotate the anvil"
+across every layout that consumed `<FlatAnvil>` or `<FlatAnvilOutline>`.
+Reported as showstopper. Root cause: both SVG components had
+`preserveAspectRatio="none"`, which let the canonical 605:297 trapezoid
+stretch into whatever rectangle the host CSS gave it.
+
+- **`<FlatAnvil>` and `<FlatAnvilOutline>`** — drop
+  `preserveAspectRatio="none"`. Default `xMidYMid meet` preserves the
+  canonical 2.04:1 silhouette. Hosts now MUST size their container at the
+  same aspect ratio (`aspect-ratio: 605 / 297;`).
+- **AnvilGridDecoration tile (`public/sap/anvil-tile.svg`)** — enlarge
+  canvas from 120×60 to 240×120 with the anvil in the top-left quadrant
+  and 50% whitespace right + below. Tile renders with visible gaps
+  between anvils; fixes the "shark teeth" pattern on divider-c, agenda,
+  and thank-you-b.
+- **AnvilGridDecoration `background-size`** — 60×30 → 200×100 to match
+  the new tile dimensions.
+- **divider variant b (4 FlatAnvil shapes)** — each shape container
+  switched from independent width/height percentages to width-only +
+  `aspect-ratio: 605 / 297`. Previously the 4 shapes had wildly
+  different aspect ratios (e.g. br1 was ≈2.42:1).
+- **quote `.quote-highlight`** — was `inset: 20% 25%` (≈1.48:1, heavily
+  distorted, diagonal extending off the slide's right edge). Now
+  `width: 70%` + `aspect-ratio: 605 / 297`, centered, fully inside slide
+  bounds.
+- **q-and-a `.qa-anvil-frame` + `.qa-photo`** — was `inset: 15% 8%` on
+  qa-frame (≈1.07:1, drew the outline well past slide bounds). Now
+  `width: 84%` + `aspect-ratio: 605 / 297` for the outline, and
+  `width: 70%` + `aspect-ratio: 4 / 3` for the photo.
+- **`title-only` layout + Bio team mode contrast** — when the slide body
+  renders Bio team mode's dark anvil band, the default dark-blue title
+  was unreadable on the dark band (reported "Meet our team"). Added
+  `.title-only:has(.bio--team) h1 { color: #fff; z-index: 5 }`.
+
+No API changes. No removed features. All 174 vitest tests still pass;
+production build clean.
+
 ## [0.4.2] — 2026-06-15
 
 ### Added

@@ -98,33 +98,38 @@
     z-index: 1;
   }
 
+  /* Variant b: 4 FlatAnvil containers. Each is sized via width-only +
+     `aspect-ratio: 605 / 297` so the anvil silhouette renders at its
+     canonical 2.04:1 ratio without distortion (brand rule). Heights are
+     no longer set independently — they derive from the width. */
   .divider-flat-anvil {
     position: absolute;
+    aspect-ratio: 605 / 297;
     z-index: 1;
   }
   .divider-flat-anvil--br1 {
+    /* Bottom-right large */
     right: 5%;
     bottom: 8%;
     width: 38%;
-    height: 28%;
   }
   .divider-flat-anvil--br2 {
+    /* Bottom-right smaller */
     right: 12%;
     bottom: 38%;
     width: 22%;
-    height: 16%;
   }
   .divider-flat-anvil--tl {
+    /* Top-left accent */
     left: 6%;
     top: 8%;
     width: 18%;
-    height: 14%;
   }
   .divider-flat-anvil--cl {
+    /* Center-left accent */
     left: 22%;
     top: 42%;
     width: 16%;
-    height: 12%;
   }
 
   .divider-logo {

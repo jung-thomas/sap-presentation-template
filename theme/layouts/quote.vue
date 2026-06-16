@@ -40,11 +40,18 @@
     font-family: var(--sap-font-family);
   }
 
-  /* Giant flat-anvil highlight behind the quote text — POTX measured 19,688 px
-   of sap-blue-4. Approximate the bounding box at central 50% × 60% of slide. */
+  /* Giant flat-anvil highlight behind the quote text. Sized at the canonical
+     anvil 2.04:1 ratio so the silhouette never distorts (brand rule).
+     Width 70% of slide ≈ 1344px → height ≈ 660px (61% of 1080). Centered
+     vertically and slightly inset from the right so the diagonal apex stays
+     well inside the slide's right edge. */
   .quote-highlight {
     position: absolute;
-    inset: 20% 25%;
+    width: 70%;
+    aspect-ratio: 605 / 297;
+    left: 12%;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 0;
   }
 
