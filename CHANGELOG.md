@@ -7,6 +7,44 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.2.3] — 2026-06-16
+
+### Changed (breaking)
+
+- **Divider collapsed to a single canonical POTX design.** v0.4.2 introduced
+  four creative variants (`a` / `b` / `c` / `d`); only variant `c` matched
+  the actual POTX. The divider layout now always renders the canonical
+  POTX design (white top half + navy bottom half with the source anvil
+  pattern) and ignores any `variant:` front-matter.
+- **Migration:** decks that set `variant: a|b|c|d` on a divider slide
+  will silently get the canonical design. Drop the `variant:` line for
+  cleanliness, but it's not strictly required.
+
+### Fixed
+
+- **Agenda content overflow.** Decks with 6 agenda items had the last
+  row clipped below the slide bottom. Tightened the agenda layout's
+  top padding (8.4% → 6%), bottom padding (5% → 3%), inter-row gap
+  (1.5rem → 0.5rem), and `<AgendaItem>` padding-bottom (0.8% → 0.4%) +
+  hairline margin (1.5% → 0.8%). 6 items now fit within 1080px slide
+  height with ~30px clearance.
+
+### Removed
+
+- **Divider variant CSS** (`.divider--a/b/c/d`, `.divider-flat-anvil--*`,
+  `.divider-band`) and the variant-resolution logic in `divider.vue`.
+- **The 3 redundant divider entries** in `pages/all-layouts.md`
+  (variants A/B/D); the single "Divider" entry now exercises the full
+  canonical design.
+
+### Notes
+
+- Vitest: 171/171 passing (was 174/174; -3 = collapsed variant tests
+  replaced by simpler single-design tests)
+- Production build: clean
+- Every other layout (cover, agenda, thank-you, quote, q-and-a, Bio
+  team-mode) is unchanged.
+
 ## [0.4.2.2] — 2026-06-16
 
 ### Fixed (anvil-pattern fidelity hotfix)

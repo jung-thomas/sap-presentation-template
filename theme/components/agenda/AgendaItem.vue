@@ -36,13 +36,16 @@
     grid-template-columns: max-content 1fr;
     column-gap: 1.25rem;
     align-items: start;
-    padding-bottom: 0.8%;
+    /* v0.4.2.3: 0.8% → 0.4% to claw back vertical space; POTX item-row
+       still reads as well-spaced when 6 items render on a 1080px slide. */
+    padding-bottom: 0.4%;
   }
   .agenda-item--with-hairline {
     /* Per POTX measurement: 2px solid sap-blue-6 hairline between items.
-       The 1.5%/0 padding above/below the hairline matches POTX item-row height. */
+       Hairline margin reduced (1.5% → 0.8%) in v0.4.2.3 so 6 items fit
+       within slide height without clipping the last row. */
     border-bottom: 2px solid var(--sap-blue-6, #1b90ff);
-    margin-bottom: 1.5%;
+    margin-bottom: 0.8%;
   }
   .agenda-item__num {
     font-family: var(--sap-font-family-bold, var(--sap-font-major));

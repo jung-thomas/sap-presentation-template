@@ -38,7 +38,6 @@ items:
 ---
 layout: divider
 title: Foundations
-variant: a
 ---
 
 Part 1 of 6
@@ -130,7 +129,6 @@ service CatalogService @(path: '/browse') {
 ---
 layout: divider
 title: Live Demo
-variant: b
 ---
 
 Let's deploy to BTP
