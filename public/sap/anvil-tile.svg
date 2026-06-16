@@ -1,3 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120">
+  <!--
+    Brand-fidelity tile for AnvilGridDecoration.
+
+    The canonical FlatAnvil path (120×60, ratio 2.04:1) sits in the top-left
+    quadrant of a 240×120 canvas. The remaining 50% width + 50% height is
+    intentional whitespace so that when this tile is repeated via CSS
+    `background-repeat: repeat`, each anvil reads as an isolated, undistorted
+    trapezoid with a clear gap on its right and below — matching the POTX
+    divider-c pattern.
+
+    The brand rule "never distort or rotate the anvil" is enforced by keeping
+    the path coordinates unchanged from `flat-anvil.svg` and rendering at the
+    SVG's intrinsic ratio.
+  -->
   <path d="M0 0 0 60 60.972 60 120 0 0 0 Z" fill="currentColor"/>
 </svg>

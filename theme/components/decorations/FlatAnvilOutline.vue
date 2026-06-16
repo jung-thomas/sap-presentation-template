@@ -14,17 +14,16 @@
 </script>
 
 <template>
-  <svg viewBox="0 0 605 297" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <!-- vector-effect keeps the stroke a uniform CSS-pixel width regardless of
-         the host container's aspect ratio. Without it, preserveAspectRatio="none"
-         scales x and y independently and renders horizontal vs vertical strokes
-         at different pixel widths (visibly distorted on non-2:1 frames). -->
+  <!-- The anvil silhouette is a brand mark and MUST NOT be distorted (SAP brand
+       guidelines, hard rule). Default preserveAspectRatio (xMidYMid meet) keeps
+       the canonical 605:297 ≈ 2.04:1 trapezoid. Hosts MUST size their container
+       at the same ratio (`aspect-ratio: 605 / 297;`) so the SVG fills it. -->
+  <svg viewBox="0 0 605 297" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M0 0 0 297 307.459 297 605 0 0 0Z"
       fill="none"
       :stroke="color"
       :stroke-width="strokeWidth"
-      vector-effect="non-scaling-stroke"
     />
   </svg>
 </template>
