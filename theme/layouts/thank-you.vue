@@ -1,7 +1,7 @@
 <!-- theme/layouts/thank-you.vue -->
 <script setup lang="ts">
   import { computed } from 'vue'
-  import AnvilGridDecoration from '../components/decorations/AnvilGridDecoration.vue'
+  import HandPlacedAnvils from '../components/decorations/HandPlacedAnvils.vue'
   import SapTaglineLockup from '../components/SapTaglineLockup.vue'
   import LegalNotice from '../components/LegalNotice.vue'
   import QRCode from '../components/QRCode.vue'
@@ -40,7 +40,7 @@
   <!-- Variant B: substantial close with anvil band + contact card -->
   <div v-else class="thank-you thank-you--b">
     <div class="thanks-band">
-      <AnvilGridDecoration bg="var(--sap-blue-10)" color="var(--sap-blue-6)" />
+      <HandPlacedAnvils />
     </div>
     <h1 class="thanks-headline">Thank you.</h1>
     <div v-if="presenterData" class="thanks-contact">
@@ -101,13 +101,16 @@
   }
 
   /* === VARIANT B: substantial close === */
-  /* Anvil header band: top 50% per POTX y=0-541 */
+  /* Anvil header band: top 50% per POTX y=0-541. Navy background painted
+     directly on the band; HandPlacedAnvils renders the anvil pattern over
+     it (transparent component). */
   .thanks-band {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 50%;
+    background: var(--sap-blue-10);
     z-index: 1;
   }
   .thanks-headline {

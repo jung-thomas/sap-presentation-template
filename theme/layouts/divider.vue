@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue'
-  import AnvilGridDecoration from '../components/decorations/AnvilGridDecoration.vue'
+  import HandPlacedAnvils from '../components/decorations/HandPlacedAnvils.vue'
   import FlatAnvil from '../components/decorations/FlatAnvil.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
   import { assetUrl } from '../setup/assets'
@@ -36,13 +36,10 @@
       <FlatAnvil class="divider-flat-anvil divider-flat-anvil--cl" color="var(--sap-blue-7)" />
     </template>
 
-    <!-- Variant c: bottom 50% AnvilGridDecoration band -->
-    <AnvilGridDecoration
-      v-if="variant === 'c'"
-      class="divider-anvil-grid"
-      bg="var(--sap-blue-10)"
-      color="var(--sap-blue-6)"
-    />
+    <!-- Variant c: bottom 50% navy band with the canonical POTX anvil pattern -->
+    <div v-if="variant === 'c'" class="divider-anvil-grid">
+      <HandPlacedAnvils />
+    </div>
 
     <!-- Variant d: pale-blue horizontal band y=280-805 (≈26% to 74.5% of height) -->
     <div v-if="variant === 'd'" class="divider-band" />
@@ -82,10 +79,14 @@
   }
 
   .divider-anvil-grid {
-    top: 49.8% !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    /* Bottom-half navy band with hand-placed anvil composition */
+    position: absolute;
+    top: 49.8%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--sap-blue-10);
+    z-index: 1;
   }
 
   .divider-band {

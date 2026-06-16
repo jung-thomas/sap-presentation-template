@@ -2,7 +2,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import AgendaItem from '../components/agenda/AgendaItem.vue'
-  import AnvilGridDecoration from '../components/decorations/AnvilGridDecoration.vue'
+  import HandPlacedAnvils from '../components/decorations/HandPlacedAnvils.vue'
   import ClassificationFooter from '../components/ClassificationFooter.vue'
 
   type AgendaItemData = {
@@ -48,11 +48,9 @@
         </div>
       </div>
     </div>
-    <AnvilGridDecoration
-      class="agenda-decoration"
-      bg="var(--sap-blue-10)"
-      color="var(--sap-blue-6)"
-    />
+    <div class="agenda-decoration">
+      <HandPlacedAnvils shape="portrait" />
+    </div>
     <ClassificationFooter :level="classification" />
   </div>
 </template>
@@ -81,11 +79,15 @@
     gap: 1.5rem;
   }
   .agenda-decoration {
-    /* AnvilGridDecoration is position:absolute; inset:0 by default — override to right column. */
-    left: 66.56% !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
+    /* Right-column band painted with sap-blue-10 navy; HandPlacedAnvils
+       renders the anvil pattern over it. */
+    position: absolute;
+    left: 66.56%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--sap-blue-10);
+    z-index: 0;
   }
   .agenda-title {
     font-family: var(--sap-font-family-bold, var(--sap-font-major));

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed, watchEffect } from 'vue'
-  import AnvilGridDecoration from './decorations/AnvilGridDecoration.vue'
+  import HandPlacedAnvils from './decorations/HandPlacedAnvils.vue'
   import QRCode from './QRCode.vue'
   import SocialIcon from './SocialIcon.vue'
   import { resolvePresenter } from '../setup/data'
@@ -37,7 +37,9 @@
 <template>
   <!-- v0.4.1 team-composition mode (POTX slide 14) -->
   <div v-if="isTeamMode" class="bio bio--team">
-    <AnvilGridDecoration class="bio-band" bg="var(--sap-blue-10)" color="var(--sap-blue-6)" />
+    <div class="bio-band">
+      <HandPlacedAnvils />
+    </div>
     <div class="bio-cards">
       <article v-for="p in props.people" :key="p.name" class="bio-card">
         <div class="bio-card__photo">
@@ -87,13 +89,16 @@
     font-family: var(--sap-font-family);
   }
   /* Anvil header band: top 0% → 50% per POTX slide-14 measurement.
-     The band uses AnvilGridDecoration which is position:absolute; inset:0 by
-     default — override to a top-half band. */
+     The band is a positioned div painted in navy (sap-blue-10);
+     <HandPlacedAnvils> renders the anvil pattern over it. */
   .bio-band {
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 50% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    background: var(--sap-blue-10);
+    z-index: 1;
   }
   /* Card grid: 4 columns, anchored top:24.4% bottom:12% so cards intrude
      into the band by 25.6% of slide height (POTX-measured). */

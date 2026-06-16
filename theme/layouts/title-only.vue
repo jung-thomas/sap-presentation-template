@@ -36,11 +36,29 @@
     line-height: var(--typography-content-title-line-height, 1.1);
     color: var(--sap-brand-blue-darker);
   }
-  /* When the slide body renders the Bio team-mode dark anvil band at the
-     top, the default dark-blue title would be unreadable. Switch the title
-     to white in that scenario. The selector matches `.title-only` whose
-     direct slot contains `.bio--team`, which is the v0.4.1 team layout. */
+  /* When the slide body renders the Bio team-mode dark anvil band, the
+     default flex-column layout would push the band BELOW the h1, leaving
+     the title sitting on white background and the band only filling the
+     remaining vertical space.
+
+     Instead, when .bio--team is present:
+       - the :slotted Bio fills the entire slide (`position: absolute; inset: 0`)
+         so its anvil band reaches the very top edge.
+       - the h1 sits absolutely at the top-left INSIDE the dark band, in
+         white text + z-index 5 so it reads above the pattern. */
+  .title-only:has(.bio--team) {
+    padding: 0;
+  }
+  .title-only:has(.bio--team) :deep(.bio--team) {
+    position: absolute;
+    inset: 0;
+  }
   .title-only:has(.bio--team) h1 {
+    position: absolute;
+    top: 6%;
+    left: 4.2%;
+    margin: 0;
     color: #ffffff;
+    z-index: 5;
   }
 </style>
