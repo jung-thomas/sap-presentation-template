@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TextWithIcons from './text-with-icons.vue'
 
@@ -66,5 +66,51 @@ describe('<text-with-icons> layout', () => {
       expect(w.find('.text-with-icons-grid').classes()).toContain(`cols-${n}`)
       expect(w.findAll('.text-with-icons-cell')).toHaveLength(n)
     }
+  })
+
+  it('renders title + console warning when items is missing or empty', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    try {
+      const w = mount(TextWithIcons, {
+        props: { frontmatter: { title: 'Empty case' } }
+      })
+      expect(w.find('h1').text()).toBe('Empty case')
+      expect(w.findAll('.text-with-icons-cell')).toHaveLength(0)
+      expect(warn).toHaveBeenCalled()
+    } finally {
+      warn.mockRestore()
+    }
+  })
+
+  it('renders the optional link when item.link is set', () => {
+    const w = mount(TextWithIcons, {
+      props: {
+        frontmatter: {
+          items: [
+            {
+              icon: 'lightbulb',
+              title: 'Productivity',
+              link: { text: 'Learn more', url: 'https://cap.cloud.sap' }
+            }
+          ]
+        }
+      }
+    })
+    const link = w.find('.text-with-icons-cell-link')
+    expect(link.exists()).toBe(true)
+    expect(link.attributes('href')).toBe('https://cap.cloud.sap')
+    expect(link.text()).toContain('Learn more')
+  })
+
+  it('respects per-item iconColor override', () => {
+    const w = mount(TextWithIcons, {
+      props: {
+        frontmatter: {
+          items: [{ icon: 'lightbulb', title: 'X', iconColor: '#ff0000' }]
+        }
+      }
+    })
+    const icon = w.findComponent({ name: 'SapIcon' })
+    expect(icon.props('color')).toBe('#ff0000')
   })
 })

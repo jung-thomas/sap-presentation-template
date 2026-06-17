@@ -19,6 +19,14 @@
   })
   const classification = computed(() => fm.value.classification as string | null | undefined)
 
+  // Warn (in any env) when items is missing — helps authors who set the
+  // layout but forgot the items: array. Cost in production is one console
+  // call per render of an empty layout, which is negligible. Keeps the
+  // unit test deterministic across DEV/PROD env detection.
+  if (items.value.length === 0) {
+    console.warn('[text-with-icons] no items provided — slide will render only the title (if set).')
+  }
+
   // Locked grid rules per spec §4.2.
   const columnCount = computed(() => {
     const n = items.value.length
