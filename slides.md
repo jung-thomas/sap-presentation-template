@@ -127,6 +127,25 @@ service CatalogService @(path: '/browse') {
 <DemoCallout kind="live" fallback="walk through the code on screen" />
 
 ---
+layout: text-with-icons
+title: Why CAP?
+classification: INTERNAL
+items:
+  - icon: lightbulb
+    title: Productivity
+    description: Less boilerplate; declarative service modeling.
+    link:
+      text: Learn more
+      url: https://cap.cloud.sap
+  - icon: people-connected
+    title: Reuse
+    description: Composable services + entities across teams.
+  - icon: target-group
+    title: Focus
+    description: Domain-first design, infrastructure later.
+---
+
+---
 layout: divider
 title: Live Demo
 ---
@@ -149,6 +168,19 @@ cds up
 <KeyTakeaway>`cds up` replaces the multi-step `mbt build` → `cf deploy` chain for standard CAP projects.</KeyTakeaway>
 
 A single Cloud Foundry application manifest is generated automatically from your `package.json` and `mta.yaml`.
+
+---
+layout: table
+title: CAP vs. ABAP Cloud
+classification: INTERNAL
+---
+
+| Capability       | CAP                  | ABAP Cloud         | RAP             |
+| ---------------- | -------------------- | ------------------ | --------------- |
+| Service modeling | CDS                  | CDS                | CDS-based       |
+| Custom logic     | Node.js / Java       | ABAP               | ABAP            |
+| Deployment       | Cloud Foundry / Kyma | BTP ABAP env       | S/4HANA         |
+| Best for         | Greenfield apps      | S/4 extensions     | RAP-native apps |
 
 ---
 layout: title-text-2col
