@@ -7,6 +7,44 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.3] — 2026-06-17
+
+### Added
+
+- **`text-with-icons` layout** — POTX-faithful icon grid (slide 9 of POTX).
+  Auto-fits to 1-3 (1×N row) / 4 (2×2) / 5 (3+2 centered) / 6 (3×2) / 7+
+  (3×N) item counts per spec §4.2. Uses the existing `<SapIcon>` component
+  (18-icon catalog at `theme/styles/_extracted/icons.json`). Frontmatter
+  `items:` array with required `icon`+`title`, optional `description`,
+  `link.text`+`link.url`, `iconColor`. Console.warn fires when items is
+  missing or empty.
+- **`table` layout** — POTX-faithful styled 4-column table (slide 11 of
+  POTX). Slidev native markdown table syntax in slide body; scoped CSS
+  styles `thead th` with sap-blue-7 fill / white text / 18pt 72 Brand
+  Medium and `tbody td` with sap-blue-4 cell borders. Optional `title:`
+  frontmatter.
+- **Gallery + main-deck demos** for both layouts — `slides.md` exercises
+  `text-with-icons` (Why CAP?) and `table` (CAP vs. ABAP Cloud);
+  `pages/all-layouts.md` adds gallery entries at slides 73 + 74.
+
+### Notes
+
+- No new dependencies. Both layouts reuse `<SapIcon>` and
+  `<ClassificationFooter>`.
+- Pre-impl gate verified Slidev's markdown plugin emits `<thead>` and
+  `<tbody>` from a `|---|` divider table — the spec's default `:deep(thead th)`
+  and `:deep(tbody td)` CSS path is correct.
+- Vitest: +13 unit tests (9 text-with-icons, 4 table); 197/198 passing
+  (1 unrelated skip). Production build clean.
+- Spec: `docs/superpowers/specs/2026-06-16-v0.4.3-text-icons-table-design.md`
+- Plan: `docs/superpowers/plans/2026-06-16-v0.4.3.md`
+- Inherited `bi/o` icon-resolution flake from v0.3 still surfaces in the
+  gallery dev server overlay; documented but not addressed in this release.
+- Pre-existing VR coverage gap (gallery slides 102-146 not snapshotted by
+  `tests/visual.spec.ts` SLIDE_COUNT=101) remains as tech debt for a
+  future cleanup release; v0.4.3's gallery entries were positioned at
+  slides 73 + 74 to fit within the existing window.
+
 ## [0.4.2.3] — 2026-06-16
 
 ### Changed (breaking)
