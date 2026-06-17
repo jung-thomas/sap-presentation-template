@@ -27,13 +27,22 @@
     if (n === 4) return 2 // 2×2
     return 3 // 5+: 3 cols (5 → 3+2 centered, 6 → 3×2, 7+ → 3×N)
   })
+
+  // For the 5-item case, the last 2 cells need to be visually centered in
+  // their row. Mark cells 3 + 4 (0-based) with .center-bottom-row so CSS
+  // can shift them by half a column.
+  const cellClass = (i: number) => {
+    const n = items.value.length
+    if (n === 5 && i >= 3) return 'center-bottom-row'
+    return ''
+  }
 </script>
 
 <template>
   <div class="layout text-with-icons">
     <h1 v-if="fm.title" class="text-with-icons-title">{{ fm.title }}</h1>
     <div :class="['text-with-icons-grid', `cols-${columnCount}`]">
-      <div v-for="(item, i) in items" :key="i" class="text-with-icons-cell">
+      <div v-for="(item, i) in items" :key="i" :class="['text-with-icons-cell', cellClass(i)]">
         <SapIcon
           :name="item.icon"
           class="text-with-icons-icon"
@@ -121,5 +130,18 @@
   /* Suppress global ::after accent. */
   .text-with-icons::after {
     content: none !important;
+  }
+  /* 5-item case: shift cells 4 + 5 (= grid cells 4 and 5 of a 3-col grid) so
+     they land in cols 1.5 and 2.5 respectively, centering the bottom row.
+     Cell width = column width (1fr cells), so translateX(50%) shifts each
+     cell by exactly half a column = correct centering offset. The
+     column-gap: 2% introduces a half-gap drift but is visually negligible. */
+  .text-with-icons-grid.cols-3 .text-with-icons-cell.center-bottom-row:nth-child(4) {
+    grid-column: 1 / 2;
+    transform: translateX(50%);
+  }
+  .text-with-icons-grid.cols-3 .text-with-icons-cell.center-bottom-row:nth-child(5) {
+    grid-column: 2 / 3;
+    transform: translateX(50%);
   }
 </style>

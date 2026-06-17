@@ -35,4 +35,36 @@ describe('<text-with-icons> layout', () => {
     expect(icon.exists()).toBe(true)
     expect(icon.props('name')).toBe('lightbulb')
   })
+
+  it('renders 4 items as 2×2 (locked rule from spec §4.2)', () => {
+    const four = SIX_ITEMS.slice(0, 4)
+    const w = mount(TextWithIcons, {
+      props: { frontmatter: { items: four } }
+    })
+    expect(w.find('.text-with-icons-grid').classes()).toContain('cols-2')
+    expect(w.findAll('.text-with-icons-cell')).toHaveLength(4)
+  })
+
+  it('renders 5 items as 3-cols-with-centered-bottom-row', () => {
+    const five = SIX_ITEMS.slice(0, 5)
+    const w = mount(TextWithIcons, {
+      props: { frontmatter: { items: five } }
+    })
+    expect(w.find('.text-with-icons-grid').classes()).toContain('cols-3')
+    // 5th cell sits in row 2; the bottom row of 2 cells should be visually
+    // centered. Verify via class on cell index 3 (0-based).
+    const cells = w.findAll('.text-with-icons-cell')
+    expect(cells).toHaveLength(5)
+    expect(cells[3].classes()).toContain('center-bottom-row')
+  })
+
+  it('renders 1, 2, or 3 items as 1, 2, or 3 cols respectively (single row)', () => {
+    for (const n of [1, 2, 3]) {
+      const w = mount(TextWithIcons, {
+        props: { frontmatter: { items: SIX_ITEMS.slice(0, n) } }
+      })
+      expect(w.find('.text-with-icons-grid').classes()).toContain(`cols-${n}`)
+      expect(w.findAll('.text-with-icons-cell')).toHaveLength(n)
+    }
+  })
 })
