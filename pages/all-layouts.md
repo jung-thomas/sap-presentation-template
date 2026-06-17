@@ -451,6 +451,44 @@ Describe what the screenshot shows. Keep it brief — one or two sentences maxim
 ![Screenshot placeholder](https://placehold.co/960x600/F0F0F0/333333?text=Screenshot)
 
 ---
+layout: text-with-icons
+title: "Text with icons (6-item POTX example)"
+items:
+  - icon: lightbulb
+    title: "Capability A"
+    description: "Sample text describing capability A."
+    link:
+      text: "Learn more"
+      url: "#"
+  - icon: people-connected
+    title: "Capability B"
+    description: "Sample text describing capability B."
+  - icon: target-group
+    title: "Capability C"
+    description: "Sample text describing capability C."
+  - icon: lightbulb
+    title: "Capability D"
+    description: "Sample text describing capability D."
+  - icon: people-connected
+    title: "Capability E"
+    description: "Sample text describing capability E."
+  - icon: target-group
+    title: "Capability F"
+    description: "Sample text describing capability F."
+---
+
+---
+layout: table
+title: "Four-column table"
+---
+
+| Header A | Header B | Header C | Header D |
+| -------- | -------- | -------- | -------- |
+| Row 1    | Cell     | Cell     | Cell     |
+| Row 2    | Cell     | Cell     | Cell     |
+| Row 3    | Cell     | Cell     | Cell     |
+
+---
 
 layout: q-and-a
 eyebrow: Sample eyebrow
@@ -846,44 +884,6 @@ Pane 3
 ::col4::
 
 Pane 4
-
----
-layout: text-with-icons
-title: "Text with icons (6-item POTX example)"
-items:
-  - icon: lightbulb
-    title: "Capability A"
-    description: "Sample text describing capability A."
-    link:
-      text: "Learn more"
-      url: "#"
-  - icon: people-connected
-    title: "Capability B"
-    description: "Sample text describing capability B."
-  - icon: target-group
-    title: "Capability C"
-    description: "Sample text describing capability C."
-  - icon: lightbulb
-    title: "Capability D"
-    description: "Sample text describing capability D."
-  - icon: people-connected
-    title: "Capability E"
-    description: "Sample text describing capability E."
-  - icon: target-group
-    title: "Capability F"
-    description: "Sample text describing capability F."
----
-
----
-layout: table
-title: "Four-column table"
----
-
-| Header A | Header B | Header C | Header D |
-| -------- | -------- | -------- | -------- |
-| Row 1    | Cell     | Cell     | Cell     |
-| Row 2    | Cell     | Cell     | Cell     |
-| Row 3    | Cell     | Cell     | Cell     |
 
 ---
 
