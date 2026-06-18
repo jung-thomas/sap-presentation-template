@@ -1,5 +1,12 @@
 ---
-theme: ./theme
+# Slidev resolves `theme:` relative to *this markdown file's directory*, not
+# the project root. From pages/, the theme lives one level up. Don't "fix"
+# this back to `./theme` — that resolves to pages/theme/ (which doesn't
+# exist) and silently falls back to Slidev's built-in default theme,
+# breaking every layout in this gallery and every VR baseline built from it.
+# Verified by inspecting compiled output of pages/all-layouts.md__slidev_*.md.
+# See docs/superpowers/specs/2026-06-18-v0.4.4-vr-infrastructure-design.md.
+theme: ../theme
 title: 'Kitchen-Sink Gallery — All Layouts & Components'
 info: |
   Visual regression reference deck.
