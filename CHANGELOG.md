@@ -7,6 +7,93 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.4.4] — 2026-06-19
+
+### Fixed
+
+- **VR test fidelity (showstopper):** `pages/all-layouts.md` had `theme: ./theme`,
+  which Slidev resolves relative to the markdown file (i.e., `pages/theme/`,
+  which doesn't exist). The gallery silently fell back to Slidev's built-in
+  default theme, so the project's SAP layouts (cover, divider, thank-you,
+  agenda, text-with-icons, table, q-and-a, …) didn't render — and every VR
+  baseline captured blank/un-themed content. Combined with `maxDiffPixelRatio:
+  0.05`, the VR suite was a silent no-op. Fixed by changing the front-matter
+  to `theme: ../theme` and adding an in-place comment so the trap is
+  documented.
+- **`bi/o` icon-resolution flake (inherited from v0.3):** the unresolved `<Bio>`
+  tag in the gallery deck triggered `unplugin-icons` (configured with empty
+  prefix by Slidev) to reinterpret it as a Bootstrap Icons lookup `bi:o`,
+  producing `[vite] Pre-transform error: Icon 'bi/o' not found` on every
+  gallery boot. Resolved as a side-effect of the theme path fix: with the
+  theme correctly loaded, `theme/components/Bio.vue` is scanned and `<Bio>`
+  resolves cleanly. No separate fix needed.
+- **`theme/setup/_dataSources.ts` absolute-path imports** (latent bug exposed by
+  the theme path fix): the file imported project-root YAML data files via
+  `'/event.yaml'`, `'/presenters/*.yaml'`, etc. Slidev resolves `/` to
+  `dirname(entry)`, so absolute paths worked for `slides.md` (project root)
+  but resolved to non-existent `pages/event.yaml` for `pages/all-layouts.md`.
+  Fixed by switching to file-relative paths (`'../../event.yaml'` etc.).
+- **`theme/vite.config.ts` introduced** (latent bug exposed by the theme path
+  fix): Slidev only loads `vite.config.ts` from each path in its `roots`
+  array. For `pages/all-layouts.md` the user-root is `pages/`, which has no
+  `vite.config.ts` — so the project-root `vite.config.ts` (with
+  `@rollup/plugin-yaml`) was never loaded for the gallery, and YAML imports
+  threw `Failed to parse source for import analysis`. Fixed by shipping a
+  `vite.config.ts` at the theme root (always in Slidev's `roots`) that
+  registers the YAML plugin.
+- **`SETTLE_MS` 200 → 2000** (latent timing bug exposed by the theme path
+  fix): the previous value was tuned against the broken (= always blank)
+  rendering. With v0.4.4's real rendering, slides that load YAML data via
+  `import.meta.glob` need ~2s for Vue to mount components after the data
+  resolves. 2000ms is a conservative middle ground.
+- **VR cold-compile warm-up** (latent timing bug exposed by the theme path
+  fix): the first slide visit during a Playwright session triggers cold
+  Vite transforms across the full module graph. Cold compile + Vue mount
+  exceeds `SETTLE_MS` for the first ~50 slides, producing pre-mount blank
+  screenshots even with the timing bump. Added a `test.beforeAll` warm-up
+  that round-trips `/1 → /2 → /1` to prime Vite's cache before the per-slide
+  loop runs.
+
+### Changed
+
+- VR coverage expanded from 101 to 146 slides — covers the full
+  `pages/all-layouts.md` gallery for the first time.
+- 8 existing VR baselines regenerated against the now-correctly-themed
+  gallery (slides 1, 56, 58, 60, 62, 74, 92, 94). 45 new baselines added
+  for slides 102–146. The remaining 94 baselines remain byte-identical
+  to v0.3 because their slides have pre-existing source-markdown bugs
+  in `pages/all-layouts.md` whose front-matter isn't being parsed by
+  Slidev — those slides render through Slidev's default-layout fallback
+  and the v0.4.4 capture matches the v0.3 capture. Per spec §5 non-
+  goals, this pre-existing tech debt is deferred to v0.4.5 / v0.5.
+- `tests/README.md` corrected: tolerance numbers updated from "0.5%" to
+  "5%" to match `playwright.config.ts:31`'s `maxDiffPixelRatio: 0.05`.
+
+### Added
+
+- `tests/regression/theme-path.spec.ts` — Playwright smoke test that locks
+  the theme-path fix by asserting on the compiled slide module's import
+  paths (theme layout vs. built-in default; theme component vs. icon
+  hijack).
+- `theme/vite.config.ts` — yaml plugin registration at the theme root so
+  it loads for any deck (see fix above).
+- `docs/superpowers/findings/2026-06-18-v0.4.4-rebaseline-findings.md` —
+  spot-check results from the rebaseline + class-level finding for the
+  pre-existing source-markdown debt + drift findings (Bio capture-timing
+  artifact on slide 82, missing SAP wordmark image on slide 1, etc.) all
+  deferred to v0.4.5 / v0.5 per the v0.4.4 spec §5 non-goals.
+
+### Notes
+
+- v0.4.4 is a test-infrastructure repair release. The substantive code
+  change is one character (`./theme` → `../theme`) — but that fix exposed
+  4 latent bugs that had been hidden by the silent theme fallback. Each
+  fix was empirically verified during implementation; the cascade is
+  fully documented in spec §6.1 / §6.3 / §6.4 / §6.5.
+- The VR test suite is now non-trivially functional for the first time.
+  Baselines reflect actual rendering, so future PRs will produce
+  meaningful diffs.
+
 ## [0.4.3] — 2026-06-17
 
 ### Added
