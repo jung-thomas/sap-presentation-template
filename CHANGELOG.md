@@ -7,6 +7,20 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.5.1] — 2026-06-25
+
+### Fixed
+
+- **`<Bio>` single-presenter mode now respects the GH Pages base path**
+  (theme issue [#19](https://github.com/jung-thomas/sap-presentation-template/issues/19)).
+  The team-mode card already wrapped `presenter.photo` in `assetUrl()`; the
+  single-presenter card did not, so presenter photos 404'd on every deck
+  deployed under `https://<user>.github.io/<repo>/`. One-line fix in
+  `theme/components/Bio.vue`. Regression test added.
+- Existing decks pick up the fix on their next `npm update`
+  `@jungsap/slidev-theme-sap` + redeploy — no source changes needed in the
+  deck.
+
 ## [0.5.0] — 2026-06-25
 
 ### Added
