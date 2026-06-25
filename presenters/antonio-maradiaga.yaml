@@ -1,0 +1,17 @@
+slug: antonio-maradiaga
+name: Antonio Maradiaga
+title: Developer Advocate, SAP
+photo: /presenters/antonio-maradiaga.webp
+initials: AM
+bio: |
+  As a Developer Advocate, Antonio looks after integration topics, e.g. APIs, Enterprise
+  Integration and SAP Integration Suite. He enjoys exchanging ideas with developers,
+  customers and partners on how to extend and integrate their SAP products using SAP BTP.
+  Always learning, always exploring.
+socials:
+  - { platform: github, handle: ajmaradiaga }
+  - { platform: linkedin, handle: ajmaradiaga }
+  - { platform: mastodon, handle: antonio, url: https://fedi.ajmaradiaga.com/@antonio }
+  - { platform: x, handle: ajmrdg }
+email: antonio.maradiaga@sap.com
+city: Madrid, Spain

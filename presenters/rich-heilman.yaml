@@ -1,0 +1,15 @@
+slug: rich-heilman
+name: Rich Heilman
+title: Developer Advocate, SAP
+photo: /presenters/rich-heilman.webp
+initials: RH
+bio: |
+  Rich Heilman is a Developer Advocate with the SAP Global Developer and Community Relations
+  team at SAP. In this role, Rich focuses on developer outreach and technology adoption for
+  ABAP Cloud and the ABAP RESTful Application Programming Model
+socials:
+  - { platform: github, handle: rich-heilman }
+  - { platform: x, handle: richheilman }
+  - { platform: linkedin, handle: rich-heilman }
+email: rich.heilman@sap.com
+city: York, PA

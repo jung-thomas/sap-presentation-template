@@ -1,0 +1,17 @@
+slug: daniel-wroblewski
+name: Daniel Wroblewski
+title: Developer Advocate, SAP
+photo: /presenters/daniel-wroblewski.webp
+initials: DW
+bio: |
+  Daniel focuses on low-code, no-code development, especially SAP Build Apps, SAP Build
+  Process Automation, and SAP Build Work Zone. Previously, he managed SAP's portfolio of
+  developer tutorials, and before that wrote user-focused help documentation for the SAP
+  NetWeaver Portal and a dozen other products. Daniel enjoys to prepare veal scallopini and
+  blueberry pie, and is the co-chief umpire of the Israel Association of Baseball.
+socials:
+  - { platform: github, handle: thecodester }
+  - { platform: linkedin, handle: danielfromsap }
+  - { platform: x, handle: DanWroblewski }
+email: daniel.wroblewski@sap.com
+city: Ra'anana, Israel

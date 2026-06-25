@@ -3,7 +3,7 @@ tagline: Code with us. Build with us. Ship with us.
 description: |
   The SAP Developer Advocates connect SAP technology with the developer community
   through tutorials, samples, live coding, and direct conversations. We're the
-  bridge between SAP product teams and developers building on SAP BTP.
+  bridge between SAP product teams and developers building on SAP Business AI Platform.
 engagementLinks:
   - { label: Newsletter, url: https://developers.sap.com/newsletter.html }
   - { label: YouTube, url: https://youtube.com/@sapdevs }

@@ -1,0 +1,15 @@
+slug: nora-von-thenen
+name: Nora von Thenen
+title: Developer Advocate, SAP
+photo: /presenters/nora-von-thenen.webp
+initials: NT
+bio: |
+  As a Developer Advocate focused on SAP AI Business Services, AI Core and other machine
+  learning technologies at SAP, Nora works on making artificial intelligence more tangible
+  for developers and SAP customers.
+socials:
+  - { platform: github, handle: D070387, url: https://github.tools.sap/D070387 }
+  - { platform: linkedin, handle: nora-von-thenen }
+  - { platform: x, handle: nora_von_thenen }
+email: nora.von.thenen@sap.com
+city: Hamburg, Germany

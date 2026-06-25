@@ -1,0 +1,17 @@
+slug: michelle-moudy
+name: Michelle Moudy
+title: Developer Advocate, SAP
+photo: /presenters/michelle-moudy.webp
+initials: MM
+bio: |
+  Michelle is focused on Frontend UI topics; particularly topics like Fiori Fundamentals,
+  React/Angular, and Luigi. Her previous role was a frontend developer working with React
+  and Redux. While frontend is her current preference, she is also experienced in backend
+  work. Michelle loves working with all things fiber arts, to the point where she has run an
+  Etsy shop in the past for knitting, crocheting, and cross stitching.
+socials:
+  - { platform: github, handle: mmoudy49 }
+  - { platform: linkedin, handle: michelle-moudy-57216716a }
+  - { platform: x, handle: michellemoudy4 }
+email: michelle.moudy@sap.com
+city: Seattle, WA

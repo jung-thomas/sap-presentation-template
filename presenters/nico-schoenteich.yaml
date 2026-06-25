@@ -1,0 +1,16 @@
+slug: nico-schoenteich
+name: Nico Schoenteich
+title: Developer Advocate, SAP
+photo: /presenters/nico-schoenteich.webp
+initials: NS
+bio: |
+  Nico focuses on web development technologies and is interested in all things SAP Business
+  Technology Platform. Before joining the team, he studied Psychology and therefore likes to
+  focus on the user as well as the developer experience. In contrast to that, he likes to
+  make his own life harder by trying to master the game of Golf.
+socials:
+  - { platform: github, handle: nicoschoenteich }
+  - { platform: linkedin, handle: nico-schoenteich }
+  - { platform: x, handle: NicoSchoenteich }
+email: nicolai.schoenteich@sap.com
+city: Hamburg, Germany

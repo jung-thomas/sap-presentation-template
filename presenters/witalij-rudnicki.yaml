@@ -1,0 +1,18 @@
+slug: witalij-rudnicki
+name: Witalij Rudnicki
+title: Developer Advocate, SAP
+photo: /presenters/witalij-rudnicki.webp
+initials: WR
+bio: |
+  Vitaliy focuses on all ways developers are collecting data and turning it into value using
+  the SAP Business Technology Platform. His main interests are in big data and fast data
+  technologies, IoT, analytics, and data visualization. Before joining SAP, he worked as a
+  technology consultant in Europe and in the U.S. Vitaliy is a visiting lecturer at WSB
+  University in Wrocław.
+socials:
+  - { platform: github, handle: Sygyzmundovych }
+  - { platform: linkedin, handle: witalij }
+  - { platform: mastodon, handle: sygyzmundovych, url: https://hachyderm.io/@sygyzmundovych }
+  - { platform: x, handle: Sygyzmundovych }
+email: witalij.rudnicki@sap.com
+city: Warszawa, Poland

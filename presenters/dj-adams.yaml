@@ -1,0 +1,16 @@
+slug: dj-adams
+name: DJ Adams
+title: Developer Advocate, SAP
+photo: /presenters/dj-adams.webp
+initials: DA
+bio: |
+  DJ focuses on integration and extension topics on the SAP Business Technology Platform. He
+  runs a regular live-stream on the SAP Developers “Hands-on SAP Dev” show and enjoys
+  sharing his curiosity on many SAP development topics. He read Classics at university, has
+  worked on SAP systems since 1987, co-created the SAP Community, and is a lifelong learner.
+socials:
+  - { platform: github, handle: qmacro }
+  - { platform: linkedin, handle: djadams }
+  - { platform: mastodon, handle: qmacro, url: https://hachyderm.io/@qmacro }
+email: dj.adams@sap.com
+city: A longboat somewhere in the English Channel

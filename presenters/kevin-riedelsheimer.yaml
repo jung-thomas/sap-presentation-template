@@ -1,0 +1,17 @@
+slug: kevin-riedelsheimer
+name: Kevin Riedelsheimer
+title: Developer Advocate, SAP
+photo: /presenters/kevin-riedelsheimer.webp
+initials: KR
+bio: |
+  Kevin focuses on mobile technologies and SAP Business Technology Platform
+  cross-architectural topics showing how end-to-end development can work. His focus is on
+  bringing the value of SAP BTP and cloud native technologies to developers around the
+  world. When not thinking about the next great use case, he loves to make music and do rock
+  climbing.
+socials:
+  - { platform: github, handle: KevinRiedelsheimer }
+  - { platform: linkedin, handle: kevinmuessig }
+  - { platform: x, handle: kevinmuessig }
+email: kevin.riedelsheimer@sap.com
+city: Walldorf, Germany

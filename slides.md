@@ -198,6 +198,16 @@ Meet the SAP Developer Advocates team — community-focused engineers who run wo
 <Speaker presenter="thomas-jung" />
 
 ---
+layout: team-roster
+title: Meet the SAP Developer Advocates
+team: dev-advocates
+columns: 6
+classification: PUBLIC
+---
+
+A global team of community-focused engineers who run workshops, write tutorials, build samples, and speak at SAP events worldwide. Scan any QR to reach that advocate's profile.
+
+---
 layout: title-content
 title: SAP Developer Advocates Programme
 ---
