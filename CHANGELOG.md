@@ -7,6 +7,51 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.5.0] — 2026-06-25
+
+### Added
+
+- **Theme is now publishable as `@jungsap/slidev-theme-sap` on npm.** Decks can consume
+  the theme as a dependency (`"@jungsap/slidev-theme-sap": "^0.5"`) instead of being a
+  GitHub-template fork that freezes at fork time. Brand fixes flow to old decks
+  via `npm update`.
+- **Theme-bundled shared data** — `presenters/`, `teams/`, `programs/`,
+  `snippets/` and `public/` (logos, anvil decorations, presenter photos) now
+  ship inside the theme package. A deck consuming the theme inherits the full
+  SAP Developer Advocates roster and brand assets without copying any files.
+- **Deck-wins override layering** — a deck can place
+  `presenters/<slug>.yaml` (or `teams/`, `programs/`, `snippets/`, `public/*`)
+  at its own root to override the theme's version for that deck only, or to add
+  new slugs the theme doesn't know about. The merge happens at build time via
+  `theme/setup/_dataSources.ts`.
+- **`@jungsap/slidev-theme-sap/vite-plugin`** — a tiny Vite plugin shipped with the
+  theme that serves the theme's bundled `public/` assets (SAP logo, anvil
+  decorations) through the deck's dev server and copies them into `dist/`
+  during build. Decks wire it up in `vite.config.ts` with one line.
+
+### Changed
+
+- **Theme `package.json` version** — was `0.1.0`, now tracks the parent repo
+  (`0.5.0`).
+- **`theme/package.json` peer deps** — `@ui5/webcomponents`,
+  `@ui5/webcomponents-fiori`, and `qrcode` are now declared as peer
+  dependencies so consuming decks get the right versions.
+- **`theme/package.json` exports / files** — extended to surface `presenters/`,
+  `teams/`, `programs/`, `snippets/`, and the new `vite-plugin` entry point.
+
+### Migration from 0.4.x
+
+If you authored a deck against 0.4.x with `theme: ./theme` in `slides.md` (the
+in-repo template), you have two paths:
+
+1. **Stay in the template repo** — no changes needed. The workspace-mode build
+   continues to work; `theme: ./theme` still resolves locally.
+2. **Migrate to the published theme** — change `slides.md` frontmatter to
+   `theme: '@jungsap/slidev-theme-sap'`, add `@jungsap/slidev-theme-sap` to `package.json`
+   dependencies, and import `sapThemeAssets` from `@jungsap/slidev-theme-sap/vite-plugin`
+   in `vite.config.ts`. Move any deck-specific presenter overrides into the
+   deck root's `presenters/`.
+
 ## [0.4.3] — 2026-06-17
 
 ### Added

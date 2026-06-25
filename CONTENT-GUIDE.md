@@ -6,6 +6,26 @@ Authoring conventions for the SAP Presentation Template.
 
 ---
 
+## Where data lives (inheritance model)
+
+Since v0.5.0 the theme ships as the `@jungsap/slidev-theme-sap` npm package. The package bundles a curated set of shared data — presenters, teams, programs, snippets, and brand assets — that every deck inherits automatically. Two layers, deck wins:
+
+| Layer                     | What it provides                                                                | When to edit                                            |
+| ------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Theme (npm package)**   | Curated SAP Developer Advocates roster, brand assets, disclaimers, snippets     | Open a PR against the template repo (cross-deck change) |
+| **Deck root (your fork)** | One-off overrides + new slugs (`presenters/<slug>.yaml`, `public/<file>`, etc.) | For this deck only                                      |
+
+**Merge rules:**
+
+- A slug present in **both** layers — the deck wins.
+- A slug present in **only** the theme — used as-is.
+- A slug present in **only** the deck — included automatically.
+- Same applies to `public/` files: deck wins by relative path; theme fills gaps.
+
+You usually edit nothing under `theme/` — leave it as a clean, version-pinned dependency.
+
+---
+
 ## Layout selection
 
 Choose the layout that matches what you're communicating, not the one that fits your content volume.

@@ -10,7 +10,7 @@ A GitHub-template repository for authoring SAP-branded HTML presentations with [
 
 1. Click **"Use this template"** above to create your own repo.
 2. **Settings → Pages → Source: GitHub Actions** (one-time UI step).
-3. **Replace the demo presenter:** the template ships `presenters/thomas-jung.yaml` so the demo deck renders. On fork, either replace its contents with your own data and rename the file, or delete it and copy `presenters/_example.yaml` → `presenters/<your-slug>.yaml`. Then update `event.yaml#defaultPresenter` to your slug.
+3. **Pick your presenter:** the theme ships a curated roster of SAP Developer Advocates. Set `defaultPresenter:` in `event.yaml` to a slug from `theme/presenters/`, or drop a `presenters/<your-slug>.yaml` into the deck root (the deck overrides the theme by slug — see "Inheritance model" below).
 4. **Edit `event.yaml`** — set event metadata.
 5. **Edit `slides.md`** — write your talk.
 6. `git push` → live in ~60 seconds at `https://<username>.github.io/<repo-name>/`.
@@ -68,17 +68,53 @@ This produces:
 
 ## What's in the box
 
-| Path                       | Purpose                                                                           |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| `slides.md`                | Your deck (Markdown)                                                              |
-| `presenters/<slug>.yaml`   | Your bio, photo, socials                                                          |
-| `teams/<slug>.yaml`        | Named groups of presenter slugs                                                   |
-| `programs/<slug>.yaml`     | Program metadata (taglines, engagement links)                                     |
-| `event.yaml`               | This deck's event metadata + default presenter                                    |
-| `snippets/*.md`            | Reusable Markdown fragments                                                       |
-| `public/`                  | Your images, screenshots                                                          |
-| `theme/`                   | The SAP theme (you don't usually edit)                                            |
-| `theme/styles/_extracted/` | Derived brand tokens + layout geometry (generated; committed for diff visibility) |
+| Path                              | Purpose                                                                           |
+| --------------------------------- | --------------------------------------------------------------------------------- |
+| `slides.md`                       | Your deck (Markdown)                                                              |
+| `event.yaml`                      | This deck's event metadata + default presenter                                    |
+| `presenters/<slug>.yaml`          | Override or add a presenter (deck-local; theme-shipped roster is the default)     |
+| `teams/<slug>.yaml`               | Override or add a team (deck-local)                                               |
+| `programs/<slug>.yaml`            | Override or add a program (deck-local)                                            |
+| `snippets/*.md`                   | Reusable Markdown fragments (deck-local; theme also ships a curated set)          |
+| `public/`                         | Your images, screenshots (deck-local; theme's `public/` fills any gaps)           |
+| `theme/`                          | The SAP theme — published as `@jungsap/slidev-theme-sap` on npm; you don't usually edit    |
+| `theme/presenters/<slug>.yaml`    | Shared presenter roster shipped inside the theme package                          |
+| `theme/teams/<slug>.yaml`         | Shared team rosters shipped inside the theme                                      |
+| `theme/programs/<slug>.yaml`      | Shared program definitions shipped inside the theme                               |
+| `theme/snippets/*.md`             | Shared Markdown fragments shipped inside the theme                                |
+| `theme/public/`                   | Shared brand assets (SAP logo, anvil decorations, presenter photos)               |
+| `theme/styles/_extracted/`        | Derived brand tokens + layout geometry (generated; committed for diff visibility) |
+
+### Inheritance model (theme-as-npm)
+
+The theme — including its presenter roster, snippets, and brand assets — is published as the `@jungsap/slidev-theme-sap` npm package. Decks consume it like any other dependency:
+
+```jsonc
+// In your deck's package.json
+{
+  "dependencies": {
+    "@jungsap/slidev-theme-sap": "^0.5"
+  }
+}
+```
+
+And reference it from `slides.md`:
+
+```yaml
+---
+theme: '@jungsap/slidev-theme-sap'
+---
+```
+
+> The single quotes around the theme name are **required** because YAML reserves `@` as a directive indicator at the start of a scalar. Bare `theme: @jungsap/...` would fail to parse.
+
+**Override semantics (deck wins):**
+
+- Want a custom bio for **this deck only**? Drop `presenters/<slug>.yaml` into the deck. It overrides the theme's version by slug.
+- Adding a community speaker the theme doesn't know about? Same place — new slug, new file.
+- The deck's `public/` always takes precedence over the theme's; the theme fills in the gaps automatically (SAP logo, anvil patterns, presenter photos).
+
+**Update flow:** `npm update @jungsap/slidev-theme-sap` pulls patch-level theme fixes (brand bumps, bio corrections) into your deck. Minor and major bumps are opt-in via the `^` range.
 
 `SAP_Corp.potx` is **not** in the repo (gitignored). See "Updating to a new SAP brand version" above.
 
