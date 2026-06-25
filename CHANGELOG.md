@@ -7,6 +7,41 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.5.3] — 2026-06-25
+
+### Fixed
+
+- **Theme assets 404'd in `npm run dev` (Slidev SPA fallback won).**
+  `setup/vite-plugin.js#configureServer` returned a post-hook function to
+  register its middleware, which placed the handler *after* Vite/Slidev's
+  internal SPA-fallback catch-all. Every `/logos/*`, `/sap/*`, `/partners/*`
+  request resolved to `index.html` (Content-Type `text/html`), so the SAP
+  logo, anvil tile, and partner logo all rendered as broken images in dev.
+  Production builds were unaffected — `closeBundle()` copies assets into
+  `dist/` via a different code path. Fix: register middleware synchronously
+  inside `configureServer`'s body so it runs *before* the fallback.
+- **`<Bio>` and `<QRCode>` errored in dev: "qrcode does not provide an
+  export named 'default'".** `setup/qrcode.ts` used `import QR from 'qrcode'`.
+  The package is CJS with named exports and no `module.exports = {...}`
+  default — Rollup synthesizes a default at build via CJS-interop, Vite's
+  dev server does not. Switched to namespace import `import * as QR from
+  'qrcode'`, which is portable across both environments. Also added an
+  `optimizeDeps.include: ['qrcode']` to the theme's `config()` hook so
+  consumer Vite servers pre-bundle the CJS dep into ESM proactively.
+
+### Changed
+
+- **`cover` layout: `presenter: string` → `presenters: string[]`.** Talks
+  with two or more speakers (the common case for SAP DevRel co-presentations)
+  now declare authorship up front on the cover. Each presenter renders on
+  its own line; 1-N presenters supported. Other single-byline layouts
+  (`thank-you`, `q-and-a`) keep their singular `presenter:` field — the
+  cover is where multi-author signal carries the most weight.
+
+  **Breaking:** any deck using `layout: cover` with `presenter: <slug>`
+  must update the frontmatter to `presenters: [<slug>]`. There is no
+  back-compat alias — the template ships zero deployed decks at 0.5.2.
+
 ## [0.5.2] — 2026-06-25
 
 ### Fixed

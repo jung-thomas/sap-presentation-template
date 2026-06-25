@@ -30,44 +30,58 @@ export function sapThemeAssets() {
   return {
     name: 'slidev-theme-sap:public-assets',
 
+    // Ensure the consumer's Vite pre-bundles our CJS peer dependencies into
+    // ESM, otherwise the browser sees raw `require()` calls or named exports
+    // that the ESM shim can't synthesize. `qrcode` is the only one today
+    // (used by setup/qrcode.ts for QR code data URLs).
+    config() {
+      return {
+        optimizeDeps: {
+          include: ['qrcode']
+        }
+      }
+    },
+
     // --- DEV: serve theme assets when the deck's public dir doesn't have them.
+    // Register synchronously inside configureServer so the middleware runs
+    // BEFORE Slidev's SPA-fallback catch-all. Returning a post-hook function
+    // (the previous shape) put us *after* the fallback, which intercepted
+    // every theme asset URL and returned index.html — broken images in dev.
     configureServer(server) {
       const deckPublic = server.config.publicDir
-      return () => {
-        server.middlewares.use((req, res, next) => {
-          const url = (req.url ?? '').split('?')[0]
-          if (!url || url === '/') return next()
-          const rel = url.replace(/^\/+/, '')
-          if (rel.startsWith('@') || rel.startsWith('node_modules/')) return next()
+      server.middlewares.use((req, res, next) => {
+        const url = (req.url ?? '').split('?')[0]
+        if (!url || url === '/') return next()
+        const rel = url.replace(/^\/+/, '')
+        if (rel.startsWith('@') || rel.startsWith('node_modules/')) return next()
 
-          // Deck wins.
-          if (deckPublic && existsSync(join(deckPublic, rel))) return next()
+        // Deck wins.
+        if (deckPublic && existsSync(join(deckPublic, rel))) return next()
 
-          const themeFile = join(themePublic, rel)
-          if (!existsSync(themeFile)) return next()
-          const st = statSync(themeFile)
-          if (!st.isFile()) return next()
+        const themeFile = join(themePublic, rel)
+        if (!existsSync(themeFile)) return next()
+        const st = statSync(themeFile)
+        if (!st.isFile()) return next()
 
-          res.setHeader('Cache-Control', 'no-cache')
-          const ext = themeFile.slice(themeFile.lastIndexOf('.')).toLowerCase()
-          const types = {
-            '.svg': 'image/svg+xml',
-            '.png': 'image/png',
-            '.jpg': 'image/jpeg',
-            '.jpeg': 'image/jpeg',
-            '.webp': 'image/webp',
-            '.yaml': 'application/yaml',
-            '.yml': 'application/yaml',
-            '.json': 'application/json',
-            '.css': 'text/css',
-            '.woff': 'font/woff',
-            '.woff2': 'font/woff2',
-            '.ttf': 'font/ttf'
-          }
-          if (types[ext]) res.setHeader('Content-Type', types[ext])
-          createReadStream(themeFile).pipe(res)
-        })
-      }
+        res.setHeader('Cache-Control', 'no-cache')
+        const ext = themeFile.slice(themeFile.lastIndexOf('.')).toLowerCase()
+        const types = {
+          '.svg': 'image/svg+xml',
+          '.png': 'image/png',
+          '.jpg': 'image/jpeg',
+          '.jpeg': 'image/jpeg',
+          '.webp': 'image/webp',
+          '.yaml': 'application/yaml',
+          '.yml': 'application/yaml',
+          '.json': 'application/json',
+          '.css': 'text/css',
+          '.woff': 'font/woff',
+          '.woff2': 'font/woff2',
+          '.ttf': 'font/ttf'
+        }
+        if (types[ext]) res.setHeader('Content-Type', types[ext])
+        createReadStream(themeFile).pipe(res)
+      })
     },
 
     // --- BUILD: after Vite writes dist/, copy any missing theme assets in.

@@ -2,7 +2,7 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { assetUrl } from '../../setup/assets'
-  import { resolvePresenter } from '../../setup/data'
+  import { resolvePresenters } from '../../setup/data'
   import PartnerLogoPlaceholder from './PartnerLogoPlaceholder.vue'
 
   const props = defineProps<{
@@ -11,7 +11,9 @@
     /** 'light' = white text + white logo; 'dark' = navy text + color logo. */
     textOnL: 'light' | 'dark'
     title: string
-    presenter?: string
+    /** Presenter slugs. Empty array renders no byline (date-only). One slug
+     *  renders a single line; multiple slugs each get their own line. */
+    presenters?: string[]
     /** ISO 8601 date string. Falls back to today if undefined. */
     date?: string
     /** Three-state partner logo (passed through to PartnerLogoPlaceholder). */
@@ -24,7 +26,9 @@
     )
   )
 
-  const presenterData = computed(() => (props.presenter ? resolvePresenter(props.presenter) : null))
+  const presenterList = computed(() =>
+    props.presenters && props.presenters.length ? resolvePresenters(props.presenters) : []
+  )
 
   // Format the date as POTX shows it: "Month Date, Year" (e.g., "September 15, 2026").
   const formattedDate = computed(() => {
@@ -41,8 +45,8 @@
     <h1 class="cover-title">{{ title }}</h1>
 
     <div class="cover-byline">
-      <span v-if="presenterData" class="cover-name">
-        {{ presenterData.name }}, {{ presenterData.title }}
+      <span v-for="p in presenterList" :key="p.slug" class="cover-name">
+        {{ p.name }}, {{ p.title }}
       </span>
       <span class="cover-date">{{ formattedDate }}</span>
     </div>

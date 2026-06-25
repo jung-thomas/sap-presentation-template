@@ -11,7 +11,7 @@ layout: cover
 variant: a
 title: Building Cloud-Native Apps with SAP CAP
 subtitle: From zero to production on BTP
-presenter: thomas-jung
+presenters: [thomas-jung]
 event: SAP TechEd 2026
 date: 2026-09-15
 classification: PUBLIC

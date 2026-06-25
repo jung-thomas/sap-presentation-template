@@ -22,7 +22,10 @@
   const spec = computed(() => getVariantSpec(variant.value))
 
   const title = computed(() => (fm.value.title as string | undefined) ?? '')
-  const presenter = computed(() => fm.value.presenter as string | undefined)
+  // Covers support 1-N presenters via `presenters: [slug-a, slug-b]`. Other
+  // single-byline layouts (thank-you, q-and-a) keep their `presenter:` field —
+  // the cover is where co-presented talks need to declare authorship up front.
+  const presenters = computed(() => (fm.value.presenters as string[] | undefined) ?? [])
   const date = computed(() => fm.value.date as string | undefined)
   const partnerLogo = computed(() => fm.value.partnerLogo as string | null | undefined)
   const classification = computed(() => fm.value.classification as string | null | undefined)
@@ -34,7 +37,7 @@
       :bg="spec.lBg"
       :text-on-l="spec.textOnL"
       :title="title"
-      :presenter="presenter"
+      :presenters="presenters"
       :date="date"
       :partner-logo="partnerLogo"
     />
