@@ -7,6 +7,47 @@ Two version dimensions:
 
 Both follow [semver](https://semver.org).
 
+## [0.5.2] — 2026-06-25
+
+### Fixed
+
+- **`title-text` layout typography + overflow.** The layout's scoped styles
+  didn't set `font-family` (Slidev's `.slidev-layout` global rule doesn't
+  match our `.layout`-classed root), so the title and body fell back to the
+  browser default. The content slot also stacked children vertically with
+  no overflow handling, so two `<Bio>` cards on the same slide spilled off
+  the bottom. Fix: explicit SAP font on root + h1, and the content slot
+  is now an auto-column CSS grid so multiple children sit side-by-side.
+- **`agenda` layout overflow with ≥6 long-description items.** The fixed
+  POTX-derived font sizes worked for ~5 items max; long descriptions on a
+  6-item agenda pushed the last row off the 1080px slide. Fix: introduce
+  an `--agenda-density` CSS variable scaled by item count (1.0 for ≤5
+  items, 0.82 for 6, 0.72 for 7, 0.62 for 8+). All number labels, titles,
+  descriptions, and gutters scale together so the visual proportions stay
+  POTX-faithful even at higher densities.
+- **`<Speaker>` component inline-wrapping with multiple presenters.**
+  Comma-separated single-line rendering wrapped awkwardly on Q&A and
+  closing slides with 2+ speakers. New behavior: defaults to block (one
+  speaker per line) when `presenters.length > 1`; new `layout="inline" |
+  "block"` prop for explicit override.
+
+### Added
+
+- **Deck-wide `event.classification`.** Setting `classification: PUBLIC`
+  in `event.yaml` now propagates to every slide that doesn't override it
+  via per-slide frontmatter. Resolution order: per-slide `classification:`
+  → `event.classification` → `INTERNAL` (safer SAP-internal default).
+  `classification: null` at either level suppresses the footer entirely.
+  This avoids repeating `classification: PUBLIC` in every slide's
+  frontmatter for external talks.
+
+### Internal
+
+- Test files for layouts that import `ClassificationFooter` now need to
+  mock `_dataSources` (because the footer reads `event` via the data
+  resolvers). Added mocks to `divider.test.ts`, `table.test.ts`,
+  `quote.test.ts`, `text-with-icons.test.ts`. All 205 tests pass.
+
 ## [0.5.1] — 2026-06-25
 
 ### Fixed

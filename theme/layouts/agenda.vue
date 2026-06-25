@@ -25,10 +25,28 @@
   // v0.3 backward-compat: only render nested bullets if showSubsections is true (legacy default).
   const agendaConfig = computed(() => (fm.value.agenda as { showSubsections?: boolean }) ?? {})
   const showSubsections = computed(() => agendaConfig.value.showSubsections === true)
+
+  /**
+   * v0.5.2: when an agenda has ≥6 items with descriptions, the cumulative
+   * row height exceeds the 1080px slide. Rather than ship a fixed density
+   * tuned for one item count, expose a density scale to the AgendaItem
+   * component via a CSS variable. 1.0 for ≤5 items (the original POTX
+   * spec); steps down for denser lists.
+   */
+  const densityScale = computed(() => {
+    const n = items.value.length
+    if (n <= 5) return 1.0
+    if (n === 6) return 0.82
+    if (n === 7) return 0.72
+    return 0.62 // 8+ items — author should split, but render legibly anyway
+  })
 </script>
 
 <template>
-  <div class="layout agenda-layout">
+  <div
+    class="layout agenda-layout"
+    :style="{ '--agenda-density': densityScale }"
+  >
     <div class="agenda-content">
       <h1 class="agenda-title">{{ fm.title ?? 'Agenda' }}</h1>
       <div class="agenda-list">
@@ -96,7 +114,7 @@
     font-family: var(--sap-font-family-bold, var(--sap-font-major));
     font-weight: 700;
     /* POTX title 47px on 1080-tall slide ≈ 4.4% */
-    font-size: 2.5rem;
+    font-size: calc(2.5rem * var(--agenda-density, 1));
     line-height: 1;
     color: var(--sap-text-primary, #000);
     margin: 0 0 0.5rem;
@@ -105,6 +123,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-height: 0; /* allows flex children to shrink below content-intrinsic */
   }
   .agenda-row {
     /* Each row contains an AgendaItem + (optional) v0.3 subsections. */

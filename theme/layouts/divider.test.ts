@@ -1,5 +1,16 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+
+// v0.5.2: ClassificationFooter now reads event.classification via the data
+// resolvers, so any layout test that mounts a layout containing the footer
+// must mock _dataSources to avoid Vite's import.meta.glob in tests.
+vi.mock('../setup/_dataSources', () => ({
+  presenters: {},
+  teams: {},
+  programs: {},
+  event: { name: 'Test', date: '2026-01-01', defaultPresenter: 'test' }
+}))
+
 import Divider from './divider.vue'
 
 describe('<divider>', () => {

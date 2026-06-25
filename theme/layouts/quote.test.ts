@@ -1,5 +1,13 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+
+vi.mock('../setup/_dataSources', () => ({
+  presenters: {},
+  teams: {},
+  programs: {},
+  event: { name: 'Test', date: '2026-01-01', defaultPresenter: 'test' }
+}))
+
 import Quote from './quote.vue'
 
 describe('<quote>', () => {
