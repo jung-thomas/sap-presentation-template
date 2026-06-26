@@ -1,6 +1,6 @@
 {
   "name": "sap-presentation-template",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "brandVersion": "2024.1",
   "private": true,
   "type": "module",
@@ -16,6 +16,7 @@
     "export": "slidev export",
     "extract-brand": "node scripts/extract-brand.mjs",
     "import-pptx": "node scripts/import-pptx.mjs",
+    "sync-advocates": "node scripts/sync-advocates.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:visual": "playwright test",

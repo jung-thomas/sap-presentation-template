@@ -2,39 +2,37 @@ slug: dev-advocates
 name: SAP Developer Advocates
 tagline: Helping developers build the future on SAP Business AI Platform.
 members:
-  - slug: ajay-soreng
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/149819
-  - slug: antonio-maradiaga
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/107
-  - slug: daniel-wroblewski
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/72
   - slug: dj-adams
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/53
-  - slug: kevin-riedelsheimer
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/70
-  - slug: mamikee-kanneh
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/274
-  - slug: michelle-moudy
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/7488
-  - slug: nico-schoenteich
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/898
-  - slug: nora-von-thenen
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/7343
   - slug: rekha-d-r
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/156020
   - slug: rich-heilman
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/97
-  - slug: riley-rainey
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/8919
+  - slug: thomas-jung
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/139
+  - slug: mamikee-kanneh
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/274
   - slug: sheena-m-k
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/142394
-  - slug: shilpa-shankar
-    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/141830
+  - slug: antonio-maradiaga
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/107
+  - slug: michelle-moudy
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/7488
   - slug: shrinivasan-neelamegam
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/148298
-  - slug: thomas-jung
-    qr: https://people.sap.com/profile/thomas.jung
+  - slug: riley-rainey
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/8919
+  - slug: kevin-riedelsheimer
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/70
   - slug: witalij-rudnicki
     qr: https://community.sap.com/t5/user/viewprofilepage/user-id/183
-# Each slug above must have a matching presenters/<slug>.yaml file.
-# Run a follow-up to scaffold the missing presenter files from the API.
+  - slug: nico-schoenteich
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/898
+  - slug: shilpa-shankar
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/141830
+  - slug: ajay-soreng
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/149819
+  - slug: nora-von-thenen
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/7343
+  - slug: daniel-wroblewski
+    qr: https://community.sap.com/t5/user/viewprofilepage/user-id/72

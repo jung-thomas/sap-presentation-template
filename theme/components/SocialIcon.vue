@@ -1,15 +1,32 @@
 <script setup lang="ts">
-  import type { SocialLink } from '../types'
+  import { computed } from 'vue'
+  import type { SocialLink, SocialPlatform } from '../types'
   import { socialUrl } from '../setup/social'
 
   const props = defineProps<{ platform: SocialLink['platform']; handle: string; url?: string }>()
   const href = socialUrl({ platform: props.platform, handle: props.handle, url: props.url })
-  const label = `${props.platform}: ${props.handle}`
+
+  // Brand-correct display labels — the identifier keys are lowercase
+  // (linkedin, github, …) but the rendered label needs each brand's
+  // canonical capitalization (LinkedIn, GitHub, YouTube, Bluesky, …).
+  // CSS text-transform: capitalize handled only the first letter and
+  // produced 'Github'/'Linkedin'.
+  const DISPLAY_LABELS: Record<SocialPlatform, string> = {
+    linkedin: 'LinkedIn',
+    github: 'GitHub',
+    twitter: 'Twitter',
+    x: 'X',
+    mastodon: 'Mastodon',
+    bsky: 'Bluesky',
+    youtube: 'YouTube',
+  }
+  const displayLabel = computed(() => DISPLAY_LABELS[props.platform] ?? props.platform)
+  const ariaLabel = computed(() => `${displayLabel.value}: ${props.handle}`)
 </script>
 
 <template>
-  <a :href="href" :aria-label="label" class="social-icon" target="_blank" rel="noopener">
-    <span class="platform">{{ platform }}</span>
+  <a :href="href" :aria-label="ariaLabel" class="social-icon" target="_blank" rel="noopener">
+    <span class="platform">{{ displayLabel }}</span>
     <span class="handle">{{ handle }}</span>
   </a>
 </template>
@@ -32,7 +49,8 @@
     color: #fff;
   }
   .platform {
-    text-transform: capitalize;
+    /* DISPLAY_LABELS in the script provides brand-correct casing;
+       no text-transform here. */
     font-weight: 600;
   }
   .handle {
