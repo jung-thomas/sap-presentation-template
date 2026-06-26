@@ -25,13 +25,12 @@
      quote, or thank-you). The POTX has no dedicated "content" title
      placeholder, so this value is NOT auto-extracted.
 
-     1.5rem (~24pt) matches the SAP_Corp.potx body-slide title
-     placeholder height as observed in text-with-icons.vue (the layout
-     that historically held the brand-correct spec). The cover, agenda,
-     and divider chrome each use their own larger typography systems;
-     this token only governs content-page h1s.
+     2.5rem (~40px) sits one step below the divider chrome (48px in
+     divider.vue) so the section header reads as the heaviest element,
+     and content titles read as section-page titles. Picked after
+     measuring against the actual rendered divider/agenda/cover sizes.
      If extract-brand.mjs regenerates this file, preserve this block.
      --------------------------------------------------------------- */
-  --typography-content-title-size: 1.5rem;
+  --typography-content-title-size: 2.5rem;
   --typography-content-title-line-height: 1.1;
 }
