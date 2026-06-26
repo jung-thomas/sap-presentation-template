@@ -85,10 +85,10 @@
     box-sizing: border-box;
   }
   .text-with-icons-title {
-    font-family: var(--sap-font-family-bold, var(--sap-font-family));
-    font-weight: 700;
-    font-size: 1.5rem; /* 24pt ≈ 1.5rem */
-    line-height: 1.1;
+    /* Inherits font-family/weight/size/color from .slidev-layout h1 in
+       slide-styles.css; size comes from --typography-content-title-size.
+       Kept as a class for explicit grid-row positioning; only override
+       the bottom margin so the icon grid sits tight under the title. */
     margin: 0 0 1.5rem;
   }
   .text-with-icons-grid {

@@ -23,10 +23,14 @@
   /* ---------------------------------------------------------------
      Hand-curated: content-page title (h1 on body slides — not cover,
      quote, or thank-you). The POTX has no dedicated "content" title
-     placeholder, so this value is NOT auto-extracted. Picked to match
-     SAP Horizon body-slide title spec.
+     placeholder, so this value is NOT auto-extracted.
+
+     3.25rem (~52pt) chosen for mainstage legibility — bigger than the
+     SAP POTX body-slide spec (~24pt) which was sized for laptop viewing
+     and reads small in a conference hall. Sits just under the cover
+     title (3rem with line-height 0.9) so the cover still feels heaviest.
      If extract-brand.mjs regenerates this file, preserve this block.
      --------------------------------------------------------------- */
-  --typography-content-title-size: 2.75rem;
+  --typography-content-title-size: 3.25rem;
   --typography-content-title-line-height: 1.1;
 }
