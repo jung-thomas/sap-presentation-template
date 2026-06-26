@@ -25,12 +25,13 @@
      quote, or thank-you). The POTX has no dedicated "content" title
      placeholder, so this value is NOT auto-extracted.
 
-     3.25rem (~52pt) chosen for mainstage legibility — bigger than the
-     SAP POTX body-slide spec (~24pt) which was sized for laptop viewing
-     and reads small in a conference hall. Sits just under the cover
-     title (3rem with line-height 0.9) so the cover still feels heaviest.
+     1.5rem (~24pt) matches the SAP_Corp.potx body-slide title
+     placeholder height as observed in text-with-icons.vue (the layout
+     that historically held the brand-correct spec). The cover, agenda,
+     and divider chrome each use their own larger typography systems;
+     this token only governs content-page h1s.
      If extract-brand.mjs regenerates this file, preserve this block.
      --------------------------------------------------------------- */
-  --typography-content-title-size: 3.25rem;
+  --typography-content-title-size: 1.5rem;
   --typography-content-title-line-height: 1.1;
 }
