@@ -46,8 +46,8 @@
     flex-direction: column;
   }
   .brand-site h1 {
-    font-size: 2.5rem;
-    color: var(--sap-brand-blue-darker);
+    /* Inherits font-family/weight/size/color from .slidev-layout h1. Keep
+       tighter margin since `.intro` follows immediately below the title. */
     margin-bottom: 0.5rem;
   }
   .intro {

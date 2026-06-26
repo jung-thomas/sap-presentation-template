@@ -42,10 +42,9 @@
     justify-content: center;
   }
   .text-half h1 {
-    font-size: var(--typography-cover-title-size, 3rem);
-    line-height: var(--typography-cover-title-line-height, 1);
-    color: var(--sap-brand-blue-darker);
-    margin-bottom: 1.5rem;
+    /* Body-slide title (not a cover title). Inherits font-family/weight/
+       size/color from .slidev-layout h1 in slide-styles.css; size comes
+       from --typography-content-title-size. */
   }
   .text-half :deep(*) {
     font-size: 1.15rem;

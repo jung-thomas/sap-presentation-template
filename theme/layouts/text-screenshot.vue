@@ -32,9 +32,8 @@
     flex-direction: column;
   }
   .text-screenshot h1 {
-    font-size: 2.75rem;
-    color: var(--sap-brand-blue-darker);
-    margin-bottom: 1.5rem;
+    /* Inherits font-family/weight/size/color from .slidev-layout h1 in
+       slide-styles.css; size comes from --typography-content-title-size. */
   }
   .grid {
     flex: 1;

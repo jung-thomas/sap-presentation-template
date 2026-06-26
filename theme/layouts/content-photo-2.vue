@@ -55,9 +55,8 @@
     border: 2px solid var(--sap-brand-blue);
   }
   .header h1 {
-    font-size: var(--typography-content-title-size, 2.5rem);
-    line-height: var(--typography-content-title-line-height, 1.1);
-    color: var(--sap-brand-blue-darker);
+    /* Inherits font-family/weight/size/color from .slidev-layout h1.
+       Override only the margin: this layout's header has no body gap. */
     margin: 0;
   }
   .body {

@@ -39,11 +39,10 @@
     overflow: hidden;
   }
   .title-text h1 {
-    font-family: var(--sap-font-family-bold, var(--sap-font-major));
-    font-weight: 700;
-    font-size: var(--typography-content-title-size, 2.75rem);
-    line-height: var(--typography-content-title-line-height, 1.1);
-    color: var(--sap-brand-blue-darker);
+    /* Inherits font-family/weight/size/color from .slidev-layout h1 in
+       slide-styles.css; size comes from --typography-content-title-size.
+       flex-shrink: 0 + margin override keep the title pinned at the top
+       so the .content grid fills remaining space cleanly. */
     margin: 0 0 1.5rem 0;
     flex-shrink: 0;
   }

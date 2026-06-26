@@ -29,12 +29,11 @@
   }
   .title-only h1 {
     /* Title sits above any body decoration (e.g. Bio team-mode anvil band)
-       so it remains readable when used with full-bleed body components. */
+       so it remains readable when used with full-bleed body components.
+       Inherits font-family/weight/size/color from .slidev-layout h1 in
+       slide-styles.css; size comes from --typography-content-title-size. */
     position: relative;
     z-index: 5;
-    font-size: var(--typography-content-title-size, 4rem);
-    line-height: var(--typography-content-title-line-height, 1.1);
-    color: var(--sap-brand-blue-darker);
   }
   /* When the slide body renders the Bio team-mode dark anvil band, the
      default flex-column layout would push the band BELOW the h1, leaving
