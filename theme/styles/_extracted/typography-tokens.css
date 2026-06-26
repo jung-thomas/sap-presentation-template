@@ -25,12 +25,15 @@
      quote, or thank-you). The POTX has no dedicated "content" title
      placeholder, so this value is NOT auto-extracted.
 
-     2.5rem (~40px) sits one step below the divider chrome (48px in
-     divider.vue) so the section header reads as the heaviest element,
-     and content titles read as section-page titles. Picked after
-     measuring against the actual rendered divider/agenda/cover sizes.
+     2.25rem (~36px) sits below the 48px divider chrome and the 32.8px
+     agenda title, giving a clear visual hierarchy:
+       cover  ~46px > divider 48px > h1 36px > h2 36px > h3 24px.
+     Picked after measuring rendered divider/agenda/cover sizes in
+     browser and trading a small h1 size step against vertical room
+     for body content (slide 2 with two stacked <Bio> cards was the
+     tightest case at 2.5rem).
      If extract-brand.mjs regenerates this file, preserve this block.
      --------------------------------------------------------------- */
-  --typography-content-title-size: 2.5rem;
+  --typography-content-title-size: 2.25rem;
   --typography-content-title-line-height: 1.1;
 }

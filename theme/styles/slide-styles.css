@@ -8,6 +8,11 @@
  * reasons — the per-layout .vue files set their own padding and
  * decorations. The h1/h2/h3 rules below use `.layout` so they actually
  * apply to body-slide titles.
+ *
+ * NOTE on body text (p/li): we deliberately do NOT set a global p/li
+ * font-size. Per-layout components (Bio, quote, demo callout, tile
+ * descriptions, etc.) all have their own intentional sizing and the
+ * global rule overrode them in v0.5.7 — see fix(v0.5.8).
  */
 
 .slidev-layout {
@@ -42,12 +47,6 @@
   font-size: 1.5rem;
   line-height: 1.3;
   margin-bottom: 0.5rem;
-}
-
-.layout p,
-.layout li {
-  font-size: 1.25rem;
-  line-height: 1.5;
 }
 
 /* Footer accent shared across most layouts */

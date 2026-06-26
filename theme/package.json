@@ -1,6 +1,6 @@
 {
   "name": "@jungsap/slidev-theme-sap",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "SAP-branded Slidev theme with Fiori Horizon look-and-feel",
   "type": "module",
   "main": "./index.ts",
